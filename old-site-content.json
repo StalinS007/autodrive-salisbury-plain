@@ -1,0 +1,340 @@
+{
+  "business": {
+    "name": "AutoDrive Salisbury Plain",
+    "tagline": "Professional automotive expertise delivered with precision at our Salisbury Plain workshop. Quality service, every time.",
+    "hero_heading": "Adelaide's Trusted One-Stop Automotive Care Centre",
+    "hero_tag": "QUALITY PARTS & EXPERT CARE",
+    "hero_subheading": "Car Servicing • Repairs • Diagnostics • Used Car Sales • Detailing"
+  },
+
+  "contact_details": {
+    "phone": "+61 432 520 230",
+    "phone_display": "0432 520 230",
+    "email": "autodrive5109@gmail.com",
+    "address_primary": {
+      "street": "6 Lolands Rd",
+      "suburb": "Salisbury Plain",
+      "state": "SA",
+      "postcode": "5109",
+      "full": "6 Lolands Rd, Salisbury Plain SA 5109"
+    },
+    "address_secondary": {
+      "street": "779-781 North East Road",
+      "suburb": "Valley View",
+      "state": "SA",
+      "postcode": "5093",
+      "full": "779-781 North East Road, Valley View SA 5093"
+    },
+    "whatsapp": "https://wa.me/+61432520230"
+  },
+
+  "opening_hours": {
+    "monday_friday": "8:30am – 5:30pm",
+    "saturday": "8:30am – 4:00pm",
+    "sunday": "Closed",
+    "display": [
+      { "days": "Mon – Fri", "hours": "8:30am – 5:30pm" },
+      { "days": "Saturday", "hours": "8:30am – 4:00pm" },
+      { "days": "Sunday", "hours": "Closed" }
+    ]
+  },
+
+  "social_media": {
+    "whatsapp": "https://wa.me/+61432520230",
+    "instagram": "https://www.instagram.com/autodrive_salisburyplain/",
+    "facebook": "https://www.facebook.com/profile.php?id=61560815001969"
+  },
+
+  "navigation_links": [
+    { "label": "Home", "href": "index.html" },
+    { "label": "Services", "href": "services.html" },
+    { "label": "Car Detailing", "href": "detailings.html" },
+    { "label": "Used Car Sales", "href": "used-cars.html" },
+    { "label": "Contact", "href": "contact.html" }
+  ],
+
+  "cta_buttons": [
+    { "label": "Call Now", "action": "tel:+61432520230" },
+    { "label": "Book Now", "action": "#contact" },
+    { "label": "WhatsApp", "action": "https://wa.me/+61432520230" },
+    { "label": "View All Services", "action": "services.html" },
+    { "label": "Contact Now", "action": "contact.html" },
+    { "label": "Ready for a Test Drive?", "action": "contact.html" }
+  ],
+
+  "about": {
+    "section_title": "About Us",
+    "section_subtitle": "Expert Auto Care You Can Trust",
+    "body": "At AutoDrive Salisbury Plain, we provide professional automotive expertise within our state-of-the-art workshop. Our fully equipped facility ensures your vehicle receives top-quality care—from routine maintenance and logbook servicing to complex diagnostics and major repairs—all performed with precision and care. Whether it's a high-performance luxury vehicle or a reliable daily driver, our certified mechanics use the latest technology and premium parts to keep you on the road safely. We proudly serve customers across Adelaide's northern suburbs — from the Adelaide CBD through Mawson Lakes, Salisbury, Elizabeth, Munno Para, Playford, Angle Vale, Riverlea, Virginia, Blakeview and up to Gawler."
+  },
+
+  "why_choose_us": {
+    "section_title": "Why Choose Us",
+    "section_subtitle": "Experience the Best",
+    "points": [
+      {
+        "title": "Certified Technicians",
+        "description": "Factory-trained experts for all makes and models"
+      },
+      {
+        "title": "Transparent Pricing",
+        "description": "Clear, upfront quotes with no hidden surprises"
+      },
+      {
+        "title": "Latest Equipment",
+        "description": "Pinpoint accuracy for efficient and effective repairs"
+      },
+      {
+        "title": "High-Quality Parts",
+        "description": "Only genuine or premium aftermarket parts used"
+      },
+      {
+        "title": "Fast Turnaround",
+        "description": "Efficient service to get you back on the road sooner"
+      },
+      {
+        "title": "Customer First",
+        "description": "Honest advice and genuine care for you and your car"
+      }
+    ]
+  },
+
+  "workshop_services": {
+    "section_title": "Our Professional Services",
+    "homepage_title": "What We Offer",
+    "homepage_subtitle": "Our Services",
+    "services": [
+      {
+        "number": "01",
+        "title": "Used Car Sales",
+        "description": "Hand-picked, high-quality vehicles you can trust. Every car undergoes a rigorous mechanical inspection and comes with warranty options for your peace of mind."
+      },
+      {
+        "number": "02",
+        "title": "Log Book Servicing",
+        "description": "Maintain your manufacturer's warranty with certified servicing. We follow strict factory guidelines using quality parts.",
+        "homepage_tags": ["Log Book Stamps", "Warranty Protected", "Full Safety Check"]
+      },
+      {
+        "number": "03",
+        "title": "Standard & Minor Service",
+        "description": "Professional maintenance for everyday reliability. Includes oil change, filter replacement, and a comprehensive safety check."
+      },
+      {
+        "number": "04",
+        "title": "Brake Repair & Service",
+        "description": "Safety first. Our expert brake services include inspections, adjustments, and replacement of pads, rotors, and fluids.",
+        "homepage_tags": ["Brake Inspection", "Shock Absorbers", "Steering & Rack ends", "Control arms repairs and replacement"]
+      },
+      {
+        "number": "05",
+        "title": "Car Air Conditioning Service",
+        "description": "Stay cool all year round. We provide gas recharges, leak detection, and full system repairs for all vehicle makes.",
+        "homepage_tags": ["Re-gas & Recharge", "Leak Detection", "Radiator Service"]
+      },
+      {
+        "number": "06",
+        "title": "Mechanical Repairs & Diagnosis",
+        "description": "From complex engine issues to transmission repairs. Our certified mechanics use advanced diagnostics to find and fix faults.",
+        "homepage_tags": ["Fault Finding", "Engine Repairs", "Transmission Service"]
+      },
+      {
+        "number": "07",
+        "title": "Fuel Injector Service",
+        "description": "Optimise your engine's performance and fuel efficiency. We offer professional cleaning and flow-testing for fuel systems."
+      },
+      {
+        "number": "08",
+        "title": "Radiator & Cooling System",
+        "description": "Prevent engine overheating. We provide cooling system flushes, radiator repairs, and thermostat replacements."
+      },
+      {
+        "number": "09",
+        "title": "Suspension & Steering",
+        "description": "Smooth handling and safe control. We specialize in shocks, struts, power steering, and wheel alignments."
+      },
+      {
+        "number": "10",
+        "title": "Exhausts & Batteries",
+        "description": "Essential systems care. We offer exhaust repairs and replacements alongside high-performance battery testing and fitting."
+      },
+      {
+        "number": "11",
+        "title": "Regular Servicing",
+        "description": "Protect your investment. Regular servicing improves safety, prevents costly repairs, and maintains your car's resale value."
+      }
+    ],
+    "homepage_categories": [
+      {
+        "title": "Logbook & General Servicing",
+        "tags": ["Log Book Stamps", "Warranty Protected", "Full Safety Check"]
+      },
+      {
+        "title": "Brakes & Suspension",
+        "tags": ["Brake Inspection", "Shock Absorbers", "Steering & Rack ends", "Control arms repairs and replacement"]
+      },
+      {
+        "title": "Diagnostics & Repairs",
+        "tags": ["Fault Finding", "Engine Repairs", "Transmission Service"]
+      },
+      {
+        "title": "Diesel & DPF Specialists",
+        "tags": ["DPF Cleaning", "Injector Service", "Diesel Tuning"]
+      },
+      {
+        "title": "4WD Service & Upgrades",
+        "tags": ["4WD Servicing", "Lift Kits", "Diff & Transfer Service"]
+      },
+      {
+        "title": "ECU Programming & Electronics",
+        "tags": ["ECU Tuning", "Fault Code Reset", "Electrical Repairs"]
+      },
+      {
+        "title": "Air Conditioning & Cooling",
+        "tags": ["Re-gas & Recharge", "Leak Detection", "Radiator Service"]
+      }
+    ]
+  },
+
+  "detailing_services": {
+    "page_heading": "Professional Detailing",
+    "page_tag": "PREMIUM CAR CARE",
+    "page_subtitle": "Excellence in Every Detail",
+    "section_title": "Our Detailing Services",
+    "services": [
+      {
+        "number": "01",
+        "title": "Paint Correction",
+        "description": "Restore your vehicle's paintwork by removing swirl marks, scratches, and oxidation. We bring back the deep gloss and clarity of your car's finish."
+      },
+      {
+        "number": "02",
+        "title": "Ceramic Coating",
+        "description": "Provide long-lasting protection for your paint against UV rays, chemicals, and dirt. Achieve a hydrophobic finish that keeps your car cleaner for longer."
+      },
+      {
+        "number": "03",
+        "title": "Interior Detailing",
+        "description": "Deep cleaning and conditioning of all interior surfaces. We treat leather, shampoo upholstery/carpets, and sanitize every corner for a fresh cabin."
+      },
+      {
+        "number": "04",
+        "title": "Pre-Sale Detailing",
+        "description": "Maximize your vehicle's resale value with our comprehensive pre-sale package. We meticulously clean and prep your car to look its absolute best for buyers."
+      },
+      {
+        "number": "05",
+        "title": "Headlight Restoration",
+        "description": "Improve visibility and safety by restoring cloudy, yellowed headlights to their original clarity. Enhances the look of your vehicle instantly."
+      },
+      {
+        "number": "06",
+        "title": "Engine Bay Detailing",
+        "description": "A thorough clean and degrease of your engine compartment, followed by dressing of plastics and hoses. Keeps your engine looking like new and makes spotting leaks easier."
+      },
+      {
+        "number": "07",
+        "title": "Window Tinting",
+        "description": "Professional window tint installation for enhanced privacy, UV protection, and heat reduction inside your vehicle. Available in various shades."
+      },
+      {
+        "number": "08",
+        "title": "Minor Cosmetic Improvement",
+        "description": "Touch-ups for stone chips, small scratch repairs, and trim restoration. Perfect for addressing those little imperfections that detract from your car's look."
+      },
+      {
+        "number": "09",
+        "title": "Premium Hand Wash",
+        "description": "A gentle, careful hand wash using premium pH-neutral soaps and microfiber mitts to prevent swirl marks. Includes wheel cleaning and tyre dressing."
+      }
+    ]
+  },
+
+  "used_car_sales": {
+    "page_heading": "Quality Used Cars",
+    "promise_heading": "THE AUTO DRIVE PROMISE",
+    "promise_subtitle": "Reliable, Accident-Free Vehicles",
+    "description": "Looking for a reliable used car? At AutoDrive Salisbury Plain, we offer a carefully selected range of quality pre-owned vehicles. Every car in our inventory undergoes a comprehensive inspection to ensure it meets our high standards. From compact city cars to family SUVs, we have options to suit every budget and lifestyle. All our vehicles come with detailed service history, and we provide transparent information about their condition. Our experienced team can guide you through the selection process and help you find the perfect vehicle that fits your needs and budget.",
+    "price_range": "$5,000 – $40,000",
+    "cta": "Ready for a Test Drive?",
+    "selling_points": [
+      {
+        "title": "Expert-Inspected Vehicles",
+        "description": "Spotless, accident-free, and mechanically sound"
+      },
+      {
+        "title": "3 Months Free Registration",
+        "description": "Drive away with peace of mind"
+      },
+      {
+        "title": "Post-Sale Support",
+        "description": "We offer discounted repairs for our customers"
+      },
+      {
+        "title": "Warranty",
+        "description": "12 to 36 months warranty available (optional)"
+      },
+      {
+        "title": "Roadside Assistance",
+        "description": "Emergency breakdown services available"
+      }
+    ]
+  },
+
+  "testimonials": {
+    "section_title": "Testimonials",
+    "section_subtitle": "What Clients Say",
+    "reviews": [
+      {
+        "name": "Olivia Williams",
+        "role": "Customer",
+        "rating": 5,
+        "text": "I was so impressed with the professional service at AutoDrive. I dropped my car off for a full service, and the team was incredibly thorough and communicative. Top-quality work and very fairly priced. Highly recommend for any mechanical needs!"
+      },
+      {
+        "name": "James Thompson",
+        "role": "Customer",
+        "rating": 5,
+        "text": "Started using AutoDrive for my logbook servicing and I'm saving a lot compared to what the dealership used to charge. The mechanics really know their stuff and always explain exactly what's been done. Great local service."
+      },
+      {
+        "name": "Sarah Jenkins",
+        "role": "Customer",
+        "rating": 5,
+        "text": "Had a complex brake issue that two other shops couldn't quite pin down. The team at AutoDrive diagnosed it quickly and fixed it the same day. Transparent pricing and exceptional expertise. I wouldn't go anywhere else now."
+      },
+      {
+        "name": "David Miller",
+        "role": "Customer",
+        "rating": 5,
+        "text": "As a car enthusiast, I'm very picky about who touches my vehicle. AutoDrive did a performance tune and major maintenance on my sports car, and the results were fantastic. Their attention to detail is top-notch."
+      }
+    ]
+  },
+
+  "homepage_cta_section": {
+    "heading": "Reach Out To Us",
+    "subheading": "Don't Ignore The Signs!",
+    "body": "Strange noises? Warning lights? Unusual vibrations? Don't wait until it's too late. Regular maintenance and timely repairs can save you thousands in the long run."
+  },
+
+  "service_areas": [
+    "Adelaide CBD",
+    "Mawson Lakes",
+    "Salisbury",
+    "Elizabeth",
+    "Munno Para",
+    "Playford",
+    "Angle Vale",
+    "Riverlea",
+    "Virginia",
+    "Blakeview",
+    "Gawler"
+  ],
+
+  "footer": {
+    "tagline": "Professional automotive expertise delivered with precision at our Salisbury Plain workshop. Quality service, every time.",
+    "quick_links": ["Home", "Services", "Car Detailing", "Used Car Sales", "Contact"],
+    "copyright": "©2026 AutoDrive Salisbury Plain. All rights reserved."
+  }
+}

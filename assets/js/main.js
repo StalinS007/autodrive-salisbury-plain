@@ -1,0 +1,75 @@
+/* AutoDrive Salisbury Plain — interactions */
+(function () {
+  "use strict";
+
+  // Mobile nav toggle
+  var header = document.querySelector(".site-header");
+  var toggle = document.querySelector(".nav-toggle");
+  if (toggle && header) {
+    toggle.addEventListener("click", function () {
+      header.classList.toggle("open");
+    });
+    header.querySelectorAll(".nav a").forEach(function (a) {
+      a.addEventListener("click", function () { header.classList.remove("open"); });
+    });
+  }
+
+  // Scroll reveal
+  var reveals = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window && reveals.length) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    reveals.forEach(function (el, i) {
+      el.style.transitionDelay = Math.min(i % 4, 3) * 80 + "ms";
+      io.observe(el);
+    });
+  } else {
+    reveals.forEach(function (el) { el.classList.add("in"); });
+  }
+
+  // Booking / contact form (progressive enhancement)
+  var form = document.getElementById("booking-form");
+  if (form) {
+    var status = form.querySelector(".form-status");
+    form.addEventListener("submit", function (ev) {
+      // If a real endpoint is configured (data-endpoint), POST via fetch.
+      var endpoint = form.getAttribute("data-endpoint");
+      if (!endpoint) {
+        // No backend wired yet — show a friendly confirmation and stop.
+        ev.preventDefault();
+        if (status) {
+          status.className = "form-status ok";
+          status.textContent = "Thanks! Your request has been captured. Connect a form endpoint (Formspree/back-end) to receive these by email. For an instant booking, tap Call or WhatsApp.";
+        }
+        return;
+      }
+      ev.preventDefault();
+      var btn = form.querySelector('[type="submit"]');
+      var original = btn ? btn.textContent : "";
+      if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
+      fetch(endpoint, {
+        method: "POST",
+        body: new FormData(form),
+        headers: { Accept: "application/json" }
+      }).then(function (r) {
+        if (r.ok) {
+          form.reset();
+          if (status) { status.className = "form-status ok"; status.textContent = "Thanks! Your booking request has been sent. We'll be in touch shortly."; }
+        } else {
+          if (status) { status.className = "form-status err"; status.textContent = "Sorry, something went wrong. Please call us on +61 432 520 230."; }
+        }
+      }).catch(function () {
+        if (status) { status.className = "form-status err"; status.textContent = "Network error. Please call us on +61 432 520 230."; }
+      }).finally(function () {
+        if (btn) { btn.disabled = false; btn.textContent = original; }
+      });
+    });
+  }
+
+  // Footer year
+  var y = document.getElementById("year");
+  if (y) y.textContent = new Date().getFullYear();
+})();
