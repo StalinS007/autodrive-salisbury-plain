@@ -18,9 +18,15 @@
 
   --radius:    14px;
   --radius-sm: 9px;
-  --shadow:    0 18px 40px -18px rgba(0,0,0,.35);
-  --shadow-sm: 0 8px 20px -12px rgba(0,0,0,.30);
+  /* Shadows are tinted toward the ink-black/charcoal hue (not pure black) for a
+     softer, more considered depth. */
+  --shadow:    0 22px 48px -22px rgba(14,14,16,.42);
+  --shadow-sm: 0 10px 24px -14px rgba(14,14,16,.34);
+  --shadow-red: 0 20px 44px -20px rgba(147,14,18,.45);
   --ring:      0 0 0 4px rgba(192,20,24,.20);
+
+  /* Tileable monochrome grain — adds micro-texture to flat dark surfaces. */
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
 
   --wrap: 1180px;
   --gap:  clamp(1rem, 3vw, 2rem);
@@ -48,15 +54,22 @@ body {
 img { max-width: 100%; display: block; }
 a { color: inherit; text-decoration: none; }
 
-h1, h2, h3, h4 { color: var(--ink-black); line-height: 1.08; margin: 0 0 .5em; }
+h1, h2, h3, h4 { color: var(--ink-black); line-height: 1.08; margin: 0 0 .5em; text-wrap: balance; }
+p { text-wrap: pretty; }
 
-.display {
+.display, .h-display {
   font-family: var(--font-display);
   font-weight: 400;
   letter-spacing: .5px;
   text-transform: uppercase;
   line-height: .98;
 }
+/* Section-heading display type used inline throughout the homepage splits. */
+.h-display { font-size: clamp(1.9rem, 4.4vw, 3rem); }
+
+/* Numerals (stats, counters, big index figures) read cleaner as tabular. */
+.trust-strip .num, .feature__num, .price-card .price,
+.car-card__price, .rating-chip strong { font-variant-numeric: tabular-nums; }
 
 .wrap { width: min(var(--wrap), 92vw); margin-inline: auto; }
 
@@ -71,12 +84,15 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   content: ""; width: 26px; height: 2px; background: var(--brand-red);
 }
 .eyebrow.center { justify-content: center; }
+/* On dark/photographic surfaces the label stays white but the accent rule stays red. */
+.eyebrow--light { color: #fff; }
+.eyebrow--light::before { background: var(--brand-red); }
 
 .section-head { max-width: 640px; }
 .section-head.center { margin-inline: auto; text-align: center; }
 .section-head h2 {
   font-family: var(--font-display); text-transform: uppercase;
-  font-size: clamp(1.9rem, 4.4vw, 3rem); letter-spacing: .5px;
+  font-size: clamp(1.9rem, 4.4vw, 3rem); letter-spacing: .3px;
 }
 .section-head p { color: var(--grey-500); font-size: 1.05rem; }
 
@@ -93,10 +109,14 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   transition: transform .2s var(--ease), background .2s var(--ease), box-shadow .2s var(--ease);
   white-space: nowrap;
 }
-.btn:hover { background: var(--brand-red-dk); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
+.btn:hover { background: var(--brand-red-dk); transform: translateY(-2px); box-shadow: var(--shadow-red); }
+.btn:active { transform: translateY(0) scale(.98); box-shadow: none; }
 .btn:focus-visible { outline: none; box-shadow: var(--ring); }
 .btn--ghost { background: transparent; color: var(--ink-black); border-color: var(--grey-300); }
 .btn--ghost:hover { background: var(--ink-black); color: #fff; border-color: var(--ink-black); }
+/* Ghost button placed on a dark or red surface. */
+.btn--on-dark { color: #fff; border-color: rgba(255,255,255,.6); }
+.btn--on-dark:hover { background: #fff; color: var(--ink-black); border-color: #fff; }
 .btn--light { background: #fff; color: var(--ink-black); }
 .btn--light:hover { background: var(--off-white); color: var(--ink-black); }
 .btn--lg { padding: 1.05rem 1.9rem; font-size: 1.04rem; }
@@ -126,6 +146,7 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 }
 .nav a:hover::after, .nav a.active::after { width: 100%; }
 .nav a.active { color: var(--brand-red); }
+.nav a:focus-visible, .header-phone:focus-visible { outline: none; box-shadow: var(--ring); border-radius: 6px; }
 .header-cta { display: flex; align-items: center; gap: .9rem; }
 .header-phone { display: flex; align-items: center; gap: .5rem; font-weight: 800; color: var(--ink-black); }
 .header-phone svg { width: 18px; height: 18px; color: var(--brand-red); }
@@ -137,16 +158,47 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 
 /* ---------- Hero ---------- */
 .hero {
-  position: relative; color: #fff;
-  background: linear-gradient(115deg, rgba(8,8,8,.92) 0%, rgba(8,8,8,.62) 55%, rgba(8,8,8,.30) 100%),
+  position: relative; color: #fff; isolation: isolate;
+  background: linear-gradient(115deg, rgba(8,8,8,.94) 0%, rgba(8,8,8,.66) 52%, rgba(8,8,8,.30) 100%),
+              radial-gradient(120% 85% at 12% 18%, rgba(192,20,24,.20), transparent 60%),
               url("../../images/1.%20And%20working%20on%20cars%20.jpeg") center/cover no-repeat, var(--ink-black);
   padding: clamp(4rem, 9vw, 7.5rem) 0 clamp(4rem, 8vw, 6.5rem);
+}
+/* Fine film grain over the hero photograph to kill digital flatness. */
+.hero::before {
+  content: ""; position: absolute; inset: 0; z-index: -1;
+  background-image: var(--grain); background-size: 140px 140px;
+  opacity: .055; pointer-events: none; mix-blend-mode: overlay;
 }
 .hero::after {
   content: ""; position: absolute; left: 0; bottom: 0; width: 100%; height: 5px;
   background: linear-gradient(90deg, var(--brand-red), var(--brand-red-dk));
 }
-.hero__inner { max-width: 720px; }
+.hero__inner { max-width: 720px; position: relative; }
+
+/* Glass eyebrow chip — replaces the inline white label on the hero. */
+.hero__badge {
+  display: inline-flex; align-items: center; gap: .55rem;
+  font-weight: 700; letter-spacing: .16em; text-transform: uppercase; font-size: .72rem;
+  color: #fff; padding: .5rem .9rem; margin-bottom: 1.2rem;
+  background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18);
+  border-radius: 999px; backdrop-filter: blur(8px);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.12);
+}
+.hero__badge::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: var(--brand-red); box-shadow: 0 0 0 4px rgba(192,20,24,.25); }
+.hero p strong { color: #fff; }
+
+/* Floating social-proof chip anchored to the hero's lower edge. */
+.rating-chip {
+  display: inline-flex; align-items: center; gap: .7rem; margin-top: 2.2rem;
+  background: rgba(255,255,255,.96); color: var(--ink-black);
+  padding: .7rem 1.1rem; border-radius: 999px; box-shadow: var(--shadow);
+  border: 1px solid rgba(255,255,255,.6);
+}
+.rating-chip .stars { color: #f5a623; letter-spacing: 1px; font-size: 1rem; }
+.rating-chip strong { font-family: var(--font-display); font-size: 1.15rem; line-height: 1; }
+.rating-chip small { color: var(--grey-500); font-size: .82rem; }
+.rating-chip .divider { width: 1px; height: 22px; background: var(--grey-300); }
 .hero h1 {
   color: #fff; font-family: var(--font-display); text-transform: uppercase;
   font-size: clamp(2.4rem, 6.2vw, 4.4rem); letter-spacing: .5px; margin-bottom: 1rem;
@@ -159,29 +211,50 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .hero__meta svg { width: 20px; height: 20px; color: var(--brand-red); }
 
 /* ---------- Trust strip ---------- */
-.trust-strip { background: var(--ink-black); color: #fff; padding: 1.6rem 0; }
+.trust-strip { background: var(--ink-black); color: #fff; padding: 1.7rem 0; }
 .trust-strip__grid {
   display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; text-align: center;
 }
-.trust-strip .num { font-family: var(--font-display); font-size: 2rem; color: var(--brand-red); line-height: 1; }
-.trust-strip .lbl { font-size: .82rem; letter-spacing: .04em; color: rgba(255,255,255,.72); text-transform: uppercase; margin-top: .35rem; }
+/* Hairline dividers between stats instead of floating columns. */
+.trust-strip__grid > div { position: relative; }
+.trust-strip__grid > div + div::before {
+  content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%);
+  width: 1px; height: 38px; background: rgba(255,255,255,.12);
+}
+.trust-strip .num { font-family: var(--font-display); font-size: 2.1rem; color: var(--brand-red); line-height: 1; }
+.trust-strip .lbl { font-size: .8rem; letter-spacing: .08em; color: rgba(255,255,255,.66); text-transform: uppercase; margin-top: .4rem; }
 
 /* ---------- Service cards ---------- */
 .grid { display: grid; gap: 1.4rem; }
+/* Spacing utilities (replace one-off inline margins). */
+.mt-lg { margin-top: 2.5rem; }
+.center-row { text-align: center; margin-top: 2.4rem; }
 .grid--3 { grid-template-columns: repeat(3, 1fr); }
 .grid--4 { grid-template-columns: repeat(4, 1fr); }
 .grid--2 { grid-template-columns: repeat(2, 1fr); }
 
 .card {
-  background: #fff; border: 1px solid var(--grey-100); border-radius: var(--radius);
-  padding: 1.6rem; transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease);
+  position: relative; background: #fff;
+  border: 1px solid var(--grey-100); border-radius: var(--radius);
+  padding: 1.7rem 1.6rem; overflow: hidden;
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), border-color .25s var(--ease);
   height: 100%;
 }
-.card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: transparent; }
-.card__icon {
-  width: 52px; height: 52px; border-radius: 12px; display: grid; place-items: center;
-  background: rgba(192,20,24,.10); color: var(--brand-red); margin-bottom: 1rem;
+/* A red accent rule that wipes across the top edge on hover. */
+.card::before {
+  content: ""; position: absolute; top: 0; left: 0; height: 3px; width: 0;
+  background: linear-gradient(90deg, var(--brand-red), var(--brand-red-dk));
+  transition: width .35s var(--ease);
 }
+.card:hover { transform: translateY(-6px); box-shadow: var(--shadow); border-color: rgba(192,20,24,.18); }
+.card:hover::before { width: 100%; }
+.card:active { transform: translateY(-3px) scale(.995); }
+.card__icon {
+  width: 54px; height: 54px; border-radius: 13px; display: grid; place-items: center;
+  background: rgba(192,20,24,.10); color: var(--brand-red); margin-bottom: 1.1rem;
+  transition: background .25s var(--ease), transform .25s var(--ease);
+}
+.card:hover .card__icon { background: var(--brand-red); color: #fff; transform: scale(1.04); }
 .card__icon svg { width: 26px; height: 26px; }
 .card h3 { font-size: 1.18rem; margin-bottom: .5rem; }
 .card p { color: var(--grey-500); font-size: .96rem; margin: 0 0 1rem; }
@@ -193,12 +266,18 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 
 /* ---------- Why choose / feature list ---------- */
 .feature {
-  display: flex; gap: 1rem; padding: 1.3rem; border-radius: var(--radius);
-  background: var(--off-white); border: 1px solid var(--grey-100);
-  transition: transform .25s var(--ease), box-shadow .25s var(--ease);
+  display: flex; gap: 1.1rem; align-items: flex-start; padding: 1.4rem;
+  border-radius: var(--radius); background: var(--off-white); border: 1px solid var(--grey-100);
+  transition: transform .25s var(--ease), box-shadow .25s var(--ease), background .25s var(--ease);
 }
-.feature:hover { transform: translateY(-4px); box-shadow: var(--shadow-sm); }
-.feature__num { font-family: var(--font-display); color: var(--brand-red); font-size: 1.5rem; line-height: 1; opacity: .85; }
+.feature:hover { transform: translateY(-4px); box-shadow: var(--shadow-sm); background: #fff; }
+/* Large outlined index figure — drawn with a text stroke so it reads as a graphic accent. */
+.feature__num {
+  font-family: var(--font-display); font-size: 2.3rem; line-height: .9; flex: none;
+  color: transparent; -webkit-text-stroke: 1.5px var(--brand-red);
+  transition: color .25s var(--ease);
+}
+.feature:hover .feature__num { color: rgba(192,20,24,.12); }
 .feature h3 { font-size: 1.05rem; margin-bottom: .3rem; }
 .feature p { font-size: .92rem; color: var(--grey-500); margin: 0; }
 
@@ -217,14 +296,34 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .checklist strong { color: var(--ink-black); }
 
 /* ---------- Bands ---------- */
-.band-dark { background: var(--ink-black); color: #fff; }
+.band-dark { position: relative; background: var(--ink-black); color: #fff; isolation: isolate; }
 .band-dark h2, .band-dark h3 { color: #fff; }
+/* Dark and red bands carry a faint grain so they don't read as flat fills. */
+.band-dark::before, .band-red::before {
+  content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: var(--grain); background-size: 140px 140px; opacity: .05;
+}
 .band-red {
+  position: relative; isolation: isolate; color: #fff;
   background: linear-gradient(120deg, var(--brand-red), var(--brand-red-dk));
-  color: #fff;
 }
 .band-red h2 { color: #fff; }
+/* Soft text for paragraphs sitting on dark or red surfaces. */
+.band-dark .lead-muted { color: rgba(255,255,255,.82); }
+.band-dark .checklist li, .band-dark .checklist strong { color: #fff; }
+.band-red .lead-muted { color: rgba(255,255,255,.95); }
 .band-grey { background: var(--off-white); }
+
+/* Two-column CTA band (copy left, actions right) — was inline grid markup. */
+.cta-split {
+  display: grid; grid-template-columns: 1.4fr 1fr; gap: 2rem; align-items: center;
+}
+.cta-split__actions { display: flex; gap: .8rem; flex-wrap: wrap; justify-content: flex-end; }
+.cta-split p { font-size: 1.1rem; max-width: 560px; }
+@media (max-width: 760px) {
+  .cta-split { grid-template-columns: 1fr; }
+  .cta-split__actions { justify-content: flex-start; }
+}
 
 .cta-band { text-align: center; }
 .cta-band h2 { font-family: var(--font-display); text-transform: uppercase; font-size: clamp(2rem,5vw,3.2rem); }
