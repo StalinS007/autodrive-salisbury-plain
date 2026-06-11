@@ -154,6 +154,8 @@ and must stay URL-encoded (`%20`) in HTML/CSS.** Current mapping:
 
 | Used for                         | File in `images/`                       | Encoded reference                          |
 |----------------------------------|-----------------------------------------|--------------------------------------------|
+| Header logo (light bg)           | `logo-light.png` (transparent, black text) | `images/logo-light.png`                 |
+| Footer logo (dark bg)            | `logo-transparent.png` (transparent, white text) | `images/logo-transparent.png`     |
 | Favicon, og:image, JSON-LD image | `logo-autodrive.png`                    | `images/logo-autodrive.png`                |
 | Watermark mark (CSS backgrounds) | `logo-mark.svg`                         | `images/logo-mark.svg`                     |
 | Home hero background (in CSS)    | `1. And working on cars .jpeg`          | `1.%20And%20working%20on%20cars%20.jpeg`   |
@@ -162,10 +164,16 @@ and must stay URL-encoded (`%20`) in HTML/CSS.** Current mapping:
 | Detailing + air-con images       | `luxury-car.png`                        | `images/luxury-car.png`                    |
 | Used-cars + 4WD images           | `family-car-service.png`                | `images/family-car-service.png`            |
 
-- **Header + footer logos are now inline SVG** (owner-approved change, June 2026): a
-  vector recreation of the lockup embedded in every page's header (`.logo-svg`) and
-  footer (`.logo-svg--light` white variant). The PNG remains only for favicon/OG/JSON-LD.
-  A faint car-only watermark (`images/logo-mark.svg`) backs `.cta-band` and `.page-hero`.
+- **Logo treatment (owner-approved, June 2026): keep the EXACT original artwork.** Earlier
+  hand-drawn SVG recreations were rejected — the owner wants the real brand mark, the
+  sporty **coupe** (not a sedan/hatch). The original `logo-autodrive.png` has a baked white
+  background (the "box"). The clean transparent cut-outs are now used instead:
+  `logo-light.png` (black text, for the white header) and `logo-transparent.png`
+  (white text, for the dark footer) — both the genuine lockup, just background-removed, so
+  they blend seamlessly with no box. `logo-light.png` was generated from `logo-autodrive.png`
+  by knocking out white with edge decontamination (Pillow). Sized via `.logo-img` in CSS.
+  A faint coupe watermark (`images/logo-mark.svg`) backs `.cta-band` and `.page-hero`.
+  (`logo-dark.png`/`logo-crushed.png` are older variants, currently unused.)
 - The hero/about/diagnostics shots are **real photos of the owner in his actual
   workshop** — keep them; they're the site's strongest trust asset.
 - `luxury-car.png` and `family-car-service.png` are stand-ins for detailing/used-cars —

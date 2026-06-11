@@ -134,27 +134,16 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   gap: 1rem; padding: .65rem 0; min-height: 68px;
 }
 .brand { display: flex; align-items: center; }
-/* Inline SVG lockup — transparent, so it sits directly on the header surface. */
-.logo-svg {
-  height: 96px; width: auto; display: block;
+/* Original brand artwork (transparent PNG) — sits directly on the white header,
+   no box. Square lockup, so height drives the visible size. */
+.logo-img {
+  height: 86px; width: auto; display: block;
   transition: transform .3s var(--ease), filter .3s var(--ease);
 }
-.brand:hover .logo-svg {
+.brand:hover .logo-img {
   transform: scale(1.04);
-  filter: drop-shadow(0 4px 14px rgba(192,20,24,.35));
+  filter: drop-shadow(0 4px 14px rgba(192,20,24,.30));
 }
-/* A short segment of light circulates the car body outline. */
-.logo-trace {
-  stroke: #FF5A5E; stroke-dasharray: 14 86; stroke-dashoffset: 0;
-  animation: logo-trace 6s linear infinite;
-}
-.brand:hover .logo-trace { animation-duration: 1.8s; }
-@keyframes logo-trace { to { stroke-dashoffset: -100; } }
-/* White variant for dark surfaces (footer). */
-.logo-svg--light .logo-car { stroke: #fff; }
-.logo-svg--light .logo-trace { stroke: rgba(255,255,255,.85); }
-.logo-svg--light text, .logo-svg--light tspan { fill: #fff; }
-.logo-svg--light .logo-word tspan:last-child { fill: var(--brand-red); }
 .nav { display: flex; align-items: center; gap: 1.6rem; }
 .nav a {
   font-weight: 600; font-size: .95rem; color: var(--ink-black);
@@ -452,7 +441,8 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 /* ---------- Footer ---------- */
 .site-footer { background: var(--ink-black); color: rgba(255,255,255,.72); padding: clamp(3rem,6vw,4.5rem) 0 1.6rem; }
 .footer-grid { display:grid; grid-template-columns: 1.4fr 1fr 1fr 1.2fr; gap: 2rem; }
-.site-footer .logo-svg { height: 118px; margin-bottom: 1rem; }
+/* Footer uses the dark-mode artwork (red car, white text) on transparent. */
+.site-footer .logo-img { height: 128px; margin: -8px 0 .4rem -6px; }
 .site-footer h4 { color:#fff; font-size:.95rem; letter-spacing:.05em; text-transform:uppercase; margin-bottom:1rem; }
 .site-footer ul { list-style:none; padding:0; margin:0; display:grid; gap:.6rem; }
 .site-footer a:hover { color:#fff; }
@@ -495,7 +485,7 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 @media (max-width: 760px) {
   .nav, .header-phone { display:none; }
   .nav-toggle { display:flex; }
-  .logo-svg { height: 72px; }
+  .logo-img { height: 64px; }
   .site-header.open .nav {
     display:flex; position:absolute; top:100%; left:0; right:0; flex-direction:column;
     align-items:flex-start; gap:0; background:#fff; padding:.5rem 6vw 1.2rem; border-bottom:1px solid var(--grey-100);
@@ -518,5 +508,4 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior:auto; }
   .reveal { transition:none; opacity:1; transform:none; }
-  .logo-trace { animation:none; opacity:0; }
 }
