@@ -154,17 +154,20 @@ and must stay URL-encoded (`%20`) in HTML/CSS.** Current mapping:
 
 | Used for                         | File in `images/`                       | Encoded reference                          |
 |----------------------------------|-----------------------------------------|--------------------------------------------|
-| Header + footer logo, favicon    | `logo-autodrive.png`                    | `images/logo-autodrive.png`                |
+| Favicon, og:image, JSON-LD image | `logo-autodrive.png`                    | `images/logo-autodrive.png`                |
+| Watermark mark (CSS backgrounds) | `logo-mark.svg`                         | `images/logo-mark.svg`                     |
 | Home hero background (in CSS)    | `1. And working on cars .jpeg`          | `1.%20And%20working%20on%20cars%20.jpeg`   |
 | About / logbook / diesel images | `2. Man working on car .jpeg` (about), `1. And working on cars .jpeg` (diesel/brakes) | as above |
 | Diagnostics page image           | `3. Man working on car .jpeg`           | `3.%20Man%20working%20on%20car%20.jpeg`    |
 | Detailing + air-con images       | `luxury-car.png`                        | `images/luxury-car.png`                    |
 | Used-cars + 4WD images           | `family-car-service.png`                | `images/family-car-service.png`            |
 
+- **Header + footer logos are now inline SVG** (owner-approved change, June 2026): a
+  vector recreation of the lockup embedded in every page's header (`.logo-svg`) and
+  footer (`.logo-svg--light` white variant). The PNG remains only for favicon/OG/JSON-LD.
+  A faint car-only watermark (`images/logo-mark.svg`) backs `.cta-band` and `.page-hero`.
 - The hero/about/diagnostics shots are **real photos of the owner in his actual
   workshop** — keep them; they're the site's strongest trust asset.
-- Footer logo is whitened via CSS (`filter: brightness(0) invert(1)` on `.site-footer img.flogo`)
-  so the dark logo shows on the dark footer. Keep that if the footer stays dark.
 - `luxury-car.png` and `family-car-service.png` are stand-ins for detailing/used-cars —
   swap for real photos when available.
 
