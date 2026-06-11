@@ -137,7 +137,7 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 /* Header: inline vector logo (traced from the real artwork), sized up.
    On hover a soft light band sweeps across each layer in turn (staggered). */
 .logo-svg {
-  height: 108px; width: auto; display: block;
+  height: 88px; width: auto; display: block;
   transition: transform .3s var(--ease), filter .3s var(--ease);
 }
 .brand:hover .logo-svg {
@@ -498,7 +498,7 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 @media (max-width: 760px) {
   .nav, .header-phone { display:none; }
   .nav-toggle { display:flex; }
-  .logo-svg { height: 78px; }
+  .logo-svg { height: 66px; }
   .logo-img { height: 64px; }
   .site-header.open .nav {
     display:flex; position:absolute; top:100%; left:0; right:0; flex-direction:column;
