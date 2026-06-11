@@ -154,7 +154,7 @@ and must stay URL-encoded (`%20`) in HTML/CSS.** Current mapping:
 
 | Used for                         | File in `images/`                       | Encoded reference                          |
 |----------------------------------|-----------------------------------------|--------------------------------------------|
-| Header logo (light bg)           | `logo-light.png` (transparent, black text) | `images/logo-light.png`                 |
+| Header logo (light bg)           | `logo-traced.svg` (inlined into each header) | inline `<svg class="logo-svg">`        |
 | Footer logo (dark bg)            | `logo-transparent.png` (transparent, white text) | `images/logo-transparent.png`     |
 | Favicon, og:image, JSON-LD image | `logo-autodrive.png`                    | `images/logo-autodrive.png`                |
 | Watermark mark (CSS backgrounds) | `logo-mark.svg`                         | `images/logo-mark.svg`                     |
@@ -170,8 +170,17 @@ and must stay URL-encoded (`%20`) in HTML/CSS.** Current mapping:
   background (the "box"). The clean transparent cut-outs are now used instead:
   `logo-light.png` (black text, for the white header) and `logo-transparent.png`
   (white text, for the dark footer) — both the genuine lockup, just background-removed, so
-  they blend seamlessly with no box. `logo-light.png` was generated from `logo-autodrive.png`
-  by knocking out white with edge decontamination (Pillow). Sized via `.logo-img` in CSS.
+  they blend seamlessly with no box.
+- **Header now uses a vector trace of the real logo** (owner-approved): `logo-traced.svg`
+  was produced by colour-separating `logo-autodrive.png` into 5 masks and tracing each with
+  **potrace** (svgelements baked the transform, SVGO optimised). It is **inlined** into every
+  page header (`<svg class="logo-svg">`) so each layer is animatable — ids `#mark`,
+  `#word-auto`, `#word-drive`, `#sub-salisbury`, `#sub-tagline`. NB the real PNG colours are
+  Auto=ink, Drive=red, both sub-lines=ink (the inverse of an early verbal description — the
+  trace matches the PNG). On hover a staggered light band sweeps each layer (`.glint`,
+  `@keyframes logo-sweep`, off under reduced-motion). `logo-light.png` (the earlier
+  transparent header PNG) is now unused but kept as a raster fallback.
+  A faint coupe watermark (`logo-mark.svg`) still backs `.cta-band` and `.page-hero`.
   A faint coupe watermark (`images/logo-mark.svg`) backs `.cta-band` and `.page-hero`.
   (`logo-dark.png`/`logo-crushed.png` are older variants, currently unused.)
 - The hero/about/diagnostics shots are **real photos of the owner in his actual

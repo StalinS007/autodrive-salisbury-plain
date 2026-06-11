@@ -1,0 +1,87 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 232" role="img"
+     aria-label="AutoDrive Salisbury Plain — Car Service &amp; Repair Centre" class="alogo">
+  <!--
+    AutoDrive — LAYERED, ANIMATABLE LOGO (approximate recreation for animation use).
+    Reuses the real car/wrench vector from logo-mark.svg and adds the wordmark as live text.
+
+    HOW TO USE (for Claude Code):
+    • INLINE this SVG directly in the header markup (do NOT load via <img src>), otherwise
+      :hover and the page web-fonts (Anton/Inter) won't apply.
+    • Each animatable piece is a group/element with class "le" and a unique id:
+        #mark-lines  #mark-body  #mark-roof  #mark-wheel-rear  #mark-wrench  #mark-bolt
+        #word-auto   #word-drive  #sub-salisbury  #sub-tagline
+    • A staggered white "glint" sweep on hover is already wired below via <style>.
+      To make the light travel element-by-element, adjust the per-id animation-delay.
+      For a single moving light-BAND instead, mask a translating diagonal gradient rect
+      with a white silhouette copy of #logo. Colours are locked to the brand tokens.
+    • Sizing is controlled by the container (width/height); the art scales via viewBox.
+  -->
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Anton&amp;family=Inter:wght@700;800&amp;display=swap');
+      .alogo .le { transition: filter .2s ease; }
+      /* Brand-locked base colours */
+      #word-auto { fill: #C01418; }
+      #word-drive { fill: #0E0E0E; }
+      #sub-salisbury { fill: #0E0E0E; }
+      #sub-tagline { fill: #C01418; }
+      .mark { stroke: #C01418; fill: none; stroke-linecap: round; stroke-linejoin: round; }
+
+      /* Sequential "light shines across the logo" glint on hover. */
+      @keyframes glint {
+        0%   { filter: none; }
+        45%  { filter: drop-shadow(0 0 7px rgba(255,255,255,.95)) brightness(2.4); }
+        55%  { filter: drop-shadow(0 0 7px rgba(255,255,255,.95)) brightness(2.4); }
+        100% { filter: none; }
+      }
+      .alogo:hover .le { animation: glint .8s ease both; }
+      #mark-lines      { animation-delay: 0s !important; }
+      #mark-body       { animation-delay: .06s !important; }
+      #mark-roof       { animation-delay: .10s !important; }
+      #mark-wrench     { animation-delay: .14s !important; }
+      #mark-wheel-rear { animation-delay: .14s !important; }
+      #mark-bolt       { animation-delay: .18s !important; }
+      #word-auto       { animation-delay: .26s !important; }
+      #word-drive      { animation-delay: .40s !important; }
+      #sub-salisbury   { animation-delay: .54s !important; }
+      #sub-tagline     { animation-delay: .64s !important; }
+
+      @media (prefers-reduced-motion: reduce) {
+        .alogo:hover .le { animation: none; }
+      }
+    </style>
+  </defs>
+
+  <!-- transparent hit area so hover fires anywhere over the logo box -->
+  <rect width="440" height="232" fill="transparent" pointer-events="all"/>
+
+  <g id="logo">
+    <!-- ===== CAR + WRENCH MARK (from logo-mark.svg, recoloured to brand red) ===== -->
+    <g transform="translate(68 6) scale(0.74)">
+      <path id="mark-lines"  class="le mark" stroke-width="7"   d="M30 48 H78 M22 64 H66 M34 80 H80"/>
+      <path id="mark-body"   class="le mark" stroke-width="6.5" d="M84 52 C100 34 138 24 178 24 C212 24 240 30 262 40 C284 50 306 56 334 60 C360 63 376 68 382 76 C384 79 383 82 378 83 L344 86 A20 20 0 0 1 304 86 L160 88 A20 20 0 0 1 120 88 L102 86 C88 80 82 66 84 52 Z"/>
+      <path id="mark-roof"   class="le mark" stroke-width="5"   d="M190 34 C212 34 234 40 250 46"/>
+      <circle id="mark-wheel-front" class="le mark" stroke-width="6"   cx="324" cy="88" r="15"/>
+      <circle                        class="mark"     stroke-width="5"   cx="324" cy="88" r="5.5"/>
+      <circle id="mark-wrench"       class="le mark" stroke-width="6.5" cx="138" cy="86" r="13" pathLength="360" stroke-dasharray="205 40 115 999"/>
+      <path   id="mark-bolt"         class="le mark" stroke-width="8"   d="M147 95 L171 104"/>
+    </g>
+
+    <!-- ===== WORDMARK "AutoDrive" (italic, brand red + ink) ===== -->
+    <text class="le-group" x="220" y="170" text-anchor="middle"
+          font-family="'Anton','Arial Narrow',sans-serif" font-size="62"
+          font-style="italic" letter-spacing="0.5">
+      <tspan id="word-auto"  class="le">Auto</tspan><tspan id="word-drive" class="le">Drive</tspan>
+    </text>
+
+    <!-- ===== SUB-LINE ===== -->
+    <text id="sub-salisbury" class="le" x="220" y="198" text-anchor="middle"
+          font-family="'Inter','Arial',sans-serif" font-size="22" font-weight="800"
+          letter-spacing="6">SALISBURY PLAIN</text>
+
+    <!-- ===== TAGLINE ===== -->
+    <text id="sub-tagline" class="le" x="220" y="217" text-anchor="middle"
+          font-family="'Inter','Arial',sans-serif" font-size="11.5" font-weight="700"
+          letter-spacing="3.2">CAR SERVICE &amp; REPAIR CENTRE</text>
+  </g>
+</svg>

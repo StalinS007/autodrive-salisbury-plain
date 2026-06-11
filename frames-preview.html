@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Hero Frames Preview — AutoDrive</title>
+<style>
+  body{margin:0;font-family:Inter,system-ui,sans-serif;background:#f4f4f5;color:#18181b;padding:24px}
+  h1{font-size:1.2rem;margin:0 0 4px}
+  p{color:#52525b;margin:0 0 20px;font-size:.9rem}
+  .player{background:#fff;border-radius:12px;padding:16px;max-width:900px;margin:0 auto 28px;box-shadow:0 2px 10px rgba(0,0,0,.07)}
+  .player img{width:100%;border-radius:8px;display:block}
+  .controls{display:flex;gap:12px;align-items:center;margin-top:12px}
+  button{background:#d32f2f;color:#fff;border:0;border-radius:8px;padding:8px 18px;font-weight:600;cursor:pointer;font-size:.9rem}
+  input[type=range]{flex:1;accent-color:#d32f2f}
+  .label{font-variant-numeric:tabular-nums;font-size:.85rem;color:#52525b;min-width:110px;text-align:right}
+  .strip{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px;max-width:1200px;margin:0 auto}
+  .strip figure{margin:0;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 1px 6px rgba(0,0,0,.06)}
+  .strip img{width:100%;display:block}
+  .strip figcaption{font-size:.75rem;color:#52525b;padding:6px 10px}
+</style>
+</head>
+<body>
+<h1>Hero frame sequence — preview</h1>
+<p>Top: slow flipbook (2 fps, every 10th frame). Below: the same frames laid out in order, 1 &rarr; 121.</p>
+
+<div class="player">
+  <img id="view" src="images/hero-frames/frame_0001.jpg" alt="frame preview" />
+  <div class="controls">
+    <button id="toggle">Pause</button>
+    <input id="scrub" type="range" min="0" max="12" value="0" step="1" />
+    <span class="label" id="lbl">frame 0001 / 0121</span>
+  </div>
+</div>
+
+<div class="strip" id="strip"></div>
+
+<script>
+  var ids = [];
+  for (var n = 1; n <= 121; n += 10) ids.push(n);
+  if (ids[ids.length-1] !== 121) ids.push(121);
+  var pad = function(n){ return String(n).padStart(4,"0"); };
+  var src = function(n){ return "images/hero-frames/frame_" + pad(n) + ".jpg"; };
+
+  var strip = document.getElementById("strip");
+  ids.forEach(function(n){
+    var f = document.createElement("figure");
+    f.innerHTML = '<img loading="lazy" src="' + src(n) + '" alt="frame ' + n + '"><figcaption>frame ' + pad(n) + '</figcaption>';
+    strip.appendChild(f);
+  });
+
+  var view = document.getElementById("view"),
+      scrub = document.getElementById("scrub"),
+      lbl = document.getElementById("lbl"),
+      toggle = document.getElementById("toggle");
+  scrub.max = ids.length - 1;
+  var i = 0, playing = true;
+  function show(k){
+    i = k; view.src = src(ids[i]); scrub.value = i;
+    lbl.textContent = "frame " + pad(ids[i]) + " / 0121";
+  }
+  setInterval(function(){ if (playing) show((i + 1) % ids.length); }, 500);
+  scrub.addEventListener("input", function(){ playing = false; toggle.textContent = "Play"; show(+this.value); });
+  toggle.addEventListener("click", function(){ playing = !playing; this.textContent = playing ? "Pause" : "Play"; });
+</script>
+</body>
+</html>

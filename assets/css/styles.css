@@ -134,16 +134,29 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   gap: 1rem; padding: .65rem 0; min-height: 68px;
 }
 .brand { display: flex; align-items: center; }
-/* Original brand artwork (transparent PNG) — sits directly on the white header,
-   no box. Square lockup, so height drives the visible size. */
-.logo-img {
-  height: 86px; width: auto; display: block;
+/* Header: inline vector logo (traced from the real artwork), sized up.
+   On hover a soft light band sweeps across each layer in turn (staggered). */
+.logo-svg {
+  height: 108px; width: auto; display: block;
   transition: transform .3s var(--ease), filter .3s var(--ease);
 }
-.brand:hover .logo-img {
-  transform: scale(1.04);
-  filter: drop-shadow(0 4px 14px rgba(192,20,24,.30));
+.brand:hover .logo-svg {
+  transform: scale(1.03);
+  filter: drop-shadow(0 5px 16px rgba(192,20,24,.28));
 }
+.logo-svg .glint { opacity: 0; mix-blend-mode: screen; }
+.brand:hover .logo-svg .glint {
+  animation: logo-sweep 1.15s var(--ease);
+  animation-delay: calc(var(--i) * 90ms);     /* layer-by-layer cascade */
+}
+@keyframes logo-sweep {
+  0%       { opacity: 0; transform: translateX(-300px); }
+  12%      { opacity: 1; }
+  55%      { opacity: 1; }
+  70%,100% { opacity: 0; transform: translateX(1060px); }
+}
+/* Footer keeps the dark-mode transparent PNG (white text, red car). */
+.logo-img { height: 86px; width: auto; display: block; }
 .nav { display: flex; align-items: center; gap: 1.6rem; }
 .nav a {
   font-weight: 600; font-size: .95rem; color: var(--ink-black);
@@ -485,6 +498,7 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 @media (max-width: 760px) {
   .nav, .header-phone { display:none; }
   .nav-toggle { display:flex; }
+  .logo-svg { height: 78px; }
   .logo-img { height: 64px; }
   .site-header.open .nav {
     display:flex; position:absolute; top:100%; left:0; right:0; flex-direction:column;
@@ -508,4 +522,5 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior:auto; }
   .reveal { transition:none; opacity:1; transform:none; }
+  .brand:hover .logo-svg .glint { animation: none; opacity: 0; }
 }
