@@ -524,3 +524,41 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   .reveal { transition:none; opacity:1; transform:none; }
   .brand:hover .logo-svg .glint { animation: none; opacity: 0; }
 }
+
+/* ===== VIDEO-BG SERVICES SECTION (ad-*) ===== */
+/* Clean full-screen video section — no scrim, nothing layered over it (full clarity for the labels) */
+.ad-services { position: relative; width: 100%; height: 100vh; overflow: hidden; background: #0b0e13; }
+#ad-vid { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; background: #0b0e13; transition: filter .12s linear; }
+#ad-ov { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
+.ad-leader { fill: none; stroke: #D81E26; stroke-width: 2; opacity: 0; filter: drop-shadow(0 1px 2px rgba(0,0,0,.45)); }
+.ad-pill { fill: rgba(255,255,255,.95); stroke: #D81E26; stroke-width: 2; opacity: 0; filter: drop-shadow(0 2px 5px rgba(0,0,0,.3)); }
+.ad-ptxt { fill: #16181c; font-size: 22px; font-weight: 700; letter-spacing: .8px; text-anchor: middle; dominant-baseline: middle; opacity: 0; }
+.ad-flag { opacity: 0; filter: drop-shadow(0 1px 3px rgba(0,0,0,.5)); }
+.ad-flagring { fill: #fff; opacity: 0; }
+.ad-tick { fill: none; stroke: #0a3a24; stroke-width: 3; stroke-linecap: round; stroke-linejoin: round; opacity: 0; }
+#ad-flash, #ad-flashg { opacity: 0; }
+#ad-tab { position: absolute; right: 1.6%; top: 50%; width: 18.5%; max-width: 340px;
+  background: rgba(34,37,42,.52); backdrop-filter: blur(9px); -webkit-backdrop-filter: blur(9px);
+  border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: clamp(8px,.9vw,14px) clamp(9px,1vw,15px);
+  box-shadow: 0 8px 26px rgba(0,0,0,.28); color: #eef1f4; z-index: 1; }
+#ad-tab .ad-wm { font-size: clamp(12px,1.4vw,20px); font-weight: 800; letter-spacing: -.3px; line-height: 1; }
+#ad-tab .ad-wm .a { color: #fff; }
+#ad-tab .ad-wm .d { color: #ff5a5f; }
+#ad-tab .ad-tt { font-size: clamp(7px,.74vw,10px); font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: #aeb6c0; margin: 3px 0 7px; border-bottom: 1px solid rgba(255,255,255,.12); padding-bottom: 6px; }
+.ad-vrow { display: flex; align-items: center; gap: 8px; padding: clamp(1px,.2vw,3px) 0; font-size: clamp(9px,.95vw,13px); font-weight: 600; color: #d4d9df; }
+.ad-vdot { width: clamp(7px,.65vw,10px); height: clamp(7px,.65vw,10px); border-radius: 50%; background: #f5a623; flex: 0 0 auto; }
+.ad-vname { flex: 1; }
+.ad-vchk { color: #2bb673; font-weight: 800; opacity: 0; font-size: .95em; }
+.ad-vrow.done .ad-vname { color: #fff; }
+@media (max-width: 760px) {
+  /* Mobile: a wide 16:9 video forced to "cover" a tall phone zooms/crops badly.
+     Show the whole video as a normal 16:9 block; the labels + panel align to it. */
+  .ad-services { height: auto; }
+  #ad-vid { position: relative; inset: auto; height: auto; aspect-ratio: 16 / 9; }
+  /* Health-check panel sized down to sit on the small video (top-right). */
+  #ad-tab { right: 3%; top: 4%; transform: none; width: 44%; max-width: 200px; padding: 6px 8px; border-radius: 9px; }
+  #ad-tab .ad-wm { font-size: 11px; }
+  #ad-tab .ad-tt { font-size: 6px; margin: 2px 0 4px; padding-bottom: 4px; }
+  .ad-vrow { font-size: 8px; gap: 5px; padding: 0; }
+  .ad-vdot { width: 6px; height: 6px; }
+}

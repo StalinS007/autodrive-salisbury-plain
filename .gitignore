@@ -1,2 +1,5 @@
 .DS_Store
 node_modules/
+.serve_nocache.py
+desktop.html
+*.zip
