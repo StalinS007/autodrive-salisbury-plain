@@ -528,7 +528,7 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 /* ===== VIDEO-BG SERVICES SECTION (ad-*) ===== */
 /* Baked exploded-car video (diagram, labels + health-check panel are rendered into it).
    Shown full-width at its natural 16:9 so none of the baked-in edge labels get cropped. */
-.ad-services { position: relative; width: 100%; background: #0b0e13; line-height: 0; }
+.ad-services { position: relative; width: 100%; padding: 0; background: #fff; line-height: 0; }
 #ad-vid { display: block; width: 100%; height: auto; background: #0b0e13; }
 #ad-ov { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .ad-leader { fill: none; stroke: #D81E26; stroke-width: 2; opacity: 0; filter: drop-shadow(0 1px 2px rgba(0,0,0,.45)); }
