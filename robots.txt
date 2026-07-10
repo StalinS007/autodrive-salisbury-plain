@@ -1,47 +1,86 @@
-# Real search engines are welcome (good for being found on Google/Bing).
+# ============================================================
+#  AutoDrive Salisbury Plain — robots.txt  (bot control panel)
+#
+#  "Allow: /"    = this crawler MAY read the site (good for being found/recommended)
+#  "Disallow: /" = this crawler is asked to stay out
+#  To block any bot later, just change its "Allow: /" to "Disallow: /".
+#
+#  Note: reputable companies (OpenAI, Google, Anthropic, Microsoft, Apple,
+#  Perplexity) honour this file. It is NOT a hard block — real enforcement
+#  against bad bots is Cloudflare. And "Allow" only permits crawling; it
+#  doesn't guarantee ranking (that comes from Google Business Profile,
+#  reviews, and the site's structured data).
+# ============================================================
+
+# ---- All standard search engines (Google, Bing, DuckDuckGo, etc.) ----
 User-agent: *
 Allow: /
 
-# Block AI scrapers / training crawlers (they copy content to train models).
-# NOTE: robots.txt is voluntary — well-behaved bots obey it. The real
-# enforcement is Cloudflare's "Block AI Scrapers & Crawlers" toggle.
+# ======================= MAJOR AI COMPANIES =======================
+# (allowed, so their AI assistants can discover and recommend the shop)
+
+# OpenAI — ChatGPT / ChatGPT Search
 User-agent: GPTBot
-Disallow: /
-User-agent: ChatGPT-User
-Disallow: /
+Allow: /
 User-agent: OAI-SearchBot
-Disallow: /
-User-agent: ClaudeBot
-Disallow: /
-User-agent: anthropic-ai
-Disallow: /
-User-agent: Claude-Web
-Disallow: /
-User-agent: CCBot
-Disallow: /
+Allow: /
+User-agent: ChatGPT-User
+Allow: /
+
+# Google — Gemini & AI Overviews
 User-agent: Google-Extended
-Disallow: /
+Allow: /
+
+# Microsoft — Copilot (uses the Bing index)
+User-agent: bingbot
+Allow: /
+
+# Anthropic — Claude
+User-agent: ClaudeBot
+Allow: /
+User-agent: anthropic-ai
+Allow: /
+User-agent: Claude-Web
+Allow: /
+
+# Perplexity AI
 User-agent: PerplexityBot
-Disallow: /
-User-agent: Bytespider
-Disallow: /
-User-agent: Amazonbot
-Disallow: /
+Allow: /
+User-agent: Perplexity-User
+Allow: /
+
+# Apple — Siri / Apple Intelligence
+User-agent: Applebot
+Allow: /
 User-agent: Applebot-Extended
-Disallow: /
+Allow: /
+
+# Meta — Meta AI / Llama
 User-agent: Meta-ExternalAgent
-Disallow: /
+Allow: /
+User-agent: meta-externalfetcher
+Allow: /
 User-agent: FacebookBot
-Disallow: /
+Allow: /
+
+# Amazon
+User-agent: Amazonbot
+Allow: /
+
+# ByteDance — Doubao / TikTok AI
+User-agent: Bytespider
+Allow: /
+
+# Cohere
 User-agent: cohere-ai
-Disallow: /
-User-agent: Diffbot
-Disallow: /
-User-agent: ImagesiftBot
-Disallow: /
-User-agent: Omgilibot
-Disallow: /
+Allow: /
+
+# You.com
 User-agent: YouBot
-Disallow: /
+Allow: /
+
+# Common Crawl (open dataset many AI models are trained on)
+User-agent: CCBot
+Allow: /
 
 Sitemap: https://autodrivesalisburyplain.com.au/sitemap.xml
