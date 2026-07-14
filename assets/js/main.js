@@ -2,6 +2,37 @@
 (function () {
   "use strict";
 
+  // Google Analytics 4 (gtag) — loads GA and tracks pageviews
+  (function () {
+    var GA_ID = "G-5QT9NZ63W1";
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=" + GA_ID;
+    document.head.appendChild(s);
+    window.dataLayer = window.dataLayer || [];
+    window.gtag = function () { dataLayer.push(arguments); };
+    gtag("js", new Date());
+    gtag("config", GA_ID);
+  }());
+
+  // Track customer contact actions as GA4 events (phone, WhatsApp, booking, email)
+  (function () {
+    function track(name, params) {
+      if (typeof window.gtag === "function") window.gtag("event", name, params || {});
+    }
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest("a");
+      if (!a) return;
+      var href = a.getAttribute("href") || "";
+      if (href.indexOf("tel:") === 0) track("phone_click", { link_url: href });
+      else if (/wa\.me|whatsapp/i.test(href)) track("whatsapp_click", { link_url: href });
+      else if (href.indexOf("mailto:") === 0) track("email_click", { link_url: href });
+      else if (/#book\b/.test(href)) track("book_click", { link_url: href });
+    });
+    var form = document.getElementById("booking-form");
+    if (form) form.addEventListener("submit", function () { track("generate_lead", { method: "booking_form" }); });
+  }());
+
   // Mobile nav toggle
   var header = document.querySelector(".site-header");
   var toggle = document.querySelector(".nav-toggle");
