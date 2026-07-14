@@ -374,6 +374,41 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .review__who strong { display: block; color: var(--ink-black); font-size: .95rem; }
 .review__who small { color: var(--grey-500); }
 
+/* Categorised reviews — category dividers */
+.rev-cat { display: flex; align-items: center; gap: .8rem; margin: 2.2rem 0 1.1rem; }
+.rev-cat h3 { font-family: "Inter", -apple-system, system-ui, sans-serif; font-size: .8rem; font-weight: 800; text-transform: uppercase; letter-spacing: .09em; color: var(--brand-red); margin: 0; white-space: nowrap; }
+.rev-cat .ln { flex: 1; height: 1px; background: var(--grey-100); }
+.rev-cat .ct { font-size: .72rem; font-weight: 700; color: var(--grey-500); }
+.rev-group + .rev-group { margin-top: .4rem; }
+.review p { display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.review.is-open p { -webkit-line-clamp: unset; display: block; overflow: visible; }
+.rv-more { display: inline-block; margin-top: .55rem; padding: 0; background: none; border: 0; color: var(--brand-red); font-weight: 600; font-size: .85rem; cursor: pointer; font-family: inherit; }
+.rv-more:hover { text-decoration: underline; }
+
+/* Reviews — one row of category carousels, each with its own prev/next */
+.revcats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.6rem; align-items: start; }
+.revcat { display: flex; flex-direction: column; }
+.revcat__title { font-family: "Inter", -apple-system, system-ui, sans-serif; font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .08em; color: var(--brand-red); text-align: center; margin-bottom: .7rem; }
+.revcat__cards .rev-card { display: none; }
+.revcat__cards .rev-card.is-active { display: flex; }
+.rev-card { flex-direction: column; min-height: 180px; background: #fff; border: 1px solid var(--grey-100); border-radius: 12px; padding: .9rem .95rem; box-shadow: var(--shadow-sm); cursor: pointer; }
+.rev-card .stars { color: #f5a623; letter-spacing: 1px; font-size: .85rem; margin: 0 0 .45rem; }
+.rev-card p { color: var(--grey-700); font-size: .85rem; line-height: 1.45; margin: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
+.rev-card.is-open p { -webkit-line-clamp: unset; overflow: visible; }
+.rev-card__who { display: flex; align-items: center; gap: .5rem; margin-top: auto; padding-top: .8rem; }
+.rev-card__avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--brand-red); color: #fff; display: grid; place-items: center; font-weight: 800; font-family: var(--font-display); font-size: .78rem; }
+.rev-card__who strong { display: block; font-size: .8rem; color: var(--ink-black); }
+.rev-card__who small { font-size: .68rem; color: var(--grey-500); }
+.revcat__ctrl { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-top: .6rem; }
+.revcat__ctrl button { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--grey-100); background: #fff; color: var(--brand-red); font-size: 1.2rem; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .15s ease, color .15s ease; }
+.revcat__ctrl button:hover { background: var(--brand-red); color: #fff; }
+.revcat__count { font-size: .72rem; color: var(--grey-500); font-weight: 600; }
+.revcat--single .revcat__ctrl { visibility: hidden; }
+.rev-foot { text-align: center; margin-top: 1.4rem; color: var(--grey-500); font-size: .9rem; }
+.rev-foot a { color: var(--brand-red); font-weight: 600; }
+@media (max-width: 900px) { .revcats { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 520px) { .revcats { grid-template-columns: 1fr; } }
+
 /* ---------- Service areas ---------- */
 .areas { display: flex; flex-wrap: wrap; gap: .6rem; }
 .area-pill { background: #fff; border: 1px solid var(--grey-100); border-radius: 999px; padding: .5rem 1rem; font-weight: 600; font-size: .9rem; color: var(--grey-700); }

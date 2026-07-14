@@ -73,6 +73,31 @@
   var y = document.getElementById("year");
   if (y) y.textContent = new Date().getFullYear();
 
+  // Reviews — per-category carousels: prev/next cycles the cards, tap a card to expand
+  (function () {
+    var cats = document.querySelectorAll(".revcat");
+    if (!cats.length) return;
+    cats.forEach(function (cat) {
+      var cards = Array.prototype.slice.call(cat.querySelectorAll(".rev-card"));
+      if (!cards.length) return;
+      var prev = cat.querySelector(".revcat__prev");
+      var next = cat.querySelector(".revcat__next");
+      var count = cat.querySelector(".revcat__count");
+      var i = 0;
+      function show(n) {
+        cards[i].classList.remove("is-active", "is-open");
+        i = (n + cards.length) % cards.length;
+        cards[i].classList.add("is-active");
+        if (count) count.textContent = (i + 1) + " / " + cards.length;
+      }
+      if (prev) prev.addEventListener("click", function (e) { e.stopPropagation(); show(i - 1); });
+      if (next) next.addEventListener("click", function (e) { e.stopPropagation(); show(i + 1); });
+      cards.forEach(function (c) {
+        c.addEventListener("click", function () { c.classList.toggle("is-open"); });
+      });
+    });
+  }());
+
   // Services exploded-car video (diagram, labels + health-check panel are baked in).
   // Just make sure it plays — muted autoplay, with a nudge on first interaction as a fallback.
   (function () {
