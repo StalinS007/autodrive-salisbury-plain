@@ -394,6 +394,35 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 @media (max-width: 900px) { .revcats { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .revcats { grid-template-columns: 1fr; } }
 
+/* Service Special — From $129 offer */
+.offer { display: grid; grid-template-columns: 1.05fr 1fr; gap: 1.4rem; margin-top: 2.2rem; align-items: stretch; }
+.offer__deal { background: var(--brand-red); color: #fff; border-radius: 16px; padding: 2.2rem; display: flex; flex-direction: column; box-shadow: var(--shadow-red); }
+.offer__tag { align-self: flex-start; background: rgba(255,255,255,.16); color: #fff; font-size: .72rem; font-weight: 800; text-transform: uppercase; letter-spacing: .1em; padding: .32rem .75rem; border-radius: 999px; }
+.offer__price { display: flex; flex-direction: column; line-height: 1; margin: 1.1rem 0 .2rem; }
+.offer__price span { font-size: .92rem; text-transform: uppercase; letter-spacing: .08em; font-weight: 700; color: rgba(255,255,255,.85); margin-bottom: .4rem; }
+.offer__price strong { font-family: var(--font-display); font-size: 4.6rem; line-height: .82; }
+.offer__price sup { font-size: 1.6rem; top: -1.4rem; }
+.offer__deal > p { color: rgba(255,255,255,.92); font-size: .96rem; margin: 1.1rem 0 1.5rem; }
+.offer__cta { display: flex; flex-wrap: wrap; gap: .7rem; }
+.offer__deal .btn--light { color: var(--brand-red); }
+.offer__deal .btn svg { width: 18px; height: 18px; margin-right: .45rem; }
+.offer__call { display: inline-block; margin-top: 1rem; color: #fff; font-weight: 600; opacity: .9; }
+.offer__call:hover { text-decoration: underline; }
+.offer__terms { margin-top: auto; padding-top: 1.4rem; color: rgba(255,255,255,.72); font-size: .76rem; }
+.offer__includes { background: #fff; border: 1px solid var(--grey-100); border-radius: 16px; padding: 2.2rem; box-shadow: var(--shadow-sm); }
+.offer__includes h3 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.35rem; margin: 0 0 1.3rem; }
+.offer__includes ul { list-style: none; padding: 0; margin: 0; display: grid; gap: .85rem; }
+.offer__includes li { display: flex; gap: .65rem; align-items: flex-start; font-size: .98rem; color: var(--grey-700); }
+.offer__includes li svg { width: 20px; height: 20px; color: var(--brand-red); flex: none; margin-top: 2px; }
+.offer__trust { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 1.4rem; }
+.offer__trust div { display: flex; align-items: center; gap: .55rem; background: #fff; border: 1px solid var(--grey-100); border-radius: 12px; padding: 1rem; font-size: .9rem; font-weight: 600; color: var(--ink-black); }
+.offer__trust svg { width: 22px; height: 22px; color: var(--brand-red); flex: none; }
+@media (max-width: 820px) {
+  .offer { grid-template-columns: 1fr; }
+  .offer__trust { grid-template-columns: repeat(2, 1fr); }
+  .offer__price strong { font-size: 3.9rem; }
+}
+
 /* ---------- Service areas ---------- */
 .areas { display: flex; flex-wrap: wrap; gap: .6rem; }
 .area-pill { background: #fff; border: 1px solid var(--grey-100); border-radius: 999px; padding: .5rem 1rem; font-weight: 600; font-size: .9rem; color: var(--grey-700); }

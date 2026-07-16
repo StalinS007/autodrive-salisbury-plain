@@ -90,10 +90,10 @@
           form.reset();
           if (status) { status.className = "form-status ok"; status.textContent = "Thanks! Your booking request has been sent. We'll be in touch shortly."; }
         } else {
-          if (status) { status.className = "form-status err"; status.textContent = "Sorry, something went wrong. Please call us on +61 432 520 230."; }
+          if (status) { status.className = "form-status err"; status.textContent = "Sorry, something went wrong. Please call us on +61 432 247 691."; }
         }
       }).catch(function () {
-        if (status) { status.className = "form-status err"; status.textContent = "Network error. Please call us on +61 432 520 230."; }
+        if (status) { status.className = "form-status err"; status.textContent = "Network error. Please call us on +61 432 247 691."; }
       }).finally(function () {
         if (btn) { btn.disabled = false; btn.textContent = original; }
       });
