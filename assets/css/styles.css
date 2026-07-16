@@ -372,8 +372,14 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .revcat__cards .rev-card.is-active { display: flex; }
 .rev-card { flex-direction: column; min-height: 180px; background: #fff; border: 1px solid var(--grey-100); border-radius: 12px; padding: .9rem .95rem; box-shadow: var(--shadow-sm); cursor: pointer; }
 .rev-card .stars { color: #f5a623; letter-spacing: 1px; font-size: .85rem; margin: 0 0 .45rem; }
-.rev-card p { color: var(--grey-700); font-size: .85rem; line-height: 1.45; margin: 0; display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 4; overflow: hidden; }
-.rev-card.is-open p { -webkit-line-clamp: unset; overflow: visible; }
+.rev-card p { color: var(--grey-700); font-size: .85rem; line-height: 1.45; margin: 0; }
+.rev-card .rc-fulltext { display: none; }
+.rev-card.is-open .rc-short { display: none; }
+.rev-card.is-open .rc-fulltext { display: inline; }
+.rc-more { display: inline; margin-left: .1rem; padding: 0; background: none; border: 0; color: var(--brand-red); font-weight: 600; font-size: .82rem; cursor: pointer; font-family: inherit; vertical-align: baseline; }
+.rc-more::after { content: "more"; }
+.rev-card.is-open .rc-more::after { content: "less"; }
+.rc-more:hover { text-decoration: underline; }
 .rev-card__who { display: flex; align-items: center; gap: .5rem; margin-top: auto; padding-top: .8rem; }
 .rev-card__avatar { width: 30px; height: 30px; border-radius: 50%; background: var(--brand-red); color: #fff; display: grid; place-items: center; font-weight: 800; font-family: var(--font-display); font-size: .78rem; }
 .rev-card__who strong { display: block; font-size: .8rem; color: var(--ink-black); }

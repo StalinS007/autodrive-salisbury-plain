@@ -123,10 +123,46 @@
       }
       if (prev) prev.addEventListener("click", function (e) { e.stopPropagation(); show(i - 1); });
       if (next) next.addEventListener("click", function (e) { e.stopPropagation(); show(i + 1); });
-      cards.forEach(function (c) {
-        c.addEventListener("click", function () { c.classList.toggle("is-open"); });
-      });
     });
+  }());
+
+  // Reviews — shorten long review text to a snippet with a "more/less" toggle
+  (function () {
+    var LIMIT = 90;
+    function setup() {
+      document.querySelectorAll(".rev-card p").forEach(function (p) {
+        if (p.querySelector(".rc-more")) return;
+        var raw = (p.textContent || "").trim();
+        var quoted = raw.length > 1 && raw.charAt(0) === '"' && raw.charAt(raw.length - 1) === '"';
+        var inner = quoted ? raw.slice(1, -1) : raw;
+        if (inner.length <= LIMIT) return;
+        var cut = inner.slice(0, LIMIT);
+        var sp = cut.lastIndexOf(" ");
+        if (sp > 55) cut = cut.slice(0, sp);
+        cut = cut.replace(/[\s.,;:!?"]+$/, "");
+        var shortSpan = document.createElement("span");
+        shortSpan.className = "rc-short";
+        shortSpan.textContent = (quoted ? '"' : "") + cut + "… ";
+        var fullSpan = document.createElement("span");
+        fullSpan.className = "rc-fulltext";
+        fullSpan.textContent = raw;
+        var btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "rc-more";
+        btn.setAttribute("aria-label", "Show full review");
+        var card = p.closest(".rev-card");
+        btn.addEventListener("click", function (e) {
+          e.stopPropagation();
+          if (card) card.classList.toggle("is-open");
+        });
+        p.textContent = "";
+        p.appendChild(shortSpan);
+        p.appendChild(fullSpan);
+        p.appendChild(btn);
+      });
+    }
+    if (document.fonts && document.fonts.ready) { document.fonts.ready.then(setup); }
+    else { setup(); }
   }());
 
   // Services exploded-car video (diagram, labels + health-check panel are baked in).
