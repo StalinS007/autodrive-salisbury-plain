@@ -33,6 +33,156 @@
     if (form) form.addEventListener("submit", function () { track("generate_lead", { method: "booking_form" }); });
   }());
 
+  // Date-ask: before opening WhatsApp, qualify the enquiry. Generic buttons ask
+  // "what service?" then "what date?"; section buttons (detailing/used cars/$129)
+  // already know the service, so they just ask the date. The answers are
+  // stitched into the WhatsApp message.
+  (function () {
+    var modal = null, pendingUrl = "", mode = "date", chosenSvc = null;
+    // Wording for the date step, tailored to what the visitor is actually booking.
+    var CTX = {
+      service: { head: "When would you like your service?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on " },
+      detail: { head: "When would you like your detailing?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on " },
+      cars: { head: "When can you come by?", copy: "Pick a day to come and have a look and we will contact you back.", phrase: "I am available to come have a look on " }
+    };
+    var curCtx = CTX.service;
+    // Top-level enquiry categories for the generic button.
+    var services = [
+      { label: "General car service", base: "Hi Jitty, I would like to book my car in for a service.", ctx: "service" },
+      { label: "Car detailing", base: "Hi Jitty, I would like to book my car in for car detailing.", ctx: "detail" },
+      { label: "Used car enquiry", base: "Hi Jitty, I am interested in looking at your used cars.", ctx: "cars" }
+    ];
+    var today = new Date(); today.setHours(0, 0, 0, 0);
+    var viewY = today.getFullYear(), viewM = today.getMonth(), selISO = "";
+    var DOW = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+    function el(sel) { return modal.querySelector(sel); }
+    function pad(n) { return n < 10 ? "0" + n : "" + n; }
+    function isoOf(d) { return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+    function fmt(v) { return new Date(v + "T00:00:00").toLocaleDateString("en-AU", { weekday: "long", day: "numeric", month: "long" }); }
+    function build() {
+      modal = document.createElement("div");
+      modal.className = "dateask";
+      var chips = services.map(function (s, i) {
+        return '<button type="button" class="dateask__svc" data-i="' + i + '">' + s.label + "</button>";
+      }).join("");
+      modal.innerHTML =
+        '<div class="dateask__backdrop"></div>' +
+        '<div class="dateask__card" role="dialog" aria-modal="true" aria-labelledby="dateask-h">' +
+        '<button type="button" class="dateask__close" aria-label="Close">&times;</button>' +
+        '<h3 id="dateask-h"></h3>' +
+        '<p class="dateask__copy"></p>' +
+        '<div class="dateask__services" hidden>' + chips + "</div>" +
+        '<div class="dateask__datewrap" hidden>' +
+          '<div class="dateask__locs">' +
+            "<div><strong>Workshop &amp; Servicing</strong>6 Lolands Rd, Salisbury Plain SA 5109</div>" +
+            "<div><strong>Used Car Showroom</strong>779&ndash;781 North East Road, Valley View SA 5093</div>" +
+          "</div>" +
+          '<div class="dateask__cal"></div>' +
+          '<p class="dateask__note">Closed Sundays.</p>' +
+          '<button type="button" class="btn btn--lg btn--block dateask__go" hidden>Continue to WhatsApp</button>' +
+        "</div>" +
+        '<button type="button" class="dateask__skip">Not sure yet? Just start the chat</button>' +
+        "</div>";
+      document.body.appendChild(modal);
+      el(".dateask__backdrop").addEventListener("click", close);
+      el(".dateask__close").addEventListener("click", close);
+      el(".dateask__skip").addEventListener("click", function () { finish(""); });
+      modal.querySelectorAll(".dateask__svc").forEach(function (b) {
+        b.addEventListener("click", function () { chosenSvc = services[+b.getAttribute("data-i")]; curCtx = CTX[chosenSvc.ctx]; showDate(); });
+      });
+      el(".dateask__cal").addEventListener("click", function (e) {
+        var nav = e.target.closest(".cal__nav");
+        if (nav && !nav.disabled) {
+          viewM += parseInt(nav.getAttribute("data-d"), 10);
+          if (viewM < 0) { viewM = 11; viewY--; }
+          if (viewM > 11) { viewM = 0; viewY++; }
+          renderCal();
+          return;
+        }
+        var day = e.target.closest(".cal__day");
+        if (day && !day.disabled) {
+          selISO = day.getAttribute("data-iso");
+          renderCal();
+          el(".dateask__go").hidden = false;
+        }
+      });
+      el(".dateask__go").addEventListener("click", function () {
+        if (!selISO) return;
+        finish(fmt(selISO));
+      });
+    }
+    function renderCal() {
+      var first = new Date(viewY, viewM, 1);
+      var startCol = (first.getDay() + 6) % 7; // Monday-first grid
+      var total = new Date(viewY, viewM + 1, 0).getDate();
+      var canPrev = viewY > today.getFullYear() || (viewY === today.getFullYear() && viewM > today.getMonth());
+      var h = '<div class="cal__head">' +
+        '<button type="button" class="cal__nav" data-d="-1" aria-label="Previous month"' + (canPrev ? "" : " disabled") + ">&lsaquo;</button>" +
+        "<strong>" + first.toLocaleDateString("en-AU", { month: "long", year: "numeric" }) + "</strong>" +
+        '<button type="button" class="cal__nav" data-d="1" aria-label="Next month">&rsaquo;</button>' +
+        '</div><div class="cal__grid">';
+      DOW.forEach(function (d) { h += '<span class="cal__dow">' + d + "</span>"; });
+      for (var i = 0; i < startCol; i++) h += "<span></span>";
+      for (var day = 1; day <= total; day++) {
+        var dt = new Date(viewY, viewM, day);
+        var s = isoOf(dt);
+        var off = dt.getDay() === 0 || dt < today; // Sundays closed, no past dates
+        h += '<button type="button" class="cal__day' + (off ? " is-off" : "") + (s === selISO ? " is-sel" : "") +
+             '" data-iso="' + s + '"' + (off ? " disabled" : "") + ">" + day + "</button>";
+      }
+      el(".dateask__cal").innerHTML = h + "</div>";
+    }
+    function resetDate() {
+      selISO = "";
+      viewY = today.getFullYear(); viewM = today.getMonth();
+      if (modal) { renderCal(); el(".dateask__go").hidden = true; }
+    }
+    function showService() {
+      el("#dateask-h").textContent = "What service are you looking for?";
+      el(".dateask__copy").textContent = "Pick one so we can help you faster.";
+      el(".dateask__services").hidden = false;
+      el(".dateask__datewrap").hidden = true;
+    }
+    function showDate() {
+      el("#dateask-h").textContent = curCtx.head;
+      el(".dateask__copy").textContent = curCtx.copy;
+      el(".dateask__services").hidden = true;
+      el(".dateask__datewrap").hidden = false;
+      renderCal();
+    }
+    function close() { if (modal) modal.classList.remove("open"); pendingUrl = ""; chosenSvc = null; }
+    function finish(dateText) {
+      var base = pendingUrl, svc = chosenSvc, url = base;
+      close();
+      if (!base) return;
+      if (mode === "service") {
+        var msg = svc ? svc.base : "Hi Jitty, I would like to book my car in.";
+        if (dateText) msg += " " + curCtx.phrase + dateText + ".";
+        url = "https://wa.me/61432520230?text=" + encodeURIComponent(msg);
+      } else if (dateText) {
+        var joiner = base.indexOf("?text=") > -1 ? "%20" : "?text=";
+        url += joiner + encodeURIComponent(curCtx.phrase + dateText + ".");
+      }
+      if (dateText && typeof window.gtag === "function") window.gtag("event", "booking_date_picked", { date_text: dateText });
+      window.location.href = url;
+    }
+    document.addEventListener("click", function (e) {
+      var a = e.target.closest && e.target.closest('a[href*="wa.me/"]');
+      if (!a) return;
+      e.preventDefault();
+      pendingUrl = a.href;
+      chosenSvc = null;
+      var txt = "";
+      try { txt = decodeURIComponent((a.href.split("?text=")[1] || "")); } catch (err) { txt = a.href; }
+      mode = /detailing|used cars|\$129|for a service/i.test(txt) ? "date" : "service";
+      curCtx = /used cars/i.test(txt) ? CTX.cars : (/detailing/i.test(txt) ? CTX.detail : CTX.service);
+      if (!modal) build();
+      resetDate();
+      if (mode === "service") showService(); else showDate();
+      modal.classList.add("open");
+    });
+  }());
+
   // Mobile nav toggle
   var header = document.querySelector(".site-header");
   var toggle = document.querySelector(".nav-toggle");
@@ -61,43 +211,44 @@
     reveals.forEach(function (el) { el.classList.add("in"); });
   }
 
-  // Booking / contact form (progressive enhancement)
+  // Booking form — packages the details into a pre-filled SMS to the workshop.
+  // The customer's messages app opens with everything filled in; they just hit send.
   var form = document.getElementById("booking-form");
   if (form) {
     var status = form.querySelector(".form-status");
-    form.addEventListener("submit", function (ev) {
-      // If a real endpoint is configured (data-endpoint), POST via fetch.
-      var endpoint = form.getAttribute("data-endpoint");
-      if (!endpoint) {
-        // No backend wired yet — show a friendly confirmation and stop.
-        ev.preventDefault();
-        if (status) {
-          status.className = "form-status ok";
-          status.textContent = "Thanks! Your request has been captured. Connect a form endpoint (Formspree/back-end) to receive these by email. For an instant booking, tap Call or WhatsApp.";
-        }
-        return;
+    function bookingLines() {
+      function val(name) {
+        var el = form.querySelector('[name="' + name + '"]');
+        return el && el.value ? el.value.trim() : "";
       }
+      var lines = ["Booking request - AutoDrive website"];
+      if (val("name")) lines.push("Name: " + val("name"));
+      if (val("phone")) lines.push("Phone: " + val("phone"));
+      if (val("vehicle")) lines.push("Vehicle: " + val("vehicle"));
+      if (val("service")) lines.push("Service: " + val("service"));
+      if (val("preferred_date")) lines.push("Preferred date: " + val("preferred_date"));
+      if (val("message")) lines.push("Notes: " + val("message"));
+      return lines.join("\n");
+    }
+    form.addEventListener("submit", function (ev) {
       ev.preventDefault();
-      var btn = form.querySelector('[type="submit"]');
-      var original = btn ? btn.textContent : "";
-      if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
-      fetch(endpoint, {
-        method: "POST",
-        body: new FormData(form),
-        headers: { Accept: "application/json" }
-      }).then(function (r) {
-        if (r.ok) {
-          form.reset();
-          if (status) { status.className = "form-status ok"; status.textContent = "Thanks! Your booking request has been sent. We'll be in touch shortly."; }
-        } else {
-          if (status) { status.className = "form-status err"; status.textContent = "Sorry, something went wrong. Please call us on +61 432 247 691."; }
-        }
-      }).catch(function () {
-        if (status) { status.className = "form-status err"; status.textContent = "Network error. Please call us on +61 432 247 691."; }
-      }).finally(function () {
-        if (btn) { btn.disabled = false; btn.textContent = original; }
-      });
+      var smsNumber = form.getAttribute("data-sms") || "+61432247691";
+      if (status) {
+        status.className = "form-status ok";
+        status.textContent = "Opening your messages app with the details filled in - just tap send!";
+      }
+      window.location.href = "sms:" + smsNumber + "?body=" + encodeURIComponent(bookingLines());
     });
+    var emailBtn = document.getElementById("email-fallback");
+    if (emailBtn) {
+      emailBtn.addEventListener("click", function () {
+        var to = form.getAttribute("data-email") || "autodrive5109@gmail.com";
+        if (typeof window.gtag === "function") window.gtag("event", "email_click", { link_url: "mailto:" + to, method: "booking_form_fallback" });
+        window.location.href = "mailto:" + to +
+          "?subject=" + encodeURIComponent("Booking request - AutoDrive website") +
+          "&body=" + encodeURIComponent(bookingLines());
+      });
+    }
   }
 
   // Footer year

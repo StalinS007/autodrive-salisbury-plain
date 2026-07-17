@@ -394,6 +394,37 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 @media (max-width: 900px) { .revcats { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 520px) { .revcats { grid-template-columns: 1fr; } }
 
+/* Date-ask modal — small commitment step before WhatsApp */
+.dateask { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 1.2rem; }
+.dateask.open { display: flex; }
+.dateask__backdrop { position: absolute; inset: 0; background: rgba(10,10,12,.62); }
+.dateask__card { position: relative; background: #fff; border-radius: 16px; padding: 1.7rem 1.5rem 1.4rem; width: 100%; max-width: 380px; box-shadow: var(--shadow); }
+.dateask__card h3 { font-family: var(--font-display); text-transform: uppercase; font-size: 1.3rem; margin: 0 0 .35rem; }
+.dateask__card p { color: var(--grey-500); font-size: .92rem; margin: 0 0 1.1rem; }
+.dateask__note { text-align: center; font-size: .78rem; color: var(--grey-500); margin: .6rem 0 0; }
+.dateask__locs { display: grid; gap: .45rem; margin: 0 0 1rem; }
+.dateask__locs div { background: var(--off-white); border-radius: 10px; padding: .6rem .7rem; font-size: .76rem; color: var(--grey-700); line-height: 1.35; }
+.dateask__locs strong { display: block; font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; color: var(--brand-red); margin-bottom: .1rem; }
+.cal__head { display: flex; align-items: center; justify-content: space-between; margin-bottom: .6rem; }
+.cal__head strong { font-size: 1rem; }
+.cal__nav { width: 34px; height: 34px; border-radius: 50%; border: 1px solid var(--grey-300); background: #fff; color: var(--brand-red); font-size: 1.2rem; line-height: 1; cursor: pointer; }
+.cal__nav:hover:not(:disabled) { background: var(--brand-red); color: #fff; border-color: var(--brand-red); }
+.cal__nav:disabled { opacity: .35; cursor: default; }
+.cal__grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
+.cal__dow { text-align: center; font-size: .68rem; font-weight: 800; color: var(--grey-500); text-transform: uppercase; padding-bottom: .25rem; }
+.cal__day { aspect-ratio: 1; display: grid; place-items: center; border: 0; border-radius: 9px; background: var(--off-white); color: var(--ink-black); font-weight: 600; font-size: .92rem; font-family: inherit; cursor: pointer; }
+.cal__day:hover:not(:disabled) { background: rgba(192,20,24,.12); color: var(--brand-red); }
+.cal__day.is-off { background: transparent; color: var(--grey-300); cursor: not-allowed; text-decoration: line-through; }
+.cal__day.is-sel { background: var(--brand-red); color: #fff; }
+.dateask .btn--block { margin-top: .9rem; }
+.dateask__skip { display: block; margin: .8rem auto 0; background: none; border: 0; color: var(--grey-500); font-size: .84rem; cursor: pointer; font-family: inherit; }
+.dateask__skip:hover { color: var(--ink-black); text-decoration: underline; }
+.dateask__close { position: absolute; top: .7rem; right: .8rem; background: none; border: 0; font-size: 1.5rem; line-height: 1; color: var(--grey-500); cursor: pointer; padding: .3rem; }
+.dateask [hidden] { display: none !important; }
+.dateask__services { display: flex; flex-wrap: wrap; gap: .5rem; margin: .2rem 0 .2rem; }
+.dateask__svc { flex: 1 1 100%; text-align: left; padding: .95rem 1rem; border: 1.5px solid var(--grey-300); border-radius: 12px; background: #fff; color: var(--ink-black); font-weight: 600; font-size: .98rem; font-family: inherit; cursor: pointer; }
+.dateask__svc:hover { border-color: var(--brand-red); color: var(--brand-red); }
+
 /* Service Special — From $129 offer */
 .offer { display: grid; grid-template-columns: 1.05fr 1fr; gap: 1.4rem; margin-top: 2.2rem; align-items: stretch; }
 .offer__deal { background: var(--brand-red); color: #fff; border-radius: 16px; padding: 2.2rem; display: flex; flex-direction: column; box-shadow: var(--shadow-red); }
@@ -566,7 +597,10 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   .mobile-bar a svg { width:20px; height:20px; }
   .mobile-bar a.call { color:var(--brand-red); }
   .mobile-bar a.book { background:var(--brand-red); color:#fff; }
-  .wa-float { bottom: 76px; }
+  .wa-float { display: none; }
+  .hero { padding: 2.6rem 0 3rem; }
+  .hero__meta { display: none; }
+  .hero__actions .btn { padding: 1rem 1.5rem; }
 }
 @media (prefers-reduced-motion: reduce) {
   * { scroll-behavior:auto; }
