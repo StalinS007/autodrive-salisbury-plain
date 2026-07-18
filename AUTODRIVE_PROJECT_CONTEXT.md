@@ -68,22 +68,19 @@ rego, optional 12–36 month warranty, roadside assistance, post-sale discounted
 
 ---
 
-## 3. ⚠️ The two-phone split (important — currently inconsistent)
+## 3. The two-phone split (owner rule — now consistent site-wide)
 
-The site now uses **two** numbers on purpose:
+The site uses **two** numbers on purpose, and this rule holds everywhere as of 2026-07-18:
 
-| Purpose | Number | Used for |
-|---------|--------|----------|
-| **Call / phone** | **+61 432 247 691** | all `tel:` links, "Call the Showroom", header phone |
-| **WhatsApp / SMS** | **+61 432 520 230** | all `wa.me` links and the SMS booking form |
+| Purpose | Number | Applies to |
+|---------|--------|------------|
+| **Calls** | **+61 432 247 691** | every `tel:` link AND the JSON-LD `"telephone"` schema |
+| **Messages (WhatsApp / SMS)** | **+61 432 520 230** | every `wa.me` link and the SMS booking form |
 
-**Known inconsistency to be aware of:** the main pages (`index`, `services`, `detailings`,
-`used-cars`, `contact`) correctly use **247691** for calls, **but the six individual
-service pages under `services/` still call the old 520230**, and the **JSON-LD schema
-`"telephone"` in those service pages is also still 520230**. If the intent is that every
-*call* link should be 247691, those service subpages and their schema need updating. Confirm
-with the owner which number should appear where before mass-editing — this has been
-reverted once before (see git history), so don't change it unprompted.
+Verified consistent across all pages (root pages *and* the six `services/` subpages):
+all `tel:` = 247 691, all `wa.me` = 520 230, all schema `"telephone"` = 247 691. When
+adding markup, keep to this rule. Note the `+` disambiguates: `tel:`/`telephone` use
+`+61432247691`; WhatsApp uses `wa.me/61432520230` (no `+`).
 
 ---
 
@@ -197,7 +194,6 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   `data-endpoint="https://formspree.io/f/yourID"`. Replace `yourID` with a real Formspree
   form id to enable email delivery; until then JS shows an on-screen confirmation. Logic is
   in `assets/js/main.js`.
-- **Service-page phone/schema mismatch** — see §3.
 - **Detailing prices** ($129 / $299 / $699 "from") — confirm real pricing.
 - **Used-cars inventory** is placeholder categories, not live stock — ready to populate with
   real listings (photo, price, year, km).
