@@ -24,10 +24,23 @@ not a changelog. Bump the "Last verified" date at the top when you touch it.
 Skip the context update only for trivial edits with no lasting significance (typo fixes,
 whitespace, comments). When unsure, update it.
 
+## Deploy workflow — preview first, promote on approval (Cloudflare Pages)
+Host is Cloudflare Pages (project `autodrive-salisbury-plain`). **`main` is live** and
+auto-deploys to autodrivesalisburyplain.com.au. **Do NOT push to `main` directly.**
+- Make every change on the **`reviews-preview`** branch and push. It builds a preview at
+  **https://reviews-preview.autodrive-salisbury-plain.pages.dev** — live stays untouched.
+- The owner checks the preview URL. **Only when the owner explicitly approves, merge
+  `reviews-preview` into `main`** to go live. Keep `reviews-preview` current with `main`.
+
+## CSS/JS cache-busting (mandatory)
+Cloudflare serves `styles.css` / `main.js` with a 4-hour browser cache and the `_headers`
+no-cache override does NOT stick. **Whenever you edit `styles.css` or `main.js`, bump the
+`?v=` query on their `<link>`/`<script>` tags in EVERY html page** (currently `?v=19` →
+`?v=20`, and so on). Skipping this leaves returning visitors on stale styling.
+
 ## Other conventions
 - Plain static HTML/CSS/JS — no build step. Preview with `python3 -m http.server 5050`
   from the repo root (launch config `autodrive-static` in `.claude/launch.json`).
-- Commit each change with a clear message; keep asset URLs version-stamped (`?v=`) to avoid
-  stale-cache issues.
+- Commit each change with a clear message.
 - `HANDOFF.md`, `HANDOFF_video_background.md`, and `Summary Website.md` are historical and
   superseded — do not treat them as current.

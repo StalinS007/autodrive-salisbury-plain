@@ -29,12 +29,26 @@ Everything that matters lives in this git repo, so you never need your own compu
 - **Auto-maintained:** the repo's `CLAUDE.md` instructs every session to read this file first
   and to update it (in the same commit) after every meaningful change, so it stays current
   without you having to remember. Bump the "Last verified" date above whenever you edit it.
-- **Branch:** active work is on `claude/autodrive-website-context-33petz`; `main` is the
-  clean base. Keep committing so every change is reversible.
-
 The site is **plain static HTML/CSS/JS — no build step, no framework, no dependencies.**
 Open `index.html` in a browser to preview, or run `python3 -m http.server 5050` from the
 repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/launch.json`).
+
+### Hosting & deploy workflow (Cloudflare Pages — preview → verify → promote)
+
+- **Host:** Cloudflare Pages, project **`autodrive-salisbury-plain`**.
+- **Live / production:** **`main`** branch → auto-deploys to **autodrivesalisburyplain.com.au**.
+- **Preview branch:** **`reviews-preview`** → preview at
+  **https://reviews-preview.autodrive-salisbury-plain.pages.dev**
+  (any branch also gets `<branch>.autodrive-salisbury-plain.pages.dev`).
+- **The rule:** make every change on **`reviews-preview`** and push → owner checks the preview
+  URL → **only when the owner approves, merge `reviews-preview` into `main`** to go live. Do
+  **not** push to `main` directly. Keep `reviews-preview` current with `main` so previews
+  reflect the true live baseline plus the pending change.
+- **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
+  cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
+  `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
+  html page** (all root pages + any subpages). Current version: **`?v=19`** → next `?v=20`.
+  Skipping this makes returning visitors see stale styling.
 
 ---
 
@@ -113,32 +127,34 @@ Current design is the red/white **"garage-premium"** look. Tokens live in
 
 ## 5. File structure
 
+**Primary pages (the owner's canonical list, linked in the nav):**
 ```
 autodrive-salisbury-plain/
 ├── index.html                 # Home
-├── services.html              # Services overview (grid of all services)
-├── detailings.html            # Car detailing (packages + service grid)
-├── used-cars.html             # Used cars (promise, categories, showroom)
+├── services.html              # Services overview
+├── detailings.html            # Car Detailing
+├── paint-panel.html           # Paint & Panel Repair (4th service)
+├── used-cars.html             # Used cars
 ├── contact.html               # Contact + booking form + Google Map
-├── services/                  # Individual SEO service pages
-│   ├── logbook-servicing.html
-│   ├── brakes-suspension.html
-│   ├── diagnostics-repairs.html
-│   ├── diesel-dpf.html
-│   ├── 4wd-service.html
-│   └── air-conditioning.html
 ├── assets/
-│   ├── css/styles.css         # (design system — see note below)
+│   ├── css/styles.css
 │   └── js/main.js             # mobile nav, scroll reveal, form handler, video labels
 ├── styles.css                 # active stylesheet referenced by the root pages
 ├── images/                    # real photos + logos (see §6)
 ├── robots.txt, sitemap.xml, _headers
-└── AUTODRIVE_PROJECT_CONTEXT.md         # ← this file
+├── CLAUDE.md                  # working agreement (auto-loaded each session)
+└── AUTODRIVE_PROJECT_CONTEXT.md   # ← this file
 ```
 
+**Also present — `services/` SEO subpages** (`logbook-servicing`, `brakes-suspension`,
+`diagnostics-repairs`, `diesel-dpf`, `4wd-service`, `air-conditioning`). These are NOT in the
+owner's primary nav list above. Status to confirm: still live for local-search intent, or
+being retired in favour of the root service pages? They currently exist and carry correct
+phone numbers. Don't delete without the owner's say-so.
+
 Root pages reference `styles.css` / `images/...`; pages in `services/` use `../`. Asset
-URLs are version-stamped to defeat stale CSS/JS caching (see commit history) — keep the
-`?v=` query strings when editing links.
+URLs are version-stamped (`?v=`) to defeat stale CSS/JS caching — see the cache-busting rule
+in §1. Keep the `?v=` query strings when editing links, and bump them on any CSS/JS change.
 
 ---
 
