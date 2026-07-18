@@ -1,3 +1,12 @@
+> # ⚠️ OUTDATED — DO NOT USE
+> This file describes an **old, discarded design** of the site (a pitch-black "Premium
+> Industrial Mechanic" theme with Outfit/JetBrains Mono fonts and a 121-frame video-scrub
+> hero). **None of that exists on the current site**, which is the red/white
+> "garage-premium" design. Kept only for history.
+> **➡ For current, accurate context see [`PROJECT_CONTEXT.md`](./PROJECT_CONTEXT.md).**
+
+---
+
 # Autodrive Website Handoff Summary
 
 This document provides a comprehensive technical overview of the Autodrive Salisbury Plain landing page website, including the current codebase architecture, styling details, assets, interactive features, and behavioral mechanics.
