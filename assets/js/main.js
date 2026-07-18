@@ -43,14 +43,16 @@
     var CTX = {
       service: { head: "When would you like your service?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on " },
       detail: { head: "When would you like your detailing?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on " },
-      cars: { head: "When can you come by?", copy: "Pick a day to come and have a look and we will contact you back.", phrase: "I am available to come have a look on " }
+      cars: { head: "When can you come by?", copy: "Pick a day to come and have a look and we will contact you back.", phrase: "I am available to come have a look on " },
+      paint: { head: "When would you like your repair?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on " }
     };
     var curCtx = CTX.service;
     // Top-level enquiry categories for the generic button.
     var services = [
       { label: "General car service", base: "Hi Jitty, I would like to book my car in for a service.", ctx: "service" },
       { label: "Car detailing", base: "Hi Jitty, I would like to book my car in for car detailing.", ctx: "detail" },
-      { label: "Used car enquiry", base: "Hi Jitty, I am interested in looking at your used cars.", ctx: "cars" }
+      { label: "Used car enquiry", base: "Hi Jitty, I am interested in looking at your used cars.", ctx: "cars" },
+      { label: "Paint &amp; panel repair", base: "Hi Jitty, I would like to book my car in for paint and panel repair.", ctx: "paint" }
     ];
     var today = new Date(); today.setHours(0, 0, 0, 0);
     var viewY = today.getFullYear(), viewM = today.getMonth(), selISO = "";
@@ -173,8 +175,8 @@
       chosenSvc = null;
       var txt = "";
       try { txt = decodeURIComponent((a.href.split("?text=")[1] || "")); } catch (err) { txt = a.href; }
-      mode = /detailing|used cars|\$129|for a service/i.test(txt) ? "date" : "service";
-      curCtx = /used cars/i.test(txt) ? CTX.cars : (/detailing/i.test(txt) ? CTX.detail : CTX.service);
+      mode = /detailing|used cars|\$129|for a service|paint and panel/i.test(txt) ? "date" : "service";
+      curCtx = /used cars/i.test(txt) ? CTX.cars : (/detailing/i.test(txt) ? CTX.detail : (/paint and panel/i.test(txt) ? CTX.paint : CTX.service));
       if (!modal) build();
       resetDate();
       if (mode === "service") showService(); else showDate();
