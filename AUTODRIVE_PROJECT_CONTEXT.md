@@ -18,6 +18,8 @@ touching the site. Last verified against the live code: **2026-07-18**.
 
 Everything that matters lives in this git repo, so you never need your own computer:
 
+> **⚠ More than one session edits this repo (Mac + phone/web) — this has already caused one collision. Before ANY edits, `git pull` (or `git fetch` then reset to `origin/<branch>`) so you have the latest, and never run two sessions editing the same branch at the same time, or you will overwrite each other's work.**
+
 - **From the web or phone:** open the repo in Claude Code on the web
   (**claude.ai/code**), or the Claude mobile/desktop app, pick this repo
   (`stalins007/autodrive-salisbury-plain`), and just say what you want changed. Claude
