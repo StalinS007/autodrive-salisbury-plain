@@ -208,17 +208,19 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
 
 ## 8. Known constraints & pending items
 
-- **Contact form endpoint is a placeholder:** `contact.html` `#booking-form` has
-  `data-endpoint="https://formspree.io/f/yourID"`. Replace `yourID` with a real Formspree
-  form id to enable email delivery; until then JS shows an on-screen confirmation. Logic is
-  in `assets/js/main.js`.
-- **Detailing prices** ($129 / $299 / $699 "from") — confirm real pricing.
+- **Contact form sends by SMS (not Formspree):** `#booking-form` composes a pre-filled text
+  to **0432 247 691** via an `sms:` link (handler in `assets/js/main.js`, reads `data-sms`),
+  with a quiet "prefer email" `mailto` fallback. There is a leftover unused
+  `data-endpoint="...formspree..."` attribute on the form that the JS ignores — safe to delete;
+  do NOT wire up Formspree.
+- **No prices on the site** except the "$129 service special" — detailing and services are all enquire-for-a-quote (the old $129/$299/$699 detailing tiers were removed).
 - **Used-cars inventory** is placeholder categories, not live stock — ready to populate with
   real listings (photo, price, year, km).
 - **Google Map** on contact uses `?q=6 Lolands Rd, Salisbury Plain SA 5109&output=embed`
   (the original live site pointed at wrong coordinates — keep this corrected one).
 - **Single location now:** the site uses only 6 Lolands Rd, Salisbury Plain SA 5109. The old
   separate Valley View showroom address was removed on 2026-07-18 — don't reintroduce it.
+- **Paint & Panel page (`paint-panel.html`)** is on the **`reviews-preview`** branch awaiting the owner's approval to merge to `main` — **not live yet**. It's the 4th service, in the nav + a homepage teaser, wired into the booking flow.
 
 ---
 
