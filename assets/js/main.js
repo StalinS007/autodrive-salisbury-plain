@@ -74,8 +74,7 @@
         '<div class="dateask__services" hidden>' + chips + "</div>" +
         '<div class="dateask__datewrap" hidden>' +
           '<div class="dateask__locs">' +
-            "<div><strong>Workshop &amp; Servicing</strong>6 Lolands Rd, Salisbury Plain SA 5109</div>" +
-            "<div><strong>Used Car Showroom</strong>779&ndash;781 North East Road, Valley View SA 5093</div>" +
+            "<div><strong>Where to Find Us</strong>6 Lolands Rd, Salisbury Plain SA 5109</div>" +
           "</div>" +
           '<div class="dateask__cal"></div>' +
           '<p class="dateask__note">Closed Sundays.</p>' +
