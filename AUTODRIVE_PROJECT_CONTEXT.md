@@ -47,9 +47,11 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
   - **Main / Google-listing number:** **+61 432 247 691** — `tel:+61432247691`
   - **WhatsApp / SMS number:** **+61 432 520 230** — `https://wa.me/61432520230`
 - **Email:** autodrive5109@gmail.com
-- **Workshop (servicing / repairs / detailing):** 6 Lolands Rd, Salisbury Plain SA 5109
-- **Used-car showroom (separate location — label clearly):** 779–781 North East Road,
-  Valley View SA 5093
+- **Address (single location — servicing, repairs, detailing AND used cars):**
+  6 Lolands Rd, Salisbury Plain SA 5109
+  - *Note:* the former Valley View used-car showroom (779–781 North East Road SA 5093) was
+    **removed everywhere** on 2026-07-18 — the site now shows only the one address. "Showroom"
+    still appears as a label (e.g. "Call the Showroom") but no longer as a separate location.
 - **Hours:** Mon–Fri 8:30am–5:30pm · Sat 8:30am–4:00pm · Sun closed
 - **Socials:** Instagram `@autodrive_salisburyplain` · Facebook page id `61560815001969`
 - **Service areas:** Adelaide CBD, Mawson Lakes, Salisbury, Elizabeth, Munno Para,
@@ -201,8 +203,8 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   real listings (photo, price, year, km).
 - **Google Map** on contact uses `?q=6 Lolands Rd, Salisbury Plain SA 5109&output=embed`
   (the original live site pointed at wrong coordinates — keep this corrected one).
-- **Two locations** (workshop vs Valley View showroom) are intentionally distinguished —
-  preserve that distinction.
+- **Single location now:** the site uses only 6 Lolands Rd, Salisbury Plain SA 5109. The old
+  separate Valley View showroom address was removed on 2026-07-18 — don't reintroduce it.
 
 ---
 
