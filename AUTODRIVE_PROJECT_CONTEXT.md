@@ -19,6 +19,8 @@ touching the site. Last verified against the live code: **2026-07-18**.
 Everything that matters lives in this git repo, so you never need your own computer:
 
 > **⚠ More than one session edits this repo (Mac + phone/web) — this has already caused one collision. Before ANY edits, `git pull` (or `git fetch` then reset to `origin/<branch>`) so you have the latest, and never run two sessions editing the same branch at the same time, or you will overwrite each other's work.**
+>
+> **⚠ Neither AI session can SEE the rendered website.** A local (Mac) session can `curl` the live/preview URLs to confirm the *code* deployed (correct markup, version, content) but cannot judge how it *looks*; a cloud/phone session is network-restricted and can't even fetch the site, so it is fully blind. **The owner is the visual check:** after pushing to `reviews-preview`, the owner opens the preview URL and confirms. Never claim a change is "verified" or "looks good" from an AI session — at most you confirmed the code was pushed. Ask the owner to look.
 
 - **From the web or phone:** open the repo in Claude Code on the web
   (**claude.ai/code**), or the Claude mobile/desktop app, pick this repo
