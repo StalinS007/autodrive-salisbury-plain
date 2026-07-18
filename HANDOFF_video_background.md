@@ -1,6 +1,6 @@
 > **⚠ SUPERSEDED / historical.** The video-background work described here is already done
 > and live. Its file paths point to an old Mac and are no longer valid. The tuning knobs are
-> summarised in §9 of [`PROJECT_CONTEXT.md`](./PROJECT_CONTEXT.md) — start there.
+> summarised in §9 of [`AUTODRIVE_PROJECT_CONTEXT.md`](./AUTODRIVE_PROJECT_CONTEXT.md) — start there.
 
 ---
 

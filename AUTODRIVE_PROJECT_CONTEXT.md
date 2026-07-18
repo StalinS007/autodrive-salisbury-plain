@@ -24,8 +24,11 @@ Everything that matters lives in this git repo, so you never need your own compu
   edits the files and pushes to the branch for you.
 - **From your Mac:** `git pull`, edit, `git commit`, `git push` as normal — or run
   Claude Code locally in the repo folder.
-- **To update this context itself:** just ask, e.g. *"open PROJECT_CONTEXT.md and update
+- **To update this context itself:** just ask, e.g. *"open AUTODRIVE_PROJECT_CONTEXT.md and update
   the detailing prices"* — it's a normal file and gets committed like any other.
+- **Auto-maintained:** the repo's `CLAUDE.md` instructs every session to read this file first
+  and to update it (in the same commit) after every meaningful change, so it stays current
+  without you having to remember. Bump the "Last verified" date above whenever you edit it.
 - **Branch:** active work is on `claude/autodrive-website-context-33petz`; `main` is the
   clean base. Keep committing so every change is reversible.
 
@@ -131,7 +134,7 @@ autodrive-salisbury-plain/
 ├── styles.css                 # active stylesheet referenced by the root pages
 ├── images/                    # real photos + logos (see §6)
 ├── robots.txt, sitemap.xml, _headers
-└── PROJECT_CONTEXT.md         # ← this file
+└── AUTODRIVE_PROJECT_CONTEXT.md         # ← this file
 ```
 
 Root pages reference `styles.css` / `images/...`; pages in `services/` use `../`. Asset

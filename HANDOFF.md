@@ -1,6 +1,6 @@
-> **⚠ SUPERSEDED — read [`PROJECT_CONTEXT.md`](./PROJECT_CONTEXT.md) first.**
+> **⚠ SUPERSEDED — read [`AUTODRIVE_PROJECT_CONTEXT.md`](./AUTODRIVE_PROJECT_CONTEXT.md) first.**
 > This brief is still mostly accurate but predates the two-phone split, the reviews
-> section, GA4, and the $129 offer. `PROJECT_CONTEXT.md` is the maintained source of truth.
+> section, GA4, and the $129 offer. `AUTODRIVE_PROJECT_CONTEXT.md` is the maintained source of truth.
 
 ---
 

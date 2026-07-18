@@ -3,7 +3,7 @@
 > Industrial Mechanic" theme with Outfit/JetBrains Mono fonts and a 121-frame video-scrub
 > hero). **None of that exists on the current site**, which is the red/white
 > "garage-premium" design. Kept only for history.
-> **➡ For current, accurate context see [`PROJECT_CONTEXT.md`](./PROJECT_CONTEXT.md).**
+> **➡ For current, accurate context see [`AUTODRIVE_PROJECT_CONTEXT.md`](./AUTODRIVE_PROJECT_CONTEXT.md).**
 
 ---
 
