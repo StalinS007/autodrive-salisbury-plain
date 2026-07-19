@@ -200,10 +200,11 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
 - **Google Analytics 4** (`G-5QT9NZ63W1`) with contact-event tracking on call/WhatsApp/form.
 - **"$129 Basic Service special"** offer block on the home and services pages ("From only
   $129*"). It is a **basic** oil-and-safety service (oil + filter, safety check, fluid top-ups,
-  reset, road test) — explicitly **not** a full/major service; the tag reads "Basic Service"
-  and the copy says so (owner clarification 2026-07-19). Price is an owner-set promo — confirm
-  before changing. (Owner also mentioned basic "starts from 120" then settled on 129; site
-  shows $129.)
+  reset, road test) — the tag reads "Basic Service" and the "What's Included in the Basic
+  Service" heading make that clear. Per owner (2026-07-19), keep the "basic" label clear but
+  **do not** spell out "not a full/major service" on the page — that distinction stays discrete.
+  Price is an owner-set promo — confirm before changing. (Owner mentioned basic "starts from
+  120" then settled on 129; site shows $129.)
 - **Mobile booking overhaul** — message-first flow with a qualifier, calendar, and SMS form.
 - Enriched **AutoRepair / Service / FAQPage JSON-LD** on the main pages; per-service SEO
   pages exist for local search intent (don't collapse them into one).
