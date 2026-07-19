@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-07-18**.
+touching the site. Last verified against the live code: **2026-07-19**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -198,8 +198,12 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
 - **Customer reviews section** near the top of the homepage — real Google reviews, grouped
   by category, shortened to ~90-char snippets with a more/less toggle.
 - **Google Analytics 4** (`G-5QT9NZ63W1`) with contact-event tracking on call/WhatsApp/form.
-- **"$129 service special"** offer block on the home and services pages ("From only $129*").
-  Price is an owner-set promo — confirm before changing.
+- **"$129 Basic Service special"** offer block on the home and services pages ("From only
+  $129*"). It is a **basic** oil-and-safety service (oil + filter, safety check, fluid top-ups,
+  reset, road test) — explicitly **not** a full/major service; the tag reads "Basic Service"
+  and the copy says so (owner clarification 2026-07-19). Price is an owner-set promo — confirm
+  before changing. (Owner also mentioned basic "starts from 120" then settled on 129; site
+  shows $129.)
 - **Mobile booking overhaul** — message-first flow with a qualifier, calendar, and SMS form.
 - Enriched **AutoRepair / Service / FAQPage JSON-LD** on the main pages; per-service SEO
   pages exist for local search intent (don't collapse them into one).
