@@ -171,12 +171,22 @@
       var a = e.target.closest && e.target.closest('a[href*="wa.me/"]');
       if (!a) return;
       e.preventDefault();
+      // A link can declare its own flow via data-ctx, overriding the keyword guess:
+      //   data-ctx="cars|service|detail|paint" -> go straight to that date flow, keeping
+      //   the link's own prefilled message (e.g. a specific car listing);
+      //   data-ctx="direct" -> skip the modal entirely and open WhatsApp as-is.
+      var forced = a.getAttribute("data-ctx");
+      if (forced === "direct") { window.location.href = a.href; return; }
       pendingUrl = a.href;
       chosenSvc = null;
       var txt = "";
       try { txt = decodeURIComponent((a.href.split("?text=")[1] || "")); } catch (err) { txt = a.href; }
-      mode = /detailing|used cars|\$129|for a service|paint and panel/i.test(txt) ? "date" : "service";
-      curCtx = /used cars/i.test(txt) ? CTX.cars : (/detailing/i.test(txt) ? CTX.detail : (/paint and panel/i.test(txt) ? CTX.paint : CTX.service));
+      if (forced && CTX[forced]) {
+        mode = "date"; curCtx = CTX[forced];
+      } else {
+        mode = /detailing|used cars|\$129|for a service|paint and panel/i.test(txt) ? "date" : "service";
+        curCtx = /used cars/i.test(txt) ? CTX.cars : (/detailing/i.test(txt) ? CTX.detail : (/paint and panel/i.test(txt) ? CTX.paint : CTX.service));
+      }
       if (!modal) build();
       resetDate();
       if (mode === "service") showService(); else showDate();

@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=20`** → next `?v=21`.
+  html page** (all root pages + any subpages). Current version: **`?v=21`** → next `?v=22`.
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
   no `?v=`; keep them in lockstep with the root pages from now on.)
   Skipping this makes returning visitors see stale styling.
@@ -240,6 +240,15 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
     price up front, risk-reducing trust chips, one primary CTA (WhatsApp), honest status
     badges — no fake scarcity. Don't put AI-generated car images on real listings (misleading);
     use Jitty's real photos.
+  - **⚠ WhatsApp links are intercepted by `main.js`.** Every `a[href*="wa.me/"]` click opens
+    the "message-first" booking modal (qualifier chips or a date calendar) instead of going
+    straight to WhatsApp; it then stitches the picked date onto the link's prefilled message.
+    It guesses the flow from keywords in the message, which is fragile. **A link can force its
+    flow with `data-ctx`:** `data-ctx="cars|service|detail|paint"` → that date-calendar flow
+    keeping the link's own message (car listings use `cars` → "come have a look" calendar);
+    `data-ctx="direct"` → skip the modal, open WhatsApp as-is. Use `data-ctx` on any new
+    WhatsApp CTA whose message doesn't contain an obvious keyword, or it'll fall into the
+    generic "what are you looking for?" qualifier.
 - **Google Map** on contact uses `?q=6 Lolands Rd, Salisbury Plain SA 5109&output=embed`
   (the original live site pointed at wrong coordinates — keep this corrected one).
 - **Single location now:** the site uses only 6 Lolands Rd, Salisbury Plain SA 5109. The old
