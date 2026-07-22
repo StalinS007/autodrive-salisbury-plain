@@ -646,3 +646,57 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   .ad-vrow { font-size: 8px; gap: 5px; padding: 0; }
   .ad-vdot { width: 6px; height: 6px; }
 }
+
+/* ============================================================
+   USED-CAR INVENTORY — mobile-first listing cards (v20)
+   Buyer-psychology: price up front, trust chips, one clear CTA.
+   ============================================================ */
+.stock-intro { display:flex; flex-wrap:wrap; gap:.5rem .9rem; justify-content:center; margin:1.4rem auto 0; max-width:640px; }
+.stock-intro span { display:inline-flex; align-items:center; gap:.35rem; font-size:.82rem; font-weight:700; color:var(--grey-700); }
+.stock-intro span svg { width:16px; height:16px; color:var(--brand-red); }
+
+.stock-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; margin-top:2.2rem; }
+@media (max-width:760px){ .stock-grid { grid-template-columns:1fr; gap:1.3rem; } }
+
+.car { display:flex; flex-direction:column; background:#fff; border:1px solid var(--grey-100);
+  border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm);
+  transition:transform .25s ease, box-shadow .25s ease; }
+.car:hover { transform:translateY(-4px); box-shadow:var(--shadow); }
+
+.car__media { position:relative; aspect-ratio:16/10; background:linear-gradient(135deg,#232326,#0e0e0e);
+  display:flex; align-items:center; justify-content:center; overflow:hidden; }
+.car__media img { width:100%; height:100%; object-fit:cover; display:block; }
+.car__ph { display:flex; flex-direction:column; align-items:center; gap:.55rem; color:rgba(255,255,255,.55);
+  text-align:center; padding:1rem; }
+.car__ph svg { width:38px; height:38px; }
+.car__ph span { font-size:.8rem; font-weight:600; letter-spacing:.01em; }
+.car__badge { position:absolute; top:.8rem; left:.8rem; background:var(--brand-red); color:#fff;
+  font-size:.7rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em;
+  padding:.35rem .7rem; border-radius:999px; box-shadow:var(--shadow-sm); }
+.car__badge--sold { background:var(--grey-700); }
+
+.car__body { padding:1.3rem; display:flex; flex-direction:column; gap:.85rem; flex:1; }
+.car__title { font-size:1.16rem; font-weight:800; line-height:1.2; margin:0; color:var(--ink-black); }
+.car__title span { font-size:.74rem; font-weight:700; color:var(--grey-500); background:var(--off-white);
+  border:1px solid var(--grey-100); padding:.12rem .5rem; border-radius:6px; margin-left:.35rem; white-space:nowrap; }
+.car__price { font-family:var(--font-display); font-size:1.85rem; color:var(--brand-red); line-height:1; }
+.car__price small { display:block; font-family:inherit; font-size:.68rem; font-weight:600; color:var(--grey-500);
+  text-transform:uppercase; letter-spacing:.04em; margin-top:.3rem; }
+.car__specs { list-style:none; display:flex; flex-wrap:wrap; gap:.45rem .8rem; padding:0; margin:0; }
+.car__specs li { display:flex; align-items:center; gap:.35rem; font-size:.85rem; font-weight:600; color:var(--grey-700); }
+.car__specs li svg { width:15px; height:15px; color:var(--brand-red); flex:none; }
+.car__trust { list-style:none; display:flex; flex-wrap:wrap; gap:.4rem; padding:0; margin:0; }
+.car__trust li { display:flex; align-items:center; gap:.25rem; font-size:.72rem; font-weight:700; color:#0a7a33;
+  background:#e9f7ee; border:1px solid #cdeed8; padding:.24rem .55rem; border-radius:999px; }
+.car__trust li svg { width:13px; height:13px; flex:none; }
+.car__desc { font-size:.9rem; color:var(--grey-500); margin:0; line-height:1.55; }
+.car__cta { display:flex; gap:.6rem; margin-top:auto; padding-top:.2rem; }
+.car__cta .btn { flex:1; padding:.95rem .8rem; font-size:.98rem; }
+.car__cta .btn svg { width:18px; height:18px; }
+
+/* "More stock — enquire" prompt card */
+.car--ask { background:var(--ink-black); color:#fff; justify-content:center; }
+.car--ask .car__body { align-items:center; text-align:center; justify-content:center; gap:1rem; padding:2rem 1.5rem; }
+.car--ask h3 { color:#fff; font-size:1.2rem; margin:0; }
+.car--ask p { color:rgba(255,255,255,.72); font-size:.92rem; margin:0; line-height:1.55; }
+.car--ask .btn { width:100%; }

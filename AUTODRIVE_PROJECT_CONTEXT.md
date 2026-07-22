@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-07-19**.
+touching the site. Last verified against the live code: **2026-07-22**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -51,7 +51,9 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=19`** → next `?v=20`.
+  html page** (all root pages + any subpages). Current version: **`?v=20`** → next `?v=21`.
+  (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
+  no `?v=`; keep them in lockstep with the root pages from now on.)
   Skipping this makes returning visitors see stale styling.
 
 ---
@@ -221,8 +223,23 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   `data-endpoint="...formspree..."` attribute on the form that the JS ignores — safe to delete;
   do NOT wire up Formspree.
 - **No prices on the site** except the "$129 service special" — detailing and services are all enquire-for-a-quote (the old $129/$299/$699 detailing tiers were removed).
-- **Used-cars inventory** is placeholder categories, not live stock — ready to populate with
-  real listings (photo, price, year, km).
+- **Used-cars listings** (`used-cars.html`, `#stock` section, added 2026-07-22): a real
+  mobile-first listing grid. Each car = an `<article class="car">` with photo/placeholder,
+  status badge, price, spec chips, green trust chips, and a **prefilled WhatsApp "Enquire"
+  button whose message names the specific car** (so GA `whatsapp_click` `link_url` tells you
+  which car the lead is about — per-car lead tracking with no backend). Card CSS lives at the
+  end of `assets/css/styles.css` (`.car`, `.stock-grid`, `.car--ask`, etc.).
+  - **To add a car:** copy the whole `<article class="car">…</article>` block, edit the
+    details, and change the prefilled WhatsApp text to name that car. **To add a photo:**
+    drop the image in `images/` and swap the `<div class="car__ph">…</div>` placeholder for an
+    `<img>` (there's an HTML comment in the file showing exactly how).
+  - Currently **one live listing** (2009 Honda Civic VTi, $9,600) using the photo placeholder
+    + a "Looking for something specific?" enquiry card. Real car photos still to be added, and
+    more stock to be listed as it comes in.
+  - **Design intent (mobile-first + buyer psychology):** cars shown first (right after hero),
+    price up front, risk-reducing trust chips, one primary CTA (WhatsApp), honest status
+    badges — no fake scarcity. Don't put AI-generated car images on real listings (misleading);
+    use Jitty's real photos.
 - **Google Map** on contact uses `?q=6 Lolands Rd, Salisbury Plain SA 5109&output=embed`
   (the original live site pointed at wrong coordinates — keep this corrected one).
 - **Single location now:** the site uses only 6 Lolands Rd, Salisbury Plain SA 5109. The old
