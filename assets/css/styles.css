@@ -700,3 +700,6 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .car--ask h3 { color:#fff; font-size:1.2rem; margin:0; }
 .car--ask p { color:rgba(255,255,255,.72); font-size:.92rem; margin:0; line-height:1.55; }
 .car--ask .btn { width:100%; }
+
+/* Car listing video (e.g. a promo clip in place of a photo) */
+.car__media video { width:100%; height:100%; object-fit:cover; display:block; background:#000; }

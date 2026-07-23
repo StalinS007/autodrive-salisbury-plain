@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=21`** → next `?v=22`.
+  html page** (all root pages + any subpages). Current version: **`?v=22`** → next `?v=23`.
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
   no `?v=`; keep them in lockstep with the root pages from now on.)
   Skipping this makes returning visitors see stale styling.
