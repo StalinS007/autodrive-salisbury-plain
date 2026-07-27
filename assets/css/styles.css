@@ -658,6 +658,35 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .stock-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; margin-top:2.2rem; }
 @media (max-width:760px){ .stock-grid { grid-template-columns:1fr; gap:1.3rem; } }
 
+/* ===== Stock carousel — step between whole car listings (red bar + red border) ===== */
+.stock-carousel { position:relative; margin-top:2.2rem; background:#fff; overflow:hidden;
+  border:2px solid var(--brand-red); border-radius:18px; box-shadow:var(--shadow-sm); }
+.stock-carousel__bar { background:var(--brand-red); color:#fff; text-align:center;
+  padding:.6rem 3.4rem; font-weight:800; font-size:.86rem; letter-spacing:.05em; text-transform:uppercase; }
+.stock-carousel__count b { font-weight:900; }
+.stock-carousel__viewport { overflow:hidden; }
+.stock-carousel__track { display:flex; will-change:transform;
+  transition:transform .45s cubic-bezier(.22,.61,.36,1); }
+/* Each car is one "page" on phone, half a page on desktop (two-up) */
+.stock-carousel__track > .car { flex:0 0 100%; border:0; border-radius:0; box-shadow:none; }
+.stock-carousel__track > .car:hover { transform:none; box-shadow:none; }
+@media (min-width:760px){
+  .stock-carousel__track > .car { flex:0 0 50%; }
+  .stock-carousel__track > .car + .car { border-left:1px solid var(--grey-100); }
+}
+/* Car-stepper arrows on the border edges (distinct from the on-photo arrows) */
+.stock-carousel__arrow { position:absolute; top:50%; transform:translateY(-50%); z-index:6;
+  width:44px; height:44px; border-radius:50%; border:2px solid #fff; cursor:pointer;
+  background:var(--brand-red); color:#fff; display:flex; align-items:center; justify-content:center;
+  box-shadow:0 4px 12px rgba(0,0,0,.28); transition:background .2s ease, transform .15s ease, opacity .2s ease; }
+.stock-carousel__arrow:hover { background:#a81d24; }
+.stock-carousel__arrow:active { transform:translateY(-50%) scale(.92); }
+.stock-carousel__arrow svg { width:24px; height:24px; }
+.stock-carousel__arrow--prev { left:8px; }
+.stock-carousel__arrow--next { right:8px; }
+.stock-carousel__arrow[disabled] { opacity:.32; cursor:default; box-shadow:none; }
+.stock-ask { margin-top:1.5rem; }
+
 .car { display:flex; flex-direction:column; background:#fff; border:1px solid var(--grey-100);
   border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow-sm);
   transition:transform .25s ease, box-shadow .25s ease; }

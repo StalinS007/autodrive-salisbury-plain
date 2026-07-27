@@ -410,4 +410,89 @@
       render();
     });
   }());
+
+  // Stock carousel: step between whole car listings. One car per page on phone,
+  // two per page on desktop. The red-bar count auto-derives from the car count.
+  (function () {
+    var sc = document.querySelector('[data-stock]');
+    if (!sc) return;
+    var track = sc.querySelector('.stock-carousel__track');
+    if (!track) return;
+    var cars = Array.prototype.filter.call(track.children, function (el) {
+      return el.classList && el.classList.contains('car');
+    });
+    var total = cars.length;
+    if (!total) return;
+    var countEl = sc.querySelector('.stock-carousel__count');
+    var prev = sc.querySelector('.stock-carousel__arrow--prev');
+    var next = sc.querySelector('.stock-carousel__arrow--next');
+    var page = 0;
+
+    function perView() { return window.matchMedia('(min-width:760px)').matches ? 2 : 1; }
+    function pageCount() { return Math.ceil(total / perView()); }
+
+    function updateLabel() {
+      if (!countEl) return;
+      var pv = perView();
+      var first = page * pv + 1;
+      var last = Math.min(total, page * pv + pv);
+      if (last > first) countEl.innerHTML = 'Cars <b>' + first + '–' + last + '</b> of <b>' + total + '</b> available';
+      else countEl.innerHTML = 'Car <b>' + first + '</b> of <b>' + total + '</b> available';
+    }
+    function syncVideos() {
+      var pv = perView();
+      cars.forEach(function (car, idx) {
+        var visible = (idx >= page * pv && idx < page * pv + pv);
+        if (!visible) {
+          Array.prototype.forEach.call(car.querySelectorAll('video'), function (v) {
+            try { v.pause(); } catch (e) {}
+          });
+        }
+      });
+    }
+    function render() {
+      var maxPage = pageCount() - 1;
+      if (page > maxPage) page = maxPage;
+      if (page < 0) page = 0;
+      track.style.transform = 'translateX(' + (-page * 100) + '%)';
+      updateLabel();
+      if (prev) prev.disabled = (page <= 0);
+      if (next) next.disabled = (page >= maxPage);
+      syncVideos();
+    }
+    function go(d) { page += d; render(); }
+
+    if (next) next.addEventListener('click', function () { go(1); });
+    if (prev) prev.addEventListener('click', function () { go(-1); });
+
+    sc.setAttribute('tabindex', '0');
+    sc.addEventListener('keydown', function (e) {
+      if (e.key === 'ArrowRight') { e.preventDefault(); go(1); }
+      else if (e.key === 'ArrowLeft') { e.preventDefault(); go(-1); }
+    });
+
+    // Swipe to change cars — but only when the gesture does NOT start on a photo
+    // gallery (so the on-photo swipe still flips photos, no clash).
+    var x0 = null, y0 = null, ignore = false;
+    sc.addEventListener('touchstart', function (e) {
+      var t = e.touches[0]; x0 = t.clientX; y0 = t.clientY;
+      ignore = !!(e.target.closest && e.target.closest('[data-gallery]'));
+    }, { passive: true });
+    sc.addEventListener('touchend', function (e) {
+      if (x0 === null || ignore) { x0 = y0 = null; return; }
+      var t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0;
+      if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy)) { go(dx < 0 ? 1 : -1); }
+      x0 = y0 = null;
+    }, { passive: true });
+
+    // Layout can switch between 1-up and 2-up on resize — reset to a valid page.
+    var lastPV = perView();
+    window.addEventListener('resize', function () {
+      var pv = perView();
+      if (pv !== lastPV) { lastPV = pv; page = 0; }
+      render();
+    });
+
+    render();
+  }());
 })();
