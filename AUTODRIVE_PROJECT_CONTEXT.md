@@ -233,9 +233,11 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
     details, and change the prefilled WhatsApp text to name that car. **To add a photo:**
     drop the image in `images/` and swap the `<div class="car__ph">…</div>` placeholder for an
     `<img>` (there's an HTML comment in the file showing exactly how).
-  - Currently **one live listing** (2009 Honda Civic VTi, $9,600) using the photo placeholder
-    + a "Looking for something specific?" enquiry card. Real car photos still to be added, and
-    more stock to be listed as it comes in.
+  - Currently **one live listing** (2009 Honda Civic VTi, $9,600) with a **promo video**
+    (`images/promohondacivic.mp4` — muted autoplay loop) + a "Looking for something specific?"
+    enquiry card. The video is a web-compressed 720×1280 / ~7.5 MB version of the owner's
+    original 4K clip (compress every video before committing — Cloudflare Pages rejects files
+    over 25 MB and GitHub rejects over 100 MB). More stock to be listed as it comes in.
   - **Design intent (mobile-first + buyer psychology):** cars shown first (right after hero),
     price up front, risk-reducing trust chips, one primary CTA (WhatsApp), honest status
     badges — no fake scarcity. Don't put AI-generated car images on real listings (misleading);
