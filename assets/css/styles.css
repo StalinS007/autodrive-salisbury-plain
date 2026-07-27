@@ -704,16 +704,18 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 /* Car listing video (e.g. a promo clip in place of a photo) */
 .car__media video { width:100%; height:100%; object-fit:cover; display:block; background:#000; }
 
-/* ===== Car photo + video gallery (swipe / arrows / dots) ===== */
-.car__gallery { display:block; background:#000; aspect-ratio: 4 / 5; }
-@media (min-width: 760px) { .car__gallery { aspect-ratio: 3 / 2; } }
+/* ===== Car photo + video gallery (swipe / arrows / dots) =====
+   Photos and the promo video are all 9:16 vertical, so the frame is 9:16 —
+   condensed (phone-width, centred) so it never dominates the screen. */
+.car__gallery { display:block; background:#000; aspect-ratio: 9 / 16; width: 270px; max-width: 100%; margin-inline:auto; }
+@media (min-width: 760px) { .car__gallery { width: 320px; } }
 .car__gallery .car__badge { z-index:4; }
 .car__gallery-viewport { position:absolute; inset:0; overflow:hidden; }
 .car__gallery-track { display:flex; height:100%; will-change:transform;
   transition: transform .42s cubic-bezier(.22,.61,.36,1); }
 .car__slide { flex:0 0 100%; width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
-.car__slide img { width:100%; height:100%; object-fit:cover; display:block; }
-/* Vertical promo video shows FULL frame (never cropped), centred on black */
+/* Vertical photos are exactly 9:16 so they fill perfectly; the one landscape (engine) fills too, centred on the engine */
+.car__slide img { width:100%; height:100%; object-fit:cover; display:block; background:#000; }
 .car__slide--video { background:#000; }
 .car__slide--video video { width:100%; height:100%; object-fit:contain; background:#000; }
 
