@@ -339,4 +339,75 @@
       window.addEventListener(ev, function once() { play(); window.removeEventListener(ev, once); }, { once: true, passive: true });
     });
   }());
+
+  // Used-cars photo + video gallery: arrows, dots, swipe, keyboard.
+  // The video plays only when it's the active slide (and pauses when you leave it).
+  (function () {
+    var galleries = document.querySelectorAll('[data-gallery]');
+    Array.prototype.forEach.call(galleries, function (g) {
+      var track = g.querySelector('.car__gallery-track');
+      if (!track) return;
+      var slides = track.querySelectorAll('.car__slide');
+      var n = slides.length;
+      if (!n) return;
+      var prev = g.querySelector('.car__nav--prev');
+      var next = g.querySelector('.car__nav--next');
+      var dotsWrap = g.querySelector('.car__dots');
+      var i = 0;
+
+      // Only one slide? Hide the controls — nothing to navigate.
+      if (n < 2) {
+        if (prev) prev.hidden = true;
+        if (next) next.hidden = true;
+      }
+
+      var dots = [];
+      if (dotsWrap && n > 1) {
+        for (var k = 0; k < n; k++) {
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.setAttribute('aria-label', 'Go to item ' + (k + 1));
+          (function (idx) { b.addEventListener('click', function () { go(idx); }); })(k);
+          dotsWrap.appendChild(b);
+          dots.push(b);
+        }
+      }
+
+      function syncVideo() {
+        Array.prototype.forEach.call(track.querySelectorAll('video'), function (vid) {
+          var onActive = slides[i].contains(vid);
+          if (onActive) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); }
+          else { try { vid.pause(); vid.currentTime = 0; } catch (e) {} }
+        });
+      }
+      function render() {
+        track.style.transform = 'translateX(' + (-i * 100) + '%)';
+        for (var d = 0; d < dots.length; d++) { dots[d].classList.toggle('is-active', d === i); }
+        syncVideo();
+      }
+      function go(idx) { i = (idx % n + n) % n; render(); }
+
+      if (next) next.addEventListener('click', function () { go(i + 1); });
+      if (prev) prev.addEventListener('click', function () { go(i - 1); });
+
+      g.setAttribute('tabindex', '0');
+      g.addEventListener('keydown', function (e) {
+        if (e.key === 'ArrowRight') { e.preventDefault(); go(i + 1); }
+        else if (e.key === 'ArrowLeft') { e.preventDefault(); go(i - 1); }
+      });
+
+      // Swipe (ignore near-vertical drags so page scrolling still works)
+      var x0 = null, y0 = null;
+      g.addEventListener('touchstart', function (e) { x0 = e.touches[0].clientX; y0 = e.touches[0].clientY; }, { passive: true });
+      g.addEventListener('touchend', function (e) {
+        if (x0 === null) return;
+        var dx = e.changedTouches[0].clientX - x0;
+        var dy = e.changedTouches[0].clientY - y0;
+        if (Math.abs(dx) > 40 && Math.abs(dx) > Math.abs(dy)) { go(i + (dx < 0 ? 1 : -1)); }
+        x0 = y0 = null;
+      }, { passive: true });
+
+      render();
+    });
+  }());
 })();
