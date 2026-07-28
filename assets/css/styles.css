@@ -674,8 +674,9 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   .stock-carousel__track > .car { flex:0 0 50%; }
   .stock-carousel__track > .car + .car { border-left:1px solid var(--grey-100); }
 }
-/* Car-stepper arrows on the border edges (distinct from the on-photo arrows) */
-.stock-carousel__arrow { position:absolute; top:50%; transform:translateY(-50%); z-index:6;
+/* Car-stepper arrows on the border edges (distinct from the on-photo arrows).
+   Sit them over the middle of the PHOTO, not the card, so they never cover the title. */
+.stock-carousel__arrow { position:absolute; top:226px; transform:translateY(-50%); z-index:6;
   width:44px; height:44px; border-radius:50%; border:2px solid #fff; cursor:pointer;
   background:var(--brand-red); color:#fff; display:flex; align-items:center; justify-content:center;
   box-shadow:0 4px 12px rgba(0,0,0,.28); transition:background .2s ease, transform .15s ease, opacity .2s ease; }
@@ -685,6 +686,7 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .stock-carousel__arrow--prev { left:8px; }
 .stock-carousel__arrow--next { right:8px; }
 .stock-carousel__arrow[disabled] { opacity:.32; cursor:default; box-shadow:none; }
+@media (min-width:760px){ .stock-carousel__arrow { top:266px; } }
 .stock-ask { margin-top:1.5rem; }
 
 .car { display:flex; flex-direction:column; background:#fff; border:1px solid var(--grey-100);
