@@ -152,6 +152,13 @@
       renderCal();
     }
     function close() { if (modal) modal.classList.remove("open"); pendingUrl = ""; chosenSvc = null; }
+    // Tag every website-originated WhatsApp message so genuine leads are countable
+    // in Jitty's WhatsApp Business inbox (appended to the end of the final message).
+    var LEAD_TAG = "%0A%0A(Enquiry%20via%20autodrivesalisburyplain.com.au)";
+    function tagged(u) {
+      if (u.indexOf("wa.me") === -1) return u;
+      return u + (u.indexOf("?text=") > -1 ? "" : "?text=") + LEAD_TAG;
+    }
     function finish(dateText) {
       var base = pendingUrl, svc = chosenSvc, url = base;
       close();
@@ -165,7 +172,7 @@
         url += joiner + encodeURIComponent(curCtx.phrase + dateText + ".");
       }
       if (dateText && typeof window.gtag === "function") window.gtag("event", "booking_date_picked", { date_text: dateText });
-      window.location.href = url;
+      window.location.href = tagged(url);
     }
     document.addEventListener("click", function (e) {
       var a = e.target.closest && e.target.closest('a[href*="wa.me/"]');
@@ -176,7 +183,7 @@
       //   the link's own prefilled message (e.g. a specific car listing);
       //   data-ctx="direct" -> skip the modal entirely and open WhatsApp as-is.
       var forced = a.getAttribute("data-ctx");
-      if (forced === "direct") { window.location.href = a.href; return; }
+      if (forced === "direct") { window.location.href = tagged(a.href); return; }
       pendingUrl = a.href;
       chosenSvc = null;
       var txt = "";
