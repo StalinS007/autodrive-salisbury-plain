@@ -880,3 +880,8 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
    stack upward and every Book button lands on the same bottom row, whatever sits above. */
 .ptable thead th { vertical-align: bottom !important; }
 .pt-book { margin-top:.4rem; }
+
+/* Ribbon back in the column flow: with bottom-aligned header cells, Standard's ribbon
+   now extends upward above its name instead of overlapping it. Keep it on one line. */
+.pt-ribbon { position:static; transform:none; margin:0 0 .55rem; white-space:nowrap; }
+.ptable thead th { padding-top:1.25rem; }
