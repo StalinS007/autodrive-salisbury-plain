@@ -827,3 +827,31 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .tier-terms { text-align:center; color:var(--grey-500); font-size:.8rem; margin:1.8rem auto 0; max-width:660px; line-height:1.5; }
 .tier-call { text-align:center; margin-top:1.3rem; font-weight:600; }
 .tier-call a { color:var(--brand-red); }
+
+/* ============================================================
+   SERVICE PRICING COMPARISON TABLE (v35) — "what does your car want?"
+   Sticky-left feature column; Standard column highlighted; swipe on mobile.
+   ============================================================ */
+.ptable-hint { display:none; text-align:center; color:var(--grey-500); font-size:.8rem; margin:1.8rem 0 -.4rem; }
+@media (max-width:760px){ .ptable-hint { display:block; } }
+.ptable-wrap { margin-top:2.2rem; overflow-x:auto; -webkit-overflow-scrolling:touch; border-radius:var(--radius); box-shadow:var(--shadow-sm); border:1px solid var(--grey-100); }
+.ptable { width:100%; border-collapse:collapse; background:#fff; min-width:600px; }
+.ptable th, .ptable td { padding:.72rem .55rem; border-bottom:1px solid var(--grey-100); text-align:center; font-size:.9rem; }
+.ptable tbody th { text-align:left; font-weight:500; font-size:.86rem; color:var(--grey-700); position:sticky; left:0; background:#fff; z-index:2; min-width:172px; box-shadow:1px 0 0 var(--grey-100); }
+.ptable thead th { vertical-align:top; padding:1.25rem .6rem 1.15rem; background:#fff; }
+.ptable thead th:first-child { position:sticky; left:0; z-index:3; text-align:left; vertical-align:bottom; font-size:.72rem; text-transform:uppercase; letter-spacing:.05em; color:var(--grey-500); font-weight:700; box-shadow:1px 0 0 var(--grey-100); }
+.pt-name { font-family:var(--font-display); text-transform:uppercase; font-size:1.18rem; color:var(--ink-black); line-height:1; }
+.pt-want { font-size:.72rem; color:var(--grey-500); font-weight:500; margin:.35rem 0 .6rem; line-height:1.3; }
+.pt-price { font-family:var(--font-display); font-size:1.8rem; color:var(--brand-red); line-height:1; }
+.pt-price small { display:block; font-size:.58rem; font-weight:700; text-transform:uppercase; letter-spacing:.05em; color:var(--grey-500); margin-bottom:.55rem; }
+.pt-book { font-size:.8rem; padding:.55rem .7rem; width:100%; justify-content:center; }
+.pt-yes { color:var(--brand-red); }
+.pt-yes svg { width:19px; height:19px; }
+.pt-no { color:var(--grey-300); font-weight:700; }
+.ptable .is-pop { background:rgba(192,20,24,.05); }
+.ptable thead .is-pop { background:rgba(192,20,24,.07); }
+.pt-ribbon { display:inline-block; background:var(--brand-red); color:#fff; font-size:.62rem; font-weight:800; text-transform:uppercase; letter-spacing:.04em; padding:.14rem .55rem; border-radius:999px; margin-bottom:.5rem; }
+.pt-premium .pt-price { color:#b8912e; }
+.pt-premium .pt-book { background:#b8912e; }
+.pt-premium .pt-book:hover { background:#9a7826; box-shadow:var(--shadow-sm); }
+.ptable tbody tr:last-child th, .ptable tbody tr:last-child td { border-bottom:none; }
