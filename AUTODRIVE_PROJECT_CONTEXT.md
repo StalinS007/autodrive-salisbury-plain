@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=35`** → next `?v=36`.
+  html page** (all root pages + any subpages). Current version: **`?v=36`** → next `?v=37`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -212,14 +212,16 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   - **Premium — from $329 (gold accent):** everything in Standard PLUS cabin air filter, fuel
     system treatment, detailed inspection report, extensive road test, priority booking, expert
     care, peace-of-mind guarantee.
-  - **Displayed as a comparison table** (`.ptable`, added 2026-07-22) — heading asks *"What
-    Does Your Car Want Today?"* (customer-desire framing, not "we offer…"); features as rows,
-    the 3 tiers as columns with ✓/– cells, each tier column carrying a "Your car wants…"
-    tagline + price + **Book** button. Standard column is tinted + ribboned ("Most Popular"),
-    Premium price is gold. Sticky-left feature column; horizontal swipe on mobile. Each Book
-    CTA is a WhatsApp button (`data-ctx="service"`) with a **tier-named prefilled message** (so
-    GA `whatsapp_click` shows which tier). Terms line kept. Table CSS at the end of
-    `assets/css/styles.css` (`.ptable*`); the earlier `.tier` card CSS is now unused but left in.
+  - **Responsive display (2026-07-22): comparison table on desktop, stacked cards on mobile
+    (≤820px)** — the Apple/Stripe pattern; a sticky-sidebar table was tried and rejected as too
+    cramped on phones (research: ~78% of pricing pages stack cards on mobile). Both blocks are
+    in the `#service-special` section: `.ptable-wrap` (table, shown >820px) and `.tiers`
+    (`.tier` cards, shown ≤820px) — the CSS toggles `display` at 820px. Heading asks *"What
+    Does Your Car Want Today?"* (desire framing, not "we offer…"); each tier carries a "Your car
+    wants the essentials / full protection / the best" tagline. Standard is highlighted ("Most
+    Popular"), Premium gold. Every Book CTA is a WhatsApp button (`data-ctx="service"`) with a
+    **tier-named prefilled message** (GA `whatsapp_click` shows which tier). Keep BOTH blocks in
+    sync if prices/features change. CSS: `.ptable*` and `.tier*` at the end of `styles.css`.
   - **These prices are owner-set — confirm before changing.** Note the Basic tier is **$149**
     now (superseded the earlier $129 promo).
 - **Mobile booking overhaul** — message-first flow with a qualifier, calendar, and SMS form.

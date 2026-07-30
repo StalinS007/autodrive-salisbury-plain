@@ -855,3 +855,10 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .pt-premium .pt-book { background:#b8912e; }
 .pt-premium .pt-book:hover { background:#9a7826; box-shadow:var(--shadow-sm); }
 .ptable tbody tr:last-child th, .ptable tbody tr:last-child td { border-bottom:none; }
+
+/* Responsive pricing: comparison table on desktop, stacked cards on mobile (<=820px) */
+.tiers { display:none; }
+@media (max-width:820px){
+  .ptable-wrap { display:none; }
+  .tiers { display:grid; grid-template-columns:1fr; gap:1.3rem; max-width:460px; margin:2.2rem auto 0; }
+}
