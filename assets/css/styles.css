@@ -777,3 +777,53 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   pointer-events:auto; background:rgba(255,255,255,.5); box-shadow:0 1px 3px rgba(0,0,0,.4);
   transition:background .2s ease, transform .2s ease; }
 .car__dots button.is-active { background:#fff; transform:scale(1.3); }
+
+/* ============================================================
+   SERVICE PRICING TIERS (v23) — Basic / Standard / Premium
+   Mobile-first; Standard highlighted "Most Popular"; Premium gold.
+   ============================================================ */
+.tiers { display:grid; grid-template-columns:repeat(3,1fr); gap:1.4rem; margin-top:2.8rem; align-items:stretch; }
+@media (max-width:900px){ .tiers { grid-template-columns:1fr; max-width:440px; margin-inline:auto; } }
+
+.tier { position:relative; display:flex; flex-direction:column; background:#fff; border:1px solid var(--grey-100);
+  border-radius:var(--radius); padding:1.8rem 1.5rem; box-shadow:var(--shadow-sm);
+  transition:transform .25s ease, box-shadow .25s ease; }
+.tier:hover { transform:translateY(-5px); box-shadow:var(--shadow); }
+.tier__head { display:flex; align-items:center; gap:.7rem; margin-bottom:.6rem; }
+.tier__badge { display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px;
+  border-radius:11px; background:var(--brand-red); color:#fff; flex:none; }
+.tier__badge svg { width:23px; height:23px; }
+.tier__name { font-family:var(--font-display); text-transform:uppercase; font-size:1.55rem; line-height:1; margin:0; color:var(--ink-black); }
+.tier__name span { color:var(--brand-red); }
+.tier__tag { color:var(--grey-500); font-size:.92rem; margin:0 0 1.1rem; }
+.tier__from { display:inline-block; font-size:.68rem; font-weight:800; text-transform:uppercase; letter-spacing:.07em;
+  color:#fff; background:var(--brand-red); padding:.22rem .6rem; border-radius:6px; margin-bottom:.5rem; }
+.tier__price { font-family:var(--font-display); font-size:3rem; line-height:.95; color:var(--ink-black); margin-bottom:1.3rem; }
+.tier__price sup { color:var(--brand-red); font-size:1.05rem; top:-1.25em; margin-left:1px; }
+.tier__list { list-style:none; padding:0; margin:0 0 1.6rem; display:flex; flex-direction:column; gap:.62rem; }
+.tier__list li { display:flex; gap:.55rem; align-items:flex-start; font-size:.9rem; color:var(--grey-700); line-height:1.4; }
+.tier__list li svg { width:16px; height:16px; color:var(--brand-red); flex:none; margin-top:2px; }
+.tier__list strong { color:var(--brand-red); font-weight:800; }
+.tier__cta { margin-top:auto; width:100%; justify-content:center; }
+
+/* Standard = Most Popular */
+.tier--popular { border:2px solid var(--brand-red); box-shadow:var(--shadow); }
+@media (min-width:901px){ .tier--popular { transform:scale(1.035); } .tier--popular:hover { transform:scale(1.035) translateY(-5px); } }
+.tier__ribbon { position:absolute; top:0; left:50%; transform:translate(-50%,-52%);
+  display:inline-flex; align-items:center; gap:.3rem; background:var(--brand-red); color:#fff;
+  font-size:.72rem; font-weight:800; text-transform:uppercase; letter-spacing:.05em;
+  padding:.34rem .9rem; border-radius:999px; box-shadow:var(--shadow-sm); white-space:nowrap; }
+
+/* Premium = gold accents */
+.tier--premium .tier__badge,
+.tier--premium .tier__from { background:#b8912e; }
+.tier--premium .tier__name span,
+.tier--premium .tier__price sup,
+.tier--premium .tier__list li svg,
+.tier--premium .tier__list strong { color:#b8912e; }
+.tier--premium .tier__cta { background:#b8912e; }
+.tier--premium .tier__cta:hover { background:#9a7826; box-shadow:var(--shadow-sm); }
+
+.tier-terms { text-align:center; color:var(--grey-500); font-size:.8rem; margin:1.8rem auto 0; max-width:660px; line-height:1.5; }
+.tier-call { text-align:center; margin-top:1.3rem; font-weight:600; }
+.tier-call a { color:var(--brand-red); }

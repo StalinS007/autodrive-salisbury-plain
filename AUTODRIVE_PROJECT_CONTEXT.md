@@ -51,7 +51,9 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=22`** → next `?v=23`.
+  html page** (all root pages + any subpages). Current version: **`?v=34`** → next `?v=35`.
+  (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
+  in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
   no `?v=`; keep them in lockstep with the root pages from now on.)
   Skipping this makes returning visitors see stale styling.
@@ -200,13 +202,23 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
 - **Customer reviews section** near the top of the homepage — real Google reviews, grouped
   by category, shortened to ~90-char snippets with a more/less toggle.
 - **Google Analytics 4** (`G-5QT9NZ63W1`) with contact-event tracking on call/WhatsApp/form.
-- **"$129 Basic Service special"** offer block on the home and services pages ("From only
-  $129*"). It is a **basic** oil-and-safety service (oil + filter, safety check, fluid top-ups,
-  reset, road test) — the tag reads "Basic Service" and the "What's Included in the Basic
-  Service" heading make that clear. Per owner (2026-07-19), keep the "basic" label clear but
-  **do not** spell out "not a full/major service" on the page — that distinction stays discrete.
-  Price is an owner-set promo — confirm before changing. (Owner mentioned basic "starts from
-  120" then settled on 129; site shows $129.)
+- **Three-tier service pricing** on the home + services pages (`#service-special` section,
+  added 2026-07-22 from the owner's pricing graphic — this **replaced** the old single "$129
+  Basic Service special"). Tiers, all "from only" + T&Cs:
+  - **Basic — from $149**: oil change (up to 5L), quality oil filter, comprehensive safety
+    inspection, top up fluids, tyre pressure check, reset service reminder, upfront pricing.
+  - **Standard — from $229 (⭐ Most Popular, highlighted card):** everything in Basic PLUS air
+    filter, battery test, brake inspection, fault-code scan, detailed safety check, reminder
+    reset, full road test.
+  - **Premium — from $329 (gold accent):** everything in Standard PLUS cabin air filter, fuel
+    system treatment, detailed inspection report, extensive road test, priority booking, expert
+    care, peace-of-mind guarantee.
+  - Each tier's CTA is a WhatsApp button (`data-ctx="service"`) with a **tier-named prefilled
+    message** (so GA `whatsapp_click` shows which tier). Terms line (keep it): *"Final price
+    depends on your vehicle's make, model, engine size and oil specification."* Card CSS lives
+    at the end of `assets/css/styles.css` (`.tiers`, `.tier`, `.tier--popular`, `.tier--premium`).
+  - **These prices are owner-set — confirm before changing.** Note the Basic tier is **$149**
+    now (superseded the earlier $129 promo).
 - **Mobile booking overhaul** — message-first flow with a qualifier, calendar, and SMS form.
 - Enriched **AutoRepair / Service / FAQPage JSON-LD** on the main pages; per-service SEO
   pages exist for local search intent (don't collapse them into one).
@@ -222,7 +234,7 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   with a quiet "prefer email" `mailto` fallback. There is a leftover unused
   `data-endpoint="...formspree..."` attribute on the form that the JS ignores — safe to delete;
   do NOT wire up Formspree.
-- **No prices on the site** except the "$129 service special" — detailing and services are all enquire-for-a-quote (the old $129/$299/$699 detailing tiers were removed).
+- **Prices on the site:** the **service tiers** (Basic $149 / Standard $229 / Premium $329, see §7) and **used-car listings**. Everything else (detailing, individual mechanical services) is enquire-for-a-quote (the old $129/$299/$699 detailing tiers were removed).
 - **Used-cars listings** (`used-cars.html`, `#stock` section, added 2026-07-22): a real
   mobile-first listing grid. Each car = an `<article class="car">` with photo/placeholder,
   status badge, price, spec chips, green trust chips, and a **prefilled WhatsApp "Enquire"
