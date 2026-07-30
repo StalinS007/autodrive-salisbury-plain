@@ -65,9 +65,12 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **Name:** AutoDrive Salisbury Plain — Car Service & Repair Centre
 - **Positioning:** Adelaide's trusted one-stop automotive care centre. Dealer-quality
   servicing at independent prices, all makes & models.
-- **Phone numbers (see §3 for the important split):**
-  - **Main / Google-listing number:** **+61 432 247 691** — `tel:+61432247691`
-  - **WhatsApp / SMS number:** **+61 432 520 230** — `https://wa.me/61432520230`
+- **Phone — ONE number for everything (as of 2026-07-22):** **+61 432 520 230**
+  (`0432 520 230`). Used for calls, `tel:` links, WhatsApp, SMS, and the JSON-LD `telephone`.
+  - `tel:` form: `tel:+61432520230` · WhatsApp: `https://wa.me/61432520230`
+  - *History:* the site previously split calls (247 691) from messages (520 230); the owner
+    consolidated everything onto **520 230** on 2026-07-22. The old 247 691 number is no longer
+    used anywhere. See §3.
 - **Email:** autodrive5109@gmail.com
 - **Address (single location — servicing, repairs, detailing AND used cars):**
   6 Lolands Rd, Salisbury Plain SA 5109
@@ -90,19 +93,15 @@ rego, optional 12–36 month warranty, roadside assistance, post-sale discounted
 
 ---
 
-## 3. The two-phone split (owner rule — now consistent site-wide)
+## 3. Phone number — now ONE number site-wide (520 230)
 
-The site uses **two** numbers on purpose, and this rule holds everywhere as of 2026-07-18:
-
-| Purpose | Number | Applies to |
-|---------|--------|------------|
-| **Calls** | **+61 432 247 691** | every `tel:` link AND the JSON-LD `"telephone"` schema |
-| **Messages (WhatsApp / SMS)** | **+61 432 520 230** | every `wa.me` link and the SMS booking form |
+**As of 2026-07-22 the two-phone split is retired.** Every number on the site — calls,
+`tel:` links, WhatsApp `wa.me` links, SMS booking, and the JSON-LD `"telephone"` — is
+**+61 432 520 230**. When adding markup, use `tel:+61432520230` and `wa.me/61432520230`.
 
 Verified consistent across all pages (root pages *and* the six `services/` subpages):
-all `tel:` = 247 691, all `wa.me` = 520 230, all schema `"telephone"` = 247 691. When
-adding markup, keep to this rule. Note the `+` disambiguates: `tel:`/`telephone` use
-`+61432247691`; WhatsApp uses `wa.me/61432520230` (no `+`).
+all `tel:` = 520 230, all `wa.me` = 520 230, all schema `"telephone"` = 520 230. The old
+call number **247 691 is gone** — do not reintroduce it.
 
 ---
 
