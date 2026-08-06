@@ -2,9 +2,17 @@
 
 ## Start every session by reading the project context
 Before doing anything on this site, read **`AUTODRIVE_PROJECT_CONTEXT.md`** (repo root).
-It is the single source of truth: business facts, the two-phone split, locked brand tokens
-and images, file structure, known issues, and how to preview. Do not re-derive this context
-or change anything marked LOCKED without the owner's say-so.
+It is the single source of truth: business facts, brand tokens and images, file structure,
+known issues, and how to preview. Do not re-derive this context or change anything marked
+LOCKED without the owner's say-so.
+
+## If this is the dedicated ANALYTICS chat
+The owner runs a separate cloud session reserved for interpreting website performance
+(GA4 screenshots etc.). If the owner says this session is for analytics/analysis, ALSO
+read **`ANALYTICS_CONTEXT.md`** — it carries the GA property facts, event dictionary,
+baselines, and interpretation rules. That session is **read-only on the site**: it
+recommends changes but never edits site files (only `ANALYTICS_CONTEXT.md` itself,
+pull-first).
 
 ## Keep the context file updated after every change (important)
 `AUTODRIVE_PROJECT_CONTEXT.md` must stay current so the next session — on Mac, phone, or web
