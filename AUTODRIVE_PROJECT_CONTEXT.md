@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=42`** → next `?v=43`.
+  html page** (all root pages + any subpages). Current version: **`?v=43`** → next `?v=44`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -227,7 +227,8 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
 - **Mobile booking overhaul** — message-first flow with a qualifier, calendar, and SMS form.
 - **Vehicle-info step (added 2026-07-27, `assets/js/main.js`, the `dateask` modal):** for
   **service, detailing, and paint & panel** enquiries only, after the visitor picks a date the
-  modal now also asks for **car make & model** and **odometer (km)** before opening WhatsApp —
+  modal now also asks for **car make**, **model** (two separate inputs since 2026-07-27) and
+  **odometer (km)** before opening WhatsApp —
   so Jitty gets an accurate-quote-ready message, e.g. *"…My car is free on Monday, 3 August.
   Car: Toyota Corolla, Odometer: 85,000 km."* Controlled by `CTX[ctx].vehicle = true/false` in
   main.js. **Used-car enquiries deliberately skip this step** (`CTX.cars.vehicle = false`) —

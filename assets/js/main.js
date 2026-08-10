@@ -86,7 +86,8 @@
           '<button type="button" class="btn btn--lg btn--block dateask__go" hidden>Continue</button>' +
         "</div>" +
         '<div class="dateask__vehiclewrap" hidden>' +
-          '<div class="field"><label for="dateask-make">Car make &amp; model</label><input type="text" id="dateask-make" placeholder="e.g. Toyota Corolla" autocomplete="off" /></div>' +
+          '<div class="field"><label for="dateask-make">Car make</label><input type="text" id="dateask-make" placeholder="e.g. Toyota" autocomplete="off" /></div>' +
+          '<div class="field"><label for="dateask-model">Model</label><input type="text" id="dateask-model" placeholder="e.g. Corolla" autocomplete="off" /></div>' +
           '<div class="field"><label for="dateask-km">Odometer (km)</label><input type="text" inputmode="numeric" id="dateask-km" placeholder="e.g. 85,000" autocomplete="off" /></div>' +
           '<button type="button" class="btn btn--lg btn--block dateask__vgo">Continue to WhatsApp</button>' +
         "</div>" +
@@ -126,6 +127,7 @@
       el(".dateask__vgo").addEventListener("click", function () {
         finish(pendingDate, {
           make: el("#dateask-make").value.trim(),
+          model: el("#dateask-model").value.trim(),
           km: el("#dateask-km").value.trim()
         });
       });
@@ -157,7 +159,7 @@
       if (modal) {
         renderCal();
         el(".dateask__go").hidden = true;
-        el("#dateask-make").value = ""; el("#dateask-km").value = "";
+        el("#dateask-make").value = ""; el("#dateask-model").value = ""; el("#dateask-km").value = "";
       }
     }
     function showService() {
@@ -188,12 +190,13 @@
       if (!base) return;
       var extra = "";
       if (dateText) extra += " " + curCtx.phrase + dateText + ".";
-      if (vehicle && (vehicle.make || vehicle.km)) {
+      if (vehicle && (vehicle.make || vehicle.model || vehicle.km)) {
+        var car = [vehicle.make, vehicle.model].filter(Boolean).join(" ");
         var bits = [];
-        if (vehicle.make) bits.push("Car: " + vehicle.make);
+        if (car) bits.push("Car: " + car);
         if (vehicle.km) bits.push("Odometer: " + vehicle.km + " km");
         extra += " " + bits.join(", ") + ".";
-        if (typeof window.gtag === "function") window.gtag("event", "vehicle_info_submitted", { make: vehicle.make, km: vehicle.km });
+        if (typeof window.gtag === "function") window.gtag("event", "vehicle_info_submitted", { make: vehicle.make, model: vehicle.model, km: vehicle.km });
       }
       if (mode === "service") {
         var msg = svc ? svc.base : "Hi Jitty, I would like to book my car in.";
