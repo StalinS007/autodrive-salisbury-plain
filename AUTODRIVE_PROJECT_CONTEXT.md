@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=43`** → next `?v=44`.
+  html page** (all root pages + any subpages). Current version: **`?v=44`** → next `?v=45`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -232,16 +232,20 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   so Jitty gets an accurate-quote-ready message, e.g. *"…My car is free on Monday, 3 August.
   Car: Toyota Corolla, Odometer: 85,000 km."* Controlled by `CTX[ctx].vehicle = true/false` in
   main.js. **Used-car enquiries deliberately skip this step** (`CTX.cars.vehicle = false`) —
-  a buyer browsing stock doesn't have "their car" details to give. Fields are optional (no
-  validation blocking "Continue to WhatsApp") to avoid adding drop-off friction on top of the
-  modal's existing funnel (see known WhatsApp-click-vs-date-picked gap). Fires a
-  `vehicle_info_submitted` GA event when filled. If adding a new WhatsApp CTA, set
-  `vehicle: true` on its CTX entry (or via `data-ctx`) only if the enquiry is about the
-  visitor's own car — not for browsing/buying flows. The "Not sure yet? Just start the
-  chat" skip button carries an already-picked date with it (doesn't discard it).
-  **Verified 2026-07-27 by a jsdom end-to-end simulation** (33 assertions across 8
+  a buyer browsing stock doesn't have "their car" details to give. **All three fields are
+  REQUIRED (owner decision 2026-07-27):** "Continue to WhatsApp" stays blocked until make,
+  model and odometer are filled — empty fields get an `is-invalid` red highlight and an
+  inline error line, and the "Not sure yet? Just start the chat" skip button is HIDDEN on
+  the vehicle step (it would defeat the requirement; it still shows on the service/date
+  steps). This supersedes the earlier optional-fields choice — watch drop-off in GA
+  (whatsapp_click vs vehicle_info_submitted) to judge the cost. Fires a
+  `vehicle_info_submitted` GA event on success (make, model, km as separate params). If
+  adding a new WhatsApp CTA, set `vehicle: true` on its CTX entry (or via `data-ctx`) only
+  if the enquiry is about the visitor's own car — not for browsing/buying flows.
+  **Verified 2026-07-27 by a jsdom end-to-end simulation** (41 assertions across 8
   scenarios: tier/detailing/generic get the vehicle step; used-car and direct flows skip
-  it; skip preserves date; blank fields omitted; modal resets between opens).
+  it; empty and partial submits blocked with error + field flags, typing clears a flag,
+  full fill proceeds with date + car + km in the message; modal resets between opens).
 - Enriched **AutoRepair / Service / FAQPage JSON-LD** on the main pages; per-service SEO
   pages exist for local search intent (don't collapse them into one).
 - `robots.txt` tuned to allow major search + AI crawlers; `_headers` + `?v=` versioning

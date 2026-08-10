@@ -89,6 +89,7 @@
           '<div class="field"><label for="dateask-make">Car make</label><input type="text" id="dateask-make" placeholder="e.g. Toyota" autocomplete="off" /></div>' +
           '<div class="field"><label for="dateask-model">Model</label><input type="text" id="dateask-model" placeholder="e.g. Corolla" autocomplete="off" /></div>' +
           '<div class="field"><label for="dateask-km">Odometer (km)</label><input type="text" inputmode="numeric" id="dateask-km" placeholder="e.g. 85,000" autocomplete="off" /></div>' +
+          '<p class="dateask__verr" hidden>Please fill in all three details so we can quote you accurately.</p>' +
           '<button type="button" class="btn btn--lg btn--block dateask__vgo">Continue to WhatsApp</button>' +
         "</div>" +
         '<button type="button" class="dateask__skip">Not sure yet? Just start the chat</button>' +
@@ -124,12 +125,26 @@
         if (curCtx.vehicle) { pendingDate = dateText; showVehicle(); }
         else finish(dateText);
       });
+      // Vehicle details are required: block the WhatsApp handoff until all three
+      // fields are filled, flagging the empty ones.
       el(".dateask__vgo").addEventListener("click", function () {
-        finish(pendingDate, {
-          make: el("#dateask-make").value.trim(),
-          model: el("#dateask-model").value.trim(),
-          km: el("#dateask-km").value.trim()
+        var inputs = [el("#dateask-make"), el("#dateask-model"), el("#dateask-km")];
+        var missing = false;
+        inputs.forEach(function (inp) {
+          var bad = !inp.value.trim();
+          inp.classList.toggle("is-invalid", bad);
+          if (bad) missing = true;
         });
+        el(".dateask__verr").hidden = !missing;
+        if (missing) return;
+        finish(pendingDate, {
+          make: inputs[0].value.trim(),
+          model: inputs[1].value.trim(),
+          km: inputs[2].value.trim()
+        });
+      });
+      el(".dateask__vehiclewrap").addEventListener("input", function (e) {
+        if (e.target && e.target.classList) e.target.classList.remove("is-invalid");
       });
     }
     function renderCal() {
@@ -159,7 +174,10 @@
       if (modal) {
         renderCal();
         el(".dateask__go").hidden = true;
-        el("#dateask-make").value = ""; el("#dateask-model").value = ""; el("#dateask-km").value = "";
+        ["#dateask-make", "#dateask-model", "#dateask-km"].forEach(function (id) {
+          var inp = el(id); inp.value = ""; inp.classList.remove("is-invalid");
+        });
+        el(".dateask__verr").hidden = true;
       }
     }
     function showService() {
@@ -168,6 +186,7 @@
       el(".dateask__services").hidden = false;
       el(".dateask__datewrap").hidden = true;
       el(".dateask__vehiclewrap").hidden = true;
+      el(".dateask__skip").hidden = false;
     }
     function showDate() {
       el("#dateask-h").textContent = curCtx.head;
@@ -175,6 +194,7 @@
       el(".dateask__services").hidden = true;
       el(".dateask__datewrap").hidden = false;
       el(".dateask__vehiclewrap").hidden = true;
+      el(".dateask__skip").hidden = false;
       renderCal();
     }
     function showVehicle() {
@@ -182,6 +202,8 @@
       el(".dateask__copy").textContent = "So we can give you an accurate quote.";
       el(".dateask__datewrap").hidden = true;
       el(".dateask__vehiclewrap").hidden = false;
+      // Details are required here — no skip-to-chat escape on this step.
+      el(".dateask__skip").hidden = true;
     }
     function close() { if (modal) modal.classList.remove("open"); pendingUrl = ""; chosenSvc = null; }
     function finish(dateText, vehicle) {

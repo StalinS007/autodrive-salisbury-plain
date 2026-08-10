@@ -885,3 +885,7 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
    now extends upward above its name instead of overlapping it. Keep it on one line. */
 .pt-ribbon { position:static; transform:none; margin:0 0 .55rem; white-space:nowrap; }
 .ptable thead th { padding-top:1.25rem; }
+
+/* Booking modal: required vehicle fields — invalid highlight + error note */
+.dateask .field input.is-invalid { border-color: var(--brand-red); box-shadow: 0 0 0 3px rgba(192,20,24,.12); }
+.dateask__verr { color: var(--brand-red-dk); font-size: .82rem; font-weight: 600; margin: .1rem 0 .7rem; }
