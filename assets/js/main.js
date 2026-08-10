@@ -95,7 +95,9 @@
       document.body.appendChild(modal);
       el(".dateask__backdrop").addEventListener("click", close);
       el(".dateask__close").addEventListener("click", close);
-      el(".dateask__skip").addEventListener("click", function () { finish(""); });
+      // Skip keeps whatever was already chosen: on the vehicle step the date is
+      // picked (pendingDate set), so "just start the chat" still carries it.
+      el(".dateask__skip").addEventListener("click", function () { finish(pendingDate || ""); });
       modal.querySelectorAll(".dateask__svc").forEach(function (b) {
         b.addEventListener("click", function () { chosenSvc = services[+b.getAttribute("data-i")]; curCtx = CTX[chosenSvc.ctx]; showDate(); });
       });
