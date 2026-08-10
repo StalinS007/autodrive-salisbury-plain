@@ -38,13 +38,16 @@
   // already know the service, so they just ask the date. The answers are
   // stitched into the WhatsApp message.
   (function () {
-    var modal = null, pendingUrl = "", mode = "date", chosenSvc = null;
+    var modal = null, pendingUrl = "", mode = "date", chosenSvc = null, pendingDate = "";
     // Wording for the date step, tailored to what the visitor is actually booking.
+    // `vehicle: true` means: after the date, also ask for make/model + odometer —
+    // used for service/detailing/paint (it's THEIR car). Used-car enquiries (cars)
+    // skip this — the visitor doesn't have "their car" details to give.
     var CTX = {
-      service: { head: "When would you like your service?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on " },
-      detail: { head: "When would you like your detailing?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on " },
-      cars: { head: "When can you come by?", copy: "Pick a day to come and have a look and we will contact you back.", phrase: "I am available to come have a look on " },
-      paint: { head: "When would you like your repair?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on " }
+      service: { head: "When would you like your service?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true },
+      detail: { head: "When would you like your detailing?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true },
+      cars: { head: "When can you come by?", copy: "Pick a day to come and have a look and we will contact you back.", phrase: "I am available to come have a look on ", vehicle: false },
+      paint: { head: "When would you like your repair?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true }
     };
     var curCtx = CTX.service;
     // Top-level enquiry categories for the generic button.
@@ -80,7 +83,12 @@
           "</div>" +
           '<div class="dateask__cal"></div>' +
           '<p class="dateask__note">Closed Sundays.</p>' +
-          '<button type="button" class="btn btn--lg btn--block dateask__go" hidden>Continue to WhatsApp</button>' +
+          '<button type="button" class="btn btn--lg btn--block dateask__go" hidden>Continue</button>' +
+        "</div>" +
+        '<div class="dateask__vehiclewrap" hidden>' +
+          '<div class="field"><label for="dateask-make">Car make &amp; model</label><input type="text" id="dateask-make" placeholder="e.g. Toyota Corolla" autocomplete="off" /></div>' +
+          '<div class="field"><label for="dateask-km">Odometer (km)</label><input type="text" inputmode="numeric" id="dateask-km" placeholder="e.g. 85,000" autocomplete="off" /></div>' +
+          '<button type="button" class="btn btn--lg btn--block dateask__vgo">Continue to WhatsApp</button>' +
         "</div>" +
         '<button type="button" class="dateask__skip">Not sure yet? Just start the chat</button>' +
         "</div>";
@@ -109,7 +117,15 @@
       });
       el(".dateask__go").addEventListener("click", function () {
         if (!selISO) return;
-        finish(fmt(selISO));
+        var dateText = fmt(selISO);
+        if (curCtx.vehicle) { pendingDate = dateText; showVehicle(); }
+        else finish(dateText);
+      });
+      el(".dateask__vgo").addEventListener("click", function () {
+        finish(pendingDate, {
+          make: el("#dateask-make").value.trim(),
+          km: el("#dateask-km").value.trim()
+        });
       });
     }
     function renderCal() {
@@ -134,35 +150,55 @@
       el(".dateask__cal").innerHTML = h + "</div>";
     }
     function resetDate() {
-      selISO = "";
+      selISO = ""; pendingDate = "";
       viewY = today.getFullYear(); viewM = today.getMonth();
-      if (modal) { renderCal(); el(".dateask__go").hidden = true; }
+      if (modal) {
+        renderCal();
+        el(".dateask__go").hidden = true;
+        el("#dateask-make").value = ""; el("#dateask-km").value = "";
+      }
     }
     function showService() {
       el("#dateask-h").textContent = "What service are you looking for?";
       el(".dateask__copy").textContent = "Pick one so we can help you faster.";
       el(".dateask__services").hidden = false;
       el(".dateask__datewrap").hidden = true;
+      el(".dateask__vehiclewrap").hidden = true;
     }
     function showDate() {
       el("#dateask-h").textContent = curCtx.head;
       el(".dateask__copy").textContent = curCtx.copy;
       el(".dateask__services").hidden = true;
       el(".dateask__datewrap").hidden = false;
+      el(".dateask__vehiclewrap").hidden = true;
       renderCal();
     }
+    function showVehicle() {
+      el("#dateask-h").textContent = "Tell us about your car";
+      el(".dateask__copy").textContent = "So we can give you an accurate quote.";
+      el(".dateask__datewrap").hidden = true;
+      el(".dateask__vehiclewrap").hidden = false;
+    }
     function close() { if (modal) modal.classList.remove("open"); pendingUrl = ""; chosenSvc = null; }
-    function finish(dateText) {
+    function finish(dateText, vehicle) {
       var base = pendingUrl, svc = chosenSvc, url = base;
       close();
       if (!base) return;
+      var extra = "";
+      if (dateText) extra += " " + curCtx.phrase + dateText + ".";
+      if (vehicle && (vehicle.make || vehicle.km)) {
+        var bits = [];
+        if (vehicle.make) bits.push("Car: " + vehicle.make);
+        if (vehicle.km) bits.push("Odometer: " + vehicle.km + " km");
+        extra += " " + bits.join(", ") + ".";
+        if (typeof window.gtag === "function") window.gtag("event", "vehicle_info_submitted", { make: vehicle.make, km: vehicle.km });
+      }
       if (mode === "service") {
         var msg = svc ? svc.base : "Hi Jitty, I would like to book my car in.";
-        if (dateText) msg += " " + curCtx.phrase + dateText + ".";
-        url = "https://wa.me/61432520230?text=" + encodeURIComponent(msg);
-      } else if (dateText) {
+        url = "https://wa.me/61432520230?text=" + encodeURIComponent(msg + extra);
+      } else if (extra) {
         var joiner = base.indexOf("?text=") > -1 ? "%20" : "?text=";
-        url += joiner + encodeURIComponent(curCtx.phrase + dateText + ".");
+        url += joiner + encodeURIComponent(extra.trim());
       }
       if (dateText && typeof window.gtag === "function") window.gtag("event", "booking_date_picked", { date_text: dateText });
       window.location.href = url;
