@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=44`** → next `?v=45`.
+  html page** (all root pages + any subpages). Current version: **`?v=45`** → next `?v=46`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -235,9 +235,10 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   a buyer browsing stock doesn't have "their car" details to give. **All three fields are
   REQUIRED (owner decision 2026-07-27):** "Continue to WhatsApp" stays blocked until make,
   model and odometer are filled — empty fields get an `is-invalid` red highlight and an
-  inline error line, and the "Not sure yet? Just start the chat" skip button is HIDDEN on
-  the vehicle step (it would defeat the requirement; it still shows on the service/date
-  steps). This supersedes the earlier optional-fields choice — watch drop-off in GA
+  inline error line. **The "Not sure yet? Just start the chat" skip button is REMOVED
+  entirely from the modal (all steps, owner decision 2026-07-27)** — there is no bypass
+  anywhere: the date is effectively mandatory too (the only way forward is picking one).
+  This supersedes the earlier optional-fields choice — watch drop-off in GA
   (whatsapp_click vs vehicle_info_submitted) to judge the cost. Fires a
   `vehicle_info_submitted` GA event on success (make, model, km as separate params). If
   adding a new WhatsApp CTA, set `vehicle: true` on its CTX entry (or via `data-ctx`) only

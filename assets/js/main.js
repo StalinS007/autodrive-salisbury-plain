@@ -92,14 +92,10 @@
           '<p class="dateask__verr" hidden>Please fill in all three details so we can quote you accurately.</p>' +
           '<button type="button" class="btn btn--lg btn--block dateask__vgo">Continue to WhatsApp</button>' +
         "</div>" +
-        '<button type="button" class="dateask__skip">Not sure yet? Just start the chat</button>' +
         "</div>";
       document.body.appendChild(modal);
       el(".dateask__backdrop").addEventListener("click", close);
       el(".dateask__close").addEventListener("click", close);
-      // Skip keeps whatever was already chosen: on the vehicle step the date is
-      // picked (pendingDate set), so "just start the chat" still carries it.
-      el(".dateask__skip").addEventListener("click", function () { finish(pendingDate || ""); });
       modal.querySelectorAll(".dateask__svc").forEach(function (b) {
         b.addEventListener("click", function () { chosenSvc = services[+b.getAttribute("data-i")]; curCtx = CTX[chosenSvc.ctx]; showDate(); });
       });
@@ -186,7 +182,6 @@
       el(".dateask__services").hidden = false;
       el(".dateask__datewrap").hidden = true;
       el(".dateask__vehiclewrap").hidden = true;
-      el(".dateask__skip").hidden = false;
     }
     function showDate() {
       el("#dateask-h").textContent = curCtx.head;
@@ -194,7 +189,6 @@
       el(".dateask__services").hidden = true;
       el(".dateask__datewrap").hidden = false;
       el(".dateask__vehiclewrap").hidden = true;
-      el(".dateask__skip").hidden = false;
       renderCal();
     }
     function showVehicle() {
@@ -202,8 +196,6 @@
       el(".dateask__copy").textContent = "So we can give you an accurate quote.";
       el(".dateask__datewrap").hidden = true;
       el(".dateask__vehiclewrap").hidden = false;
-      // Details are required here — no skip-to-chat escape on this step.
-      el(".dateask__skip").hidden = true;
     }
     function close() { if (modal) modal.classList.remove("open"); pendingUrl = ""; chosenSvc = null; }
     function finish(dateText, vehicle) {
