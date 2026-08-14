@@ -88,9 +88,10 @@
         '<div class="dateask__vehiclewrap" hidden>' +
           '<div class="field"><label for="dateask-make">Car make</label><input type="text" id="dateask-make" placeholder="e.g. Toyota" autocomplete="off" /></div>' +
           '<div class="field"><label for="dateask-model">Model</label><input type="text" id="dateask-model" placeholder="e.g. Corolla" autocomplete="off" /></div>' +
+          '<div class="field"><label for="dateask-year">Year</label><input type="text" inputmode="numeric" id="dateask-year" placeholder="e.g. 2009" maxlength="4" autocomplete="off" /></div>' +
           '<div class="field"><label for="dateask-km">Odometer (km)</label><input type="text" inputmode="numeric" id="dateask-km" placeholder="e.g. 85,000" autocomplete="off" /></div>' +
           '<div class="field dateask__issuefield"><label for="dateask-issue">Anything wrong with the car? <span class="dateask__opt">(optional)</span></label><textarea id="dateask-issue" rows="2" placeholder="e.g. ABS light flashing on the dashboard while driving"></textarea></div>' +
-          '<p class="dateask__verr" hidden>Please fill in all three details so we can quote you accurately.</p>' +
+          '<p class="dateask__verr" hidden>Please fill in your car&rsquo;s details so we can quote you accurately.</p>' +
           '<button type="button" class="btn btn--lg btn--block dateask__vgo">Continue to WhatsApp</button>' +
         "</div>" +
         "</div>";
@@ -125,7 +126,7 @@
       // Vehicle details are required: block the WhatsApp handoff until all three
       // fields are filled, flagging the empty ones.
       el(".dateask__vgo").addEventListener("click", function () {
-        var inputs = [el("#dateask-make"), el("#dateask-model"), el("#dateask-km")];
+        var inputs = [el("#dateask-make"), el("#dateask-model"), el("#dateask-year"), el("#dateask-km")];
         var missing = false;
         inputs.forEach(function (inp) {
           var bad = !inp.value.trim();
@@ -137,7 +138,8 @@
         finish(pendingDate, {
           make: inputs[0].value.trim(),
           model: inputs[1].value.trim(),
-          km: inputs[2].value.trim(),
+          year: inputs[2].value.trim(),
+          km: inputs[3].value.trim(),
           issue: curCtx.issue ? el("#dateask-issue").value : ""
         });
       });
@@ -172,7 +174,7 @@
       if (modal) {
         renderCal();
         el(".dateask__go").hidden = true;
-        ["#dateask-make", "#dateask-model", "#dateask-km", "#dateask-issue"].forEach(function (id) {
+        ["#dateask-make", "#dateask-model", "#dateask-year", "#dateask-km", "#dateask-issue"].forEach(function (id) {
           var inp = el(id); inp.value = ""; inp.classList.remove("is-invalid");
         });
         el(".dateask__verr").hidden = true;
@@ -218,15 +220,16 @@
       if (!base) return;
       var extra = "";
       if (dateText) extra += " " + curCtx.phrase + dateText + ".";
-      if (vehicle && (vehicle.make || vehicle.model || vehicle.km)) {
+      if (vehicle && (vehicle.make || vehicle.model || vehicle.year || vehicle.km)) {
         var car = [vehicle.make, vehicle.model].filter(Boolean).join(" ");
         var bits = [];
         if (car) bits.push("Car: " + car);
+        if (vehicle.year) bits.push("Year: " + vehicle.year);
         if (vehicle.km) bits.push("Odometer: " + vehicle.km + " km");
         extra += " " + bits.join(", ") + ".";
         var issueText = tidy(vehicle.issue);
         if (issueText) extra += " Issue: " + issueText;
-        if (typeof window.gtag === "function") window.gtag("event", "vehicle_info_submitted", { make: vehicle.make, model: vehicle.model, km: vehicle.km, has_issue: issueText ? "yes" : "no" });
+        if (typeof window.gtag === "function") window.gtag("event", "vehicle_info_submitted", { make: vehicle.make, model: vehicle.model, year: vehicle.year, km: vehicle.km, has_issue: issueText ? "yes" : "no" });
       }
       if (mode === "service") {
         var msg = svc ? svc.base : "Hi Jitty, I would like to book my car in.";
