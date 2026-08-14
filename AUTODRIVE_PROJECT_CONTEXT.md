@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=49`** → next `?v=50`.
+  html page** (all root pages + any subpages). Current version: **`?v=50`** → next `?v=51`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -253,8 +253,8 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
     Detailing/paint don't show it (flip their CTX `issue` flag + wording to enable).
   - **"Car not running right?" stream (added 2026-08-14):** the generic Message-Jitty
     qualifier now has a FIFTH chip, directly under "General car service" — label "Car not
-    running right?" with sub-line "Warning light, strange noise, leak or anything odd —
-    tell us what's going on and we'll take a look." (deliberately not "Have a problem?").
+    running right?"; renamed 2026-08-14 to plain **"Issues with my car"**, no sub-line —
+    owner wants the elaboration to happen in the follow-up questions, not on the chip.
     Its flow (`CTX.problem`): date step headed "When can we take a look?" → vehicle step
     where the issue box is **required** (`issueRequired: true`, label "What's going on
     with the car?") since describing the fault is the point of this stream. Base message:

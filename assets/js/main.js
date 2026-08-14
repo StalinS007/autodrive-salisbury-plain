@@ -54,7 +54,7 @@
     // Top-level enquiry categories for the generic button.
     var services = [
       { label: "General car service", base: "Hi Jitty, I would like to book my car in for a service.", ctx: "service" },
-      { label: "Car not running right?", sub: "Warning light, strange noise, leak or anything odd &mdash; tell us what's going on and we'll take a look.", base: "Hi Jitty, my car is having some issues and I would like to get it checked.", ctx: "problem" },
+      { label: "Issues with my car", base: "Hi Jitty, my car is having some issues and I would like to get it checked.", ctx: "problem" },
       { label: "Car detailing", base: "Hi Jitty, I would like to book my car in for car detailing.", ctx: "detail" },
       { label: "Used car enquiry", base: "Hi Jitty, I am interested in looking at your used cars.", ctx: "cars" },
       { label: "Paint &amp; panel repair", base: "Hi Jitty, I would like to book my car in for paint and panel repair.", ctx: "paint" }
