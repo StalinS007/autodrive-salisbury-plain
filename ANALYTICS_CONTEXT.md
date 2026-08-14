@@ -64,14 +64,16 @@ Automatic GA4: page_view, session_start, first_visit, user_engagement, scroll (9
 Always use THESE exact links when placing the site URL on an external platform, so each
 channel gets its own clean row in Traffic acquisition:
 - Instagram bio (LIVE since ~21 Jul): `https://autodrivesalisburyplain.com.au/?utm_source=instagram&utm_medium=bio`
-- Google Business Profile website field (pending GBP access): `https://autodrivesalisburyplain.com.au/?utm_source=google&utm_medium=profile`
-- Facebook Page website/About (pending Page access): `https://autodrivesalisburyplain.com.au/?utm_source=facebook&utm_medium=social`
-- Facebook community-group posts (Jitty can use TODAY, no admin access needed):
+- Google Business Profile website field (LIVE since ~13 Aug — GBP access resolved): `https://autodrivesalisburyplain.com.au/?utm_source=google&utm_medium=profile`
+- Facebook Page website field (LIVE since ~13 Aug — Page access granted; bio text keeps the plain domain on purpose): `https://autodrivesalisburyplain.com.au/?utm_source=facebook&utm_medium=social`
+- Facebook community-group posts (owner plans to start ~week of 18 Aug):
   `https://autodrivesalisburyplain.com.au/?utm_source=fbgroup&utm_medium=post`
   — optionally add `&utm_campaign=<group-or-post>` (e.g. `adelaide-indian-community`,
   `civic-2009`) to split by group/post. Deep links work too, e.g.
   `/used-cars.html?utm_source=fbgroup&utm_medium=post&utm_campaign=civic-2009`.
-- WhatsApp/SMS shares by Jitty: `https://autodrivesalisburyplain.com.au/?utm_source=whatsapp&utm_medium=share`
+- WhatsApp/SMS shares by Jitty (OPTIONAL, lowest priority — only useful if Jitty saves it
+  as a canned message; makes word-of-mouth forwards visible instead of landing in Direct):
+  `https://autodrivesalisburyplain.com.au/?utm_source=whatsapp&utm_medium=share`
 Rules: lowercase everything; never tag internal links on the site itself; one source
 name per platform (don't invent variants).
 
