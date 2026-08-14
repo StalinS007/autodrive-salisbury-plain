@@ -57,8 +57,10 @@ Automatic GA4: page_view, session_start, first_visit, user_engagement, scroll (9
    old 247 691 (fix pending with Jitty).
 5. **`(direct)` traffic hides social.** Instagram/FB in-app clicks often log as Direct.
    The Instagram bio link is UTM-tagged (`utm_source=instagram&utm_medium=bio` → shows as
-   `instagram / bio`, live since ~21 Jul). Google Business Profile and Facebook links are
-   NOT tagged yet — their clicks land in Direct/referral rows.
+   `instagram / bio`, live since ~21 Jul). GBP and Facebook Page links are tagged since
+   ~13 Aug (see dictionary below) — before that date their clicks landed in Direct/referral
+   rows, so pre-/post-13-Aug source mixes aren't comparable. Community-group posts remain
+   untagged until Jitty starts using the fbgroup link.
 
 ## Official UTM link dictionary (the canonical tagged links)
 Always use THESE exact links when placing the site URL on an external platform, so each
