@@ -60,6 +60,21 @@ Automatic GA4: page_view, session_start, first_visit, user_engagement, scroll (9
    `instagram / bio`, live since ~21 Jul). Google Business Profile and Facebook links are
    NOT tagged yet — their clicks land in Direct/referral rows.
 
+## Official UTM link dictionary (the canonical tagged links)
+Always use THESE exact links when placing the site URL on an external platform, so each
+channel gets its own clean row in Traffic acquisition:
+- Instagram bio (LIVE since ~21 Jul): `https://autodrivesalisburyplain.com.au/?utm_source=instagram&utm_medium=bio`
+- Google Business Profile website field (pending GBP access): `https://autodrivesalisburyplain.com.au/?utm_source=google&utm_medium=profile`
+- Facebook Page website/About (pending Page access): `https://autodrivesalisburyplain.com.au/?utm_source=facebook&utm_medium=social`
+- Facebook community-group posts (Jitty can use TODAY, no admin access needed):
+  `https://autodrivesalisburyplain.com.au/?utm_source=fbgroup&utm_medium=post`
+  — optionally add `&utm_campaign=<group-or-post>` (e.g. `adelaide-indian-community`,
+  `civic-2009`) to split by group/post. Deep links work too, e.g.
+  `/used-cars.html?utm_source=fbgroup&utm_medium=post&utm_campaign=civic-2009`.
+- WhatsApp/SMS shares by Jitty: `https://autodrivesalisburyplain.com.au/?utm_source=whatsapp&utm_medium=share`
+Rules: lowercase everything; never tag internal links on the site itself; one source
+name per platform (don't invent variants).
+
 ## Business reality (interpret against this, not against e-commerce norms)
 - Jitty's customers come mainly from **Facebook local community groups** (e.g. Adelaide
   Indian Community) and **word-of-mouth referrals + direct calls**. The website's role is
