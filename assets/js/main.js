@@ -44,7 +44,7 @@
     // used for service/detailing/paint (it's THEIR car). Used-car enquiries (cars)
     // skip this — the visitor doesn't have "their car" details to give.
     var CTX = {
-      service: { head: "When would you like your service?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true },
+      service: { head: "When would you like your service?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true, issue: true },
       detail: { head: "When would you like your detailing?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true },
       cars: { head: "When can you come by?", copy: "Pick a day to come and have a look and we will contact you back.", phrase: "I am available to come have a look on ", vehicle: false },
       paint: { head: "When would you like your repair?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true }
@@ -89,6 +89,7 @@
           '<div class="field"><label for="dateask-make">Car make</label><input type="text" id="dateask-make" placeholder="e.g. Toyota" autocomplete="off" /></div>' +
           '<div class="field"><label for="dateask-model">Model</label><input type="text" id="dateask-model" placeholder="e.g. Corolla" autocomplete="off" /></div>' +
           '<div class="field"><label for="dateask-km">Odometer (km)</label><input type="text" inputmode="numeric" id="dateask-km" placeholder="e.g. 85,000" autocomplete="off" /></div>' +
+          '<div class="field dateask__issuefield"><label for="dateask-issue">Anything wrong with the car? <span class="dateask__opt">(optional)</span></label><textarea id="dateask-issue" rows="2" placeholder="e.g. ABS light flashing on the dashboard while driving"></textarea></div>' +
           '<p class="dateask__verr" hidden>Please fill in all three details so we can quote you accurately.</p>' +
           '<button type="button" class="btn btn--lg btn--block dateask__vgo">Continue to WhatsApp</button>' +
         "</div>" +
@@ -136,7 +137,8 @@
         finish(pendingDate, {
           make: inputs[0].value.trim(),
           model: inputs[1].value.trim(),
-          km: inputs[2].value.trim()
+          km: inputs[2].value.trim(),
+          issue: curCtx.issue ? el("#dateask-issue").value : ""
         });
       });
       el(".dateask__vehiclewrap").addEventListener("input", function (e) {
@@ -170,7 +172,7 @@
       if (modal) {
         renderCal();
         el(".dateask__go").hidden = true;
-        ["#dateask-make", "#dateask-model", "#dateask-km"].forEach(function (id) {
+        ["#dateask-make", "#dateask-model", "#dateask-km", "#dateask-issue"].forEach(function (id) {
           var inp = el(id); inp.value = ""; inp.classList.remove("is-invalid");
         });
         el(".dateask__verr").hidden = true;
@@ -196,8 +198,20 @@
       el(".dateask__copy").textContent = "So we can give you an accurate quote.";
       el(".dateask__datewrap").hidden = true;
       el(".dateask__vehiclewrap").hidden = false;
+      // The issue box only appears for contexts that want it (currently servicing).
+      el(".dateask__issuefield").hidden = !curCtx.issue;
     }
     function close() { if (modal) modal.classList.remove("open"); pendingUrl = ""; chosenSvc = null; }
+    // Normalise customer-typed text for the WhatsApp message: collapse whitespace,
+    // no space before punctuation ("driving ." -> "driving."), capitalise, end with ".".
+    function tidy(s) {
+      s = (s || "").replace(/\s+/g, " ").trim();
+      if (!s) return "";
+      s = s.replace(/\s+([.,!?;:])/g, "$1");
+      s = s.charAt(0).toUpperCase() + s.slice(1);
+      if (!/[.!?]$/.test(s)) s += ".";
+      return s;
+    }
     function finish(dateText, vehicle) {
       var base = pendingUrl, svc = chosenSvc, url = base;
       close();
@@ -210,7 +224,9 @@
         if (car) bits.push("Car: " + car);
         if (vehicle.km) bits.push("Odometer: " + vehicle.km + " km");
         extra += " " + bits.join(", ") + ".";
-        if (typeof window.gtag === "function") window.gtag("event", "vehicle_info_submitted", { make: vehicle.make, model: vehicle.model, km: vehicle.km });
+        var issueText = tidy(vehicle.issue);
+        if (issueText) extra += " Issue: " + issueText;
+        if (typeof window.gtag === "function") window.gtag("event", "vehicle_info_submitted", { make: vehicle.make, model: vehicle.model, km: vehicle.km, has_issue: issueText ? "yes" : "no" });
       }
       if (mode === "service") {
         var msg = svc ? svc.base : "Hi Jitty, I would like to book my car in.";

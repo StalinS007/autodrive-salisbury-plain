@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=45`** → next `?v=46`.
+  html page** (all root pages + any subpages). Current version: **`?v=46`** → next `?v=47`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -240,9 +240,17 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   anywhere: the date is effectively mandatory too (the only way forward is picking one).
   This supersedes the earlier optional-fields choice — watch drop-off in GA
   (whatsapp_click vs vehicle_info_submitted) to judge the cost. Fires a
-  `vehicle_info_submitted` GA event on success (make, model, km as separate params). If
-  adding a new WhatsApp CTA, set `vehicle: true` on its CTX entry (or via `data-ctx`) only
-  if the enquiry is about the visitor's own car — not for browsing/buying flows.
+  `vehicle_info_submitted` GA event on success (make, model, km as separate params, plus
+  `has_issue`). If adding a new WhatsApp CTA, set `vehicle: true` on its CTX entry (or via
+  `data-ctx`) only if the enquiry is about the visitor's own car — not for browsing/buying
+  flows.
+  - **Optional issue box (added 2026-08-14, prompted by the first real lead — a customer
+    hand-edited the prefilled message to describe an ABS fault):** SERVICING enquiries
+    (`CTX.service.issue = true`) get an optional textarea on the vehicle step — "Anything
+    wrong with the car? (optional)". If filled, the text is normalised by `tidy()` (collapse
+    whitespace, strip space-before-punctuation, capitalise, ensure trailing full stop) and
+    appended as `Issue: …` after the odometer in the WhatsApp message. Blank = omitted.
+    Detailing/paint don't show it (flip their CTX `issue` flag + wording to enable).
   **Verified 2026-07-27 by a jsdom end-to-end simulation** (41 assertions across 8
   scenarios: tier/detailing/generic get the vehicle step; used-car and direct flows skip
   it; empty and partial submits blocked with error + field flags, typing clears a flag,
