@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=50`** → next `?v=51`.
+  html page** (all root pages + any subpages). Current version: **`?v=51`** → next `?v=52`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -246,8 +246,10 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   flows.
   - **Optional issue box (added 2026-08-14, prompted by the first real lead — a customer
     hand-edited the prefilled message to describe an ABS fault):** SERVICING enquiries
-    (`CTX.service.issue = true`) get an optional textarea on the vehicle step — "Anything
-    wrong with the car? (optional)". If filled, the text is normalised by `tidy()` (collapse
+    (`CTX.service.issue = true`) get an optional textarea on the vehicle step — labelled
+    "In a few words, describe what's wrong (optional)" since 2026-08-14, **capped at 120
+    characters** (maxlength + live 0/120 counter + submit-time clamp) so messages stay
+    quick and to the point. If filled, the text is normalised by `tidy()` (collapse
     whitespace, strip space-before-punctuation, capitalise, ensure trailing full stop) and
     appended as `Issue: …` after the odometer in the WhatsApp message. Blank = omitted.
     Detailing/paint don't show it (flip their CTX `issue` flag + wording to enable).
@@ -256,8 +258,8 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
     running right?"; renamed 2026-08-14 to plain **"Issues with my car"**, no sub-line —
     owner wants the elaboration to happen in the follow-up questions, not on the chip.
     Its flow (`CTX.problem`): date step headed "When can we take a look?" → vehicle step
-    where the issue box is **required** (`issueRequired: true`, label "What's going on
-    with the car?") since describing the fault is the point of this stream. Base message:
+    where the issue box is **required** (`issueRequired: true`, same "In a few words,
+    describe what's wrong" label without the optional tag) since describing the fault is the point of this stream. Base message:
     "Hi Jitty, my car is having some issues and I would like to get it checked." 
   **Verified 2026-07-27 by a jsdom end-to-end simulation** (41 assertions across 8
   scenarios: tier/detailing/generic get the vehicle step; used-car and direct flows skip

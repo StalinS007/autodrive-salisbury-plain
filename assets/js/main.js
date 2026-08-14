@@ -93,7 +93,7 @@
           '<div class="field"><label for="dateask-model">Model</label><input type="text" id="dateask-model" placeholder="e.g. Corolla" autocomplete="off" /></div>' +
           '<div class="field"><label for="dateask-year">Year</label><input type="text" inputmode="numeric" id="dateask-year" placeholder="e.g. 2009" maxlength="4" autocomplete="off" /></div>' +
           '<div class="field"><label for="dateask-km">Odometer (km)</label><input type="text" inputmode="numeric" id="dateask-km" placeholder="e.g. 85,000" autocomplete="off" /></div>' +
-          '<div class="field dateask__issuefield"><label for="dateask-issue">Anything wrong with the car? <span class="dateask__opt">(optional)</span></label><textarea id="dateask-issue" rows="2" placeholder="e.g. ABS light flashing on the dashboard while driving"></textarea></div>' +
+          '<div class="field dateask__issuefield"><label for="dateask-issue">In a few words, describe what&rsquo;s wrong <span class="dateask__opt">(optional)</span></label><textarea id="dateask-issue" rows="2" maxlength="120" placeholder="e.g. ABS light flashing on the dashboard while driving"></textarea><span class="dateask__count">0/120</span></div>' +
           '<p class="dateask__verr" hidden>Please fill in your car&rsquo;s details so we can quote you accurately.</p>' +
           '<button type="button" class="btn btn--lg btn--block dateask__vgo">Continue to WhatsApp</button>' +
         "</div>" +
@@ -144,11 +144,14 @@
           model: inputs[1].value.trim(),
           year: inputs[2].value.trim(),
           km: inputs[3].value.trim(),
-          issue: curCtx.issue ? el("#dateask-issue").value : ""
+          issue: curCtx.issue ? el("#dateask-issue").value.slice(0, 120) : ""
         });
       });
       el(".dateask__vehiclewrap").addEventListener("input", function (e) {
         if (e.target && e.target.classList) e.target.classList.remove("is-invalid");
+        if (e.target && e.target.id === "dateask-issue") {
+          el(".dateask__count").textContent = e.target.value.length + "/120";
+        }
       });
     }
     function renderCal() {
@@ -182,6 +185,7 @@
           var inp = el(id); inp.value = ""; inp.classList.remove("is-invalid");
         });
         el(".dateask__verr").hidden = true;
+        el(".dateask__count").textContent = "0/120";
       }
     }
     function showService() {
@@ -208,8 +212,8 @@
       // running right" stream it is the whole point, so it becomes required.
       el(".dateask__issuefield").hidden = !curCtx.issue;
       el(".dateask__issuefield label").innerHTML = curCtx.issueRequired
-        ? "What&rsquo;s going on with the car?"
-        : 'Anything wrong with the car? <span class="dateask__opt">(optional)</span>';
+        ? "In a few words, describe what&rsquo;s wrong"
+        : 'In a few words, describe what&rsquo;s wrong <span class="dateask__opt">(optional)</span>';
     }
     function close() { if (modal) modal.classList.remove("open"); pendingUrl = ""; chosenSvc = null; }
     // Normalise customer-typed text for the WhatsApp message: collapse whitespace,
