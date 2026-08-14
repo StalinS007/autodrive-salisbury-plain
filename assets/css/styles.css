@@ -893,3 +893,8 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 /* Booking modal: optional issue textarea (servicing) */
 .dateask .field textarea { min-height: 64px; resize: none; }
 .dateask__opt { font-weight: 500; color: var(--grey-500); font-size: .8rem; }
+
+/* Booking modal: chip sub-line ("Car not running right?" stream) + textarea invalid state */
+.dateask__svcsub { display: block; font-weight: 500; font-size: .8rem; color: var(--grey-500); margin-top: .2rem; line-height: 1.4; }
+.dateask__svc:hover .dateask__svcsub { color: inherit; }
+.dateask .field textarea.is-invalid { border-color: var(--brand-red); box-shadow: 0 0 0 3px rgba(192,20,24,.12); }

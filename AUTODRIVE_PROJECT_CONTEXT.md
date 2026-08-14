@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=47`** → next `?v=48`.
+  html page** (all root pages + any subpages). Current version: **`?v=48`** → next `?v=49`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -251,6 +251,14 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
     whitespace, strip space-before-punctuation, capitalise, ensure trailing full stop) and
     appended as `Issue: …` after the odometer in the WhatsApp message. Blank = omitted.
     Detailing/paint don't show it (flip their CTX `issue` flag + wording to enable).
+  - **"Car not running right?" stream (added 2026-08-14):** the generic Message-Jitty
+    qualifier now has a FIFTH chip, directly under "General car service" — label "Car not
+    running right?" with sub-line "Warning light, strange noise, leak or anything odd —
+    tell us what's going on and we'll take a look." (deliberately not "Have a problem?").
+    Its flow (`CTX.problem`): date step headed "When can we take a look?" → vehicle step
+    where the issue box is **required** (`issueRequired: true`, label "What's going on
+    with the car?") since describing the fault is the point of this stream. Base message:
+    "Hi Jitty, my car is not running right and I would like to get it checked." 
   **Verified 2026-07-27 by a jsdom end-to-end simulation** (41 assertions across 8
   scenarios: tier/detailing/generic get the vehicle step; used-car and direct flows skip
   it; empty and partial submits blocked with error + field flags, typing clears a flag,

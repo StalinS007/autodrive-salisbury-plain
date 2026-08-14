@@ -45,6 +45,7 @@
     // skip this — the visitor doesn't have "their car" details to give.
     var CTX = {
       service: { head: "When would you like your service?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true, issue: true },
+      problem: { head: "When can we take a look?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true, issue: true, issueRequired: true },
       detail: { head: "When would you like your detailing?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true },
       cars: { head: "When can you come by?", copy: "Pick a day to come and have a look and we will contact you back.", phrase: "I am available to come have a look on ", vehicle: false },
       paint: { head: "When would you like your repair?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true }
@@ -53,6 +54,7 @@
     // Top-level enquiry categories for the generic button.
     var services = [
       { label: "General car service", base: "Hi Jitty, I would like to book my car in for a service.", ctx: "service" },
+      { label: "Car not running right?", sub: "Warning light, strange noise, leak or anything odd &mdash; tell us what's going on and we'll take a look.", base: "Hi Jitty, my car is not running right and I would like to get it checked.", ctx: "problem" },
       { label: "Car detailing", base: "Hi Jitty, I would like to book my car in for car detailing.", ctx: "detail" },
       { label: "Used car enquiry", base: "Hi Jitty, I am interested in looking at your used cars.", ctx: "cars" },
       { label: "Paint &amp; panel repair", base: "Hi Jitty, I would like to book my car in for paint and panel repair.", ctx: "paint" }
@@ -68,7 +70,8 @@
       modal = document.createElement("div");
       modal.className = "dateask";
       var chips = services.map(function (s, i) {
-        return '<button type="button" class="dateask__svc" data-i="' + i + '">' + s.label + "</button>";
+        var inner = s.label + (s.sub ? '<span class="dateask__svcsub">' + s.sub + "</span>" : "");
+        return '<button type="button" class="dateask__svc" data-i="' + i + '">' + inner + "</button>";
       }).join("");
       modal.innerHTML =
         '<div class="dateask__backdrop"></div>' +
@@ -127,6 +130,7 @@
       // fields are filled, flagging the empty ones.
       el(".dateask__vgo").addEventListener("click", function () {
         var inputs = [el("#dateask-make"), el("#dateask-model"), el("#dateask-year"), el("#dateask-km")];
+        if (curCtx.issueRequired) inputs.push(el("#dateask-issue"));
         var missing = false;
         inputs.forEach(function (inp) {
           var bad = !inp.value.trim();
@@ -200,8 +204,12 @@
       el(".dateask__copy").textContent = "So we can give you an accurate quote.";
       el(".dateask__datewrap").hidden = true;
       el(".dateask__vehiclewrap").hidden = false;
-      // The issue box only appears for contexts that want it (currently servicing).
+      // The issue box only appears for contexts that want it; for the "car not
+      // running right" stream it is the whole point, so it becomes required.
       el(".dateask__issuefield").hidden = !curCtx.issue;
+      el(".dateask__issuefield label").innerHTML = curCtx.issueRequired
+        ? "What&rsquo;s going on with the car?"
+        : 'Anything wrong with the car? <span class="dateask__opt">(optional)</span>';
     }
     function close() { if (modal) modal.classList.remove("open"); pendingUrl = ""; chosenSvc = null; }
     // Normalise customer-typed text for the WhatsApp message: collapse whitespace,
