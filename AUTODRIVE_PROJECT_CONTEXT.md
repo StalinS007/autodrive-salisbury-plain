@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=51`** → next `?v=52`.
+  html page** (all root pages + any subpages). Current version: **`?v=52`** → next `?v=53`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -249,10 +249,12 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
     (`CTX.service.issue = true`) get an optional textarea on the vehicle step — labelled
     "In a few words, describe what's wrong (optional)" since 2026-08-14, **capped at 120
     characters** (maxlength + live 0/120 counter + submit-time clamp) so messages stay
-    quick and to the point. If filled, the text is normalised by `tidy()` (collapse
+    quick and to the point. **Since 2026-08-14 the optional box shows for ALL
+    vehicle-collecting flows** — service, detailing AND paint & panel (`issue: true` on
+    each CTX) — always after make/model/year/odometer; only the "Issues with my car"
+    stream makes it required. Used-car flows have no vehicle step, so no box. If filled, the text is normalised by `tidy()` (collapse
     whitespace, strip space-before-punctuation, capitalise, ensure trailing full stop) and
     appended as `Issue: …` after the odometer in the WhatsApp message. Blank = omitted.
-    Detailing/paint don't show it (flip their CTX `issue` flag + wording to enable).
   - **"Car not running right?" stream (added 2026-08-14):** the generic Message-Jitty
     qualifier now has a FIFTH chip, directly under "General car service" — label "Car not
     running right?"; renamed 2026-08-14 to plain **"Issues with my car"**, no sub-line —

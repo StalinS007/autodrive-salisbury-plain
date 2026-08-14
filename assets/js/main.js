@@ -46,9 +46,9 @@
     var CTX = {
       service: { head: "When would you like your service?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true, issue: true },
       problem: { head: "When can we take a look?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true, issue: true, issueRequired: true },
-      detail: { head: "When would you like your detailing?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true },
+      detail: { head: "When would you like your detailing?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true, issue: true },
       cars: { head: "When can you come by?", copy: "Pick a day to come and have a look and we will contact you back.", phrase: "I am available to come have a look on ", vehicle: false },
-      paint: { head: "When would you like your repair?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true }
+      paint: { head: "When would you like your repair?", copy: "Pick a date and we will contact you back.", phrase: "My car is free on ", vehicle: true, issue: true }
     };
     var curCtx = CTX.service;
     // Top-level enquiry categories for the generic button.
