@@ -260,7 +260,14 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
     Its flow (`CTX.problem`): date step headed "When can we take a look?" → vehicle step
     where the issue box is **required** (`issueRequired: true`, same "In a few words,
     describe what's wrong" label without the optional tag) since describing the fault is the point of this stream. Base message:
-    "Hi Jitty, my car is having some issues and I would like to get it checked." 
+    "Hi Jitty, my car is having some issues and I would like to get it checked."
+  - **Generic buttons unified site-wide (2026-08-14):** on EVERY page, the floating
+    WhatsApp bubble, the mobile bottom-bar WhatsApp + Book buttons, and the footer
+    WhatsApp icon all carry the generic message ("…book my car in.") so they open the
+    full 5-chip picker (incl. "Issues with my car"). Only explicitly-named CTAs keep
+    direct flows: tier Book buttons, used-car Enquire (per-car), detailing package /
+    paint-panel section CTAs, and "Book a Service" heroes. Keep this rule when adding
+    pages: tail buttons generic, named CTAs specific.
   **Verified 2026-07-27 by a jsdom end-to-end simulation** (41 assertions across 8
   scenarios: tier/detailing/generic get the vehicle step; used-car and direct flows skip
   it; empty and partial submits blocked with error + field flags, typing clears a flag,
