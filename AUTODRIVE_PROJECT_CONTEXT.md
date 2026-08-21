@@ -281,6 +281,27 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
 
 ---
 
+## 7b. Marketing assets — `marketing/` folder (added 2026-08-21)
+
+- **`marketing/AutoDrive-Reel-Playbook.pdf`** (+ `reel-playbook.html` source): the content
+  strategy the owner is pitching to Jitty — problem-first reels, one symptom per video,
+  ten ready-to-shoot scripts, all funnelling to the bio link → "Issues with my car" flow.
+  Also published as a Claude artifact:
+  https://claude.ai/code/artifact/e9e7595b-98fe-4f95-b6d1-423db348fd3a
+- **🖥️ TODO for the MAC session:** copy the PDF to the owner's Desktop after pulling:
+  `cp marketing/AutoDrive-Reel-Playbook.pdf ~/Desktop/` — the cloud session can't reach
+  the Mac's filesystem, which is why it's parked here.
+- **Pending:** owner will supply Instagram Professional-Dashboard screenshots (30/90-day
+  views + reach, external link taps, follower growth, top content, follower/non-follower
+  split). When they arrive, add a "The Evidence" section to the playbook pairing IG's
+  numbers with GA's (instagram/bio = 160 sessions / 44% of traffic, post-day spikes,
+  Cyril's ABS booking as the end-to-end proof) and re-render the PDF. Any session can do
+  this; keep the artifact URL the same.
+- These files ARE publicly reachable on the deployed site (Cloudflare serves the whole
+  repo) — same accepted trade-off as the context .md files. Nothing secret goes in here.
+
+---
+
 ## 8. Known constraints & pending items
 
 - **Contact form sends by SMS (not Formspree):** `#booking-form` composes a pre-filled text

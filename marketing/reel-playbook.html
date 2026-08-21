@@ -1,0 +1,241 @@
+<title>AutoDrive Reel Playbook</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --red:#C01418; --red-deep:#930E12; --ink:#141112; --paper:#faf8f7; --card:#ffffff;
+    --body:#3f3a3b; --muted:#7a7274; --line:#e7e0df; --win:#0a7a33; --win-bg:#e9f7ee;
+    --accent-text:#C01418; --chip:#f3edec;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#f4f0ef; --paper:#161314; --card:#201c1d; --body:#cfc7c8; --muted:#948b8d;
+      --line:#37302f; --win:#5ecb8a; --win-bg:#1c2b21; --accent-text:#ef5a5e; --chip:#2a2425;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#f4f0ef; --paper:#161314; --card:#201c1d; --body:#cfc7c8; --muted:#948b8d;
+    --line:#37302f; --win:#5ecb8a; --win-bg:#1c2b21; --accent-text:#ef5a5e; --chip:#2a2425;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--body); font-family:Inter,system-ui,sans-serif;
+    line-height:1.6; margin:0; padding:2.2rem 1.2rem 4rem; font-size:16px;}
+  main{max-width:760px; margin:0 auto;}
+  h1,h2,.hook{font-family:Anton,Impact,sans-serif; font-weight:400; text-transform:uppercase;
+    color:var(--ink); letter-spacing:.01em; text-wrap:balance; margin:0;}
+  h1{font-size:clamp(2.4rem,7vw,3.6rem); line-height:1.02;}
+  h1 .r{color:var(--accent-text);}
+  h2{font-size:clamp(1.5rem,4vw,2rem); line-height:1.1; margin-bottom:.9rem;}
+  .eyebrow{display:block; font:700 .72rem Inter,sans-serif; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent-text); margin-bottom:.5rem;}
+  p{margin:.65rem 0;}
+  strong{color:var(--ink);}
+  section{margin-top:3.2rem;}
+  .kicker{font-size:1.05rem; margin-top:1rem; max-width:60ch;}
+  .byline{margin-top:1.1rem; font-size:.85rem; color:var(--muted);}
+
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:.8rem; margin-top:1.4rem;}
+  .stat{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:.9rem 1rem;}
+  .stat b{display:block; font-family:Anton,Impact,sans-serif; font-weight:400; font-size:1.7rem;
+    color:var(--accent-text); line-height:1.1; font-variant-numeric:tabular-nums;}
+  .stat span{font-size:.8rem; color:var(--muted); line-height:1.35; display:block; margin-top:.2rem;}
+
+  .flow{display:flex; flex-wrap:wrap; gap:.5rem; align-items:center; margin-top:1.2rem;}
+  .flow .step{background:var(--card); border:1px solid var(--line); border-radius:999px;
+    padding:.45rem .85rem; font-size:.85rem; font-weight:600; color:var(--ink); white-space:nowrap;}
+  .flow .arrow{color:var(--muted); font-weight:700;}
+  .flow .step.hot{background:var(--red); border-color:var(--red); color:#fff;}
+
+  .anatomy{list-style:none; margin:1.2rem 0 0; padding:0; display:flex; flex-direction:column; gap:.55rem;}
+  .anatomy li{display:grid; grid-template-columns:78px 1fr; gap:.9rem; background:var(--card);
+    border:1px solid var(--line); border-radius:12px; padding:.8rem 1rem; align-items:baseline;}
+  .anatomy .t{font:700 .78rem Inter,sans-serif; letter-spacing:.06em; color:var(--accent-text);
+    font-variant-numeric:tabular-nums; white-space:nowrap;}
+  .anatomy b{color:var(--ink);}
+
+  .rule{background:var(--chip); border-radius:12px; padding:.9rem 1.1rem; margin-top:1rem;
+    font-size:.95rem; color:var(--ink); font-weight:600;}
+
+  .scripts{display:flex; flex-direction:column; gap:1rem; margin-top:1.4rem; counter-reset:s;}
+  .script{background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:1.15rem 1.25rem 1.05rem; position:relative;}
+  .script .hook{font-size:1.25rem; line-height:1.15; display:block; margin:0 0 .55rem;
+    padding-right:3rem;}
+  .script::after{counter-increment:s; content:counter(s,decimal-leading-zero);
+    position:absolute; top:.9rem; right:1.1rem; font:700 .78rem Inter,sans-serif;
+    color:var(--muted); letter-spacing:.08em;}
+  .script p{margin:.3rem 0; font-size:.93rem;}
+  .script .lbl{font-weight:700; color:var(--ink);}
+  .sells{display:inline-block; margin-top:.55rem; background:var(--win-bg); color:var(--win);
+    font-size:.74rem; font-weight:700; padding:.22rem .6rem; border-radius:999px;}
+
+  .cta-card{background:var(--ink); border-radius:16px; padding:1.5rem 1.4rem; margin-top:1.3rem;}
+  :root[data-theme="dark"] .cta-card{border:1px solid var(--line);}
+  .cta-card .say{font-family:Anton,Impact,sans-serif; text-transform:uppercase; font-size:1.35rem;
+    line-height:1.25; color:var(--paper); margin:0;}
+  .cta-card .say em{color:#ef5a5e; font-style:normal;}
+  .cta-card p{color:#b3aaab; font-size:.88rem; margin:.7rem 0 0;}
+
+  table{width:100%; border-collapse:collapse; margin-top:1.1rem; font-size:.93rem;}
+  th{text-align:left; font:700 .72rem Inter,sans-serif; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--muted); padding:.4rem .6rem; border-bottom:2px solid var(--line);}
+  td{padding:.6rem; border-bottom:1px solid var(--line); vertical-align:top;}
+  td:first-child{font-weight:700; color:var(--ink); white-space:nowrap;}
+
+  ul.tips{margin:1rem 0 0; padding-left:1.2rem;}
+  ul.tips li{margin:.45rem 0;}
+  .foot{margin-top:3.2rem; padding-top:1.2rem; border-top:1px solid var(--line);
+    font-size:.85rem; color:var(--muted);}
+</style>
+
+<main>
+<header>
+  <span class="eyebrow">AutoDrive Salisbury Plain · Content Strategy</span>
+  <h1>Reel <span class="r">Playbook</span></h1>
+  <p class="kicker"><strong>The idea in one line:</strong> every reel names ONE problem a driver
+    is having right now, shows you fixing it, and sends them to the link in bio — where the
+    website turns them into a WhatsApp booking with their car's details already filled in.</p>
+  <p class="byline">Prepared by Stalin · For Jitty · August 2026</p>
+</header>
+
+<section>
+  <span class="eyebrow">Why this works</span>
+  <h2>Your own numbers say video is the engine</h2>
+  <p>This isn't a guess — it's what your accounts are already doing:</p>
+  <div class="stats">
+    <div class="stat"><b>#1</b><span>Instagram is the website's biggest traffic source — 44% of all visits come from the bio link</span></div>
+    <div class="stat"><b>29.9K</b><span>views on your Instagram in the last 30 days</span></div>
+    <div class="stat"><b>2–3×</b><span>website traffic spikes on the days your reels land</span></div>
+    <div class="stat"><b>5.0★</b><span>Google rating from 20 reviews — the trust is already there, the videos just have to point at it</span></div>
+  </div>
+  <p style="margin-top:1rem;">The gap: your reels get watched, but they end with the viewer scrolling on.
+    The fix is not more views — it's <strong>ending every reel with the same door</strong> and making that
+    door lead somewhere that closes the job.</p>
+</section>
+
+<section>
+  <span class="eyebrow">The door</span>
+  <h2>What happens when they click</h2>
+  <p>The website was rebuilt for exactly these videos. When someone taps the bio link:</p>
+  <div class="flow">
+    <span class="step">Reel</span><span class="arrow">→</span>
+    <span class="step">Link in bio</span><span class="arrow">→</span>
+    <span class="step hot">“Issues with my car”</span><span class="arrow">→</span>
+    <span class="step">Picks a day</span><span class="arrow">→</span>
+    <span class="step">Make · model · year · km</span><span class="arrow">→</span>
+    <span class="step">Describes the problem</span><span class="arrow">→</span>
+    <span class="step hot">Lands in your WhatsApp</span>
+  </div>
+  <p style="margin-top:1rem;">So the message you receive already reads like this:
+    <em>“Hi Jitty, my car is having some issues and I would like to get it checked. My car is free on
+    Monday 17 August. Car: Mitsubishi Pajero, Year: 2009, Odometer: 317,000 km. Issue: ABS light
+    flashing while driving.”</em> — a quote-ready lead, not a “hey, how much?”</p>
+</section>
+
+<section>
+  <span class="eyebrow">The formula</span>
+  <h2>Anatomy of a 30-second reel</h2>
+  <ul class="anatomy">
+    <li><span class="t">0–2 s</span><span><b>Hook — say the symptom to camera.</b> First words name the problem the viewer has: “ABS light flashing while you drive?” Nothing else opens the video.</span></li>
+    <li><span class="t">3–10 s</span><span><b>What it means.</b> One or two sentences — what's probably wrong and why leaving it costs more later. Plain words, no jargon.</span></li>
+    <li><span class="t">10–25 s</span><span><b>Show the fix.</b> Real footage: the car on the hoist, the worn part next to the new one, the scanner reading. Your workshop is the proof.</span></li>
+    <li><span class="t">25–30 s</span><span><b>The same CTA, every time.</b> Word for word — see the black box below.</span></li>
+  </ul>
+  <div class="rule">One video = ONE symptom. Never list five problems in one reel — the person with the ABS light needs to feel like this video was made for them.</div>
+</section>
+
+<section>
+  <span class="eyebrow">Ready to shoot</span>
+  <h2>Ten scripts — film straight off this list</h2>
+  <div class="scripts">
+    <div class="script"><span class="hook">“ABS light flashing while you drive?”</span>
+      <p><span class="lbl">Say:</span> that light means the system that stops you skidding is off duty. Usually a sensor — cheap to check, dangerous to ignore in the wet.</p>
+      <p><span class="lbl">Show:</span> the scanner pulling the fault code, the wheel sensor.</p>
+      <span class="sells">Sells: diagnostics — a real customer already booked from this exact problem</span></div>
+    <div class="script"><span class="hook">“Brakes squealing when you slow down?”</span>
+      <p><span class="lbl">Say:</span> that squeal is the wear indicator — the pad telling you it's nearly gone. Catch it now and it's pads; leave it and it's discs too.</p>
+      <p><span class="lbl">Show:</span> worn pad next to a new one — the visual sells itself.</p>
+      <span class="sells">Sells: brake inspection / Standard Service</span></div>
+    <div class="script"><span class="hook">“Car pulling to one side on the highway?”</span>
+      <p><span class="lbl">Say:</span> could be alignment, could be a tyre, could be a brake dragging. Ten minutes on the hoist tells us which.</p>
+      <p><span class="lbl">Show:</span> steering wheel held straight while the car drifts; alignment rig.</p>
+      <span class="sells">Sells: steering &amp; alignment</span></div>
+    <div class="script"><span class="hook">“Engine stalls right after starting?”</span>
+      <p><span class="lbl">Say:</span> you already made this thumbnail — this is the video version. Cold-start stall is usually air, fuel or an earthing issue. Don't keep cranking it to death.</p>
+      <p><span class="lbl">Show:</span> the stall happening, then the scanner.</p>
+      <span class="sells">Sells: diagnostics &amp; mechanical repairs</span></div>
+    <div class="script"><span class="hook">“Temperature needle creeping up in traffic?”</span>
+      <p><span class="lbl">Say:</span> overheating kills engines — one warped head costs more than ten cooling repairs. It's usually the fan, thermostat or a slow leak.</p>
+      <p><span class="lbl">Show:</span> coolant pressure test, the stained radiator.</p>
+      <span class="sells">Sells: radiator &amp; cooling</span></div>
+    <div class="script"><span class="hook">“Aircon blowing warm this summer?”</span>
+      <p><span class="lbl">Say:</span> nine times out of ten it's low gas from a slow leak. A regas with a dye test finds the leak instead of masking it.</p>
+      <p><span class="lbl">Show:</span> the gauges hooked up, vent thermometer before/after.</p>
+      <span class="sells">Sells: air conditioning — post in spring, pin all summer</span></div>
+    <div class="script"><span class="hook">“Clunk over every speed bump?”</span>
+      <p><span class="lbl">Say:</span> that knock is usually a sway-bar link or bush — small parts that make the whole car feel old. Cheap fix, instant difference.</p>
+      <p><span class="lbl">Show:</span> shaking the worn link by hand on the hoist.</p>
+      <span class="sells">Sells: suspension</span></div>
+    <div class="script"><span class="hook">“Car slow to crank in the morning?”</span>
+      <p><span class="lbl">Say:</span> batteries don't die suddenly — they warn you for weeks. A two-minute test tells you if it's the battery, the alternator, or a drain.</p>
+      <p><span class="lbl">Show:</span> the battery tester verdict printing.</p>
+      <span class="sells">Sells: battery test / Standard Service</span></div>
+    <div class="script"><span class="hook">“Oil spots on the driveway?”</span>
+      <p><span class="lbl">Say:</span> a leak is the engine telling you where it hurts. Finding it early is a gasket; finding it late is an engine.</p>
+      <p><span class="lbl">Show:</span> UV dye tracing the leak line.</p>
+      <span class="sells">Sells: servicing &amp; repairs</span></div>
+    <div class="script"><span class="hook">“Diesel blowing black smoke — or the DPF light's on?”</span>
+      <p><span class="lbl">Say:</span> short trips clog diesels. A forced regen or clean now beats a $4,000 filter later.</p>
+      <p><span class="lbl">Show:</span> the sooty tailpipe, the regen running on the scanner.</p>
+      <span class="sells">Sells: diesel &amp; DPF</span></div>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">The close</span>
+  <h2>Same CTA, word for word, every reel</h2>
+  <div class="cta-card">
+    <p class="say">“If that's your car — link in bio, tap <em>‘Issues with my car’</em>, tell us what's wrong, and we'll sort it.”</p>
+    <p>Say it to camera AND put it as text on screen for the last 3 seconds. Repetition is the point —
+    followers should be able to finish the sentence for you. That's when it's working.</p>
+  </div>
+  <p style="margin-top:1rem;"><strong>Caption ending, every post:</strong> “📍 6 Lolands Rd, Salisbury Plain ·
+    ⭐ 5.0 on Google · Book: link in bio”. When you share the same reel to the Facebook community groups,
+    paste the special group link Stalin gave you instead — it lets us see exactly which group sends customers.</p>
+</section>
+
+<section>
+  <span class="eyebrow">The rhythm</span>
+  <h2>Three a week, filmed in one afternoon</h2>
+  <table>
+    <tr><th>Day</th><th>Post</th><th>Why</th></tr>
+    <tr><td>Monday</td><td>Symptom reel (from the list above)</td><td>People book their week's repairs early — catch them planning</td></tr>
+    <tr><td>Wednesday</td><td>Proof: before/after respray, detail, or used car walkaround</td><td>Shows the standard of work; feeds the paint &amp; used-car pages</td></tr>
+    <tr><td>Friday</td><td>Symptom reel #2</td><td>Weekend drivers notice their car's problems — be the answer they saw on Friday</td></tr>
+  </table>
+  <ul class="tips">
+    <li><strong>Batch it:</strong> one slow afternoon, film 4–6 hooks back to back. Two weeks of content in two hours.</li>
+    <li><strong>Phone quality is right:</strong> real workshop, real hands, one take. Polish reads as advertising; real reads as trust.</li>
+    <li><strong>Captions on:</strong> most people watch muted. The hook must also be on screen as text.</li>
+    <li><strong>Your community is your edge:</strong> for reels shared into the Indian community groups, a hook line in Malayalam in the caption will stop the scroll faster than English ever will.</li>
+  </ul>
+</section>
+
+<section>
+  <span class="eyebrow">Keeping score</span>
+  <h2>How we'll know it's working</h2>
+  <p>Stalin tracks this monthly — no guesswork:</p>
+  <table>
+    <tr><th>Signal</th><th>Where</th><th>Question it answers</th></tr>
+    <tr><td>Bio-link visits</td><td>Google Analytics — <em>instagram/bio</em></td><td>Are the reels sending people?</td></tr>
+    <tr><td>WhatsApp taps</td><td><em>whatsapp_click</em> events</td><td>Are visitors becoming enquiries?</td></tr>
+    <tr><td>Completed enquiries</td><td><em>vehicle_info_submitted</em></td><td>Quote-ready leads with car details + issue</td></tr>
+    <tr><td>Spike days vs post days</td><td>Traffic chart</td><td>Which symptom videos actually pull — we double down on those</td></tr>
+  </table>
+  <p style="margin-top:1rem;">Whatever symptom gets the most clicks becomes next month's series.
+    The audience tells us what to film — we just have to listen.</p>
+</section>
+
+<p class="foot">AutoDrive Salisbury Plain · 6 Lolands Rd, Salisbury Plain SA 5109 · 0432 520 230 ·
+autodrivesalisburyplain.com.au</p>
+</main>
