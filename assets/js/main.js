@@ -256,33 +256,26 @@
     document.addEventListener("click", function (e) {
       var a = e.target.closest && e.target.closest('a[href*="wa.me/"]');
       if (!a) return;
-      var forced = a.getAttribute("data-ctx");
-      if (forced === "direct") { e.preventDefault(); window.location.href = a.href; return; }
-
-      var txt = "";
-      try { txt = decodeURIComponent((a.href.split("?text=")[1] || "")); } catch (err) { txt = a.href; }
-
-      // Work out which service this button belongs to.
-      var ctxKey =
-          /for a service|(basic|standard|premium) service|service special|\$129/i.test(txt) ? "service"
-        : /paint and panel|paint correction/i.test(txt) ? "paint"
-        : (forced && CTX[forced]) ? forced
-        : /used cars/i.test(txt) ? "cars"
-        : /detailing/i.test(txt) ? "detail"
-        : "generic";
-
-      // Only Servicing and Paint & Panel keep the "pick a date" pop-up (date + car details).
-      // Used cars, detailing and general enquiries go straight to WhatsApp — no pop-up.
-      if (ctxKey !== "service" && ctxKey !== "paint") return; // let the link open WhatsApp directly
-
       e.preventDefault();
+      // A link can declare its own flow via data-ctx, overriding the keyword guess:
+      //   data-ctx="cars|service|detail|paint" -> go straight to that date flow, keeping
+      //   the link's own prefilled message (e.g. a specific car listing);
+      //   data-ctx="direct" -> skip the modal entirely and open WhatsApp as-is.
+      var forced = a.getAttribute("data-ctx");
+      if (forced === "direct") { window.location.href = a.href; return; }
       pendingUrl = a.href;
       chosenSvc = null;
-      curCtx = CTX[ctxKey];
-      mode = "date";
+      var txt = "";
+      try { txt = decodeURIComponent((a.href.split("?text=")[1] || "")); } catch (err) { txt = a.href; }
+      if (forced && CTX[forced]) {
+        mode = "date"; curCtx = CTX[forced];
+      } else {
+        mode = /detailing|used cars|\$129|for a service|paint and panel/i.test(txt) ? "date" : "service";
+        curCtx = /used cars/i.test(txt) ? CTX.cars : (/detailing/i.test(txt) ? CTX.detail : (/paint and panel/i.test(txt) ? CTX.paint : CTX.service));
+      }
       if (!modal) build();
       resetDate();
-      showDate();
+      if (mode === "service") showService(); else showDate();
       modal.classList.add("open");
     });
   }());
