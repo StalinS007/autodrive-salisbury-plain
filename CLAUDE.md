@@ -14,6 +14,14 @@ baselines, and interpretation rules. That session is **read-only on the site**: 
 recommends changes but never edits site files (only `ANALYTICS_CONTEXT.md` itself,
 pull-first).
 
+## If this is the dedicated STRATEGY chat
+The owner also runs a cloud session reserved for **business strategy development**
+(growth, marketing, channels, pricing, priorities). If the owner says this session is for
+strategy, ALSO read **`STRATEGY_CONTEXT.md`** — it carries the business snapshot, channel
+reality, in-motion initiatives, and the decision log. That session is **read-only on the
+site**: it produces plans and hand-off recommendations for the build chat, and edits only
+`STRATEGY_CONTEXT.md` and strategy documents (pull-first).
+
 ## Keep the context file updated after every change (important)
 `AUTODRIVE_PROJECT_CONTEXT.md` must stay current so the next session — on Mac, phone, or web
 — starts from the truth. **After every meaningful change, update it in the same commit as the
