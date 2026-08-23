@@ -106,7 +106,33 @@ the influencer research dossier.
   Indian/Malayali groups, used-car walkaround videos with fbgroup-UTM deep links, and
   Marketplace listings with video. WhatsApp is always the CTA.
 
+## Instagram profile decisions (settled 2026-08-23)
+- **Bio CTA: "Prices and booking 👇"** (replaces "HOW WE CAN HELP", and the earlier
+  "Tap for free quote" which recruited quote-collectors who never booked). Keeps the link
+  pointing at the WEBSITE on purpose — the site is the closer/validator (reviews, real
+  workshop photos, prices, video), so browsing before WhatsApp converts better than a cold
+  chat. Wording covers all four lines rather than servicing only.
+- **Dependency for the build chat:** the CTA promises prices, but detailing and
+  paint & panel are quote-only on the site → add "from $X" figures to both sections.
+  Same fix reduces quote-and-ghost at the source (people self-qualify on price).
+- **Also queued for the profile:** say "Adelaide" in the name field + bio (not "South Aus
+  5109") — the searched, understood word; cars-only grid (archive event promos);
+  highlights for Reviews / Before-After / Used Cars; 3 pinned posts (intro reel,
+  warning-light reel, "why service" reframed problem-first).
+
+## The quote problem (diagnosed 2026-08-23)
+Jitty DOES give quotes — people take the number and never return. Cause: a bare price makes
+him comparable (always someone cheaper) and isn't an ask, so the next move sits with them
+forever. Fix = quote message must carry five things: evidence (photo/video of the actual
+fault — his key differentiator), what's included, cost of waiting, the price, and TWO
+specific time slots ending in a question. Then follow up twice (~48h, ~1 week) and ask
+non-bookers "was it price or timing?". Track quote→booking close rate (currently unknown).
+Deposits on bigger jobs (detailing/paint) to lock slots. NOT recommended: discount offers —
+they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
+
 ## Decision log (append newest first)
+- 2026-08-23 — Bio CTA set to "Prices and booking"; quote-close playbook agreed; language
+  packaging = subtitles-first (see above). Pending: "from $" prices for detailing/paint.
 - 2026-08-23 — Influencer research completed (20 creators, 4 research sweeps). Verdict:
   keep the current funnel, add the 7 upgrades in the dossier's Part 4. Open questions for
   Stalin: is Jitty willing to be on camera/talk; current schedule fullness; who films.
