@@ -46,6 +46,14 @@ state" and "Decision log" sections updated as things move.
   "Issues with my car" flow → WhatsApp → real job (first tracked real lead, ~Aug 2026).
 
 ## Current strategy state (what's already in motion)
+- **Influencer research dossier (2026-08-23):** `marketing/AutoDrive-Influencer-Research.md`
+  — 20 profiled mechanic/detailing/used-car creators who converted social into bookings,
+  with evidence grades and a 7-point translation for Jitty. Shareable version:
+  https://claude.ai/code/artifact/0754a44b-93fe-4872-b951-cfc44b5eb77e
+  Headline conclusions: the existing reels → WhatsApp funnel is the right architecture;
+  the levers are reply speed (<5 min), review recency, a named face-led series
+  ("Ask Jitty"), dead-part/second-opinion reels, buy-fix-sell arcs per used car, and a
+  pre-purchase-inspection offer as the bookable content product.
 - **Reel Playbook** (`marketing/AutoDrive-Reel-Playbook.pdf`): problem-first Instagram
   reels strategy pitched to Jitty — one symptom per video, ten scripts, all funnelling
   to bio link → "Issues with my car" flow. Awaiting Jitty's IG dashboard screenshots to
@@ -68,4 +76,7 @@ state" and "Decision log" sections updated as things move.
    turning the 150+ repeat clients into reviewers and referrers.
 
 ## Decision log (append newest first)
+- 2026-08-23 — Influencer research completed (20 creators, 4 research sweeps). Verdict:
+  keep the current funnel, add the 7 upgrades in the dossier's Part 4. Open questions for
+  Stalin: is Jitty willing to be on camera/talk; current schedule fullness; who films.
 - 2026-08-23 — Strategy chat established; this file created.
