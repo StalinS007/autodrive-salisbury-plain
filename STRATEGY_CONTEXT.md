@@ -75,6 +75,27 @@ state" and "Decision log" sections updated as things move.
 4. **Retention/repeat:** service reminders, post-sale discounted repairs as a hook,
    turning the 150+ repeat clients into reviewers and referrers.
 
+## Instagram → Facebook attack plan (agreed direction, 2026-08-23)
+Grounded in the IG 90-day baseline (see ANALYTICS_CONTEXT.md on the analytics branch:
+54.8K views, 80% non-follower, ONE symptom reel = 69% of all bio taps, UK geo-skew) and
+the influencer research dossier.
+- **Phase 1 — Instagram (now):** fix the shopfront first — cars-only grid (archive
+  off-niche event promos), bio rewrite, THREE pinned posts: (1) intro reel "meet Jitty",
+  (2) the warning-light reel as social proof, (3) "why service your car" reframed
+  problem-first ("$149 vs $3,000"). Localise every post (geotag Salisbury SA, say
+  "Adelaide" in first 3s, local hashtags). Cadence 2–3 reels/week from proven formats:
+  warning-light siblings (one dashboard light per reel), dead-part explainers,
+  here's-what-we-found. Reply-to-comment reels + fast WhatsApp replies.
+- **Language:** discovery reels are overlay-text-led (language-neutral — the 19K reel had
+  no speech). Talking/trust reels: film twice — English take (pinned on IG, subtitled)
+  + Malayalam take (English subtitles) for FB community groups and WhatsApp forwards.
+  Never Malayalam-only on the main IG grid.
+- **Phase 2 — Facebook (weeks 2–4):** the page is a trust surface only (cross-posts
+  proved near-dead: 4 FB likes vs 153 IG on the hero reel); the leverage is GROUPS —
+  helpful-first answers + the Malayalam intro posted natively in Adelaide
+  Indian/Malayali groups, used-car walkaround videos with fbgroup-UTM deep links, and
+  Marketplace listings with video. WhatsApp is always the CTA.
+
 ## Decision log (append newest first)
 - 2026-08-23 — Influencer research completed (20 creators, 4 research sweeps). Verdict:
   keep the current funnel, add the 7 upgrades in the dossier's Part 4. Open questions for
