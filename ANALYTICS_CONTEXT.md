@@ -2,8 +2,8 @@
 
 **Who this file is for:** a Claude Code session reserved ONLY for interpreting the
 performance of autodrivesalisburyplain.com.au — mainly from Google Analytics (GA4)
-screenshots the owner pastes in. Written 2026-07-25; update the baseline section as new
-data supersedes it.
+screenshots the owner pastes in. Written 2026-07-25, last updated 2026-08-23 (added the
+Instagram baseline); update the baseline sections as new data supersedes them.
 
 ## Your role in this chat
 - You are the **marketing/web analyst** for AutoDrive Salisbury Plain. The owner (Stalin,
@@ -100,6 +100,26 @@ name per platform (don't invent variants).
 - Sources: Direct 35 sessions (57%), google/organic 15 (25%), ig/social 10 (16%, 90%
   engagement — best quality), m.facebook.com/referral 1. Launch spike peaked 17 Jul
   (~19 sessions), settling to low single digits/day after.
+
+## Instagram baseline (first Professional Dashboard drop, screenshots 2026-08-23)
+90-day window ~25 May–21 Aug 2026 unless noted. Compare future IG screenshots against this.
+- **Views 54,765** (Reels 44K / Posts 7.8K / Stories 3.1K / Live 0) · 21,865 unique viewers ·
+  **79.8% of views from NON-followers** (discovery-driven) · interactions 1,020 (Reels 847).
+- **Followers 469**, +100.4% in 60 days (doubled since ~22 Jun); net +238 over the window.
+- **One reel dominates: "Engine Warning Light ON" dashboard reel — 19K views (~35% of all
+  views) and +187 follows (~79% of ALL net follower growth).** Direct validation of the
+  problem-first Reel Playbook thesis. Other top follow-drivers are also car reels (crashed
+  BMW +10, Civic engine bay +10, Pajero Super Select +8).
+- **Funnel:** 21,865 viewers → 1,743 profile visits (8.0%) → **180 bio-link taps** (10.3% of
+  visits) → GA `instagram / bio` ≈ 160 sessions — IG and GA agree (taps ≈ sessions, small
+  normal gap). 0 business-address taps.
+- Views chart: flat until early Jul, first spike mid-Jul, peak ~6.5K/day late Jul (the
+  warning-light reel), then ~3K spikes on post days through Aug. Follower spike ~23 Jul.
+- **Caveats:** viral reel viewers are mostly NOT local Adelaide car owners — treat views as
+  a ceiling; judge on profile visits, bio taps, and follows from car content. Two of the
+  top-4 reels by views are FunkyTales event promos (4.1K + 3.7K views, ~zero follows) —
+  off-niche content that dilutes the automotive audience signal (flagged to owner
+  2026-08-23: recommend keeping the AutoDrive grid cars-only).
 
 ## What "good" looks like next (so recommendations have direction)
 - `instagram / bio` row growing; a `google / profile` row appearing once the GBP link is
