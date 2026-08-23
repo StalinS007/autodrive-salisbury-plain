@@ -122,6 +122,12 @@ name per platform (don't invent variants).
   **868 profile visits (≈50% of the account's 90-day total) and 124 bio-link clicks
   (≈69% of ALL bio taps)** → most of GA's `instagram / bio` sessions trace to this ONE reel.
   +187 follows ≈1% of its 19K views. FB cross-posts add ~nothing — IG is the discovery engine.
+- **Geo caveat (owner-reported 2026-08-23): the warning-light reel's traction skewed UK,
+  not Adelaide** — likely the "Salisbury Plain" name collision (the famous UK site) plus
+  location-agnostic content. Fix pushed to owner: geotag Salisbury SA/Adelaide on every
+  post, say "Adelaide" in the first 3s (overlay/audio), local caption + 3–5 local hashtags,
+  seed via local FB groups in the first hour. Expect UK-skewed follower counts/reach in
+  screenshots until this takes effect — discount raw follower totals accordingly.
 - **Caveats:** viral reel viewers are mostly NOT local Adelaide car owners — treat views as
   a ceiling; judge on profile visits, bio taps, and follows from car content. Two of the
   top-4 reels by views are FunkyTales event promos (4.1K + 3.7K views, ~zero follows) —
