@@ -115,6 +115,13 @@ name per platform (don't invent variants).
   normal gap). 0 business-address taps.
 - Views chart: flat until early Jul, first spike mid-Jul, peak ~6.5K/day late Jul (the
   warning-light reel), then ~3K spikes on post days through Aug. Follower spike ~23 Jul.
+- **Warning-light reel per-reel insights (screenshot 2026-08-23):** ~1:15 long, before/after
+  arc (overlay "Engine Warning Light ON" → "…OFF", Nissan dashboard), AutoDrive logo top,
+  cross-posted to Facebook. 157 likes (153 IG / only 4 FB), 12 comments, **95 shares,
+  51 saves** (share-heavy = utility content people forward). Actions after viewing:
+  **868 profile visits (≈50% of the account's 90-day total) and 124 bio-link clicks
+  (≈69% of ALL bio taps)** → most of GA's `instagram / bio` sessions trace to this ONE reel.
+  +187 follows ≈1% of its 19K views. FB cross-posts add ~nothing — IG is the discovery engine.
 - **Caveats:** viral reel viewers are mostly NOT local Adelaide car owners — treat views as
   a ceiling; judge on profile visits, bio taps, and follows from car content. Two of the
   top-4 reels by views are FunkyTales event promos (4.1K + 3.7K views, ~zero follows) —
