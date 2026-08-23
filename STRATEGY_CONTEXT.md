@@ -86,10 +86,20 @@ the influencer research dossier.
   "Adelaide" in first 3s, local hashtags). Cadence 2–3 reels/week from proven formats:
   warning-light siblings (one dashboard light per reel), dead-part explainers,
   here's-what-we-found. Reply-to-comment reels + fast WhatsApp replies.
-- **Language:** discovery reels are overlay-text-led (language-neutral — the 19K reel had
-  no speech). Talking/trust reels: film twice — English take (pinned on IG, subtitled)
-  + Malayalam take (English subtitles) for FB community groups and WhatsApp forwards.
-  Never Malayalam-only on the main IG grid.
+- **Language (REVISED 2026-08-23, owner clarification):** Jitty's videos are currently
+  ALL-Malayalam, no English — and the 19K "warning light" reel's audience was Malayalam
+  speakers (Malayalam comments, UK Malayali diaspora). So the UK geo-skew is primarily
+  **language-affinity distribution** (IG pushes Malayalam content to the global Malayali
+  diaspora — UK/Kerala/Gulf), not the Salisbury Plain name collision. This also explains
+  ~160 bio sessions ≈ 1 booking: most viewers can't book. Decision: KEEP the Malayalam
+  engine (authentic, feeds the Adelaide Malayali referral core — "the Malayali mechanic
+  of Adelaide" is a defensible niche) but change the packaging: (1) burned-in English
+  subtitles on EVERY video from now on; (2) English hook text in first 3s + no-speech
+  overlay-text reels for language-neutral discovery; (3) local anchoring — "Adelaide"
+  on screen, geotag, local hashtags, seed into Adelaide FB groups in the first hour.
+  Pinned intro: Malayalam is fine (ideally 2-line English open), strong English subs.
+  Judge reels on Adelaide signals (follower Top-Locations, bio taps → WhatsApp msgs),
+  not views. → Relay to analytics chat: replace its name-collision geo-skew theory.
 - **Phase 2 — Facebook (weeks 2–4):** the page is a trust surface only (cross-posts
   proved near-dead: 4 FB likes vs 153 IG on the hero reel); the leverage is GROUPS —
   helpful-first answers + the Malayalam intro posted natively in Adelaide
