@@ -144,6 +144,29 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
 - **Clickable caption links are NOT available to business accounts** (Meta Verified
   creators only as of Mar 2026), so the bio link stays the funnel.
 
+## Pricing communication policy (owner decision, 2026-08-24)
+- **No repair quotes over Instagram, WhatsApp, or any text channel. In person only.**
+  Rationale: quoted people were taking the number and disappearing (price shopping);
+  Jitty converts in person on trust. Ranges are also out for repairs.
+- **Boundary that keeps it honest:** published MENU prices stay quotable and referable
+  (service tiers from $149, any future "from $" detailing/paint prices, used-car listing
+  prices). Refusing to confirm a price that is on our own website reads as evasive and
+  contradicts the "Prices and booking" bio CTA. Repairs and anything condition-dependent:
+  in person only. Align this split explicitly with Jitty (he quoted ranges to a brake
+  enquiry on 2026-08-23, so the policy is a change for him too).
+- **The conversation sequence (never lead with the refusal):** (1) acknowledge + ask one
+  real question about the car; (2) one line showing he heard them; (3) the no-text-quote
+  line WITH the reason (guessing high scares people, guessing low means changing it
+  later); (4) the safety promises that make it feel safe not shady: ten-minute look,
+  exact price in hand BEFORE any work, no obligation, no charge to look; (5) close with
+  two concrete time slots.
+- For complex issues, offer a two-minute phone call instead of typing. Voice converts
+  trust faster and ends naturally in "bring it past".
+- DM triage stays as agreed 2026-08-24: hot leads answered in-channel and closed with
+  times; price/general questions get a saved reply pointing at the site; no free
+  diagnosis by text. Meta Business Suite Instant Reply carries the site link so the
+  website funnel runs automatically without refusing anyone a conversation.
+
 ## Decision log (append newest first)
 - 2026-08-23 — Bio CTA set to "Prices and booking"; quote-close playbook agreed; language
   packaging = subtitles-first (see above). Pending: "from $" prices for detailing/paint.
