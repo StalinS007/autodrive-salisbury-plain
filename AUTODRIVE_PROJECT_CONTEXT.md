@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-07-22**.
+touching the site. Last verified against the live code: **2026-08-24**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -283,20 +283,35 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
 
 ## 7b. Marketing assets — `marketing/` folder (added 2026-08-21)
 
-- **`marketing/AutoDrive-Reel-Playbook.pdf`** (+ `reel-playbook.html` source): the content
-  strategy the owner is pitching to Jitty — problem-first reels, one symptom per video,
-  ten ready-to-shoot scripts, all funnelling to the bio link → "Issues with my car" flow.
-  Also published as a Claude artifact:
-  https://claude.ai/code/artifact/e9e7595b-98fe-4f95-b6d1-423db348fd3a
-- **🖥️ TODO for the MAC session:** copy the PDF to the owner's Desktop after pulling:
-  `cp marketing/AutoDrive-Reel-Playbook.pdf ~/Desktop/` — the cloud session can't reach
-  the Mac's filesystem, which is why it's parked here.
-- **Pending:** owner will supply Instagram Professional-Dashboard screenshots (30/90-day
-  views + reach, external link taps, follower growth, top content, follower/non-follower
-  split). When they arrive, add a "The Evidence" section to the playbook pairing IG's
-  numbers with GA's (instagram/bio = 160 sessions / 44% of traffic, post-day spikes,
-  Cyril's ABS booking as the end-to-end proof) and re-render the PDF. Any session can do
-  this; keep the artifact URL the same.
+- **The Reel Playbook is now TWO documents (split 2026-08-24 at the owner's request —
+  was one combined doc):**
+  - **`marketing/AutoDrive-Reel-Playbook.pdf`** (+ `reel-playbook.html` source) — "Reel
+    Playbook": the filming guide. Sections "The formula" (anatomy of a 30-second reel),
+    "Ready to shoot" (ten scripts), "The close" (the one CTA every reel ends with). Artifact:
+    https://claude.ai/code/artifact/e9e7595b-98fe-4f95-b6d1-423db348fd3a
+  - **`marketing/AutoDrive-Reel-Playbook-Why-It-Works.pdf`** (+
+    `reel-playbook-why-it-works.html` source) — "Why Reels Work": the data case, pulled
+    from the same doc's former "Why this works" (traffic-share stats) and "The door"
+    (the reel → bio link → WhatsApp funnel) sections. Artifact:
+    https://claude.ai/code/artifact/6bc57570-5482-47f7-a3ed-08c98f5d9995
+  - The doc also briefly carried a "The rhythm" (posting schedule) and "Keeping score"
+    (GA tracking table) section — removed 2026-08-23 at the owner's request, before the
+    split. If reintroducing a posting cadence or scorecard, it belongs in the Why-It-Works
+    doc (it's about measurement/strategy, not filming).
+  - Keep both `?v=`-free HTML sources and PDFs in sync if either changes — same red/white
+    "garage-premium" CSS tokens (§4) duplicated across both HTML files; update both if the
+    shared styling changes.
+- **🖥️ TODO for the MAC session:** copy both PDFs to the owner's Desktop after pulling:
+  `cp marketing/AutoDrive-Reel-Playbook*.pdf ~/Desktop/` — the cloud session can't reach
+  the Mac's filesystem, which is why it's parked here. Note: PDFs rendered in a cloud
+  session use fallback system fonts (no Google Fonts network access in the sandbox) —
+  regenerate on the Mac for the correct Anton/Inter faces if that matters for a handoff.
+- **Pending:** the Instagram baseline now logged in `ANALYTICS_CONTEXT.md` (90-day
+  Professional Dashboard drop, 23 Aug 2026: 54,765 views, 469 followers, the
+  warning-light reel's 19K views/+187 follows/124 bio clicks) still hasn't been folded
+  into the Why-It-Works doc as evidence. When ready, add an "The evidence" section there
+  pairing IG's numbers with GA's, then re-render its PDF and republish its artifact
+  (same URL above).
 - These files ARE publicly reachable on the deployed site (Cloudflare serves the whole
   repo) — same accepted trade-off as the context .md files. Nothing secret goes in here.
 
