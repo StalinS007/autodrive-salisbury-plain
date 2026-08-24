@@ -57,15 +57,26 @@
     font-size:.85rem; color:var(--muted);}
 
   @media print{
-    body{padding:0 0 .5rem; background:#fff;}
-    @page{margin:14mm 12mm;}
-    /* Every major section starts on a fresh page */
-    section{break-before:page; page-break-before:always; margin-top:0;}
-    header{break-after:page; page-break-after:always;}
+    @page{margin:12mm 11mm;}
+    body{padding:0; background:#fff; font-size:10.5pt; line-height:1.42;}
+    main{max-width:none;}
+    /* Content flows continuously and fills each page — only blocks are kept whole */
+    section{margin-top:1.5rem; break-before:auto; page-break-before:auto;}
+    h1{font-size:2.1rem;}
+    h2{font-size:1.15rem; margin-bottom:.5rem;}
+    .kicker{font-size:.95rem; margin-top:.5rem;}
+    .byline{margin-top:.5rem;}
     /* Nothing splits across a page boundary */
-    .stat, .stats, .flow, table tr{break-inside:avoid; page-break-inside:avoid;}
+    .stat, .stats, .flow, table, table tr{break-inside:avoid; page-break-inside:avoid;}
     h1, h2, .eyebrow{break-after:avoid; page-break-after:avoid;}
-    .foot{break-before:avoid; page-break-before:avoid; margin-top:2rem;}
+    .stats{gap:.55rem; margin-top:.8rem;}
+    .stat{padding:.6rem .7rem;}
+    .stat b{font-size:1.4rem;}
+    table{margin-top:.7rem;}
+    td{padding:.42rem .5rem;}
+    .flow{margin-top:.8rem; gap:.35rem;}
+    .flow .step{padding:.35rem .65rem; font-size:.8rem;}
+    .foot{break-before:avoid; page-break-before:avoid; margin-top:1.4rem; padding-top:.7rem;}
   }
 </style>
 

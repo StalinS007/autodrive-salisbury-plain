@@ -83,16 +83,32 @@
     font-size:.85rem; color:var(--muted);}
 
   @media print{
-    body{padding:0 0 .5rem; background:#fff;}
-    @page{margin:14mm 12mm;}
-    /* Every major section starts on a fresh page */
-    section{break-before:page; page-break-before:always; margin-top:0;}
-    header{break-after:page; page-break-after:always;}
+    @page{margin:12mm 11mm;}
+    body{padding:0; background:#fff; font-size:10pt; line-height:1.38;}
+    main{max-width:none;}
+    /* Content flows continuously and fills each page — only cards are kept whole */
+    section{margin-top:1.1rem; break-before:auto; page-break-before:auto;}
+    section > p{margin:.4rem 0;}
+    h1{font-size:2.1rem;}
+    h2{font-size:1.15rem; margin-bottom:.5rem;}
+    .kicker{font-size:.95rem; margin-top:.5rem;}
+    .byline{margin-top:.5rem;}
     /* Nothing splits across a page boundary */
-    .script, .anatomy li, .beats li, .caption-card, .rule, .stat{
+    .script, .anatomy li, .beats li, .caption-card, .rule{
       break-inside:avoid; page-break-inside:avoid;}
     h1, h2, .eyebrow, .hook{break-after:avoid; page-break-after:avoid;}
-    .foot{break-before:avoid; page-break-before:avoid; margin-top:2rem;}
+    .scripts{gap:.6rem; margin-top:.8rem;}
+    .script{padding:.8rem .9rem .7rem;}
+    .script .hook{font-size:1.05rem;}
+    .beats li{padding:.32rem 0;}
+    .anatomy{gap:.35rem; margin-top:.7rem;}
+    .anatomy li{padding:.5rem .8rem;}
+    .rule{padding:.6rem .9rem; margin-top:.7rem;}
+    .caption-card{padding:.8rem 1rem; margin-top:.7rem;}
+    ul.tips{margin-top:.6rem;}
+    ul.tips li{margin:.28rem 0;}
+    .sells{margin-top:.4rem;}
+    .foot{break-before:avoid; page-break-before:avoid; margin-top:1.4rem; padding-top:.7rem;}
   }
 </style>
 
