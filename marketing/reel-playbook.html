@@ -81,6 +81,19 @@
   ul.tips li{margin:.45rem 0;}
   .foot{margin-top:3.2rem; padding-top:1.2rem; border-top:1px solid var(--line);
     font-size:.85rem; color:var(--muted);}
+
+  @media print{
+    body{padding:0 0 .5rem; background:#fff;}
+    @page{margin:14mm 12mm;}
+    /* Every major section starts on a fresh page */
+    section{break-before:page; page-break-before:always; margin-top:0;}
+    header{break-after:page; page-break-after:always;}
+    /* Nothing splits across a page boundary */
+    .script, .anatomy li, .beats li, .caption-card, .rule, .stat{
+      break-inside:avoid; page-break-inside:avoid;}
+    h1, h2, .eyebrow, .hook{break-after:avoid; page-break-after:avoid;}
+    .foot{break-before:avoid; page-break-before:avoid; margin-top:2rem;}
+  }
 </style>
 
 <main>
