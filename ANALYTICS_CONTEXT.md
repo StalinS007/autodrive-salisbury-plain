@@ -134,6 +134,44 @@ name per platform (don't invent variants).
   off-niche content that dilutes the automotive audience signal (flagged to owner
   2026-08-23: recommend keeping the AutoDrive grid cars-only).
 
+## GA4 full-period baseline (14 Jul – 24 Aug 2026, pulled 2026-08-24 via owner's browser)
+Supersedes the week-one numbers below for period-level comparisons.
+- **478 sessions / 348 users / 54.8% engagement.** Sources: instagram/bio 176 (36.8%,
+  61.9% eng.) · direct 155 (41.3% eng.) · google/organic 87 (63.2% eng.) · ig/social 24
+  (IG's own auto-tagging — stories/app links; counts as Instagram, so IG combined ≈ 200
+  = 42%) · google/profile 8 (GBP link working) · facebook referrals 12 untagged ·
+  chatgpt.com/ai-assistant 4.
+- **Events:** whatsapp_click 241 (57 users) · booking_date_picked 42 · book_click 36
+  (6 users — mostly repeat clicks, treat as noisy) · phone_click 22 · vehicle_info_submitted 9
+  · generate_lead 5. whatsapp_click by country: **Australia 156**, India 46, UK 22, Sri Lanka 17.
+- **link_url split of whatsapp_click:** generic booking 96 + 84 · used-cars generic 23 ·
+  Civic 7 · Corolla 1 · tiers: Standard 7 / Basic 6 / Premium 3 · old $129 offer 8 (pre-22-Jul).
+- **Top traffic days — all reel-led:** 24 Jul 39 (bio 34) · 28 Jul 31 · 23 Jul 28 (bio 23) ·
+  29 Jul 26 · 7 Aug 20.
+- **Cities:** Adelaide 96 users (#1) · London 25 · Melbourne 18 · Kerala cluster (see caveat) ·
+  Council Bluffs 22 + other US datacenter cities ≈ bots/crawlers, 0% engagement — discount.
+- **Pages:** / 543 views · /used-cars 120 (2m03s avg — deepest engagement) · /services 119 ·
+  /contact 97 · /detailings 38.
+
+### New caveats from this pull (2026-08-24)
+6. **India + Sri Lanka traffic = the owners travelling (owner-confirmed). EXCLUDE from all
+   analysis** — that's 63 of 241 whatsapp_clicks and the Kerala city cluster. Genuine
+   whatsapp_clicks ≈ 178 (156 AU + 22 UK).
+7. **US datacenter users are bots** (Council Bluffs 22, Ashburn, Prineville, San Jose —
+   0% engagement; Council Bluffs is a Meta datacenter, likely FB link-preview crawlers).
+   ~13% of "users" are non-human; prefer engaged sessions over raw users.
+8. **Verified non-issues from the 2026-08-24 browser pull:** the 12 tel:+61432247691
+   clicks predate the 22 Jul number change (grep confirms no 247691 in any HTML; only an
+   inert fallback at `assets/js/main.js:332` — build chat may delete it). GA's duplicate
+   paths (/used-cars vs /used-cars.html) are a reporting artifact — canonicals exist on
+   every page. book_click (36 events / 6 users) is repeat-click noise, not a tracking bug.
+9. **No key events configured in GA4** — owner action: Admin → Events → mark
+   `whatsapp_click`, `generate_lead`, `vehicle_info_submitted` as key events.
+10. **facebook/social + fbgroup/post rows: zero.** fbgroup was never deployed (Jitty
+   hasn't started group posting); for facebook/social, owner should re-check the FB Page
+   website field still carries the full UTM URL. FB traffic (12 sessions) arrives as
+   untagged referrals meanwhile.
+
 ## What "good" looks like next (so recommendations have direction)
 - `instagram / bio` row growing; a `google / profile` row appearing once the GBP link is
   tagged; fbgroup-tagged links once Jitty starts using them in community posts.
