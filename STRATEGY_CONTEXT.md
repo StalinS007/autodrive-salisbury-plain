@@ -130,6 +130,20 @@ non-bookers "was it price or timing?". Track quote→booking close rate (current
 Deposits on bigger jobs (detailing/paint) to lock slots. NOT recommended: discount offers —
 they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
 
+## Writing rules for ALL customer-facing copy (owner instruction, 2026-08-23)
+- **NO em dashes or en dashes anywhere.** They read as AI-written. Use full stops, commas,
+  or a colon instead. Applies to captions, bios, website copy, ads, everything.
+- **No fancy Unicode fonts** (e.g. bold-styled letters). Screen readers read them as noise
+  and Instagram search does not index them as words.
+- **Keep captions under ~30 words**, main message inside the first 125 characters
+  (Socialinsider, 9.1M posts: sub-30-word captions get the highest engagement; 90+ words
+  fall below 0.3%). Before/after posts need the least copy of all.
+- **Keywords beat hashtags for reach now** (Mosseri, restated 2026). Put "Adelaide
+  mechanic" etc. in the caption body, not just tags. 3-5 hashtags max. Keywords in
+  comments are not indexed well, so they must be in the caption itself.
+- **Clickable caption links are NOT available to business accounts** (Meta Verified
+  creators only as of Mar 2026), so the bio link stays the funnel.
+
 ## Decision log (append newest first)
 - 2026-08-23 — Bio CTA set to "Prices and booking"; quote-close playbook agreed; language
   packaging = subtitles-first (see above). Pending: "from $" prices for detailing/paint.
