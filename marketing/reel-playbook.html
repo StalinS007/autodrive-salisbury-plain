@@ -54,6 +54,13 @@
     color:var(--muted); letter-spacing:.08em;}
   .script p{margin:.3rem 0; font-size:.93rem;}
   .script .lbl{font-weight:700; color:var(--ink);}
+  .beats{list-style:none; margin:.5rem 0 .8rem; padding:0;}
+  .beats li{display:grid; grid-template-columns:108px 1fr; gap:.8rem; padding:.5rem 0;
+    border-top:1px dashed var(--line); align-items:baseline; font-size:.93rem;}
+  .beats li:first-child{border-top:0;}
+  .beats .t{font:700 .7rem Inter,sans-serif; letter-spacing:.04em; color:var(--accent-text);
+    white-space:nowrap; font-variant-numeric:tabular-nums;}
+  .beats q{quotes:"“" "”"; color:var(--ink);}
   .sells{display:inline-block; margin-top:.55rem; background:var(--win-bg); color:var(--win);
     font-size:.74rem; font-weight:700; padding:.22rem .6rem; border-radius:999px;}
 
@@ -104,44 +111,84 @@
   <h2>Ten scripts — film straight off this list</h2>
   <div class="scripts">
     <div class="script"><span class="hook">“ABS light flashing while you drive?”</span>
-      <p><span class="lbl">Say:</span> that light means the system that stops you skidding is off duty. Usually a sensor — cheap to check, dangerous to ignore in the wet.</p>
-      <p><span class="lbl">Show:</span> the scanner pulling the fault code, the wheel sensor.</p>
+      <ul class="beats">
+        <li><span class="t">0–2 s · Hook</span><span>Open tight on the flashing ABS light. Say the hook to camera — and put it on screen as text. Nothing else opens the video.</span></li>
+        <li><span class="t">3–10 s · What it means</span><span><q>That light means the system that stops you skidding is off duty. Usually a sensor — cheap to check, dangerous to ignore in the wet.</q></span></li>
+        <li><span class="t">10–25 s · Show the fix</span><span>The scanner pulling the fault code; the wheel sensor coming off the hub; the light gone on the road test.</span></li>
+        <li><span class="t">25–30 s · CTA</span><span><q>If that's your car — link in bio, tap ‘Issues with my car’, tell us what's wrong, and we'll sort it.</q></span></li>
+      </ul>
       <span class="sells">Sells: diagnostics — a real customer already booked from this exact problem</span></div>
     <div class="script"><span class="hook">“Brakes squealing when you slow down?”</span>
-      <p><span class="lbl">Say:</span> that squeal is the wear indicator — the pad telling you it's nearly gone. Catch it now and it's pads; leave it and it's discs too.</p>
-      <p><span class="lbl">Show:</span> worn pad next to a new one — the visual sells itself.</p>
+      <ul class="beats">
+        <li><span class="t">0–2 s · Hook</span><span>Film the wheel while the squeal happens — let them HEAR it. Hook spoken and on screen as text.</span></li>
+        <li><span class="t">3–10 s · What it means</span><span><q>That squeal is the wear indicator — the pad telling you it's nearly gone. Catch it now and it's pads; leave it and it's discs too.</q></span></li>
+        <li><span class="t">10–25 s · Show the fix</span><span>Worn pad held next to a new one — the visual sells itself. Then the new pads going in.</span></li>
+        <li><span class="t">25–30 s · CTA</span><span><q>If that's your car — link in bio, tap ‘Issues with my car’, tell us what's wrong, and we'll sort it.</q></span></li>
+      </ul>
       <span class="sells">Sells: brake inspection / Standard Service</span></div>
     <div class="script"><span class="hook">“Car pulling to one side on the highway?”</span>
-      <p><span class="lbl">Say:</span> could be alignment, could be a tyre, could be a brake dragging. Ten minutes on the hoist tells us which.</p>
-      <p><span class="lbl">Show:</span> steering wheel held straight while the car drifts; alignment rig.</p>
+      <ul class="beats">
+        <li><span class="t">0–2 s · Hook</span><span>Steering wheel held dead straight while the car drifts. Hook spoken and on screen as text.</span></li>
+        <li><span class="t">3–10 s · What it means</span><span><q>Could be alignment, could be a tyre, could be a brake dragging. Ten minutes on the hoist tells us which.</q></span></li>
+        <li><span class="t">10–25 s · Show the fix</span><span>The car on the alignment rig; the numbers coming back into the green; a straight-line road test after.</span></li>
+        <li><span class="t">25–30 s · CTA</span><span><q>If that's your car — link in bio, tap ‘Issues with my car’, tell us what's wrong, and we'll sort it.</q></span></li>
+      </ul>
       <span class="sells">Sells: steering &amp; alignment</span></div>
     <div class="script"><span class="hook">“Engine stalls right after starting?”</span>
-      <p><span class="lbl">Say:</span> you already made this thumbnail — this is the video version. Cold-start stall is usually air, fuel or an earthing issue. Don't keep cranking it to death.</p>
-      <p><span class="lbl">Show:</span> the stall happening, then the scanner.</p>
+      <ul class="beats">
+        <li><span class="t">0–2 s · Hook</span><span>The car starting, then dying — capture the real stall. Hook spoken and on screen as text.</span></li>
+        <li><span class="t">3–10 s · What it means</span><span><q>Cold-start stall is usually air, fuel or an earthing issue. Don't keep cranking it to death.</q></span></li>
+        <li><span class="t">10–25 s · Show the fix</span><span>The scanner plugged in and reading; the offending part; the engine idling smooth after.</span></li>
+        <li><span class="t">25–30 s · CTA</span><span><q>If that's your car — link in bio, tap ‘Issues with my car’, tell us what's wrong, and we'll sort it.</q></span></li>
+      </ul>
       <span class="sells">Sells: diagnostics &amp; mechanical repairs</span></div>
     <div class="script"><span class="hook">“Temperature needle creeping up in traffic?”</span>
-      <p><span class="lbl">Say:</span> overheating kills engines — one warped head costs more than ten cooling repairs. It's usually the fan, thermostat or a slow leak.</p>
-      <p><span class="lbl">Show:</span> coolant pressure test, the stained radiator.</p>
+      <ul class="beats">
+        <li><span class="t">0–2 s · Hook</span><span>Close on the temp needle sitting high. Hook spoken and on screen as text.</span></li>
+        <li><span class="t">3–10 s · What it means</span><span><q>Overheating kills engines — one warped head costs more than ten cooling repairs. It's usually the fan, the thermostat or a slow leak.</q></span></li>
+        <li><span class="t">10–25 s · Show the fix</span><span>The coolant pressure test; the stained radiator; the needle sitting where it should on the road test.</span></li>
+        <li><span class="t">25–30 s · CTA</span><span><q>If that's your car — link in bio, tap ‘Issues with my car’, tell us what's wrong, and we'll sort it.</q></span></li>
+      </ul>
       <span class="sells">Sells: radiator &amp; cooling</span></div>
     <div class="script"><span class="hook">“Aircon blowing warm this summer?”</span>
-      <p><span class="lbl">Say:</span> nine times out of ten it's low gas from a slow leak. A regas with a dye test finds the leak instead of masking it.</p>
-      <p><span class="lbl">Show:</span> the gauges hooked up, vent thermometer before/after.</p>
+      <ul class="beats">
+        <li><span class="t">0–2 s · Hook</span><span>Hand at the vent, face says it all. Hook spoken and on screen as text.</span></li>
+        <li><span class="t">3–10 s · What it means</span><span><q>Nine times out of ten it's low gas from a slow leak. A regas with a dye test finds the leak instead of masking it.</q></span></li>
+        <li><span class="t">10–25 s · Show the fix</span><span>The gauges hooked up; the vent thermometer before and after — that falling number is the money shot.</span></li>
+        <li><span class="t">25–30 s · CTA</span><span><q>If that's your car — link in bio, tap ‘Issues with my car’, tell us what's wrong, and we'll sort it.</q></span></li>
+      </ul>
       <span class="sells">Sells: air conditioning — post in spring, pin all summer</span></div>
     <div class="script"><span class="hook">“Clunk over every speed bump?”</span>
-      <p><span class="lbl">Say:</span> that knock is usually a sway-bar link or bush — small parts that make the whole car feel old. Cheap fix, instant difference.</p>
-      <p><span class="lbl">Show:</span> shaking the worn link by hand on the hoist.</p>
+      <ul class="beats">
+        <li><span class="t">0–2 s · Hook</span><span>The car rolling over a bump — catch the clunk on audio. Hook spoken and on screen as text.</span></li>
+        <li><span class="t">3–10 s · What it means</span><span><q>That knock is usually a sway-bar link or bush — small parts that make the whole car feel old. Cheap fix, instant difference.</q></span></li>
+        <li><span class="t">10–25 s · Show the fix</span><span>On the hoist, shaking the worn link by hand — the wobble IS the proof. New part going in.</span></li>
+        <li><span class="t">25–30 s · CTA</span><span><q>If that's your car — link in bio, tap ‘Issues with my car’, tell us what's wrong, and we'll sort it.</q></span></li>
+      </ul>
       <span class="sells">Sells: suspension</span></div>
     <div class="script"><span class="hook">“Car slow to crank in the morning?”</span>
-      <p><span class="lbl">Say:</span> batteries don't die suddenly — they warn you for weeks. A two-minute test tells you if it's the battery, the alternator, or a drain.</p>
-      <p><span class="lbl">Show:</span> the battery tester verdict printing.</p>
+      <ul class="beats">
+        <li><span class="t">0–2 s · Hook</span><span>The laboured, slow crank — audio first, dashboard in frame. Hook spoken and on screen as text.</span></li>
+        <li><span class="t">3–10 s · What it means</span><span><q>Batteries don't die suddenly — they warn you for weeks. A two-minute test tells you if it's the battery, the alternator, or a drain.</q></span></li>
+        <li><span class="t">10–25 s · Show the fix</span><span>The battery tester clipped on; the verdict printing out; a crisp instant start after.</span></li>
+        <li><span class="t">25–30 s · CTA</span><span><q>If that's your car — link in bio, tap ‘Issues with my car’, tell us what's wrong, and we'll sort it.</q></span></li>
+      </ul>
       <span class="sells">Sells: battery test / Standard Service</span></div>
     <div class="script"><span class="hook">“Oil spots on the driveway?”</span>
-      <p><span class="lbl">Say:</span> a leak is the engine telling you where it hurts. Finding it early is a gasket; finding it late is an engine.</p>
-      <p><span class="lbl">Show:</span> UV dye tracing the leak line.</p>
+      <ul class="beats">
+        <li><span class="t">0–2 s · Hook</span><span>The oil spot on concrete, shoe beside it for scale. Hook spoken and on screen as text.</span></li>
+        <li><span class="t">3–10 s · What it means</span><span><q>A leak is the engine telling you where it hurts. Finding it early is a gasket; finding it late is an engine.</q></span></li>
+        <li><span class="t">10–25 s · Show the fix</span><span>UV dye tracing the leak line under the lamp; the gasket replaced; a clean floor under the car.</span></li>
+        <li><span class="t">25–30 s · CTA</span><span><q>If that's your car — link in bio, tap ‘Issues with my car’, tell us what's wrong, and we'll sort it.</q></span></li>
+      </ul>
       <span class="sells">Sells: servicing &amp; repairs</span></div>
     <div class="script"><span class="hook">“Diesel blowing black smoke — or the DPF light's on?”</span>
-      <p><span class="lbl">Say:</span> short trips clog diesels. A forced regen or clean now beats a $4,000 filter later.</p>
-      <p><span class="lbl">Show:</span> the sooty tailpipe, the regen running on the scanner.</p>
+      <ul class="beats">
+        <li><span class="t">0–2 s · Hook</span><span>The sooty tailpipe or the puff of black smoke. Hook spoken and on screen as text.</span></li>
+        <li><span class="t">3–10 s · What it means</span><span><q>Short trips clog diesels. A forced regen or a clean now beats a $4,000 filter later.</q></span></li>
+        <li><span class="t">10–25 s · Show the fix</span><span>The regen running on the scanner; temperatures climbing; the exhaust running clean after.</span></li>
+        <li><span class="t">25–30 s · CTA</span><span><q>If that's your car — link in bio, tap ‘Issues with my car’, tell us what's wrong, and we'll sort it.</q></span></li>
+      </ul>
       <span class="sells">Sells: diesel &amp; DPF</span></div>
   </div>
 </section>
