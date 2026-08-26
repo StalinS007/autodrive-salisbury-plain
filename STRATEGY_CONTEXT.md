@@ -167,6 +167,27 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   diagnosis by text. Meta Business Suite Instant Reply carries the site link so the
   website funnel runs automatically without refusing anyone a conversation.
 
+## Car community play (explored 2026-08-24)
+- Long-term two-layer plan: (1) LOCAL "AutoDrive Car Care Club" membership (priority
+  booking, annual inspection, member detailing rate, first look at used cars, WhatsApp
+  group; seed = the 150+ repeat clients; Wilson Auto precedent: recurring members
+  stabilise revenue). (2) LATER a Skool-style digital community for new migrants and
+  students, Malayalam-first ("First Car Australia" working name): buying a used car in
+  AU without getting burned, rego/insurance/roadworthy, maintenance 101, weekly
+  ask-Jitty call. Converts the global Malayalam reach (unbookable for the shop) into a
+  geography-free product. CarEdge proves the consumer-protection angle; Skool detailing
+  and car-flip academies prove the trade angles. Honest math: paid communities convert
+  a fraction of a percent of an engaged audience (CBum: 3.1k members off tens of
+  millions of followers), so audience first, launch later. Bridge: free
+  "Adelaide Malayali Car Owners" WhatsApp/FB group to validate demand and farm content.
+- **LIVE TEST handed to build chat (2026-08-24): Car Club waitlist section** on the
+  site. Homepage band (general club pitch) + used-cars variant ("see cars before they
+  are listed"). Capture = prefilled WhatsApp message with data-ctx="direct" (no form,
+  no backend; GA whatsapp_click link_url containing "Car Club waitlist" is the KPI,
+  wording differs per placement to split angles). Expectation: 2 to 5 taps/week is a
+  real signal at current traffic; zero for a fortnight = change the value prop and
+  retest. Analytics chat owns the weekly count.
+
 ## Decision log (append newest first)
 - 2026-08-23 — Bio CTA set to "Prices and booking"; quote-close playbook agreed; language
   packaging = subtitles-first (see above). Pending: "from $" prices for detailing/paint.
