@@ -329,7 +329,7 @@
     }
     form.addEventListener("submit", function (ev) {
       ev.preventDefault();
-      var smsNumber = form.getAttribute("data-sms") || "+61432247691";
+      var smsNumber = form.getAttribute("data-sms") || "+61432520230";
       if (status) {
         status.className = "form-status ok";
         status.textContent = "Opening your messages app with the details filled in - just tap send!";
