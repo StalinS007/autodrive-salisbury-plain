@@ -156,8 +156,12 @@
       Open in WhatsApp
     </a>
     <button class="btn btn--copy" id="copyBtn" type="button">Copy message</button>
+    <a class="btn btn--ghost" id="mineBtn" href="#" target="_blank" rel="noopener">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
+      Add to my calendar too
+    </a>
     <button class="btn btn--ghost" id="icsBtn" type="button">Download calendar file (.ics)</button>
-    <p class="hint">Use the .ics only if they're on an iPhone without Gmail — attach it in WhatsApp as a file.</p>
+    <p class="hint">“Add to my calendar” puts it on Jitty's own calendar. The .ics is only for iPhone users without Gmail — attach it in WhatsApp as a file.</p>
   </div>
 
 </div>
@@ -262,6 +266,27 @@
            "&location=" + encodeURIComponent(LOC);
   }
 
+  // Jitty's own copy of the event — named after the customer, with their number
+  function calLinkMine(){
+    var p = parts(); if(!p) return "";
+    var s = localStamp(p.startLocal.y, p.startLocal.mo, p.startLocal.d, p.startLocal.h, p.startLocal.mi);
+    var e = localStamp(p.endWall.getUTCFullYear(), p.endWall.getUTCMonth()+1, p.endWall.getUTCDate(),
+                       p.endWall.getUTCHours(), p.endWall.getUTCMinutes());
+    var nm = f.name.value.trim() || "Customer";
+    var svc = f.service.value.trim();
+    var t = nm + (svc ? " — " + svc : " — booking");
+    var det = [];
+    if(f.car.value.trim()) det.push("Vehicle: " + f.car.value.trim());
+    if(f.phone.value.trim()) det.push("Phone: " + f.phone.value.trim());
+    if(f.note.value.trim()) det.push("Note: " + f.note.value.trim());
+    return "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+           "&text=" + encodeURIComponent(t) +
+           "&dates=" + s + "/" + e +
+           "&ctz=" + encodeURIComponent(TZ) +
+           "&details=" + encodeURIComponent(det.join("\n")) +
+           "&location=" + encodeURIComponent(LOC);
+  }
+
   function message(){
     var nm = f.name.value.trim();
     var svc = f.service.value.trim();
@@ -303,6 +328,11 @@
     if(link){
       pv.innerHTML = pv.innerHTML.replace(link.replace(/&/g,"&amp;"), '<a href="#" onclick="return false;">' + "calendar link" + "</a>");
     }
+    var mine = $("mineBtn");
+    var ml = calLinkMine();
+    if(ml){ mine.href = ml; mine.style.opacity="1"; mine.style.pointerEvents="auto"; }
+    else { mine.href="#"; mine.style.opacity=".45"; mine.style.pointerEvents="none"; }
+
     var num = waNumber();
     var wa = $("waBtn");
     if(num){
