@@ -176,6 +176,7 @@
 (function(){
   var LOC = "AutoDrive, 6 Lolands Rd, Salisbury Plain SA 5109";
   var TZ  = "Australia/Adelaide";
+  var TOKEN = "ad-book-2026";   // must match tools/booking-webhook.gs
   var SERVICES = ["Logbook service","Basic service","Standard service","Premium service",
                   "Brakes","Air conditioning","Diagnostics","Detailing","Paint & panel","Car viewing"];
 
@@ -295,6 +296,16 @@
            (em ? "&add=" + encodeURIComponent(em) : "");   // guest -> Google sends the invite on save
   }
 
+  // Customer-facing link: the booking details travel INSIDE the link (no database).
+  // /booking decodes it, asks for their email, and the Apps Script sends the invite.
+  function b64u(s){ return btoa(unescape(encodeURIComponent(s))).replace(/\+/g,"-").replace(/\//g,"_").replace(/=+$/,""); }
+  function bookingLink(){
+    var p = parts(); if(!p) return "";
+    var payload = { n:f.name.value.trim(), s:f.service.value.trim(), c:f.car.value.trim(), p:f.phone.value.trim(),
+                    note:f.note.value.trim(), su:p.startUTC.toISOString(), eu:p.endUTC.toISOString(), k:TOKEN };
+    return location.origin + "/booking?b=" + b64u(JSON.stringify(payload));
+  }
+
   function message(){
     var nm = f.name.value.trim();
     var svc = f.service.value.trim();
@@ -314,8 +325,8 @@
     if(f.email.value.trim()){
       L.push("I've emailed you a calendar invite — just tap Accept and you'll get a reminder.");
     } else {
-      L.push("Add it to your calendar so you get a reminder:");
-      L.push(calLink());
+      L.push("Tap here to confirm and get a calendar reminder:");
+      L.push(bookingLink());
     }
     L.push("");
     L.push("Any changes, just message me. — Jitty");
@@ -336,9 +347,9 @@
     var pv = $("preview");
     pv.textContent = msg;                                  // safe: no HTML injection
     // linkify the calendar url in the preview only
-    var link = calLink();
+    var link = f.email.value.trim() ? "" : bookingLink();
     if(link){
-      pv.innerHTML = pv.innerHTML.replace(link.replace(/&/g,"&amp;"), '<a href="#" onclick="return false;">' + "calendar link" + "</a>");
+      pv.innerHTML = pv.innerHTML.replace(link.replace(/&/g,"&amp;"), '<a href="#" onclick="return false;">' + "booking link" + "</a>");
     }
     var mine = $("mineBtn");
     var ml = calLinkMine();

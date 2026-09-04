@@ -383,3 +383,25 @@ If restyling for higher visual polish, the **Taste Skill** Agent Skills can guid
   (keep the generous whitespace). **Always keep §4 tokens and §6 images locked.** Work
   incrementally — one page/section, commit, review, then roll out.
 ```
+
+---
+
+## 7c. Booking confirmation + calendar invite flow (added 2026-09-04)
+
+Three files, no server, no database — the booking details travel inside the link.
+
+- **`confirm.html`** (`/confirm`, noindex, not in nav) — Jitty's internal tool. He fills name, mobile,
+  date/time, duration, service, car, note. It builds a WhatsApp-ready confirmation message containing a
+  **booking link** (`/booking?b=<base64url JSON>`), plus "Add to my calendar" for Jitty's own calendar.
+  If he already has the customer's email he can enter it and the Google Calendar link carries them as a
+  guest (`&add=`) so Google emails a real invitation on Save. Token `TOKEN` must match the Apps Script.
+- **`booking.html`** (`/booking`) — customer-facing. Decodes the link, shows the booking, asks for
+  their email, POSTs to the Apps Script `ENDPOINT`, which creates the event on **Jitty's** calendar
+  with the customer as guest → Google emails the customer an Accept/Decline invite; acceptance shows on
+  Jitty's event; both get reminders. Fallbacks always present: "Just add it to my calendar" (Google
+  template link) and an `.ics` download. If `ENDPOINT` is empty the email form reports "not switched on".
+- **`tools/booking-webhook.gs`** — the Google Apps Script. Deploy from Jitty's Google account as a
+  Web app (Execute as Me / Anyone), paste the `/exec` URL into `booking.html` → `ENDPOINT`. Has a daily
+  cap (40) and sanity checks. Deployment steps are in the file header.
+- All times are computed as Adelaide wall time → UTC in the browser (verified across ACST/ACDT).
+- **Status:** built and on `reviews-preview`; Apps Script not yet deployed (needs Jitty's login).

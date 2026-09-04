@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Your booking | AutoDrive Salisbury Plain</title>
+<link rel="icon" type="image/png" href="images/logo-autodrive.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{ --red:#c0392b; --ink:#141414; --grey:#6b6b6b; --line:#e4e4e4; --bg:#f4f4f5; --ok:#0a7a33; }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:Inter,-apple-system,Segoe UI,Helvetica,Arial,sans-serif; font-size:16px; line-height:1.5; }
+  .wrap{max-width:520px; margin:0 auto; padding:0 16px 50px;}
+  header{background:var(--ink); padding:18px 0; margin-bottom:20px;}
+  header .wrap{padding-bottom:0;}
+  header img{height:52px; display:block;}
+  .card{background:#fff; border:1px solid var(--line); border-radius:14px; padding:20px; margin-bottom:14px;}
+  h1{ font-family:Anton,Impact,sans-serif; font-weight:400; text-transform:uppercase; font-size:28px; letter-spacing:.3px; margin:0 0 4px; line-height:1.05; }
+  h1 span{color:var(--red);}
+  .sub{color:var(--grey); margin:0 0 16px;}
+  .detail{display:flex; gap:12px; padding:10px 0; border-top:1px solid var(--line); font-size:15.5px;}
+  .detail:last-child{border-bottom:1px solid var(--line);}
+  .detail .ic{font-size:20px; width:26px; flex:none; text-align:center;}
+  .detail b{display:block; font-size:12px; text-transform:uppercase; letter-spacing:.06em; color:var(--grey); font-weight:600;}
+  label{display:block; font-weight:600; font-size:14px; margin:0 0 6px;}
+  input[type=email]{ width:100%; font:inherit; font-size:17px; padding:14px; border:1px solid #cfcfcf; border-radius:10px; }
+  input:focus{outline:2px solid var(--red); outline-offset:1px; border-color:var(--red);}
+  .btn{ display:flex; align-items:center; justify-content:center; gap:8px; width:100%; font:inherit; font-size:16px; font-weight:700; cursor:pointer; padding:15px; border-radius:999px; border:2px solid transparent; text-decoration:none; margin-top:12px; }
+  .btn--red{background:var(--red); color:#fff; border-color:var(--red);}
+  .btn--ghost{background:#fff; color:var(--ink); border-color:#cfcfcf;}
+  .btn[disabled]{opacity:.55; cursor:default;}
+  .hint{font-size:13px; color:var(--grey); margin:10px 0 0;}
+  .msg{border-radius:10px; padding:13px 15px; margin-top:14px; font-size:15px;}
+  .msg--ok{background:#e9f7ee; border:1px solid #cdeed8; color:#0a5a28;}
+  .msg--err{background:#fdecec; border:1px solid #f3c2c2; color:#8a1f1f;}
+  .or{ text-align:center; color:var(--grey); font-size:13px; margin:18px 0 0; }
+  .foot{text-align:center; font-size:12.5px; color:#999; margin-top:22px;}
+  .foot a{color:var(--grey);}
+</style>
+</head>
+<body>
+<header><div class="wrap"><img src="images/logo-dark.png" alt="AutoDrive Salisbury Plain" onerror="this.src='images/logo-autodrive.png'"></div></header>
+
+<div class="wrap">
+  <div class="card" id="bookingCard">
+    <h1 id="hello">You're <span>booked in</span></h1>
+    <p class="sub" id="sub">Here are your booking details.</p>
+    <div id="details"></div>
+  </div>
+
+  <div class="card" id="emailCard">
+    <label for="email">Your email — we'll send a calendar invite so you get a reminder</label>
+    <form id="form" novalidate>
+      <input type="email" id="email" placeholder="you@gmail.com" inputmode="email" autocomplete="email" required />
+      <button class="btn btn--red" id="sendBtn" type="submit">Send my calendar invite</button>
+    </form>
+    <p class="hint">The invite lands in your inbox. Tap <b>Accept</b> and it's on your calendar with a reminder. Jitty gets it on his side too.</p>
+    <div id="result"></div>
+
+    <p class="or">or</p>
+    <a class="btn btn--ghost" id="gcalBtn" href="#" target="_blank" rel="noopener">Just add it to my calendar</a>
+    <a class="btn btn--ghost" id="icsBtn" href="#" download="autodrive-booking.ics">Download for Apple / Outlook</a>
+  </div>
+
+  <p class="foot">AutoDrive Salisbury Plain · 6 Lolands Rd, Salisbury Plain SA 5109<br>Questions? <a href="https://wa.me/61432520230">Message us on WhatsApp</a></p>
+</div>
+
+<script>
+(function(){
+  // === Set this to the Apps Script web-app URL once it's deployed (see tools/booking-webhook.gs) ===
+  var ENDPOINT = "";
+  var LOC = "AutoDrive, 6 Lolands Rd, Salisbury Plain SA 5109";
+  var TZ = "Australia/Adelaide";
+
+  function $(id){ return document.getElementById(id); }
+  function b64uDecode(s){
+    s = s.replace(/-/g,"+").replace(/_/g,"/"); while(s.length % 4) s += "=";
+    return decodeURIComponent(escape(atob(s)));
+  }
+  function esc(t){ var d=document.createElement("div"); d.textContent=t; return d.innerHTML; }
+
+  var b = null;
+  try {
+    var q = new URLSearchParams(location.search).get("b");
+    if(q) b = JSON.parse(b64uDecode(q));
+  } catch(e){ b = null; }
+
+  if(!b || !b.su || !b.eu){
+    $("hello").innerHTML = "Booking <span>not found</span>";
+    $("sub").textContent = "This link looks incomplete. Message Jitty on WhatsApp and he'll resend it.";
+    $("emailCard").hidden = true;
+    return;
+  }
+
+  var start = new Date(b.su), end = new Date(b.eu);
+  var whenDay  = new Intl.DateTimeFormat("en-AU",{ timeZone:TZ, weekday:"long", day:"numeric", month:"long" }).format(start);
+  var whenTime = new Intl.DateTimeFormat("en-AU",{ timeZone:TZ, hour:"numeric", minute:"2-digit" }).format(start).toLowerCase().replace(" ","");
+  var endTime  = new Intl.DateTimeFormat("en-AU",{ timeZone:TZ, hour:"numeric", minute:"2-digit" }).format(end).toLowerCase().replace(" ","");
+
+  if(b.n) $("hello").innerHTML = "Hi " + esc(b.n) + ", you're <span>booked in</span>";
+  var rows = [
+    ["📅","When", whenDay + ", " + whenTime + " – " + endTime],
+    ["🔧","Service", (b.s || "Booking") + (b.c ? " — " + b.c : "")],
+    ["📍","Where", "AutoDrive, 6 Lolands Rd, Salisbury Plain"]
+  ];
+  if(b.note) rows.push(["📝","Note", b.note]);
+  $("details").innerHTML = rows.map(function(r){
+    return '<div class="detail"><div class="ic">'+r[0]+'</div><div><b>'+r[1]+'</b>'+esc(r[2])+'</div></div>';
+  }).join("");
+
+  // ---- fallbacks: direct add-to-calendar ----
+  function stampLocal(d){
+    var p={}; new Intl.DateTimeFormat("en-US",{timeZone:TZ,hour12:false,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit"})
+      .formatToParts(d).forEach(function(x){p[x.type]=x.value;});
+    var h = p.hour==="24"?"00":p.hour;
+    return p.year+p.month+p.day+"T"+h+p.minute+"00";
+  }
+  var title = "AutoDrive — " + (b.s || "Booking");
+  var det = [ b.c ? "Vehicle: "+b.c : "", b.note || "", "Questions? Message AutoDrive on 0432 520 230." ].filter(Boolean).join("\n");
+  $("gcalBtn").href = "https://calendar.google.com/calendar/render?action=TEMPLATE&text="+encodeURIComponent(title)+
+    "&dates="+stampLocal(start)+"/"+stampLocal(end)+"&ctz="+encodeURIComponent(TZ)+
+    "&details="+encodeURIComponent(det)+"&location="+encodeURIComponent(LOC);
+  function z(d){ return d.toISOString().replace(/[-:]/g,"").replace(/\.\d{3}/,""); }
+  var ics = ["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//AutoDrive Salisbury Plain//Booking//EN","BEGIN:VEVENT",
+    "UID:"+Date.now()+"@autodrivesalisburyplain.com.au","DTSTAMP:"+z(new Date()),"DTSTART:"+z(start),"DTEND:"+z(end),
+    "SUMMARY:"+title,"DESCRIPTION:"+det.replace(/\n/g,"\\n"),"LOCATION:"+LOC,
+    "BEGIN:VALARM","TRIGGER:-PT2H","ACTION:DISPLAY","DESCRIPTION:AutoDrive booking reminder","END:VALARM",
+    "END:VEVENT","END:VCALENDAR"].join("\r\n");
+  $("icsBtn").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+  // ---- the real thing: email -> invite from Jitty's calendar ----
+  $("form").addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var email = $("email").value.trim();
+    var res = $("result");
+    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)){
+      res.className="msg msg--err"; res.textContent="That email doesn't look right — check it and try again."; return;
+    }
+    if(!ENDPOINT){
+      res.className="msg msg--err"; res.textContent="Invites aren't switched on yet. Use \"Just add it to my calendar\" below for now."; return;
+    }
+    var btn = $("sendBtn"); btn.disabled = true; btn.textContent = "Sending…";
+    res.className=""; res.textContent="";
+    var payload = { token:b.k||"", email:email, name:b.n||"", service:b.s||"", car:b.c||"", phone:b.p||"", note:b.note||"", startUTC:b.su, endUTC:b.eu };
+    fetch(ENDPOINT, { method:"POST", body: JSON.stringify(payload) })   // string body = no CORS preflight
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if(j && j.ok){
+          res.className="msg msg--ok";
+          res.innerHTML = "✅ Invite sent to <b>"+esc(email)+"</b>. Open it and tap <b>Accept</b> — you'll get a reminder before your booking.";
+          $("form").hidden = true;
+        } else {
+          throw new Error((j && j.error) || "unknown");
+        }
+      })
+      .catch(function(){
+        res.className="msg msg--err";
+        res.textContent="Couldn't send the invite just now. Use \"Just add it to my calendar\" below, or message Jitty.";
+        btn.disabled=false; btn.textContent="Send my calendar invite";
+      });
+  });
+}());
+</script>
+</body>
+</html>
