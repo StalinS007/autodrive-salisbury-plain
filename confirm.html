@@ -103,6 +103,11 @@
       <input type="tel" id="cphone" placeholder="0412 345 678" inputmode="tel" autocomplete="off" />
     </div>
 
+    <div class="field">
+      <label for="cemail">Their email <span style="font-weight:400;color:#888;">— ask for it in the chat. This is what turns it into a real invite they can Accept.</span></label>
+      <input type="email" id="cemail" placeholder="sarah@gmail.com" inputmode="email" autocomplete="off" />
+    </div>
+
     <div class="row">
       <div class="field">
         <label for="cdate">Date</label>
@@ -158,10 +163,11 @@
     <button class="btn btn--copy" id="copyBtn" type="button">Copy message</button>
     <a class="btn btn--ghost" id="mineBtn" href="#" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
-      Add to my calendar too
+      <span id="mineLabel">Add to my calendar</span>
     </a>
+    <p class="hint" id="mineHint" style="margin-bottom:12px;"></p>
     <button class="btn btn--ghost" id="icsBtn" type="button">Download calendar file (.ics)</button>
-    <p class="hint">“Add to my calendar” puts it on Jitty's own calendar. The .ics is only for iPhone users without Gmail — attach it in WhatsApp as a file.</p>
+    <p class="hint">The .ics is only for iPhone users without Gmail — attach it in WhatsApp as a file.</p>
   </div>
 
 </div>
@@ -175,7 +181,7 @@
 
   function $(id){ return document.getElementById(id); }
   var f = {
-    name:$("cname"), phone:$("cphone"), date:$("cdate"), time:$("ctime"),
+    name:$("cname"), phone:$("cphone"), email:$("cemail"), date:$("cdate"), time:$("ctime"),
     dur:$("cdur"), service:$("cservice"), car:$("ccar"), note:$("cnote")
   };
 
@@ -279,12 +285,14 @@
     if(f.car.value.trim()) det.push("Vehicle: " + f.car.value.trim());
     if(f.phone.value.trim()) det.push("Phone: " + f.phone.value.trim());
     if(f.note.value.trim()) det.push("Note: " + f.note.value.trim());
+    var em = f.email.value.trim();
     return "https://calendar.google.com/calendar/render?action=TEMPLATE" +
            "&text=" + encodeURIComponent(t) +
            "&dates=" + s + "/" + e +
            "&ctz=" + encodeURIComponent(TZ) +
            "&details=" + encodeURIComponent(det.join("\n")) +
-           "&location=" + encodeURIComponent(LOC);
+           "&location=" + encodeURIComponent(LOC) +
+           (em ? "&add=" + encodeURIComponent(em) : "");   // guest -> Google sends the invite on save
   }
 
   function message(){
@@ -303,8 +311,12 @@
     L.push("📍 AutoDrive, 6 Lolands Rd, Salisbury Plain");
     if(note){ L.push(""); L.push(note); }
     L.push("");
-    L.push("Add it to your calendar so you get a reminder:");
-    L.push(calLink());
+    if(f.email.value.trim()){
+      L.push("I've emailed you a calendar invite — just tap Accept and you'll get a reminder.");
+    } else {
+      L.push("Add it to your calendar so you get a reminder:");
+      L.push(calLink());
+    }
     L.push("");
     L.push("Any changes, just message me. — Jitty");
     return L.join("\n");
@@ -330,6 +342,17 @@
     }
     var mine = $("mineBtn");
     var ml = calLinkMine();
+    var em = f.email.value.trim();
+    var lbl = $("mineLabel");
+    if(em){
+      lbl.textContent = "Create booking + email invite";
+      mine.className = "btn btn--copy";
+      $("mineHint").textContent = "Opens Google Calendar with " + em + " already added as a guest. Tap Save and Google emails them the invite with an Accept button.";
+    } else {
+      lbl.textContent = "Add to my calendar";
+      mine.className = "btn btn--ghost";
+      $("mineHint").textContent = "Adds it to Jitty's calendar only. Add their email above to send a real invite they can Accept.";
+    }
     if(ml){ mine.href = ml; mine.style.opacity="1"; mine.style.pointerEvents="auto"; }
     else { mine.href="#"; mine.style.opacity=".45"; mine.style.pointerEvents="none"; }
 
