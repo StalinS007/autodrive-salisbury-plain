@@ -405,3 +405,44 @@ Three files, no server, no database — the booking details travel inside the li
   cap (40) and sanity checks. Deployment steps are in the file header.
 - All times are computed as Adelaide wall time → UTC in the browser (verified across ACST/ACDT).
 - **Status:** built and on `reviews-preview`; Apps Script not yet deployed (needs Jitty's login).
+
+---
+
+## 7d. "Bio link → Message Jitty" animation — phase 1 done, phase 2 parked (added 2026-09-08)
+
+A short vertical animation for Instagram/Facebook showing that the link in the bio takes people to the
+website and to "Message Jitty". Built for Stalin to demo to Jitty. **Phase 1 is a finished, silent demo.**
+
+**Where everything is** (all in `~/Downloads/Autodrive downloads/`):
+- `AutoDrive-BioLink-Phase1.mp4` — the phase-1 render: 1080×1920, 30 fps, 5.0 s, no sound.
+  Also in the Higgsfield media library (media_id `5da44798-cf76-47c0-93fa-0d6272c9fe42`) and on the Desktop.
+- `AutoDrive-BioLink-Plan-v23.html` — the full production plan / storyboard (self-contained, opens in any
+  browser, has a looping CSS preview of beats 1–2). Live copy: https://claude.ai/code/artifact/98afd4ae-f580-4bb9-a635-fef8587085de
+- `BioLink-phase1-source/` — the three screenshots (S1 Instagram profile crop, S2 website hero crop,
+  S3 Facebook page crop = IMG_6732) and `phase1-source/` (scene.html, render.js, assets/) to re-render.
+  Re-render: `cd phase1-source && npm i puppeteer-core && node render.js all && ffmpeg -framerate 30 -i frames/f%05d.png -c:v libx264 -pix_fmt yuv420p -crf 17 out.mp4`
+  (needs local Google Chrome + ffmpeg; every frame is a pure function of time, seeded, so re-renders match).
+
+**What phase 1 shows (all decisions LOCKED after ~20 review rounds — do not reopen):**
+- Neutral grey backdrop (no photo). Two SEPARATE dark frosted-glass panels, Apple-style: Instagram profile
+  above, Facebook page below, 820 px wide, 40 px gap. Real screenshot pixels only — no AI-drawn UI, no
+  re-typed text. Instagram's black and Facebook's white are cut to glass; Facebook's black text is flipped
+  to white (blue link + emoji keep colour; cover photo, logo disc, green dot stay solid; cover trimmed 200 rows).
+- Panels rise already tilted (rotateY −22°, rotateX 4°) and swing to straight-on 1.25–2.45 s WHILE the
+  text types. Typing: every line in both panels types at once, left→right, ~30 keys/s with ±40 % wobble,
+  NO cursor and NO edge/sweep line (both rejected), no captions.
+- Each panel has its own small arrow (72 px) that fades in at its OWN bottom-right corner at 1.5 s (never
+  from the screen edge), idles, and at 2.7 s goes to its own link (IG bio link / FB blue link); rings 3.2 s;
+  both click at 3.6 s only once the panels are flat.
+- Ending: still 3.6–3.9, distortion 3.9–4.4 (judder, 12 horizontal slices, red/cyan split), white flash
+  4.4, decays to the empty backdrop by 5.0. End of phase 1.
+
+**Phase 2 — next steps (not started):**
+1. Stalin to decide the website picture (currently S2 = site header → hero → Message Jitty → reviews pill).
+2. Website card slides up flat over the panels (≈0.45 s), one arrow drifts onto "Message Jitty" (≈1 s),
+   ring ×2, hold ≈1.2 s, fade 0.3 s. Previously planned as ~3.4 s; timing in the plan's storyboard beat 4.
+3. Sound: key ticks per keystroke, one tap on the clicks, music bed (Stalin to send a 10 s reference or say
+   "pick something neutral"). Higgsfield `generate_audio` or any library; mix with ffmpeg.
+4. Assembly: use `AutoDrive-BioLink-Phase1.mp4` as opening footage (Higgsfield `video-editing`/higgsedit,
+   CapCut, or the same scene.html pipeline extended) and export 1080×1920 for Reels/Stories/GBP.
+5. Instagram screenshot shows the `?utm_so…` bio link — fine to leave; it is what people actually see.
