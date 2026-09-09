@@ -172,6 +172,29 @@ Supersedes the week-one numbers below for period-level comparisons.
    website field still carries the full UTM URL. FB traffic (12 sessions) arrives as
    untagged referrals meanwhile.
 
+## The viral-reel lesson (Sep 2026) — reach ≠ local customers
+A reel hit **~100K views** in early Sep. GA4 City report, **1–8 Sep 2026**:
+- **62 active users total** (all sources, 8 days) — 20 Adelaide (32%), 11 Melbourne,
+  6 Brisbane, plus Auckland and Bengaluru in the top rows; 25 city rows.
+  **~2 in 3 visitors cannot physically become customers.**
+- **Adelaide is the best segment by every quality measure:** 69.6% engagement (vs 50%
+  Melbourne/Brisbane), **48s** avg engagement (vs 20s / 3s), and **4 of the 7 key events
+  (57%)** — a **20% key-event rate**. The site converts Adelaide arrivals fine.
+- **The conversion maths:** ~100K views → at most 62 site users → 20 Adelaide → 4 key
+  events. That is **≤0.06% view→visit**, vs the warning-light reel's **0.65%**
+  (19K views → 124 bio taps). **The viral reel converted roughly 10× WORSE per view.**
+  (Upper bound — not all 62 users are attributable to the reel.)
+- **Conclusion: virality is anti-correlated with local intent here.** The bottleneck is
+  not the website (20% of Adelaide visitors take a lead action) — it is that huge reach
+  delivers almost no Adelaide humans. **Judge reels on Adelaide active users + Adelaide
+  key events, never on views.**
+- **Compounding risk to flag:** Instagram seeds new posts to existing followers first.
+  A follower base diluted with interstate/overseas viewers teaches the algorithm to keep
+  showing future reels to non-locals — so chasing virality actively degrades local
+  organic reach over time.
+- **Key events are now configured** (was 0.00 in the 24 Aug pull) — that is why per-city
+  conversion is finally readable. Keep them.
+
 ## What "good" looks like next (so recommendations have direction)
 - `instagram / bio` row growing; a `google / profile` row appearing once the GBP link is
   tagged; fbgroup-tagged links once Jitty starts using them in community posts.
