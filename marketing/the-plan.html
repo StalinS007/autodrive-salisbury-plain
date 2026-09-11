@@ -60,6 +60,22 @@
 
   .foot{margin-top:2.8rem; padding-top:1.1rem; border-top:1px solid var(--line); font-size:.85rem; color:var(--muted);}
   td small{font-size:.78rem; color:var(--muted); white-space:normal; display:block;}
+
+  .price{background:var(--ink); border-radius:16px; padding:1.3rem 1.4rem 1.2rem; margin-top:1.4rem; color:#e6dfe0; break-inside:avoid;}
+  :root[data-theme="dark"] .price{border:1px solid var(--line);}
+  .price .lbl{display:block; font:700 .7rem Inter,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:#ef5a5e;}
+  .price .amt{display:block; font-family:Anton,Impact,"Liberation Sans",sans-serif; font-size:2.8rem; line-height:1; color:#fff; margin:.3rem 0 .5rem; font-variant-numeric:tabular-nums;}
+  .price .amt small{font:600 .85rem Inter,sans-serif; color:#b3aaab;}
+  .price p{margin:.3rem 0 0; font-size:.93rem;}
+  .price p strong{color:#fff;}
+  .price .cmp{display:grid; grid-template-columns:1fr 1fr; gap:.6rem; margin-top:1rem;}
+  @media (max-width:520px){.price .cmp{grid-template-columns:1fr;}}
+  .price .cmp > div{border:1px solid #3a3335; border-radius:10px; padding:.7rem .85rem;}
+  .price .cmp > div.me{border-color:#ef5a5e;}
+  .price .cmp b{display:block; font:700 .7rem Inter,sans-serif; letter-spacing:.1em; text-transform:uppercase; color:#b3aaab;}
+  .price .cmp span{display:block; font-family:Anton,Impact,"Liberation Sans",sans-serif; font-size:1.4rem; color:#fff; margin:.2rem 0; font-variant-numeric:tabular-nums;}
+  .price .cmp .me span{color:#ef5a5e;}
+  .price .cmp em{display:block; font-size:.78rem; color:#b3aaab; font-style:normal; line-height:1.35;}
   @media print{ body{padding:1rem .6rem;} .tablewrap,.goal,ul.pts li{break-inside:avoid;} h2,h3,.eyebrow{break-after:avoid;}
     .pagebreak{break-before:page;} }
 </style>
@@ -133,6 +149,18 @@
     <tr><td>5</td><td><strong>Reporting and strategy</strong> — someone reads the numbers and tells you what to do next</td><td class="n">$400–800/mo</td></tr>
     <tr class="sum"><td></td><td>Total, bought separately</td><td class="n">$4,000–6,000/mo</td></tr>
   </table></div>
+
+  <div class="price">
+    <span class="lbl">What I'm asking</span>
+    <span class="amt">$2,500<small> / month</small></span>
+    <p>For all five — filming and editing, posting and the groups, the Google profile, the website, the fortnightly
+      report — <strong>plus everything already running in the background:</strong> the booking flow, the tracked links,
+      the analytics watched every day, the profiles kept sharp.</p>
+    <div class="cmp">
+      <div><b>Bought separately</b><span>$4,000–6,000 / mo</span><em>five different people, none of whom know the business</em></div>
+      <div class="me"><b>With me</b><span>$2,500 / mo</span><em>one person who built the website and already runs the backend</em></div>
+    </div>
+  </div>
 </section>
 
 <p class="foot">AutoDrive Salisbury Plain · 6 Lolands Rd, Salisbury Plain SA 5109 · autodrivesalisburyplain.com.au</p>
