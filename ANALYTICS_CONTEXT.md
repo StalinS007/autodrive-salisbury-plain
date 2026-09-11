@@ -132,3 +132,36 @@ Engagement / Audience tabs), captured 11 Sep 23:49 (3 days after posting).
 - Pitch framing: 643 follows in 3 days vs 485 followers total on 7 Sep (profile screenshot) → the one reel
   roughly **doubled the account's following**; 43 bio-link clicks from a single post is more than the
   whole `instagram / bio` GA row produced in a typical week.
+
+### Google Business Profile (captured 12 Sep 2026, 00:05, via Google Search → "Your business on Google" manager panel)
+Where it lives: signed in as the manager account, google.com → search "Autodrive Salisbury Plain" → the
+"Your business on Google" card at the top of the results → **Performance** (opens as an overlay; Time
+period defaults to the last 6 months, Apr 2026–Sept 2026; tabs Overview / Calls / Bookings / Directions /
+Website clicks).
+- **459 Business Profile interactions, Apr–Sep 2026** (6-month total), exact monthly values read from
+  the chart tooltips (Apr derived from the total):
+
+  | GBP metric (Apr–11 Sep 2026) | Apr | May | Jun | **Jul** | **Aug** | Sep 1–11 | Total |
+  |---|---|---|---|---|---|---|---|
+  | Profile interactions | 63 | 87 | 84 | 91 | **121** | 13 | 459 |
+  | Calls from the profile | 5 | 5 | 3 | **16** | **14** | 1 | 44 |
+  | Website clicks from the profile | 12 | 20 | 13 | **37** | 24 | 6 | 112 |
+  | Direction requests | 46 | 62 | 68 | 38 | **83** | 6 | 303 |
+  | Bookings via the profile button | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+
+  **Before vs after the 6 Jul pivot (monthly averages, Apr–Jun vs Jul–Aug):** interactions 78 → 106/mo
+  (+36%); **calls 4.3 → 15/mo (3.5×)**; website clicks 15 → 30.5/mo (2×); directions 59 → 61/mo (flat —
+  people already knew where the shop was; the pivot changed *contact*, not *navigation*). September's
+  11 days are on pace for a quieter month on GBP while the viral reel pulls attention to Instagram.
+- Google Maps listing shows **3,437 views** on the profile (lifetime counter on the Maps card).
+- **1,115 people saw the profile in search results last month** (Aug 2026; from the "View your 2026
+  record" card).
+- **Reviews: 26 × 5.0★** (was 20 × 5.0 in late July → +6 in ~7 weeks; "5 new reviews" badge showing).
+- Phone on the profile is now **0432 520 230** (the 247 691 fix landed). Stale 247 691 / 0433 247 691
+  still appear in the Instagram bio snippet Google indexed and in a 5-month-old Indians In Adelaide group
+  post — off-site clean-up items, not GBP.
+- Website button on the card carries the tagged link `?utm_source=google&utm_medium=profile` (confirmed
+  in the page source).
+- GBP posts cadence ("Latest from the owner"): 17, 20, 22, 24, 27 Jul; 5, 11, 13, 17 Aug; and one 3 days
+  ago (used-cars post, ~9 Sep) — **10 posts since 17 Jul**, none visible before that. Post-pivot behaviour.
+- Google's own "profile strength" card is not full: interior photo, products, offer still suggested.
