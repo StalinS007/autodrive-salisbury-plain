@@ -303,7 +303,9 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   with market values, break-even in cars/services, compound-effect argument, Royalty Auto
   Service case study, multicultural edge, a 3-tier ladder (Maintain $1,500 / **Grow $2,500
   recommended** / Dominate $3,800), the anchoring script, objection handling, walk-away line.
-  Sections are tagged "show Jitty" vs "your eyes only". Also published as a Claude artifact
+  Sections are tagged "show Jitty" vs "your eyes only". **2026-09-12: the "Open with this"
+  section (before/after tables from the evidence run, the 8 Sep viral reel, the honest local-reach
+  read) is now the first section and the anchoring script leads with it.** Also published as a Claude artifact
   (keep this URL when re-rendering): https://claude.ai/code/artifact/6d742a25-6f9c-4351-b8bb-b37258a3b7b7
   **Next step:** once Stalin fixes the Grow price, build the 2-page Jitty-facing proposal from
   the "show Jitty" sections.
