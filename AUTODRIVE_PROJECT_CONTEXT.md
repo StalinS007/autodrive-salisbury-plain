@@ -299,7 +299,7 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   this; keep the artifact URL the same.
 - **`marketing/AutoDrive-Pitch-Brief.pdf`** (+ `pitch-brief.html` source, added 2026-09-11):
   Stalin's briefing for the retainer pitch to Jitty (12 Sep 2026) — AU market pricing research,
-  scope priced line-by-line (~$4.7–9.1k/mo market vs $2,500 asked), "already delivered" list
+  scope priced as 11 separately-bought pieces (~$5.2–9.6k/mo market vs $2,500 asked), "already delivered" list
   with market values, break-even in cars/services, compound-effect argument, Royalty Auto
   Service case study, multicultural edge, a 3-tier ladder (Maintain $1,500 / **Grow $2,500
   recommended** / Dominate $3,800), the anchoring script, objection handling, walk-away line.
