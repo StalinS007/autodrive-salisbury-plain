@@ -156,7 +156,7 @@ Website clicks).
 - Google Maps listing shows **3,437 views** on the profile (lifetime counter on the Maps card).
 - **1,115 people saw the profile in search results last month** (Aug 2026; from the "View your 2026
   record" card).
-- **Reviews: 26 × 5.0★** (was 20 × 5.0 in late July → +6 in ~7 weeks; "5 new reviews" badge showing).
+- Reviews: 26 × 5.0★ (was 20 in late July). **Do not present as a marketing result** — Jitty asked those customers himself at Stalin's request; removed from the pitch documents on 12 Sep.
 - Phone on the profile is now **0432 520 230** (the 247 691 fix landed). Stale 247 691 / 0433 247 691
   still appear in the Instagram bio snippet Google indexed and in a 5-month-old Indians In Adelaide group
   post — off-site clean-up items, not GBP.
@@ -196,3 +196,29 @@ country of 3-second viewers). Full text: `~/Desktop/AutoDrive-Evidence/02-Meta-B
   built brand and followers; the weekly reels are what reach Adelaide — and they only happen with
   consistency.** A small boosted post radius-targeted on Salisbury Plain would give an exact local figure.
 - Audience: ~90% men, 25–44 (IG) / 35–44 (FB) — the buyer profile for used family cars and servicing.
+
+### GA4 website data, 14 Jul → 12 Sep 2026 (compiled by the Chrome-extension session; full text `~/Desktop/AutoDrive-Evidence/03-GA4-evidence.txt`)
+Where it lives: Reports → Acquisition → Traffic acquisition (source/medium, + secondary dimension City);
+Reports → Engagement → Events (+ City / page path as secondary dimension — the whatsapp_click detail page
+only offers a Country card, no link_url); Reports → Engagement → Pages and screens; Reports → User →
+Demographic details (City / Region); Reports → Tech. Reports snapshot is an unconfigured template on this
+property, so daily users came from session_start × Date.
+- **Totals:** 639 sessions, 482 users, 54% engagement rate, 77% mobile. Sources: instagram / bio 239
+  sessions (37%), (direct) 189, google / organic 105, google / profile 31, ig / social 24, facebook.com
+  referral 16, facebook / social 4. Bot noise: (direct) Council Bluffs, Iowa — 22 sessions, 0 s.
+- **Where visitors are:** Adelaide 139 users (29% of all; South Australia 142 = 29.5%), then England 103,
+  Victoria 37, Kerala 36. **Google traffic is local** (organic 64% Adelaide, profile 87% Adelaide);
+  **Instagram bio traffic is not** (15% Adelaide; London 26, Brisbane 15, Melbourne 15, Trivandrum 13).
+- **Contact events:** whatsapp_click 272 taps / **77 users (16% of visitors)**; phone_click 27 / 17 users;
+  booking_date_picked 46 / 19 users; vehicle_info_submitted 13 / 9; generate_lead 5 / 5.
+  WhatsApp by city: **Adelaide 124 taps / 36 users** (47% of tapping users), Melbourne 27/7, Mount Gambier
+  8/1, (not set) 51/8. By page: home 152/58, services 32/11, used-cars 34/11, contact 18/2, detailing 14/7.
+  No per-car link_url is captured → "which car" is not answerable from GA4 (tracking gap to fix).
+- **Pages:** home 703 views; /used-cars 146 (+15 on the .html alias) with the highest engagement time
+  (1m31s/user); /services 136; /contact 117.
+- **Daily users:** avg ≈ 55/week. Top days 24 Jul 38, **9 Sep 31**, 23 Jul 26, 28 Jul 26, **8 Sep 25**.
+- **The 8 Sep reel on the website — honest:** a two-day spike (25 + 31 users, the 2nd-highest day of the
+  period), landing on the home page and leaving (engagement 18 s vs 28 s the week before); used-cars
+  views flat (10 vs 11), WhatsApp taps down (7 vs 14), phone taps 0 vs 3. The reel drove awareness and
+  follows, not website enquiries — consistent with its national/diaspora audience. Not used in the
+  Jitty-facing document (owner asked to drop September data).
