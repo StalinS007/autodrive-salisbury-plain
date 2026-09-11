@@ -143,6 +143,7 @@ Website clicks).
 
   | GBP metric (Apr–11 Sep 2026) | Apr | May | Jun | **Jul** | **Aug** | Sep 1–11 | Total |
   |---|---|---|---|---|---|---|---|
+  | **People who viewed the profile (Search + Maps)** | 265 | 511 | 592 | **825** | **1,115** | 129 (to 10 Sep) | 3,437 |
   | Profile interactions | 63 | 87 | 84 | 91 | **121** | 13 | 459 |
   | Calls from the profile | 5 | 5 | 3 | **16** | **14** | 1 | 44 |
   | Website clicks from the profile | 12 | 20 | 13 | **37** | 24 | 6 | 112 |
@@ -153,9 +154,8 @@ Website clicks).
   (+36%); **calls 4.3 → 15/mo (3.5×)**; website clicks 15 → 30.5/mo (2×); directions 59 → 61/mo (flat —
   people already knew where the shop was; the pivot changed *contact*, not *navigation*). September's
   11 days are on pace for a quieter month on GBP while the viral reel pulls attention to Instagram.
-- Google Maps listing shows **3,437 views** on the profile (lifetime counter on the Maps card).
-- **1,115 people saw the profile in search results last month** (Aug 2026; from the "View your 2026
-  record" card).
+- **Profile views** (Performance → below the fold, "How people discovered you", read one month at a time by Stalin on 12 Sep): Apr–Jun avg 456/mo → Jul–Aug avg 970/mo = **2.1×**. The 3,437 on the Maps card is this six-month total, not a lifetime counter. 1,115 in August = Search + Maps views (not "saw in search").
+- **1,115 people viewed the profile in August 2026** (Search + Maps; the "View your 2026 record" card).
 - Reviews: 26 × 5.0★ (was 20 in late July). **Do not present as a marketing result** — Jitty asked those customers himself at Stalin's request; removed from the pitch documents on 12 Sep.
 - Phone on the profile is now **0432 520 230** (the 247 691 fix landed). Stale 247 691 / 0433 247 691
   still appear in the Instagram bio snippet Google indexed and in a 5-month-old Indians In Adelaide group
