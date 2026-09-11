@@ -307,6 +307,34 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   (keep this URL when re-rendering): https://claude.ai/code/artifact/6d742a25-6f9c-4351-b8bb-b37258a3b7b7
   **Next step:** once Stalin fixes the Grow price, build the 2-page Jitty-facing proposal from
   the "show Jitty" sections.
+- **🖥️ TODO for the MAC session — "Evidence run" (added 2026-09-11, needed before the 12 Sep pitch).**
+  The cloud session cannot reach Instagram/Meta/Google (egress-blocked — verified), so the
+  before/after performance data must be collected on the Mac, ideally with **Claude in Chrome**
+  driving Stalin's logged-in browser (`claude --chrome`, or `/chrome` inside a session). Steps:
+  1. Ask Stalin for the **pivot date** — the week he gave Jitty the video direction. Before/after
+     windows are equal length either side of it.
+  2. **Meta Business Suite** (business.facebook.com → Insights, desktop): Overview → Reach chart
+     for Facebook and Instagram separately, custom range 1 Jan 2026 → today; Content tab →
+     **Export CSV** (or screenshot the list sorted by reach); Audience → follower growth.
+  3. **Instagram professional dashboard** (instagram.com/autodrive_salisburyplain → Professional
+     dashboard, or the app): last 90 days — Views with followers/non-followers split, Reach,
+     Profile visits, External link taps, "vs previous 90 days" %; Content sorted by views (note
+     the viral reels' dates + view counts).
+  4. **Google Business Profile → Performance, last 6 months** (Google Maps signed into the manager
+     account, or search "my business"): Overview interactions, Calls, Directions, Website clicks,
+     Messages, "How people discovered you". Also current review count/rating (was 20 × 5.0★ in Jul).
+  5. **GA4** (analytics.google.com, property 545462187): Traffic acquisition 14 Jul → today by
+     source/medium; Events counts for whatsapp_click / booking_date_picked / vehicle_info_submitted;
+     daily users chart.
+  6. Save every screenshot + the CSV to `~/Desktop/AutoDrive-Evidence/`, then **write the numbers
+     (not the images) into `ANALYTICS_CONTEXT.md`** under a new "Evidence run 2026-09-11" heading
+     — posts/week before vs after, avg reach per post before vs after, follower growth, GBP calls/
+     directions by month, top 5 reels with dates/views, IG 90-day link taps + non-follower share,
+     GA source rows + lead events. Commit + push to `reviews-preview`. Narrate each step to Stalin
+     as it happens (he wants to learn where the data lives).
+  Any session can then build the "before / after" section of the pitch brief from those numbers.
+  Also on the Mac: Stalin has a folder of **filmed-but-unposted reels** — count them and note the
+  folder path here; "two weeks of content already in the can" is a pitch beat.
 - **⚠ `marketing/` is publicly reachable on the deployed site** (Cloudflare serves the whole
   repo) — same accepted trade-off as the context .md files. Nothing secret goes in here. The
   pitch brief contains Stalin's negotiation notes; if that ever matters, add a `_redirects`
