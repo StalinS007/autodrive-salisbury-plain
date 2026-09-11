@@ -165,3 +165,34 @@ Website clicks).
 - GBP posts cadence ("Latest from the owner"): 17, 20, 22, 24, 27 Jul; 5, 11, 13, 17 Aug; and one 3 days
   ago (used-cars post, ~9 Sep) — **10 posts since 17 Jul**, none visible before that. Post-pivot behaviour.
 - Google's own "profile strength" card is not full: interior photo, products, offer still suggested.
+
+### Meta Business Suite — Facebook Page + Instagram (compiled 11 Sep 2026 by the Chrome-extension session; data ends 10 Sep)
+Where it lives: business.facebook.com → **Insights → Results** (reach charts; the Overview date picker is
+locked), **Insights → Content** (sort by reach), **Insights → Audience** (followers, top cities — lifetime
+only, no date filter), **Content → Posts & reels → open a post** (per-post performance incl. FB region /
+country of 3-second viewers). Full text: `~/Desktop/AutoDrive-Evidence/02-Meta-Business-Suite-evidence.txt`.
+
+| Before (1 Jan–5 Jul, 186 d) vs after (6 Jul–10 Sep, 67 d) | Before | After | Change |
+|---|---|---|---|
+| Posts per week (FB+IG, funkytales tags excluded) | 3.6 (8 reels total, 8% of output) | 6.5 (37 reels, 60% of output) | 1.8× posts, 4.6× reels |
+| Average reach per post | 44 | 1,211 (430 with the viral reel removed) | 10× on an ordinary post |
+| Facebook reach (daily viewer sums) | 2,869 | 58,588 | 20× |
+| Instagram reach (daily sums) | 3,084 | 92,452 | 30× |
+| Facebook follows | +8 | +271 (246 on 8 Sep) | page now 459 followers |
+| Instagram follows | +55 | +811 (546 on 8 Sep) | account now 1,162 followers |
+
+- Peak day both platforms: **Tue 8 Sep** (FB 43,342 viewers, IG 47,822 reach) — the "Family Car" reel.
+- Every AutoDrive post in the year's top 10 by reach is a reel; the best photo post of the year reached 450.
+- **Viral reel "Are You Looking For A Family Car?" (8 Sep 2:33 pm, crossposted):** 125,532 views
+  (FB 56,444 / IG 69,088); FB 46,899 viewers + IG 56,733 reach; 1,619 interactions; likes 780; comments 77;
+  **shares 520**; saves 231; **643 IG follows**; avg watch 28 s; 98.7% of watch time from Recommendations
+  (i.e. the algorithm, not followers). It delivered 87% of all FB follows and 63% of all IG follows this
+  year. ≈114× the post-pivot average reach.
+- **Local reach — honest read.** Follower base is Adelaide-first on both platforms (**Adelaide #1 city:
+  FB 16.6%, IG 20.3%**; Australia 42.5% FB / 56.4% IG; then the Kerala/UK/Gulf diaspora). The everyday
+  reels reach South Australia as a top-5 region and often #1 (18 Aug BMW reel: SA 32 of ~157 viewers, #1;
+  3 Sep New Van: SA 54 of ~574, top 5). The viral reel is a different animal: national + diaspora (FB
+  viewers UK 7.5K, Australia 6.7K ≈ 20%, SA below the top-10 regions). Pitch framing: **the viral reel
+  built brand and followers; the weekly reels are what reach Adelaide — and they only happen with
+  consistency.** A small boosted post radius-targeted on Salisbury Plain would give an exact local figure.
+- Audience: ~90% men, 25–44 (IG) / 35–44 (FB) — the buyer profile for used family cars and servicing.
