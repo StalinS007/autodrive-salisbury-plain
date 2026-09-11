@@ -309,6 +309,13 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   (keep this URL when re-rendering): https://claude.ai/code/artifact/6d742a25-6f9c-4351-b8bb-b37258a3b7b7
   **Next step:** once Stalin fixes the Grow price, build the 2-page Jitty-facing proposal from
   the "show Jitty" sections.
+- **`marketing/AutoDrive-Current-Growth.pdf`** (+ `current-growth.html`, added 2026-09-12): the Jitty-facing
+  evidence document. Five sections: Google Business Profile (monthly calls/clicks/interactions, reviews
+  20→26), Facebook (reach 20×, follows +8→+271), Instagram (reach 30×, follows +55→+811, the 8 Sep reel),
+  "Is it reaching Adelaide?" (honest read: Adelaide #1 city, everyday reels reach SA first, viral reel went
+  national; a customer called after seeing the videos), and "Why it has to be consistent" (ordinary post
+  reach 44→430). Written in Stalin's first-person voice, no prices (the price is in the pitch brief).
+  Copies on the Desktop (`AutoDrive-Evidence/`) and in `Downloads/Autodrive downloads/`.
 - **Evidence run — STATUS 12 Sep 2026, 01:10:** DONE for Google Business Profile (read via the in-search
   manager panel) and Meta Business Suite (read by a Claude-in-Chrome session; full text saved). Numbers are
   in `ANALYTICS_CONTEXT.md` → "Evidence run 2026-09-11". Evidence images for the pitch:
