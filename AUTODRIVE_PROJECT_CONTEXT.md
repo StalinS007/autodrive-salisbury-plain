@@ -303,8 +303,10 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   with market values, break-even in cars/services, compound-effect argument, Royalty Auto
   Service case study, multicultural edge, a 3-tier ladder (Maintain $1,500 / **Grow $2,500
   recommended** / Dominate $3,800), the anchoring script, objection handling, walk-away line.
-  Sections are tagged "show Jitty" vs "your eyes only". **Next step:** once Stalin fixes the
-  Grow price, build the 2-page Jitty-facing proposal from the "show Jitty" sections.
+  Sections are tagged "show Jitty" vs "your eyes only". Also published as a Claude artifact
+  (keep this URL when re-rendering): https://claude.ai/code/artifact/6d742a25-6f9c-4351-b8bb-b37258a3b7b7
+  **Next step:** once Stalin fixes the Grow price, build the 2-page Jitty-facing proposal from
+  the "show Jitty" sections.
 - **⚠ `marketing/` is publicly reachable on the deployed site** (Cloudflare serves the whole
   repo) — same accepted trade-off as the context .md files. Nothing secret goes in here. The
   pitch brief contains Stalin's negotiation notes; if that ever matters, add a `_redirects`
