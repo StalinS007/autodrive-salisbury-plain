@@ -307,6 +307,15 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   (keep this URL when re-rendering): https://claude.ai/code/artifact/6d742a25-6f9c-4351-b8bb-b37258a3b7b7
   **Next step:** once Stalin fixes the Grow price, build the 2-page Jitty-facing proposal from
   the "show Jitty" sections.
+- **Evidence run — STATUS 12 Sep 2026, 01:10:** DONE for Google Business Profile (read via the in-search
+  manager panel) and Meta Business Suite (read by a Claude-in-Chrome session; full text saved). Numbers are
+  in `ANALYTICS_CONTEXT.md` → "Evidence run 2026-09-11". Evidence images for the pitch:
+  `~/Desktop/AutoDrive-Evidence/01-GBP-before-after.png` and `02-Meta-before-after.png` (HTML sources beside
+  them). Still open: GA4 (traffic by source/city, events, post-reel days) — the extension prompt is in the
+  chat; and the reel-comment/DM local scan. Filmed-but-unposted footage: `~/Downloads/Autodrive downloads/`
+  → `Jitty service footage 22:8/` = 21 raw clips (25 Aug) + edited cut `7:09 DV DV edit 7-seater and
+  5seaters/Autodrive Sep 7.mp4`; `footage 11:09/AUTODRIVE.mp4` = second edited cut (11 Sep). Owner to
+  confirm which count as "in the can". Original TODO kept below for the steps.
 - **🖥️ TODO for the MAC session — "Evidence run" (added 2026-09-11, needed before the 12 Sep pitch).**
   The cloud session cannot reach Instagram/Meta/Google (egress-blocked — verified), so the
   before/after performance data must be collected on the Mac, ideally with **Claude in Chrome**
