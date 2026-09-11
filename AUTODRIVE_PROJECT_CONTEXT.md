@@ -318,6 +318,13 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   → `Jitty service footage 22:8/` = 21 raw clips (25 Aug) + edited cut `7:09 DV DV edit 7-seater and
   5seaters/Autodrive Sep 7.mp4`; `footage 11:09/AUTODRIVE.mp4` = second edited cut (11 Sep). Owner to
   confirm which count as "in the can". Original TODO kept below for the steps.
+- **`marketing/AutoDrive-Content-System.pdf`** (+ `content-system-plan.html`, added 2026-09-12): the
+  **Jitty-facing pitch document**, written by Stalin, laid out by Claude — the weekly content system
+  (16 videos/month, Friday 8 pm sign-off, Mon–Sat 5–6 pm posting, FB-group strategy, weekly used-car
+  videos into highlights, GBP revamp, website/profiles/analytics already running, "what I need from
+  you"). Mentions **DV** = the editing/posting team Jitty already uses; Stalin coordinates them. No
+  price in the document (price is said in the room, last). The pitch brief above is Stalin's private
+  playbook, not shown to Jitty.
 - **🖥️ TODO for the MAC session — "Evidence run" (added 2026-09-11, needed before the 12 Sep pitch).**
   The cloud session cannot reach Instagram/Meta/Google (egress-blocked — verified), so the
   before/after performance data must be collected on the Mac, ideally with **Claude in Chrome**

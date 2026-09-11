@@ -1,0 +1,168 @@
+<title>AutoDrive Content System</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --red:#C01418; --ink:#141112; --paper:#faf8f7; --card:#ffffff;
+    --body:#3f3a3b; --muted:#7a7274; --line:#e7e0df; --win:#0a7a33; --win-bg:#e9f7ee;
+    --accent-text:#C01418; --chip:#f3edec;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#f4f0ef; --paper:#161314; --card:#201c1d; --body:#cfc7c8; --muted:#948b8d;
+      --line:#37302f; --win:#5ecb8a; --win-bg:#1c2b21; --accent-text:#ef5a5e; --chip:#2a2425;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#f4f0ef; --paper:#161314; --card:#201c1d; --body:#cfc7c8; --muted:#948b8d;
+    --line:#37302f; --win:#5ecb8a; --win-bg:#1c2b21; --accent-text:#ef5a5e; --chip:#2a2425;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--body); font-family:Inter,"Liberation Sans",system-ui,sans-serif;
+    line-height:1.55; margin:0; padding:2.2rem 1.2rem 4rem; font-size:16px;}
+  main{max-width:720px; margin:0 auto;}
+  h1,h2{font-family:Anton,Impact,"Liberation Sans",sans-serif; font-weight:400; text-transform:uppercase;
+    color:var(--ink); letter-spacing:.01em; text-wrap:balance; margin:0;}
+  h1{font-size:clamp(2.4rem,7vw,3.4rem); line-height:1.02;}
+  h1 .r{color:var(--accent-text);}
+  h2{font-size:clamp(1.4rem,4vw,1.85rem); line-height:1.1; margin-bottom:.7rem;}
+  h2 .num{color:var(--accent-text); margin-right:.35rem;}
+  h3{font:700 .95rem Inter,sans-serif; color:var(--ink); margin:1.2rem 0 .35rem;}
+  .eyebrow{display:block; font:700 .72rem Inter,sans-serif; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent-text); margin-bottom:.5rem;}
+  p{margin:.6rem 0;}
+  strong{color:var(--ink);}
+  section{margin-top:2.6rem;}
+  .kicker{font-size:1.05rem; margin-top:1rem; max-width:60ch;}
+  .byline{margin-top:1rem; font-size:.85rem; color:var(--muted);}
+
+  ul.pts{margin:.6rem 0 0; padding-left:1.15rem;}
+  ul.pts li{margin:.4rem 0;}
+
+  .goal{background:var(--win-bg); border-radius:12px; padding:.9rem 1.1rem; margin-top:1rem;}
+  .goal .lbl{display:block; font:700 .7rem Inter,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--win); margin-bottom:.3rem;}
+  .goal ul{margin:.2rem 0 0; padding-left:1.1rem;}
+  .goal li{margin:.3rem 0; color:var(--ink);}
+  .goal p{margin:.2rem 0; color:var(--ink);}
+
+  .week{display:grid; grid-template-columns:repeat(6,1fr); gap:.4rem; margin-top:1rem;}
+  @media (max-width:560px){.week{grid-template-columns:repeat(3,1fr);}}
+  .day{background:var(--card); border:1px solid var(--line); border-radius:10px; padding:.6rem .5rem; text-align:center;}
+  .day b{display:block; font:700 .7rem Inter,sans-serif; letter-spacing:.1em; text-transform:uppercase; color:var(--muted);}
+  .day span{display:block; font-size:.78rem; color:var(--ink); margin-top:.25rem; line-height:1.3;}
+  .day.hot{border-color:var(--red);}
+  .day.hot span{color:var(--accent-text); font-weight:700;}
+
+  .need{background:var(--ink); border-radius:16px; padding:1.3rem 1.4rem; margin-top:1.2rem;}
+  :root[data-theme="dark"] .need{border:1px solid var(--line);}
+  .need h2{color:var(--paper); font-size:1.3rem;}
+  :root[data-theme="dark"] .need h2{color:#f4f0ef;}
+  .need ul{margin:.6rem 0 0; padding-left:1.1rem; color:#e6dfe0;}
+  .need li{margin:.35rem 0;}
+  .need li strong{color:#fff;}
+
+  .stack{display:grid; gap:.5rem; margin-top:.8rem;}
+  .stack .row{display:grid; grid-template-columns:auto 1fr; gap:.8rem; background:var(--card); border:1px solid var(--line);
+    border-radius:10px; padding:.7rem .9rem; align-items:baseline; font-size:.93rem;}
+  .stack .row .t{font:700 .72rem Inter,sans-serif; letter-spacing:.08em; text-transform:uppercase; color:var(--accent-text); white-space:nowrap;}
+
+  .foot{margin-top:2.8rem; padding-top:1.1rem; border-top:1px solid var(--line); font-size:.85rem; color:var(--muted);}
+  @media print{ body{padding:1rem .6rem;} section,.goal,.need,.day,.stack .row{break-inside:avoid;} h2,h3,.eyebrow{break-after:avoid;} }
+</style>
+
+<main>
+<header>
+  <span class="eyebrow">AutoDrive Salisbury Plain · The plan</span>
+  <h1>The AutoDrive <span class="r">Content System</span></h1>
+  <p class="kicker"><strong>What this is:</strong> a weekly system that keeps sixteen videos a month moving —
+    filmed, scripted, edited, posted at the right time, tracked — so you get your evenings back, and the
+    audience keeps growing instead of spiking and going quiet.</p>
+  <p class="byline">Prepared by Stalin · For Jitty · September 2026</p>
+</header>
+
+<section>
+  <h2><span class="num">1</span>Sixteen videos a month, filmed for the month</h2>
+  <ul class="pts">
+    <li><strong>Film 8 videos a fortnight or 4 a week</strong> — and slowly work up to 5–6 <em>quality</em> videos a week, not just more.</li>
+    <li><strong>Spread across the business:</strong> 1–2 videos per sector — servicing, problems and repairs, used cars, detailing, paint and panel.</li>
+    <li><strong>Hook and script every one.</strong> Pain-and-problem videos, each one laid out in advance. I only need you for <strong>one day a week or fortnight</strong> — the rest is mine.</li>
+    <li><strong>Thumbnails on everything.</strong> Right now the videos go up without one — they look wishy-washy and don't call out to the customer. A thumbnail that names the problem stops the scroll.</li>
+    <li><strong>DV posts; they don't manage.</strong> They write captions with AI and press post. People can tell — they don't engage with fake-sounding stuff. Social media has to be watched and adjusted based on what's performing. That's the part that's been missing.</li>
+  </ul>
+</section>
+
+<section>
+  <h2><span class="num">2</span>Four videos ready for the week ahead, every Friday</h2>
+  <div class="week">
+    <div class="day"><b>Mon</b><span>Post 5–6 pm</span></div>
+    <div class="day"><b>Tue</b><span>Post 5–6 pm</span></div>
+    <div class="day"><b>Wed</b><span>Post 5–6 pm</span></div>
+    <div class="day"><b>Thu</b><span>Post 5–6 pm</span></div>
+    <div class="day hot"><b>Fri</b><span>Next week's 4 videos confirmed by 8 pm</span></div>
+    <div class="day"><b>Sat</b><span>Post 5–6 pm</span></div>
+  </div>
+  <ul class="pts">
+    <li><strong>I post every day, Monday to Saturday, 5–6 pm</strong> — the time our audience is actually looking.</li>
+    <li><strong>Facebook groups:</strong> I'll post into them with DV's help at first — I want to see how they do it, then make it better.</li>
+    <li><strong>Facebook needs its own approach,</strong> not just crossposting the Instagram video like DV does now. I'll work that out first, then run it.</li>
+    <li><strong>Working towards being 8 videos ahead</strong> — the next fortnight already prepared, always.</li>
+  </ul>
+  <h3>How the week runs</h3>
+  <p>I personally check every video — edit it myself if it needs it, or send it back to the DV team and work
+    with them until it's right. <strong>Every Friday by 8 pm</strong> I send you the batch for the coming week
+    (4 videos, or 8 for the fortnight) for a yes. I'll call DV and set the system up with them myself.</p>
+  <div class="goal"><span class="lbl">The goal</span>
+    <ul>
+      <li><strong>You stop chasing them.</strong> No more messages back and forth during the week — one check on a Friday. One a fortnight once we're 8 ahead.</li>
+      <li><strong>Less after-hours work and bad communication.</strong> You focus on the workshop.</li>
+      <li><strong>A pipeline that's always ahead</strong> — and an audience that keeps growing. This is the compound effect: every week builds on the last instead of starting again.</li>
+      <li><strong>More data, better videos.</strong> I tweak the scripts as the numbers come in, to hit the people we actually want — Adelaide, our customers.</li>
+      <li><strong>Fortnightly check-in.</strong> I show you how we performed. You tell me anything that came from our online presence — an enquiry, a sale, a booking, someone who said "I saw your video." Then we double down on what worked.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">3</span>Weekly used-car videos</h2>
+  <ul class="pts">
+    <li><strong>I'll come and film the 4 used-car videos with you every week.</strong> There's a certain way to do them — I'll do it with you until we've perfected it.</li>
+    <li>They go into <strong>Instagram highlights and the same on Facebook</strong>, so the stock is always one tap away on the profile.</li>
+  </ul>
+  <div class="goal"><span class="lbl">The goal</span>
+    <p>As people come back to the profile each week — and as new people find it — they always see what's on the lot right now. The stock sells itself visually, every week, without you lifting the phone.</p>
+  </div>
+</section>
+
+<section>
+  <h2><span class="num">4</span>Google Business Profile revamp</h2>
+  <ul class="pts">
+    <li><strong>New business photos</strong>, and continual updates as new stock comes in and services change.</li>
+    <li><strong>Reviews, every job</strong> — and working towards video reviews from customers.</li>
+    <li>Photos refreshed monthly; details always right.</li>
+  </ul>
+  <div class="goal"><span class="lbl">The goal</span>
+    <p>A Google profile that's obviously alive — recent reviews, recent photos, current stock. When someone searches for a mechanic in Salisbury, it says <em>up to date and relevant</em> before they've read a word.</p>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">Already doing — the long-term foundation</span>
+  <h2>The part that's running today</h2>
+  <div class="stack">
+    <div class="row"><span class="t">Website</span><span>Upkeep — listings, prices, the booking flow, the tracked links. Every video ends at a door that collects the customer's car details before WhatsApp even opens.</span></div>
+    <div class="row"><span class="t">Profiles</span><span>Continual optimisation — bio, links, highlights, the bio-link animation, the easy booking path.</span></div>
+    <div class="row"><span class="t">Analytics</span><span>I measure everything, basically every day — especially when we're posting continually. Reported to you every fortnight or month, in plain English.</span></div>
+  </div>
+</section>
+
+<div class="need">
+  <h2>What I need from you</h2>
+  <ul>
+    <li><strong>One day a week (or fortnight) at the workshop</strong> for filming — I'll have the scripts ready, you just turn up.</li>
+    <li><strong>A yes on Friday by 8 pm</strong> to the coming week's videos. That's the only regular decision.</li>
+    <li><strong>Tell me what comes in.</strong> Any customer who mentions a video, a post, the website — a quick message is enough. That's how we know what to make more of.</li>
+  </ul>
+</div>
+
+<p class="foot">AutoDrive Salisbury Plain · 6 Lolands Rd, Salisbury Plain SA 5109 · autodrivesalisburyplain.com.au</p>
+</main>
