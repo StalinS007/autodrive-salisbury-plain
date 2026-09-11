@@ -1,0 +1,91 @@
+<title>The Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --red:#C01418; --ink:#141112; --paper:#faf8f7; --card:#ffffff;
+    --body:#3f3a3b; --muted:#7a7274; --line:#e7e0df; --win:#0a7a33; --win-bg:#e9f7ee;
+    --accent-text:#C01418; --chip:#f3edec;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#f4f0ef; --paper:#161314; --card:#201c1d; --body:#cfc7c8; --muted:#948b8d;
+      --line:#37302f; --win:#5ecb8a; --win-bg:#1c2b21; --accent-text:#ef5a5e; --chip:#2a2425;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#f4f0ef; --paper:#161314; --card:#201c1d; --body:#cfc7c8; --muted:#948b8d;
+    --line:#37302f; --win:#5ecb8a; --win-bg:#1c2b21; --accent-text:#ef5a5e; --chip:#2a2425;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--body); font-family:Inter,"Liberation Sans",system-ui,sans-serif;
+    line-height:1.55; margin:0; padding:2.2rem 1.2rem 4rem; font-size:16px;}
+  main{max-width:720px; margin:0 auto;}
+  h1,h2{font-family:Anton,Impact,"Liberation Sans",sans-serif; font-weight:400; text-transform:uppercase;
+    color:var(--ink); letter-spacing:.01em; text-wrap:balance; margin:0;}
+  h1{font-size:clamp(2.4rem,7vw,3.4rem); line-height:1.02;}
+  h1 .r{color:var(--accent-text);}
+  h2{font-size:clamp(1.4rem,4vw,1.85rem); line-height:1.1; margin-bottom:.7rem;}
+  h2 .num{color:var(--accent-text); margin-right:.35rem;}
+  h3{font:700 .95rem Inter,sans-serif; color:var(--ink); margin:1.2rem 0 .35rem;}
+  .eyebrow{display:block; font:700 .72rem Inter,sans-serif; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent-text); margin-bottom:.5rem;}
+  p{margin:.6rem 0;}
+  strong{color:var(--ink);}
+  section{margin-top:2.6rem;}
+  .kicker{font-size:1.05rem; margin-top:1rem; max-width:60ch;}
+  .byline{margin-top:1rem; font-size:.85rem; color:var(--muted);}
+  .src{font-size:.82rem; color:var(--muted); margin-top:.3rem;}
+
+  ul.pts{margin:.6rem 0 0; padding-left:1.15rem;}
+  ul.pts li{margin:.4rem 0;}
+
+  .goal{background:var(--win-bg); border-radius:12px; padding:.9rem 1.1rem; margin-top:1rem;}
+  .goal .lbl{display:block; font:700 .7rem Inter,sans-serif; letter-spacing:.12em; text-transform:uppercase; color:var(--win); margin-bottom:.3rem;}
+  .goal ul{margin:.2rem 0 0; padding-left:1.1rem;}
+  .goal li{margin:.3rem 0; color:var(--ink);}
+  .goal p{margin:.2rem 0; color:var(--ink);}
+
+  .tablewrap{overflow-x:auto; margin-top:1rem;}
+  table{width:100%; border-collapse:collapse; font-size:.92rem; min-width:520px;}
+  th{text-align:left; font:700 .7rem Inter,sans-serif; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--muted); padding:.4rem .6rem; border-bottom:2px solid var(--line);}
+  th.n{text-align:right;}
+  td{padding:.6rem; border-bottom:1px solid var(--line); vertical-align:top;}
+  td:first-child{font-weight:700; color:var(--ink);}
+  td.n{text-align:right; white-space:nowrap; font-variant-numeric:tabular-nums;}
+  td.nw{white-space:nowrap;}
+  tr.sum td{border-top:2px solid var(--ink); border-bottom:none; font-weight:700; color:var(--ink);}
+  tr.sum td.n{color:var(--accent-text);}
+
+  .foot{margin-top:2.8rem; padding-top:1.1rem; border-top:1px solid var(--line); font-size:.85rem; color:var(--muted);}
+  @media print{ body{padding:1rem .6rem;} section,.goal{break-inside:avoid;} h2,h3,.eyebrow{break-after:avoid;} }
+</style>
+
+<main>
+<header>
+  <span class="eyebrow">AutoDrive Salisbury Plain</span>
+  <h1>The <span class="r">Plan</span></h1>
+  <p class="byline">Prepared by Stalin · For Jitty · September 2026</p>
+</header>
+
+<section>
+  <h2>What this brings in</h2>
+  <p><strong>Through consistent posting</strong> — sixteen videos a month, every week, all year — the videos reach
+    about <strong>7,000 people a month</strong>, and <strong>700–1,400 of them are in South Australia</strong>, on top of
+    the Adelaide followers who see every post. We don't need many of them. We need a handful.</p>
+  <p class="src">Based on an ordinary post reaching ~430 people (Meta Business Suite, 1 Jan – 10 Sep, viral reel excluded)
+    and South Australia being 10–20% of viewers on the everyday reels.</p>
+
+  <div class="tablewrap"><table>
+    <tr><th>Sector</th><th>Average job</th><th>Even if only…</th><th class="n">New work / month</th><th>And then</th></tr>
+    <tr><td>Servicing</td><td class="nw">$300–500</td><td>5 people book</td><td class="n">$1,500–2,500</td><td>They come back twice a year. Offered the detail, tyres, aircon on the hoist.</td></tr>
+    <tr><td>Detailing</td><td class="nw">$200–700</td><td>3 people book</td><td class="n">$600–2,100</td><td>Easiest add-on: every service, every car sold, every private seller.</td></tr>
+    <tr><td>Used cars</td><td class="nw">$1,500–3,000 margin</td><td>1 car sells</td><td class="n">$1,500–3,000</td><td>The buyer becomes a service customer. Your best-ever video was a car video.</td></tr>
+    <tr><td>Paint &amp; panel</td><td class="nw">$800–3,000</td><td>2 jobs book</td><td class="n">$1,600–6,000</td><td>Nobody in the groups knows you do this yet. Bumper scuffs get asked about every week.</td></tr>
+    <tr class="sum"><td>Together</td><td></td><td>11 people a month</td><td class="n">$5,200–13,600</td><td>Out of ~7,000 who saw the videos — about 1 in 100 of the locals.</td></tr>
+  </table></div>
+</section>
+
+<p class="foot">AutoDrive Salisbury Plain · 6 Lolands Rd, Salisbury Plain SA 5109 · autodrivesalisburyplain.com.au</p>
+</main>
