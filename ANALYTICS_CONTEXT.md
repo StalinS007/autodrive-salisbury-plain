@@ -108,3 +108,27 @@ name per platform (don't invent variants).
 - Review count climbing past 20; GBP phone fixed to 520 230.
 - Steady organic sessions (5–15/week is realistic for a young local trade site) with
   engagement holding >50%.
+
+## Evidence run 2026-09-11 (for the 12 Sep pitch) — numbers, not images
+
+Pivot date (owner): the week of **6 Jul 2026** (video direction given to Jitty). Equal windows:
+**Before = 30 Apr → 5 Jul**, **After = 6 Jul → 11 Sep** (67 days each). Screenshots live in
+`~/Desktop/AutoDrive-Evidence/` on the Mac.
+
+### Viral reel — "Best 7-seater cars in Australia?" (posted ~8 Sep 2026, crossposted IG + FB)
+Source: Instagram app → Professional dashboard → the reel → **Reel insights** (Overview /
+Engagement / Audience tabs), captured 11 Sep 23:49 (3 days after posting).
+- **Views 125,477** (Instagram 69,044 + Facebook 56,433) · **Viewers 57,686** · avg watch time **28 s**
+  on a 1:25 reel · views still climbing on 11 Sep (IG curve: ~55K by 9 Sep, ~65K by 10 Sep, 69K by 11 Sep;
+  "your typical reel" baseline is flat at ~0 — i.e. this is >50× a normal post).
+- **Actions after viewing: 1.9K profile visits · 643 follows · 43 bio-link clicks.**
+- Interactions: likes 780 (IG 553 / FB 227) · comments 77 (49 / 28) · shares **513** · saves 182 · reposts 11.
+- Instagram's own benchmarks ("what affects your views"): skip rate 32.1% (**lower** than typical), share
+  rate 0.9%, like rate 1.0%, save rate 0.3%, comment rate 0.1% (all **higher** than typical).
+- Audience: **99% non-followers** (1% followers) → pure discovery. Sources of views: Reels tab 64.0%,
+  Feed 25.3%, Explore 8.7%, Profile 1.1%, Stories 0.2%. Countries: Australia 51.8%, UK 11.2%,
+  India 8.6%, NZ 8.1%, Canada 5.1% (half the audience is local-ish; the rest is the diaspora effect).
+- Retention curve: ~50% still watching at ~10 s, ~15% at the end.
+- Pitch framing: 643 follows in 3 days vs 485 followers total on 7 Sep (profile screenshot) → the one reel
+  roughly **doubled the account's following**; 43 bio-link clicks from a single post is more than the
+  whole `instagram / bio` GA row produced in a typical week.
