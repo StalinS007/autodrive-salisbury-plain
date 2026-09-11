@@ -297,8 +297,18 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   numbers with GA's (instagram/bio = 160 sessions / 44% of traffic, post-day spikes,
   Cyril's ABS booking as the end-to-end proof) and re-render the PDF. Any session can do
   this; keep the artifact URL the same.
-- These files ARE publicly reachable on the deployed site (Cloudflare serves the whole
-  repo) — same accepted trade-off as the context .md files. Nothing secret goes in here.
+- **`marketing/AutoDrive-Pitch-Brief.pdf`** (+ `pitch-brief.html` source, added 2026-09-11):
+  Stalin's briefing for the retainer pitch to Jitty (12 Sep 2026) — AU market pricing research,
+  scope priced line-by-line (~$4.7–9.1k/mo market vs $2,500 asked), "already delivered" list
+  with market values, break-even in cars/services, compound-effect argument, Royalty Auto
+  Service case study, multicultural edge, a 3-tier ladder (Maintain $1,500 / **Grow $2,500
+  recommended** / Dominate $3,800), the anchoring script, objection handling, walk-away line.
+  Sections are tagged "show Jitty" vs "your eyes only". **Next step:** once Stalin fixes the
+  Grow price, build the 2-page Jitty-facing proposal from the "show Jitty" sections.
+- **⚠ `marketing/` is publicly reachable on the deployed site** (Cloudflare serves the whole
+  repo) — same accepted trade-off as the context .md files. Nothing secret goes in here. The
+  pitch brief contains Stalin's negotiation notes; if that ever matters, add a `_redirects`
+  rule or move it out of the repo before merging to `main`.
 
 ---
 

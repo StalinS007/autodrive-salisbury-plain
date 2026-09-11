@@ -1,0 +1,469 @@
+<title>The $2,500 Case</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap">
+<style>
+  :root{
+    --red:#C01418; --red-deep:#930E12; --ink:#141112; --paper:#faf8f7; --card:#ffffff;
+    --body:#3f3a3b; --muted:#7a7274; --line:#e7e0df; --win:#0a7a33; --win-bg:#e9f7ee;
+    --accent-text:#C01418; --chip:#f3edec; --warn:#8a5a00; --warn-bg:#fbf1dc; --gold:#b8860b;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --ink:#f4f0ef; --paper:#161314; --card:#201c1d; --body:#cfc7c8; --muted:#948b8d;
+      --line:#37302f; --win:#5ecb8a; --win-bg:#1c2b21; --accent-text:#ef5a5e; --chip:#2a2425;
+      --warn:#f0c060; --warn-bg:#2b2416; --gold:#e0b04a;
+    }
+  }
+  :root[data-theme="dark"]{
+    --ink:#f4f0ef; --paper:#161314; --card:#201c1d; --body:#cfc7c8; --muted:#948b8d;
+    --line:#37302f; --win:#5ecb8a; --win-bg:#1c2b21; --accent-text:#ef5a5e; --chip:#2a2425;
+    --warn:#f0c060; --warn-bg:#2b2416; --gold:#e0b04a;
+  }
+  *{box-sizing:border-box}
+  body{background:var(--paper); color:var(--body); font-family:Inter,"Liberation Sans",system-ui,sans-serif;
+    line-height:1.6; margin:0; padding:2.2rem 1.2rem 4rem; font-size:16px;}
+  main{max-width:760px; margin:0 auto;}
+  h1,h2,h3.hook{font-family:Anton,Impact,"Liberation Sans",sans-serif; font-weight:400; text-transform:uppercase;
+    color:var(--ink); letter-spacing:.01em; text-wrap:balance; margin:0;}
+  h1{font-size:clamp(2.4rem,7vw,3.6rem); line-height:1.02;}
+  h1 .r{color:var(--accent-text);}
+  h2{font-size:clamp(1.5rem,4vw,2rem); line-height:1.1; margin-bottom:.9rem;}
+  h3{font:700 1rem Inter,sans-serif; color:var(--ink); margin:1.4rem 0 .4rem;}
+  .eyebrow{display:block; font:700 .72rem Inter,sans-serif; letter-spacing:.14em;
+    text-transform:uppercase; color:var(--accent-text); margin-bottom:.5rem;}
+  p{margin:.65rem 0;}
+  strong{color:var(--ink);}
+  section{margin-top:3rem;}
+  .kicker{font-size:1.05rem; margin-top:1rem; max-width:62ch;}
+  .byline{margin-top:1.1rem; font-size:.85rem; color:var(--muted);}
+  a{color:var(--accent-text);}
+
+  .tag{display:inline-block; font:700 .68rem Inter,sans-serif; letter-spacing:.1em; text-transform:uppercase;
+    padding:.2rem .55rem; border-radius:4px; margin-left:.6rem; vertical-align:middle;}
+  .tag.you{background:var(--warn-bg); color:var(--warn);}
+  .tag.show{background:var(--win-bg); color:var(--win);}
+
+  .tldr{background:var(--card); border:1px solid var(--line); border-left:5px solid var(--red);
+    border-radius:12px; padding:1.1rem 1.3rem; margin-top:1.4rem;}
+  .tldr ol{margin:.4rem 0 0; padding-left:1.2rem;}
+  .tldr li{margin:.5rem 0;}
+
+  .stats{display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:.8rem; margin-top:1.4rem;}
+  .stat{background:var(--card); border:1px solid var(--line); border-radius:12px; padding:.9rem 1rem;}
+  .stat b{display:block; font-family:Anton,Impact,"Liberation Sans",sans-serif; font-weight:400; font-size:1.7rem;
+    color:var(--accent-text); line-height:1.1; font-variant-numeric:tabular-nums;}
+  .stat span{font-size:.8rem; color:var(--muted); line-height:1.35; display:block; margin-top:.2rem;}
+
+  .rule{background:var(--chip); border-radius:12px; padding:.9rem 1.1rem; margin-top:1rem;
+    font-size:.95rem; color:var(--ink); font-weight:600;}
+
+  .tablewrap{overflow-x:auto; margin-top:1.1rem;}
+  table{width:100%; border-collapse:collapse; font-size:.92rem; min-width:520px;}
+  th{text-align:left; font:700 .72rem Inter,sans-serif; letter-spacing:.1em; text-transform:uppercase;
+    color:var(--muted); padding:.4rem .6rem; border-bottom:2px solid var(--line);}
+  td{padding:.6rem; border-bottom:1px solid var(--line); vertical-align:top;}
+  td:first-child{font-weight:700; color:var(--ink);}
+  td.n{font-variant-numeric:tabular-nums; white-space:nowrap; text-align:right;}
+  th.n{text-align:right;}
+  tr.sum td{border-top:2px solid var(--ink); border-bottom:none; font-weight:700; color:var(--ink);}
+  tr.hi td{background:var(--win-bg);}
+
+  ul.tips{margin:1rem 0 0; padding-left:1.2rem;}
+  ul.tips li{margin:.45rem 0;}
+
+  .done{list-style:none; margin:1.1rem 0 0; padding:0; display:grid; gap:.5rem;}
+  .done li{display:grid; grid-template-columns:1fr auto; gap:1rem; background:var(--card);
+    border:1px solid var(--line); border-radius:10px; padding:.7rem .95rem; font-size:.92rem; align-items:start;}
+  .done li b{color:var(--ink);}
+  .done .val{font-variant-numeric:tabular-nums; color:var(--muted); white-space:nowrap; font-size:.82rem; font-weight:700;}
+
+  .ladder{display:grid; grid-template-columns:repeat(3,1fr); gap:.8rem; margin-top:1.3rem;}
+  @media (max-width:640px){.ladder{grid-template-columns:1fr;}}
+  .tier{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:1.1rem 1.1rem 1rem;
+    display:flex; flex-direction:column;}
+  .tier.rec{border:2px solid var(--red);}
+  .tier .nm{font-family:Anton,Impact,"Liberation Sans",sans-serif; text-transform:uppercase; font-size:1.2rem; color:var(--ink);}
+  .tier .pr{font-family:Anton,Impact,"Liberation Sans",sans-serif; font-size:2rem; color:var(--accent-text); line-height:1; margin:.35rem 0 .15rem; font-variant-numeric:tabular-nums;}
+  .tier .pr small{font:600 .75rem Inter,sans-serif; color:var(--muted);}
+  .tier .who{font-size:.78rem; color:var(--muted); margin-bottom:.6rem;}
+  .tier ul{margin:0; padding-left:1.05rem; font-size:.85rem; flex:1;}
+  .tier li{margin:.3rem 0;}
+  .tier li.no{color:var(--muted); text-decoration:line-through;}
+  .tier .badge{align-self:flex-start; background:var(--red); color:#fff; font:700 .66rem Inter,sans-serif;
+    letter-spacing:.1em; text-transform:uppercase; padding:.2rem .55rem; border-radius:999px; margin-bottom:.5rem;}
+
+  .say-card{background:var(--ink); border-radius:16px; padding:1.5rem 1.4rem; margin-top:1.3rem;}
+  :root[data-theme="dark"] .say-card{border:1px solid var(--line);}
+  .say-card .say{font-family:Anton,Impact,"Liberation Sans",sans-serif; text-transform:uppercase; font-size:1.3rem;
+    line-height:1.25; color:var(--paper); margin:0;}
+  .say-card .say em{color:#ef5a5e; font-style:normal;}
+  .say-card p{color:#b3aaab; font-size:.88rem; margin:.7rem 0 0;}
+  :root[data-theme="dark"] .say-card .say{color:#f4f0ef;}
+
+  .steps{list-style:none; margin:1.2rem 0 0; padding:0; display:flex; flex-direction:column; gap:.55rem; counter-reset:st;}
+  .steps li{display:grid; grid-template-columns:2.2rem 1fr; gap:.7rem; background:var(--card);
+    border:1px solid var(--line); border-radius:12px; padding:.85rem 1rem; align-items:start;}
+  .steps li::before{counter-increment:st; content:counter(st); font-family:Anton,Impact,"Liberation Sans",sans-serif;
+    font-size:1.5rem; color:var(--accent-text); line-height:1;}
+  .steps b{color:var(--ink);}
+  .steps .q{display:block; margin-top:.35rem; padding:.55rem .75rem; background:var(--chip); border-radius:8px;
+    font-size:.9rem; color:var(--ink); font-style:italic;}
+
+  .obj{margin-top:1rem; border:1px solid var(--line); border-radius:12px; overflow:hidden;}
+  .obj > div{padding:.8rem 1rem;}
+  .obj .he{background:var(--chip); font-weight:700; color:var(--ink);}
+  .obj .an{background:var(--card); font-size:.93rem;}
+  .obj .an b{color:var(--accent-text);}
+
+  .warnbox{background:var(--warn-bg); border-radius:12px; padding:1rem 1.1rem; margin-top:1rem; color:var(--ink); font-size:.93rem;}
+  .warnbox b{color:var(--warn);}
+
+  .foot{margin-top:3.2rem; padding-top:1.2rem; border-top:1px solid var(--line); font-size:.85rem; color:var(--muted);}
+  .src{font-size:.8rem; color:var(--muted); margin-top:1.2rem;}
+  .src li{margin:.25rem 0;}
+  @media print{ body{padding:1.2rem .6rem;} section{break-inside:auto;} .tier,.stat,.steps li,.obj,.tldr,.done li{break-inside:avoid;}
+    .eyebrow,h2,h3{break-after:avoid;} section{break-before:auto;} }
+</style>
+
+<main>
+<header>
+  <span class="eyebrow">AutoDrive Salisbury Plain · Pitch briefing</span>
+  <h1>The <span class="r">$2,500</span> Case</h1>
+  <p class="kicker"><strong>What this is:</strong> the market research, the value maths, and the exact
+    way to anchor a $2,500-a-month retainer with Jitty tomorrow — with a walk-away line you can
+    actually hold. Sections tagged <span class="tag show">show Jitty</span> can go straight into his
+    proposal; sections tagged <span class="tag you">your eyes only</span> are your playbook.</p>
+  <p class="byline">Prepared for Stalin · Friday 11 September 2026 · Pitch: Saturday 12 September</p>
+</header>
+
+<section>
+  <span class="eyebrow">Read this first</span>
+  <h2>The short version</h2>
+  <div class="tldr">
+    <ol>
+      <li><strong>$2,500 is not expensive — it's under market for the scope.</strong> Priced line by line at
+        Australian freelance rates, what you're proposing costs $4,800–6,200 a month. Auto-specific agencies
+        (US) sit at $1,500–6,000/mo <em>before</em> video. You are selling a ~50% discount, not a premium.</li>
+      <li><strong>Break-even is one used car a month.</strong> Or eleven Standard services. Or one panel
+        job plus six services. Say it in cars, not dollars — that's the unit Jitty thinks in.</li>
+      <li><strong>Anchor from the top.</strong> Show a $3,800 option first, then $2,500 as "the one that
+        fits you", then a deliberately thin $1,500 that is obviously a downgrade. He should feel he's choosing
+        the middle, not being sold the top.</li>
+      <li><strong>Lead with what he's already received.</strong> The website, the booking flow, the
+        tracking, the playbook, the calendar tool — roughly $8–12k of work at market rates, delivered on
+        trust. The trial has already run. You're not asking him to gamble; you're asking him to stop
+        getting it free.</li>
+      <li><strong>The walk-away is a scope line, not a threat.</strong> Below $2,500 you cannot run a
+        <em>system</em> — only posts. And posts are exactly what he has now. Say that plainly, once, and mean it.</li>
+    </ol>
+  </div>
+</section>
+
+<section>
+  <span class="eyebrow">What's in the market <span class="tag show">show Jitty</span></span>
+  <h2>What this costs when you buy it from anyone else</h2>
+  <p>Australian 2026 pricing for the pieces you're bundling. Ranges are wide because scope is wide —
+    the number that matters is the last table, where your scope is priced out line by line.</p>
+  <div class="tablewrap"><table>
+    <tr><th>Service (Australia, 2026)</th><th class="n">Typical price</th><th>Notes</th></tr>
+    <tr><td>Freelance social media manager, light</td><td class="n">$500–1,500 / mo</td><td>Few posts, one or two platforms, no video, no filming</td></tr>
+    <tr><td>Agency social management, small business</td><td class="n">$1,000–2,000 / mo</td><td>Two platforms, graphics + captions, monthly report. Video costs extra</td></tr>
+    <tr><td>Agency social management with video</td><td class="n">$2,000–8,000 / mo</td><td>"Most owners who want it genuinely handled end up in the low thousands"</td></tr>
+    <tr><td>Social content package (video-led)</td><td class="n">from $2,000 / mo</td><td>Vidico's floor for ongoing short-form content</td></tr>
+    <tr><td>Videographer, day rate</td><td class="n">$800–2,500 / day</td><td>Editing billed separately, $50–110 / hr</td></tr>
+    <tr><td>Batch of 3–6 short-form videos, one shoot day</td><td class="n">$3,000–8,000</td><td>Shot and edited for Instagram / YouTube — a single batch</td></tr>
+    <tr><td>Editing only, one reel</td><td class="n">$30–150 each</td><td>You supply footage; they cut it</td></tr>
+    <tr><td>UGC creator, per video</td><td class="n">$150–800 each</td><td>Beginner to intermediate; established creators $1,000+</td></tr>
+    <tr><td>Auto-repair marketing agencies (US)</td><td class="n">US$1,500–6,000 / mo</td><td>Shop Marketing Pros: US$2,899–4,795/mo on 18-month terms. Ad spend on top</td></tr>
+    <tr><td>In-house social media manager</td><td class="n">$80–95k / yr</td><td>≈ $7,500–8,800 / mo once super and on-costs are added</td></tr>
+  </table></div>
+
+  <h3>Your scope, priced at the bottom of those ranges</h3>
+  <div class="tablewrap"><table>
+    <tr><th>What you're proposing (per month)</th><th class="n">Market low</th><th class="n">Market high</th></tr>
+    <tr><td>4 × half-day shoots at the workshop (3 reels each)</td><td class="n">$1,600</td><td class="n">$3,000</td></tr>
+    <tr><td>~20 reels edited, captioned, thumbnailed, scheduled</td><td class="n">$1,000</td><td class="n">$2,000</td></tr>
+    <tr><td>Weekly used-car inventory video</td><td class="n">$300</td><td class="n">$600</td></tr>
+    <tr><td>Instagram + Facebook + community groups run daily</td><td class="n">$800</td><td class="n">$1,500</td></tr>
+    <tr><td>Google Business Profile: photos, posts, reviews, Q&amp;A</td><td class="n">$300</td><td class="n">$600</td></tr>
+    <tr><td>Website upkeep — listings, prices, booking flow, tracking</td><td class="n">$300</td><td class="n">$600</td></tr>
+    <tr><td>Fortnightly performance report + strategy call</td><td class="n">$400</td><td class="n">$800</td></tr>
+    <tr class="sum"><td>Market total</td><td class="n">$4,700</td><td class="n">$9,100</td></tr>
+    <tr class="hi"><td>What you're asking</td><td class="n" colspan="2">$2,500 — roughly half the market floor</td></tr>
+  </table></div>
+  <div class="rule">The sentence for Jitty: "If you rang an agency in Adelaide for exactly this, the cheapest quote you'd get is about five thousand a month. I'm asking for half, because I already know your business."</div>
+</section>
+
+<section>
+  <span class="eyebrow">Already delivered <span class="tag show">show Jitty</span></span>
+  <h2>What he has received so far — on trust</h2>
+  <p>This is the most persuasive slide you own and you're the only one who can present it. Every line is
+    real, and every line has a market price. He's been getting the trial for free; tomorrow is the day it
+    becomes a partnership.</p>
+  <ul class="done">
+    <li><span><b>Website rebuilt</b> — mobile-first, services, used cars, paint &amp; panel, reviews, map, schema</span><span class="val">$3,000–8,000</span></li>
+    <li><span><b>Booking flow</b> — date picker, car make / model / year / km, issue description, straight into WhatsApp as a quote-ready lead</span><span class="val">$1,500–3,000</span></li>
+    <li><span><b>Service pricing tiers</b> — Basic $149 / Standard $229 / Premium $329, desktop table + phone cards</span><span class="val">$400–800</span></li>
+    <li><span><b>Used-car listings</b> — per-car WhatsApp buttons so we know which car every enquiry is about</span><span class="val">$600–1,200</span></li>
+    <li><span><b>Google Analytics + tracked links</b> — Instagram, Google, Facebook, groups each measured separately</span><span class="val">$500–1,500</span></li>
+    <li><span><b>Booking confirmation + calendar invites</b> — a tool that sends customers a real calendar invite</span><span class="val">$1,000–2,000</span></li>
+    <li><span><b>Reel Playbook</b> — the content strategy, ten ready-to-shoot scripts, the standard CTA</span><span class="val">$800–1,500</span></li>
+    <li><span><b>Bio-link animation, thumbnails, Google profile + Facebook page links fixed</b></span><span class="val">$400–900</span></li>
+    <li><span><b>Total — delivered before a single invoice</b></span><span class="val" style="color:var(--accent-text)">≈ $8,000–19,000</span></li>
+  </ul>
+  <p style="margin-top:1rem">Use the low end out loud ("about eight thousand dollars of work") — it's
+    unarguable, and understatement reads as confidence.</p>
+</section>
+
+<section>
+  <span class="eyebrow">The value maths <span class="tag show">show Jitty</span></span>
+  <h2>What $2,500 has to bring back</h2>
+  <p>This is the section that moves an owner. Not "engagement" — <strong>cars through the door</strong>.</p>
+  <div class="stats">
+    <div class="stat"><b>$82</b><span>per day — what $2,500 / month costs. Less than one hour of workshop labour</span></div>
+    <div class="stat"><b>1 car</b><span>one used-car sale's margin (≈ $1,500–2,500) covers most or all of the month</span></div>
+    <div class="stat"><b>11</b><span>Standard services at $229 = $2,519. Roughly one extra booking every three days</span></div>
+    <div class="stat"><b>$5,500</b><span>what one <em>retained</em> customer is worth over 8 years at Jitty's prices (2 visits / yr × $229 × 1.5 cars). US benchmark: $14,000</span></div>
+  </div>
+
+  <h3>Break-even, in the units Jitty counts</h3>
+  <div class="tablewrap"><table>
+    <tr><th>Mix that pays for the month</th><th>Cars serviced</th><th>Used cars sold</th><th>Panel jobs</th></tr>
+    <tr><td>Service-only</td><td>11 Standard</td><td>—</td><td>—</td></tr>
+    <tr><td>Balanced (most realistic)</td><td>4</td><td>1</td><td>—</td></tr>
+    <tr><td>Panel-led</td><td>6</td><td>—</td><td>1 ($800+ job)</td></tr>
+    <tr><td>One good week</td><td>2</td><td>1</td><td>1</td></tr>
+  </table></div>
+  <p>Everything past that line is profit — and the point of a system is that it doesn't stop at break-even.
+    A customer won by a reel this month is still coming back in 2030. Retention programs alone lift workshop
+    revenue 15–25% a year; shops that run them keep 60–70% of customers instead of watching them drift to
+    whoever's cheaper on Google that week.</p>
+  <div class="rule">Say it as a question: "If this brings you one extra used-car buyer a month, does it pay for itself?" Let him answer. He'll say yes — and now he's made the argument for you.</div>
+</section>
+
+<section>
+  <span class="eyebrow">Why a system, not posts <span class="tag show">show Jitty</span></span>
+  <h2>The compound effect — and why random posting throws it away</h2>
+  <p>What Jitty does now: post when he remembers, get a spike when something lands, nothing follows.
+    That's the pattern that makes owners say "social media doesn't work". It does — but only the parts
+    that <em>accumulate</em>.</p>
+  <div class="tablewrap"><table>
+    <tr><th>Asset</th><th>How it compounds</th><th>What kills it</th></tr>
+    <tr><td>Content library</td><td>Every symptom reel keeps getting found — Instagram, TikTok and Google all index reels as search results now. A "brakes squealing?" video posted in September still books jobs in March.</td><td>Random topics with no CTA. Views with nowhere to go.</td></tr>
+    <tr><td>Followers</td><td>Each viral reel converts a slice of viewers into followers who see the <em>next</em> one. 50 reels at 2% is a local audience that shows up for every post.</td><td>A viral hit with no next post. The audience arrives and finds an empty room.</td></tr>
+    <tr><td>Google reviews</td><td>91% of consumers say verified reviews drive their confidence. Compared side by side, the mechanic with more reviews wins without the customer thinking about it.</td><td>Not asking. Every unreviewed happy customer is a compounding loss.</td></tr>
+    <tr><td>Google Business Profile</td><td>Profiles with 10+ photos get up to 2× the customer actions; photos alone bring 42% more direction requests. 76–88% of local searchers act within 24 hours.</td><td>A profile last updated when the shop opened.</td></tr>
+    <tr><td>The website funnel</td><td>Every reel now ends at a door that collects make, model, year, km and the problem before WhatsApp even opens. The door doesn't get tired.</td><td>"DM me" — leads lost in a chat thread nobody follows up.</td></tr>
+  </table></div>
+  <p style="margin-top:1rem">The evidence from content that's measured: consistent programs show ROI climbing
+    year on year (one benchmark set: ~300% at month 12, ~700% at month 24, ~1,100% at month 36) because
+    the old content is still working while the new content is added. Paid ads stop the moment the money stops;
+    organic content is the only channel where month 18 is cheaper than month 1.</p>
+  <div class="rule">The line: "You've already had a video go viral. What did you get from it? That's not a video problem — that's a system problem. The system is what I'm selling."</div>
+</section>
+
+<section>
+  <span class="eyebrow">Mechanics who did it <span class="tag show">show Jitty</span></span>
+  <h2>What happens when a workshop takes this seriously</h2>
+  <p><strong>Royalty Auto Service, St Marys, Georgia.</strong> A father-and-son independent shop. Two years of
+    consistent short-form video — not polished, just real repairs explained to camera. Result: customers now
+    drive from Alabama, the Carolinas and Delaware, some staying overnight in a hotel, to get their car fixed
+    at "the shop from YouTube". A third location is opening. Their own advice from the trade press:
+    <em>simpler topics perform best</em> (their breakout video was a window reset), and
+    <em>authenticity beats polish every time</em>. That's Jitty's exact advantage — he's authentic on camera
+    already.</p>
+  <p><strong>Australia.</strong> The honest picture: no Australian workshop has gone that big on video yet —
+    which is the opportunity, not the caveat. What the local data does show is that the decision is made
+    online: car owners Google first, and the workshop in the top three map results with the best reviews
+    gets the booking. AutoGuru's national "Top Mechanics" list is built on review volume. A Brisbane
+    workshop with only 260 Instagram followers has held a top-5 AutoGuru rating three years running —
+    the lesson being that <em>local trust signals</em> (reviews, profile, consistency) matter more than
+    follower counts. Jitty has the 5.0★ rating; the system's job is to point every video at it.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Jitty's unfair advantage <span class="tag show">show Jitty</span></span>
+  <h2>The community edge no agency can copy</h2>
+  <p>22.8% of Australians speak a language other than English at home. India is now among the top five
+    countries of birth (673,000 people), up 47.9% in five years — the fastest-growing community in the
+    country. Brands that speak to multicultural customers directly see 15–20% higher retention with those
+    customers.</p>
+  <p>Jitty already gets most of his work from the Adelaide Indian Community groups. An agency would
+    treat that as a footnote. Your system treats it as the core: a Malayalam or Hindi hook line on the
+    reels shared into the groups, in-language captions on the ones that matter, the community-group links
+    tracked separately so you both see which group sends the customers. Nobody else in Salisbury is doing
+    this. That is the moat.</p>
+  <div class="rule">Frame it as protecting what he built: "The groups are rented land — one admin change and you're gone. The website, the reviews, the followers are yours. I'm moving your customers onto land you own."</div>
+</section>
+
+<section>
+  <span class="eyebrow">Your own numbers <span class="tag show">show Jitty</span></span>
+  <h2>The evidence you already have</h2>
+  <div class="stats">
+    <div class="stat"><b>44%</b><span>of all website visits come from the Instagram bio link — the reels are already the engine</span></div>
+    <div class="stat"><b>29.9K</b><span>Instagram views in 30 days, from unplanned posting</span></div>
+    <div class="stat"><b>2–3×</b><span>website traffic on the days a reel lands, versus quiet days</span></div>
+    <div class="stat"><b>1 → ?</b><span>Cyril's ABS booking: reel → link → car details → WhatsApp. It works once. The system makes it happen weekly.</span></div>
+  </div>
+  <p style="margin-top:1rem">If you get the Instagram Insights screenshots before the meeting (90-day views,
+    link taps, follower growth, follower / non-follower split), put them beside these — Instagram's numbers
+    and Google's numbers agreeing is the most credible thing you can show.</p>
+</section>
+
+<section>
+  <span class="eyebrow">Pricing architecture <span class="tag you">your eyes only</span></span>
+  <h2>Three options — built so he picks the middle</h2>
+  <p>People choose the middle. Your job is to make the top credible, the bottom obviously thin, and the
+    middle exactly what you want. The top isn't a decoy — you'd deliver it happily — but it exists so that
+    $2,500 reads as reasonable rather than as the ceiling.</p>
+  <div class="ladder">
+    <div class="tier">
+      <span class="nm">Maintain</span>
+      <span class="pr">$1,500<small> / mo</small></span>
+      <span class="who">"Keep the lights on"</span>
+      <ul>
+        <li>2 reels a week — <em>Jitty films</em>, you edit</li>
+        <li>Instagram + Facebook page managed</li>
+        <li>Google profile kept current</li>
+        <li>Monthly report</li>
+        <li class="no">Filming days at the workshop</li>
+        <li class="no">Weekly used-car video</li>
+        <li class="no">Community-group system</li>
+        <li class="no">Website upkeep</li>
+      </ul>
+    </div>
+    <div class="tier rec">
+      <span class="badge">Recommended</span>
+      <span class="nm">Grow</span>
+      <span class="pr">$2,500<small> / mo</small></span>
+      <span class="who">"The system"</span>
+      <ul>
+        <li><strong>5 posts a week</strong> — 3 filmed by you at a weekly half-day shoot, 2 by Jitty</li>
+        <li><strong>Weekly used-car inventory video</strong></li>
+        <li>Instagram + Facebook + community groups, daily</li>
+        <li>Google profile: photos, posts, review requests</li>
+        <li>Photography at every shoot</li>
+        <li>Website kept current — listings, prices, booking flow</li>
+        <li>2-week content buffer, always</li>
+        <li>Fortnightly report + call</li>
+      </ul>
+    </div>
+    <div class="tier">
+      <span class="nm">Dominate</span>
+      <span class="pr">$3,800<small> / mo</small></span>
+      <span class="who">"Own Salisbury"</span>
+      <ul>
+        <li>Everything in Grow</li>
+        <li><strong>In-language pack</strong> — Malayalam / Hindi / Punjabi hooks and captions</li>
+        <li>Paid boosting managed (ad spend on top)</li>
+        <li>Monthly review-generation campaign to every customer</li>
+        <li>Two shoot days a month</li>
+        <li>Quarterly strategy session</li>
+        <li>48-hour turnaround on anything</li>
+      </ul>
+    </div>
+  </div>
+
+  <h3>Terms that protect you</h3>
+  <ul class="tips">
+    <li><strong>6-month minimum, price locked.</strong> Content compounds; three months proves nothing and he'll judge it at month two. Say "six months, we review at three" — the review makes the six feel safe.</li>
+    <li><strong>Paid on the 1st, in advance.</strong> Not "end of month". You're funding shoots and tools up front.</li>
+    <li><strong>Ad spend, print, and paid tools are his.</strong> Your fee is your work. Never absorb Meta's bill.</li>
+    <li><strong>Add-ons instead of discounts.</strong> If he wants more than Grow but baulks at Dominate: in-language pack +$450, extra shoot day +$450, boosting management +$400 or 15% of spend. The $2,500 base never moves; the "more" you want comes from here.</li>
+    <li><strong>What you'll never do:</strong> guarantee virality, guarantee a booking count, or work without the two-week buffer. Say the first two out loud — refusing to promise is what makes the rest believable.</li>
+  </ul>
+
+  <div class="warnbox"><b>The one number you don't know: his revenue.</b> Australian small businesses spend 7–10% of revenue on marketing;
+    $2,500 a month sits at 7–10% of $25–36k a month ($300–430k a year). If he does that, this is a normal
+    budget. If he does much less — say under $20k a month — $2,500 is over 12% and will feel like a bite,
+    and you'll need the used-car margin argument to do the heavy lifting. Try to find out before you quote,
+    even roughly: "How many cars a week do you put through?" × his average ticket gets you close enough.</div>
+</section>
+
+<section>
+  <span class="eyebrow">How to anchor it <span class="tag you">your eyes only</span></span>
+  <h2>The order of the conversation</h2>
+  <p>Value-based selling means the price arrives last, after he's already agreed on what it's worth.
+    Don't let the number come up early. If he asks, say "I'll get to that — I want to show you what
+    you're paying for first," and keep going.</p>
+  <ol class="steps">
+    <li><span><b>Open with what he's already got.</b> Walk the "already delivered" list, out loud, in his shop, on his phone. Show him the booking flow working. End with the low number.
+      <span class="q">"That's about eight thousand dollars of work, done on a handshake. I did it because I believed the business deserved it. Now I want to show you what happens when it's a system instead of a favour."</span></span></li>
+    <li><span><b>Show his own numbers.</b> The 44%, the 29.9K, the spike days, Cyril's booking. Not slides — the actual analytics screen.
+      <span class="q">"Your reels are already 44% of your website traffic. You did that without trying. Imagine five a week, every week, all ending at the same door."</span></span></li>
+    <li><span><b>Name the failure mode without blaming him.</b>
+      <span class="q">"You had one go viral. What did we get from it? Nothing — because nothing was ready to catch it. That's not your fault; it's what happens without a system."</span></span></li>
+    <li><span><b>Ask the break-even question and wait.</b>
+      <span class="q">"If this brings you one extra used-car buyer a month — just one — does it pay for itself?" <em>Then say nothing until he answers.</em></span></span></li>
+    <li><span><b>Give the market number before yours.</b>
+      <span class="q">"If you rang an agency for this — filming, editing, five posts a week, the groups, Google, the website — the cheapest quote you'd get is about five thousand a month."</span></span></li>
+    <li><span><b>Present three options, top first.</b> Slide the sheet across. Describe Dominate in two sentences, then Grow in four, then Maintain in one — dismissively.
+      <span class="q">"Dominate is where we'd go if you wanted to own the whole area. Grow is the one I've built for you — it's the system, everything we talked about. Maintain is just me editing what you film — it's what you have now with a nicer finish."</span></span></li>
+    <li><span><b>Say the price once, then stop talking.</b>
+      <span class="q">"Grow is two and a half thousand a month, six months, we review at three." <em>Silence. The first person to speak loses. Let him.</em></span></span></li>
+  </ol>
+
+  <h3>When he pushes back</h3>
+  <div class="obj"><div class="he">"That's a lot of money."</div>
+    <div class="an"><b>Agree, then reframe the unit.</b> "It is. It's also eighty-two dollars a day — less than an hour on the hoist. And it's half what anyone else would charge for the same thing. What I'm asking is whether one extra car a month is worth eighty-two dollars a day."</div></div>
+  <div class="obj"><div class="he">"I get my customers from the Facebook groups anyway."</div>
+    <div class="an"><b>Don't argue — absorb it.</b> "You do, and the groups are in the plan — every reel goes into them, with a link that shows us which group sends people. But the groups are rented. One admin change and you're gone. Everything I'm building — the reviews, the followers, the website — is yours."</div></div>
+  <div class="obj"><div class="he">"Can't I just keep doing it myself?"</div>
+    <div class="an"><b>Price his time.</b> "You can. It's ten hours a week done properly, and your hour is worth more on a car than on a phone. Ten hours of your labour a week is six thousand dollars a month. I'm cheaper than you are."</div></div>
+  <div class="obj"><div class="he">"Can we do three months and see?"</div>
+    <div class="an"><b>Hold six, give the review.</b> "Three months is exactly long enough to decide it isn't working before it's had a chance to. Six months, and at three we sit down with the numbers — if they're not moving, I'll tell you first."</div></div>
+  <div class="obj"><div class="he">"Can you do it for two thousand?"</div>
+    <div class="an"><b>Trade scope, never price.</b> "I can do two thousand — that's Maintain plus one shoot a month. What comes out is the weekly used-car video and the groups system. Which of those do you want to lose?" He won't want to lose either. That's the point.</div></div>
+
+  <div class="say-card">
+    <p class="say">The walk-away line: “Below this it's not a system, it's posts — and posts are what you've got now. I'd rather <em>not do it</em> than do it in a way that lets you say social media doesn't work.”</p>
+    <p>Say it calmly, once, and mean it. This isn't a threat — it's the most credible sentence in the meeting,
+      because it's the only one where you're arguing against your own interest. If he still says no, thank him,
+      leave the sheet, and tell him the offer stands for a fortnight. Then actually stop the unpaid work.</p>
+  </div>
+
+  <h3>Don'ts</h3>
+  <ul class="tips">
+    <li>Don't say "I think" or "maybe" anywhere near the price. "It's two and a half thousand." Full stop.</li>
+    <li>Don't apologise for the number, and don't fill the silence after it.</li>
+    <li>Don't discount. Every dollar you drop without removing scope tells him the first number was padding.</li>
+    <li>Don't promise virality or a booking count. Promise the system, the cadence, and the report.</li>
+    <li>Don't pitch in the workshop with cars waiting. Ask for 30 minutes sitting down — a chai, a phone, the sheet.</li>
+  </ul>
+</section>
+
+<section>
+  <span class="eyebrow">Honest caveats <span class="tag you">your eyes only</span></span>
+  <h2>What could go wrong, and what to do about it</h2>
+  <ul class="tips">
+    <li><strong>Five posts a week is a real load for one person.</strong> The two-week buffer isn't a nice-to-have — it's what stops one sick week from breaking the promise. Build it before you need it.</li>
+    <li><strong>Jitty's two videos a week are the weak link.</strong> Give him the ten scripts, a phone tripod, and a Sunday reminder. If he doesn't film, don't let the cadence drop — you fill the gap with photo posts and the inventory video, and you say so in the report.</li>
+    <li><strong>Month two is when he'll doubt it.</strong> Followers move first, leads move later. Your fortnightly report should show leading indicators (views, link taps, profile actions) so the lag doesn't look like failure.</li>
+    <li><strong>The multilingual content needs a native speaker.</strong> If that's not you for Hindi or Punjabi, price a translator into the Dominate tier and keep Malayalam in Grow.</li>
+    <li><strong>The ROI benchmarks above are from measured content programs, mostly B2B and SEO-led.</strong> Use them for the <em>shape</em> of the argument (old content keeps working), not as a promise of 300%.</li>
+  </ul>
+</section>
+
+<section>
+  <span class="eyebrow">Next</span>
+  <h2>What happens after you pick the number</h2>
+  <p>Once you've decided whether Grow sits at $2,500 or higher, the Jitty-facing proposal gets built
+    from the <span class="tag show" style="margin-left:0">show Jitty</span> sections of this brief:
+    a one-page cover (what he's received, his numbers, the break-even), the three-option sheet,
+    and a terms page. Two pages he can hold, not a deck.</p>
+</section>
+
+<p class="foot">Prepared for the AutoDrive Salisbury Plain partnership pitch · 6 Lolands Rd, Salisbury Plain SA 5109 · autodrivesalisburyplain.com.au</p>
+<ul class="src">
+  <li>Australian social media management pricing: <a href="https://codeqy.com.au/blog/how-much-does-social-media-management-cost-australia">CodeQy</a> · <a href="https://www.catalystcommunications.com.au/blog/how-much-does-social-media-management-cost-in-australia">Catalyst Communications</a> · <a href="https://ziffdigital.com/blog/social-media-marketing-cost-australia-2026">Ziff Digital</a> · <a href="https://reelmonth.com/social-media-marketing-cost-australia/">ReelMonth</a> · <a href="https://workspacein.com/research/australian-smb-marketing-costs-2026">Workspacein SMB report</a></li>
+  <li>Video production and creator rates: <a href="https://vidico.com/news/video-production-rates-australia/">Vidico</a> · <a href="https://queencharles.com.au/video-production-pricing-sydney">Queen Charles</a> · <a href="https://blog.bridgepr.com.au/blog/ugc-rates-australia-2026-pricing-guide-for-creators">Bridge PR UGC guide</a> · <a href="https://becreatives.co/video-editing-prices/">beCreatives</a></li>
+  <li>Auto-repair marketing pricing: <a href="https://shopmarketingpros.com/auto-repair-marketing-pricing/">Shop Marketing Pros</a> · <a href="https://mediaspearhead.com/blog/auto-repair-marketing-budget/">Media Spearhead</a> · <a href="https://www.autoshopdigital.com/blog/auto-repair-marketing/">Auto Shop Digital</a></li>
+  <li>Customer value and retention: <a href="https://www.getdriveline.com/blog/2026-07-15-what-a-loyal-customer-is-actually-worth-calculating-lifetime-value-at-your-auto-repair-shop/">DriveLine</a> · <a href="https://www.launchadvisor.co/guides/customer-retention-auto-repair-shop">Launch Advisor</a> · <a href="https://www.ikontechnologies.com/dealers-digest/automotive-service-retention-keep-customers-coming-back">iKon Technologies</a></li>
+  <li>Local search and Google Business Profile: <a href="https://wisernotify.com/blog/google-business-profile-statistics/">WiserNotify</a> · <a href="https://searchlab.nl/en/statistics/google-business-profile-statistics-2026">Searchlab</a> · <a href="https://seoprofy.com/blog/local-seo-statistics/">SeoProfy</a></li>
+  <li>Short-form video: <a href="https://vidico.com/news/short-form-video-statistics/">Vidico</a> · <a href="https://www.kapwing.com/resources/short-form-video-statistics-tiktok-reels-and-shorts-by-the-numbers-in-2026/">Kapwing</a></li>
+  <li>Compounding content ROI: <a href="https://terakeet.com/blog/compounding-value-organic-search/">Terakeet</a> · <a href="https://genesysgrowth.com/blog/content-marketing-roi-stats-for-marketing-leaders">Genesys Growth</a> · <a href="https://www.20northmarketing.com/blog/what-is-compound-seo">20North</a></li>
+  <li>Mechanic case study and Australian trust signals: <a href="https://www.ratchetandwrench.com/running-a-shop/salesmarketing/article/55296593/5-ways-royalty-auto-service-grew-a-youtube-channel-and-a-much-broader-customer-base">Ratchet &amp; Wrench on Royalty Auto Service</a> · <a href="https://www.motor1.com/news/800502/royalty-auto-service/">Motor1</a> · <a href="https://www.autoguru.com.au/car-advice/press/australias-top-mechanics-of-2025-revealed">AutoGuru Top Mechanics</a> · <a href="https://www.clue.com.au/blog/google-reviews-the-real-currency-of-reputation">Clue</a></li>
+  <li>Multicultural Australia: <a href="https://www.marketingmag.com.au/tech-data/marketing-to-multicultural-australia/">Marketing Mag</a> · <a href="https://culturalpulse.com.au/unleashing-the-multicultural-market-the-untapped-growth-opportunity-for-marketers-in-australia/">CulturalPulse</a> · <a href="https://www.leba.com.au/why-multicultural-marketing-is-the-future-of-advertising-in-australia/">Leba</a></li>
+  <li>Marketing budget benchmarks: <a href="https://pixelibri.com.au/small-business-spend-digital-marketing-australia/">Pixelibri</a> · <a href="https://boomcycle.com/blog/right-percentage-of-gross-revenue-to-invest-in-marketing/">Boomcycle</a> · <a href="https://au.seek.com/career-advice/role/social-media-manager/salary">SEEK salary data</a></li>
+</ul>
+</main>
