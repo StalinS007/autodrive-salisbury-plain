@@ -309,7 +309,7 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   (keep this URL when re-rendering): https://claude.ai/code/artifact/6d742a25-6f9c-4351-b8bb-b37258a3b7b7
   **Next step:** once Stalin fixes the Grow price, build the 2-page Jitty-facing proposal from
   the "show Jitty" sections.
-- **`marketing/AutoDrive-Current-Growth.pdf`** (+ `current-growth.html`, added 2026-09-12): the Jitty-facing
+- **`marketing/AutoDrive-Data.pdf`** (+ `data.html`; added 2026-09-12 as "Current Growth", renamed "Data"): the Jitty-facing
   evidence document. Five sections: Google Business Profile (monthly calls/clicks/interactions, reviews
   20→26), Facebook (reach 20×, follows +8→+271), Instagram (reach 30×, follows +55→+811, the 8 Sep reel),
   "Is it reaching Adelaide?" (honest read: Adelaide #1 city, everyday reels reach SA first, viral reel went
