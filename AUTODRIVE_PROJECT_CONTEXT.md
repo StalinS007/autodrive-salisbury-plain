@@ -502,8 +502,9 @@ website and to "Message Jitty". Built for Stalin to demo to Jitty. **Phase 1 is 
 - Ending: still 3.6–3.9, distortion 3.9–4.4 (judder, 12 horizontal slices, red/cyan split), white flash
   4.4, decays to the empty backdrop by 5.0. End of phase 1.
 
-**Update 14 Sep 2026 (v4 — current deliverable):** the intro and the ending changed on Stalin's request, the
-middle (typing, tilt swing, arrows, click at 3.60) is untouched.
+**Update 14 Sep 2026 (v5 — current deliverable, 3.0 s):** v4 changed the intro and the ending; v5 then played the
+whole thing 5/3 faster (every beat kept, `SPEED` in `render.js` and `sfx5.py`) and dropped the whoosh. The
+scene is still authored on its 5 s clock (times below are scene times; divide by 5/3 for output times).
 - **Intro = hard cut + pull-out, matching the outro card Jitty's editor already uses** (example:
   `~/Downloads/Autodrive downloads/Example screen recording/`): the panels no longer rise. The whole picture
   starts 2.6× zoomed in (centred on the FB logo disc) with zoom-streak motion blur and settles to size over
@@ -512,13 +513,13 @@ middle (typing, tilt swing, arrows, click at 3.60) is untouched.
   (no avatar pop). Typing still starts at 0.40.
 - **Ending = static.** After the click ripple (3.60–3.95) the frame holds still to 5.00. The distorted zoom
   (v3) and the glitch/flash (v1) are both gone — kept as `scene.v3-zoomexit.html` / `scene.v1-glitch.html`.
-- **Sound v4** (`sfx4.py`): whoosh on the cut (band falling as the picture settles), iPhone-style taps, real
-  CC0 mouse click at 3.60, then silence. No music by design.
+- **Sound v5** (`sfx5.py`): NO whoosh (owner's request), iPhone-style taps (~15/s in the output), real CC0
+  mouse click at 2.16 output s, then silence. No music by design. `sfx4.py` = the 5 s version with the whoosh.
 - Files in `~/Downloads/Autodrive downloads/Outro video Autodrive/` (copies on the Desktop):
-  `AutoDrive-BioLink-Phase1-v4-sound.mp4` (deliverable), `AutoDrive-BioLink-Phase1-v4-silent.mp4`,
-  `outro-sfx-v4.m4a` (stem). v3 (`…-sound.mp4`, `…-v2.mp4`, `outro-sfx.m4a`) left in place, superseded.
-- Rebuild (inside `BioLink-phase1-source/phase1-source/`): `node render.js all` (≈4 min, the blurred entry
-  frames are slow) → ffmpeg frames → mp4; `python3 sfx4.py outro-sfx-v4.wav`; mux with ffmpeg. Full handoff:
+  `AutoDrive-BioLink-Phase1-v5-sound.mp4` (deliverable, 3.0 s), `AutoDrive-BioLink-Phase1-v5-silent.mp4`,
+  `outro-sfx-v5.m4a` (stem). v4 (5 s, with whoosh) and v3/v1 left in place, superseded.
+- Rebuild (inside `BioLink-phase1-source/phase1-source/`): `node render.js all` (≈5 min, the blurred entry
+  frames are slow) → ffmpeg frames → mp4; `python3 sfx5.py outro-sfx-v5.wav`; mux with ffmpeg. Full handoff:
   `~/Downloads/Autodrive downloads/HANDOFF - Outro video + AutoDrive context (14 Sep 2026).md`.
 
 **Phase 2 — next steps (not started):**
