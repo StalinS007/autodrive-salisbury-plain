@@ -502,6 +502,13 @@ website and to "Message Jitty". Built for Stalin to demo to Jitty. **Phase 1 is 
 - Ending: still 3.6–3.9, distortion 3.9–4.4 (judder, 12 horizontal slices, red/cyan split), white flash
   4.4, decays to the empty backdrop by 5.0. End of phase 1.
 
+**Update 14 Sep 2026:** phase 1 now has sound (v3) and a new ending. Current deliverable
+`~/Downloads/Autodrive downloads/Outro video Autodrive/AutoDrive-BioLink-Phase1-sound.mp4` (copy on Desktop):
+whoosh → synthesized iPhone-style key taps → real CC0 mouse click at 3.60 → distorted zoom-in (3.90) and
+zoom-out (4.35) instead of the glitch/flash. Build: `scene.html` + `render.js` + `sfx3.py` in
+`…/BioLink-phase1-source/phase1-source/`. Full handoff for a fresh chat:
+`~/Downloads/Autodrive downloads/HANDOFF - Outro video + AutoDrive context (14 Sep 2026).md`.
+
 **Phase 2 — next steps (not started):**
 1. Stalin to decide the website picture (currently S2 = site header → hero → Message Jitty → reviews pill).
 2. Website card slides up flat over the panels (≈0.45 s), one arrow drifts onto "Message Jitty" (≈1 s),
