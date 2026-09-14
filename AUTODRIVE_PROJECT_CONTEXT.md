@@ -512,12 +512,12 @@ scene is still authored on its 5 s clock (times below are scene times; divide by
   while the picture is moving (`ENTRY={from:2.6,dur:0.42}` in `scene.html`). Panels are complete from frame 0
   (no avatar pop). Typing still starts at 0.40.
 - **Ending = static.** After the click ripple (3.60–3.95) the frame holds still to 5.00. The distorted zoom
-  (v3) and the glitch/flash (v1) are both gone — kept as `scene.v3-zoomexit.html` / `scene.v1-glitch.html`.
+  (v3) and the glitch/flash (v1) are both gone — kept as `scene.v3-zoomexit.html` / `scene.v1-glitch.html`; their MP4s are in `old/`.
 - **Sound v5** (`sfx5.py`): NO whoosh (owner's request), iPhone-style taps (~15/s in the output), real CC0
   mouse click at 2.16 output s, then silence. No music by design. `sfx4.py` = the 5 s version with the whoosh.
 - Files in `~/Downloads/Autodrive downloads/Outro video Autodrive/` (copies on the Desktop):
   `AutoDrive-BioLink-Phase1-v5-sound.mp4` (deliverable, 3.0 s), `AutoDrive-BioLink-Phase1-v5-silent.mp4`,
-  `outro-sfx-v5.m4a` (stem). v4 (5 s, with whoosh) and v3/v1 left in place, superseded.
+  `outro-sfx-v5.m4a` (stem). Every earlier version (v4 = 5 s with whoosh, v3, v1) is in `old/` inside that folder.
 - Rebuild (inside `BioLink-phase1-source/phase1-source/`): `node render.js all` (≈5 min, the blurred entry
   frames are slow) → ffmpeg frames → mp4; `python3 sfx5.py outro-sfx-v5.wav`; mux with ffmpeg. Full handoff:
   `~/Downloads/Autodrive downloads/HANDOFF - Outro video + AutoDrive context (14 Sep 2026).md`.
