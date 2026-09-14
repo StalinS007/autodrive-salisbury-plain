@@ -516,8 +516,8 @@ scene is still authored on its 5 s clock (times below are scene times; divide by
 - **Sound v5** (`sfx5.py`): NO whoosh (owner's request), iPhone-style taps (~15/s in the output), real CC0
   mouse click at 2.16 output s, then silence. No music by design. `sfx4.py` = the 5 s version with the whoosh.
 - Files in `~/Downloads/Autodrive downloads/Outro video Autodrive/` (copies on the Desktop):
-  `AutoDrive-BioLink-Phase1-v5-sound.mp4` (deliverable, 3.0 s), `AutoDrive-BioLink-Phase1-v5-silent.mp4`,
-  `outro-sfx-v5.m4a` (stem). Every earlier version (v4 = 5 s with whoosh, v3, v1) is in `old/` inside that folder.
+  `AutoDrive Outro 14-09-2026 v5.mp4` (deliverable, 3.0 s), `… v5 silent.mp4`, `… v5 sfx.m4a` (stem).
+  Naming rule: `AutoDrive Outro <dd-mm-yyyy> v<N>`; only the current version at the top level. Every earlier version (v4 = 5 s with whoosh, v3, v1) is in `old/` inside that folder.
 - Rebuild (inside `BioLink-phase1-source/phase1-source/`): `node render.js all` (≈5 min, the blurred entry
   frames are slow) → ffmpeg frames → mp4; `python3 sfx5.py outro-sfx-v5.wav`; mux with ffmpeg. Full handoff:
   `~/Downloads/Autodrive downloads/HANDOFF - Outro video + AutoDrive context (14 Sep 2026).md`.
