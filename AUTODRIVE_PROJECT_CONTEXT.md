@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-07-22**.
+touching the site. Last verified against the live code: **2026-09-14**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -502,12 +502,24 @@ website and to "Message Jitty". Built for Stalin to demo to Jitty. **Phase 1 is 
 - Ending: still 3.6–3.9, distortion 3.9–4.4 (judder, 12 horizontal slices, red/cyan split), white flash
   4.4, decays to the empty backdrop by 5.0. End of phase 1.
 
-**Update 14 Sep 2026:** phase 1 now has sound (v3) and a new ending. Current deliverable
-`~/Downloads/Autodrive downloads/Outro video Autodrive/AutoDrive-BioLink-Phase1-sound.mp4` (copy on Desktop):
-whoosh → synthesized iPhone-style key taps → real CC0 mouse click at 3.60 → distorted zoom-in (3.90) and
-zoom-out (4.35) instead of the glitch/flash. Build: `scene.html` + `render.js` + `sfx3.py` in
-`…/BioLink-phase1-source/phase1-source/`. Full handoff for a fresh chat:
-`~/Downloads/Autodrive downloads/HANDOFF - Outro video + AutoDrive context (14 Sep 2026).md`.
+**Update 14 Sep 2026 (v4 — current deliverable):** the intro and the ending changed on Stalin's request, the
+middle (typing, tilt swing, arrows, click at 3.60) is untouched.
+- **Intro = hard cut + pull-out, matching the outro card Jitty's editor already uses** (example:
+  `~/Downloads/Autodrive downloads/Example screen recording/`): the panels no longer rise. The whole picture
+  starts 2.6× zoomed in (centred on the FB logo disc) with zoom-streak motion blur and settles to size over
+  0.42 s (quartic ease-out). The blur is real temporal blur: `render.js` averages up to 64 sub-frames per frame
+  while the picture is moving (`ENTRY={from:2.6,dur:0.42}` in `scene.html`). Panels are complete from frame 0
+  (no avatar pop). Typing still starts at 0.40.
+- **Ending = static.** After the click ripple (3.60–3.95) the frame holds still to 5.00. The distorted zoom
+  (v3) and the glitch/flash (v1) are both gone — kept as `scene.v3-zoomexit.html` / `scene.v1-glitch.html`.
+- **Sound v4** (`sfx4.py`): whoosh on the cut (band falling as the picture settles), iPhone-style taps, real
+  CC0 mouse click at 3.60, then silence. No music by design.
+- Files in `~/Downloads/Autodrive downloads/Outro video Autodrive/` (copies on the Desktop):
+  `AutoDrive-BioLink-Phase1-v4-sound.mp4` (deliverable), `AutoDrive-BioLink-Phase1-v4-silent.mp4`,
+  `outro-sfx-v4.m4a` (stem). v3 (`…-sound.mp4`, `…-v2.mp4`, `outro-sfx.m4a`) left in place, superseded.
+- Rebuild (inside `BioLink-phase1-source/phase1-source/`): `node render.js all` (≈4 min, the blurred entry
+  frames are slow) → ffmpeg frames → mp4; `python3 sfx4.py outro-sfx-v4.wav`; mux with ffmpeg. Full handoff:
+  `~/Downloads/Autodrive downloads/HANDOFF - Outro video + AutoDrive context (14 Sep 2026).md`.
 
 **Phase 2 — next steps (not started):**
 1. Stalin to decide the website picture (currently S2 = site header → hero → Message Jitty → reviews pill).
