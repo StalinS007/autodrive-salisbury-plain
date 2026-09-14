@@ -473,7 +473,7 @@ Three files, no server, no database — the booking details travel inside the li
 
 ---
 
-## 7d. "Bio link → Message Jitty" animation — phase 1 done, phase 2 parked (added 2026-09-08)
+## 7d. "Bio link → Message Jitty" animation — phase 1 done, phase 2 in progress (added 2026-09-08)
 
 A short vertical animation for Instagram/Facebook showing that the link in the bio takes people to the
 website and to "Message Jitty". Built for Stalin to demo to Jitty. **Phase 1 is a finished, silent demo.**
@@ -502,32 +502,41 @@ website and to "Message Jitty". Built for Stalin to demo to Jitty. **Phase 1 is 
 - Ending: still 3.6–3.9, distortion 3.9–4.4 (judder, 12 horizontal slices, red/cyan split), white flash
   4.4, decays to the empty backdrop by 5.0. End of phase 1.
 
-**Update 14 Sep 2026 (v5 — current deliverable, 3.0 s):** v4 changed the intro and the ending; v5 then played the
-whole thing 5/3 faster (every beat kept, `SPEED` in `render.js` and `sfx5.py`) and dropped the whoosh. The
-scene is still authored on its 5 s clock (times below are scene times; divide by 5/3 for output times).
+**Update 14 Sep 2026 (v6 — current deliverable, 3.0 s):** v4 changed the intro and the ending; v5 played the
+whole thing 5/3 faster and dropped the whoosh; v6 adds the opening move of Phase 2 — the website card now
+swipes on. The scene is still authored on its 5 s clock (times below are scene times; divide by 5/3 for output times).
 - **Intro = hard cut + pull-out, matching the outro card Jitty's editor already uses** (example:
   `~/Downloads/Autodrive downloads/Example screen recording/`): the panels no longer rise. The whole picture
   starts 2.6× zoomed in (centred on the FB logo disc) with zoom-streak motion blur and settles to size over
   0.42 s (quartic ease-out). The blur is real temporal blur: `render.js` averages up to 64 sub-frames per frame
   while the picture is moving (`ENTRY={from:2.6,dur:0.42}` in `scene.html`). Panels are complete from frame 0
   (no avatar pop). Typing still starts at 0.40.
-- **Ending = static.** After the click ripple (3.60–3.95) the frame holds still to 5.00. The distorted zoom
+- **New in v6 — the website card.** Right after the click (3.65, ≈0.05 s after 3.60) `assets/web-card.jpg` (a
+  straight copy of `IMG_6859.jpg`, the live site's home hero — "Book a Service"/"Message Jitty"/reviews pill)
+  swipes up from off-screen bottom over 0.55 s (`easeOutBack`, a light landing bounce), tilted
+  `rotateY(22deg) rotateX(-4deg)` — the OPPOSITE of the panels' own entry tilt (`rotateY(-22) rotateX(4)`) —
+  and holds that tilt at rest, covering both panels, to the end. Controlled by `WEB={...}` in `scene.html`.
+  No arrow-to-"Message Jitty" yet — that's the remaining Phase 2 step (§ below).
+- **Ending = static.** After the card lands (≈4.20) the frame holds still to 5.00. The distorted zoom
   (v3) and the glitch/flash (v1) are both gone — kept as `scene.v3-zoomexit.html` / `scene.v1-glitch.html`; their MP4s are in `old/`.
-- **Sound v5** (`sfx5.py`): NO whoosh (owner's request), iPhone-style taps (~15/s in the output), real CC0
-  mouse click at 2.16 output s, then silence. No music by design. `sfx4.py` = the 5 s version with the whoosh.
+- **Sound v6** (`sfx6.py`, identical to v5's audio — the card swipe adds no new sound yet): NO whoosh, iPhone-style
+  taps (~15/s in the output), real CC0 mouse click at 2.16 output s, then silence. No music by design.
 - Files in `~/Downloads/Autodrive downloads/Outro video Autodrive/` (copies on the Desktop):
-  `V5 AutoDrive Outro 14-09-2026.mp4` (deliverable, 3.0 s), `V5 … silent.mp4`, `V5 … sfx.m4a` (stem).
+  `V6 AutoDrive Outro 14-09-2026.mp4` (deliverable, 3.0 s), `V6 … silent.mp4`, `V6 … sfx.m4a` (stem).
   **Naming rule (version FIRST):** `V<N> AutoDrive Outro <dd-mm-yyyy>.mp4` + ` silent`/` sfx` variants; bump N on
   every new render; only the current version sits at the top level of the Outro folder + Desktop, previous
-  version's files move to `old/` inside the Outro folder. Every earlier version (v4 = 5 s with whoosh, v3, v1) is in `old/` inside that folder.
+  version's files move to `old/` inside the Outro folder. Every earlier version (v5 = no website card, v4 = 5 s
+  with whoosh, v3, v1) is in `old/` inside that folder.
 - Rebuild (inside `BioLink-phase1-source/phase1-source/`): `node render.js all` (≈5 min, the blurred entry
-  frames are slow) → ffmpeg frames → mp4; `python3 sfx5.py outro-sfx-v5.wav`; mux with ffmpeg. Full handoff:
+  frames are slow) → ffmpeg frames → mp4; `python3 sfx6.py outro-sfx-v6.wav`; mux with ffmpeg. Full handoff:
   `~/Downloads/Autodrive downloads/HANDOFF - Outro video + AutoDrive context (14 Sep 2026).md`.
 
-**Phase 2 — next steps (not started):**
-1. Stalin to decide the website picture (currently S2 = site header → hero → Message Jitty → reviews pill).
-2. Website card slides up flat over the panels (≈0.45 s), one arrow drifts onto "Message Jitty" (≈1 s),
-   ring ×2, hold ≈1.2 s, fade 0.3 s. Previously planned as ~3.4 s; timing in the plan's storyboard beat 4.
+**Phase 2 — next steps (step 1 done in v6, 14 Sep):**
+1. ~~Stalin to decide the website picture~~ — done: `IMG_6859.jpg` (site home hero — Book a Service / Message
+   Jitty / reviews pill), now swiping up as `assets/web-card.jpg` in v6, tilted the opposite way to the panels.
+2. Remaining: one arrow drifts onto "Message Jitty" on the card (≈1 s), ring ×2, hold, fade — timing to fit
+   inside the existing 3.0 s runtime (v6 lands the card ≈2.5 s output, leaving ≈0.5 s) or the cut may need to
+   lengthen slightly. Previously planned as ~3.4 s on its own; timing reference in the plan's storyboard beat 4.
 3. Sound: key ticks per keystroke, one tap on the clicks, music bed (Stalin to send a 10 s reference or say
    "pick something neutral"). Higgsfield `generate_audio` or any library; mix with ffmpeg.
 4. Assembly: use `AutoDrive-BioLink-Phase1.mp4` as opening footage (Higgsfield `video-editing`/higgsedit,
