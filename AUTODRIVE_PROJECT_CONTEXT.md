@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-09-14**.
+touching the site. Last verified against the live code: **2026-09-15**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -473,7 +473,7 @@ Three files, no server, no database — the booking details travel inside the li
 
 ---
 
-## 7d. "Bio link → Message Jitty" animation — phase 1 done, phase 2 in progress (added 2026-09-08)
+## 7d. "Bio link → website" outro animation — phases 1 + 2 built (added 2026-09-08)
 
 A short vertical animation for Instagram/Facebook showing that the link in the bio takes people to the
 website and to "Message Jitty". Built for Stalin to demo to Jitty. **Phase 1 is a finished, silent demo.**
@@ -502,41 +502,42 @@ website and to "Message Jitty". Built for Stalin to demo to Jitty. **Phase 1 is 
 - Ending: still 3.6–3.9, distortion 3.9–4.4 (judder, 12 horizontal slices, red/cyan split), white flash
   4.4, decays to the empty backdrop by 5.0. End of phase 1.
 
-**Update 14 Sep 2026 (v6 — current deliverable, 3.0 s):** v4 changed the intro and the ending; v5 played the
-whole thing 5/3 faster and dropped the whoosh; v6 adds the opening move of Phase 2 — the website card now
-swipes on. The scene is still authored on its 5 s clock (times below are scene times; divide by 5/3 for output times).
+**Update 15 Sep 2026 (v7 — current deliverable, 3.8 s):** v4 changed the intro and the ending; v5 played the
+whole thing 5/3 faster and dropped the whoosh; v6 added the website card; v7 adds the arrow that clicks the
+site's menu icon and the menu screen that pops up after it (this replaces the old "arrow to Message Jitty" idea). The scene is still authored on its 5 s clock (times below are scene times; divide by 5/3 for output times).
 - **Intro = hard cut + pull-out, matching the outro card Jitty's editor already uses** (example:
   `~/Downloads/Autodrive downloads/Example screen recording/`): the panels no longer rise. The whole picture
   starts 2.6× zoomed in (centred on the FB logo disc) with zoom-streak motion blur and settles to size over
   0.42 s (quartic ease-out). The blur is real temporal blur: `render.js` averages up to 64 sub-frames per frame
   while the picture is moving (`ENTRY={from:2.6,dur:0.42}` in `scene.html`). Panels are complete from frame 0
   (no avatar pop). Typing still starts at 0.40.
-- **New in v6 — the website card.** Right after the click (3.65, ≈0.05 s after 3.60) `assets/web-card.jpg` (a
+- **v6 — the website card.** Right after the click (3.65, ≈0.05 s after 3.60) `assets/web-card.jpg` (a
   straight copy of `IMG_6859.jpg`, the live site's home hero — "Book a Service"/"Message Jitty"/reviews pill)
   swipes up from off-screen bottom over 0.55 s (`easeOutBack`, a light landing bounce), tilted
   `rotateY(22deg) rotateX(-4deg)` — the OPPOSITE of the panels' own entry tilt (`rotateY(-22) rotateX(4)`) —
-  and holds that tilt at rest, covering both panels, to the end. Controlled by `WEB={...}` in `scene.html`.
-  No arrow-to-"Message Jitty" yet — that's the remaining Phase 2 step (§ below).
-- **Ending = static.** After the card lands (≈4.20) the frame holds still to 5.00. The distorted zoom
+  and holds that tilt at rest, covering both panels. Controlled by `WEB={...}` in `scene.html`.
+- **v7 — menu click + second screen.** 4.15 an arrow fades in at the card's LEFT edge, inside the card (shares its
+  tilt); 4.45–4.95 travels to the three-line menu icon top-right; 4.95 ring; 5.20 click (dip, ripple, real mouse
+  click sound). 5.25–5.80 `assets/web-card2.jpg` (= `IMG_6858.jpg`, the site with its menu open) pops up from the
+  bottom like the first card, same tilt, on top, softer bounce. `ARW={...}` / `WEB2={...}` in `scene.html`.
+- **Ending = static.** After the menu screen lands (≈5.80) the frame holds still to 6.33 (= 3.80 s output). The distorted zoom
   (v3) and the glitch/flash (v1) are both gone — kept as `scene.v3-zoomexit.html` / `scene.v1-glitch.html`; their MP4s are in `old/`.
-- **Sound v6** (`sfx6.py`, identical to v5's audio — the card swipe adds no new sound yet): NO whoosh, iPhone-style
-  taps (~15/s in the output), real CC0 mouse click at 2.16 output s, then silence. No music by design.
+- **Sound v7** (`sfx7.py`): NO whoosh, iPhone-style taps (~15/s in the output), real CC0 mouse click at 2.16 and
+  again at 3.12 output s (the menu click), otherwise silence; no sound on the card pops. No music by design.
 - Files in `~/Downloads/Autodrive downloads/Outro video Autodrive/` (copies on the Desktop):
-  `V6 AutoDrive Outro 14-09-2026.mp4` (deliverable, 3.0 s), `V6 … silent.mp4`, `V6 … sfx.m4a` (stem).
+  `V7 AutoDrive Outro 15-09-2026.mp4` (deliverable, 3.8 s), `V7 … silent.mp4`, `V7 … sfx.m4a` (stem).
   **Naming rule (version FIRST):** `V<N> AutoDrive Outro <dd-mm-yyyy>.mp4` + ` silent`/` sfx` variants; bump N on
   every new render; only the current version sits at the top level of the Outro folder + Desktop, previous
-  version's files move to `old/` inside the Outro folder. Every earlier version (v5 = no website card, v4 = 5 s
-  with whoosh, v3, v1) is in `old/` inside that folder.
+  version's files move to `old/` inside the Outro folder. Every earlier version (v6 = card only, v5 = no card,
+  v4 = 5 s with whoosh, v3, v1) is in `old/` inside that folder.
 - Rebuild (inside `BioLink-phase1-source/phase1-source/`): `node render.js all` (≈5 min, the blurred entry
-  frames are slow) → ffmpeg frames → mp4; `python3 sfx6.py outro-sfx-v6.wav`; mux with ffmpeg. Full handoff:
+  frames are slow) → ffmpeg frames → mp4; `python3 sfx7.py outro-sfx-v7.wav`; mux with ffmpeg. Full handoff:
   `~/Downloads/Autodrive downloads/HANDOFF - Outro video + AutoDrive context (14 Sep 2026).md`.
 
-**Phase 2 — next steps (step 1 done in v6, 14 Sep):**
-1. ~~Stalin to decide the website picture~~ — done: `IMG_6859.jpg` (site home hero — Book a Service / Message
-   Jitty / reviews pill), now swiping up as `assets/web-card.jpg` in v6, tilted the opposite way to the panels.
-2. Remaining: one arrow drifts onto "Message Jitty" on the card (≈1 s), ring ×2, hold, fade — timing to fit
-   inside the existing 3.0 s runtime (v6 lands the card ≈2.5 s output, leaving ≈0.5 s) or the cut may need to
-   lengthen slightly. Previously planned as ~3.4 s on its own; timing reference in the plan's storyboard beat 4.
+**Phase 2 — built (v6 + v7, 14–15 Sep):**
+1. ~~Stalin to decide the website picture~~ — done: `IMG_6859.jpg` (site home hero), swiping up as `assets/web-card.jpg`.
+2. ~~Arrow onto "Message Jitty"~~ — replaced by Stalin's call: the arrow clicks the three-line MENU icon instead, and
+   the menu screen (`IMG_6858.jpg`) pops up on top. Done in v7. Nothing left in the picture unless Stalin asks.
 3. Sound: key ticks per keystroke, one tap on the clicks, music bed (Stalin to send a 10 s reference or say
    "pick something neutral"). Higgsfield `generate_audio` or any library; mix with ffmpeg.
 4. Assembly: use `AutoDrive-BioLink-Phase1.mp4` as opening footage (Higgsfield `video-editing`/higgsedit,
