@@ -502,9 +502,10 @@ website and to "Message Jitty". Built for Stalin to demo to Jitty. **Phase 1 is 
 - Ending: still 3.6–3.9, distortion 3.9–4.4 (judder, 12 horizontal slices, red/cyan split), white flash
   4.4, decays to the empty backdrop by 5.0. End of phase 1.
 
-**Update 15 Sep 2026 (v7 — current deliverable, 3.8 s):** v4 changed the intro and the ending; v5 played the
-whole thing 5/3 faster and dropped the whoosh; v6 added the website card; v7 adds the arrow that clicks the
-site's menu icon and the menu screen that pops up after it (this replaces the old "arrow to Message Jitty" idea). The scene is still authored on its 5 s clock (times below are scene times; divide by 5/3 for output times).
+**Update 15 Sep 2026 (v8 — current deliverable, 6.8 s):** v4 changed the intro and the ending; v5 played the
+whole thing 5/3 faster and dropped the whoosh; v6 added the website card; v7 the arrow that clicks the site's
+menu icon and the menu screen that pops up after it (replacing the old "arrow to Message Jitty" idea); v8 slowed
+those pops down (owner: "too quick") and added the hover walk over the menu items. The scene is still authored on its 5 s clock (times below are scene times; divide by 5/3 for output times).
 - **Intro = hard cut + pull-out, matching the outro card Jitty's editor already uses** (example:
   `~/Downloads/Autodrive downloads/Example screen recording/`): the panels no longer rise. The whole picture
   starts 2.6× zoomed in (centred on the FB logo disc) with zoom-streak motion blur and settles to size over
@@ -516,28 +517,34 @@ site's menu icon and the menu screen that pops up after it (this replaces the ol
   swipes up from off-screen bottom over 0.55 s (`easeOutBack`, a light landing bounce), tilted
   `rotateY(22deg) rotateX(-4deg)` — the OPPOSITE of the panels' own entry tilt (`rotateY(-22) rotateX(4)`) —
   and holds that tilt at rest, covering both panels. Controlled by `WEB={...}` in `scene.html`.
-- **v7 — menu click + second screen.** 4.15 an arrow fades in at the card's LEFT edge, inside the card (shares its
-  tilt); 4.45–4.95 travels to the three-line menu icon top-right; 4.95 ring; 5.20 click (dip, ripple, real mouse
-  click sound). 5.25–5.80 `assets/web-card2.jpg` (= `IMG_6858.jpg`, the site with its menu open) pops up from the
-  bottom like the first card, same tilt, on top, softer bounce. `ARW={...}` / `WEB2={...}` in `scene.html`.
-- **Ending = static.** After the menu screen lands (≈5.80) the frame holds still to 6.33 (= 3.80 s output). The distorted zoom
+- **v7/v8 — menu click + second screen + hover walk.** Card pops now take 0.83 s each. 4.55 an arrow fades in
+  at the card's LEFT edge, inside the card (shares its tilt); 4.95–5.62 travels to the three-line menu icon
+  top-right; 5.62 ring; 5.95 click (dip, ripple, real mouse click sound). 6.00–6.83 `assets/web-card2.jpg`
+  (= `IMG_6858.jpg`, the site with its menu open) pops up like the first card, same tilt, on top, with the arrow
+  already sitting on its menu icon. 7.05–10.35 the arrow visits Services, Car Detailing, Paint & Panel, Used Cars,
+  Contact (0.30 s move + 0.45 s dwell each); each gets the site's real hover look — red text + red line, exactly
+  how Home looks in the screenshot — via `assets/menu-<item>.png`, strips of the real pixels recoloured (Home's
+  strip goes the other way, back to black + grey line); highlights cross-fade 0.20 s. `ARW`, `WEB2`, `HOV`,
+  `MENU` in `scene.html`; `assets/menu.json` = strip boxes + arrow tips measured in IMG_6858 px.
+- **Ending = static.** After the arrow reaches Contact (10.35) the frame holds still to 11.33 (= 6.80 s output). The distorted zoom
   (v3) and the glitch/flash (v1) are both gone — kept as `scene.v3-zoomexit.html` / `scene.v1-glitch.html`; their MP4s are in `old/`.
-- **Sound v7** (`sfx7.py`): NO whoosh, iPhone-style taps (~15/s in the output), real CC0 mouse click at 2.16 and
-  again at 3.12 output s (the menu click), otherwise silence; no sound on the card pops. No music by design.
+- **Sound v8** (`sfx8.py`): NO whoosh, iPhone-style taps (~15/s in the output), real CC0 mouse click at 2.16 and
+  again at 3.57 output s (the menu click), otherwise silence; no sound on the card pops or the hover walk. No music by design.
 - Files in `~/Downloads/Autodrive downloads/Outro video Autodrive/` (copies on the Desktop):
-  `V7 AutoDrive Outro 15-09-2026.mp4` (deliverable, 3.8 s), `V7 … silent.mp4`, `V7 … sfx.m4a` (stem).
+  `V8 AutoDrive Outro 15-09-2026.mp4` (deliverable, 6.8 s), `V8 … silent.mp4`, `V8 … sfx.m4a` (stem).
   **Naming rule (version FIRST):** `V<N> AutoDrive Outro <dd-mm-yyyy>.mp4` + ` silent`/` sfx` variants; bump N on
   every new render; only the current version sits at the top level of the Outro folder + Desktop, previous
-  version's files move to `old/` inside the Outro folder. Every earlier version (v6 = card only, v5 = no card,
-  v4 = 5 s with whoosh, v3, v1) is in `old/` inside that folder.
+  version's files move to `old/` inside the Outro folder. Every earlier version (v7 = no hover walk, v6 = card only,
+  v5 = no card, v4 = 5 s with whoosh, v3, v1) is in `old/` inside that folder.
 - Rebuild (inside `BioLink-phase1-source/phase1-source/`): `node render.js all` (≈5 min, the blurred entry
-  frames are slow) → ffmpeg frames → mp4; `python3 sfx7.py outro-sfx-v7.wav`; mux with ffmpeg. Full handoff:
+  frames are slow) → ffmpeg frames → mp4; `python3 sfx8.py outro-sfx-v8.wav`; mux with ffmpeg (≈8 min all up, 204 frames). Full handoff:
   `~/Downloads/Autodrive downloads/HANDOFF - Outro video + AutoDrive context (14 Sep 2026).md`.
 
 **Phase 2 — built (v6 + v7, 14–15 Sep):**
 1. ~~Stalin to decide the website picture~~ — done: `IMG_6859.jpg` (site home hero), swiping up as `assets/web-card.jpg`.
-2. ~~Arrow onto "Message Jitty"~~ — replaced by Stalin's call: the arrow clicks the three-line MENU icon instead, and
-   the menu screen (`IMG_6858.jpg`) pops up on top. Done in v7. Nothing left in the picture unless Stalin asks.
+2. ~~Arrow onto "Message Jitty"~~ — replaced by Stalin's call: the arrow clicks the three-line MENU icon instead, the
+   menu screen (`IMG_6858.jpg`) pops up on top, and the arrow hovers each menu item (v7 + v8). Nothing left in the
+   picture unless Stalin asks.
 3. Sound: key ticks per keystroke, one tap on the clicks, music bed (Stalin to send a 10 s reference or say
    "pick something neutral"). Higgsfield `generate_audio` or any library; mix with ffmpeg.
 4. Assembly: use `AutoDrive-BioLink-Phase1.mp4` as opening footage (Higgsfield `video-editing`/higgsedit,
