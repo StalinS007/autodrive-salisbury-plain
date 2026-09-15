@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-09-15**.
+touching the site. Last verified against the live code: **2026-09-16**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -502,13 +502,13 @@ website and to "Message Jitty". Built for Stalin to demo to Jitty. **Phase 1 is 
 - Ending: still 3.6–3.9, distortion 3.9–4.4 (judder, 12 horizontal slices, red/cyan split), white flash
   4.4, decays to the empty backdrop by 5.0. End of phase 1.
 
-**Update 15 Sep 2026 (v10 — current deliverable, 8.0 s):** v4 changed the intro and the ending; v5 played the
+**Update 16 Sep 2026 (v11 — current deliverable, 8.0 s):** v4 changed the intro and the ending; v5 played the
 whole thing 5/3 faster and dropped the whoosh; v6 added the website card; v7 the arrow that clicks the site's
 menu icon and the menu screen that pops up after it (replacing the old "arrow to Message Jitty" idea); v8 slowed
 those pops down (owner: "too quick") and added the hover walk; v9 makes old screens disappear as the next arrives,
 turns the walk into one smooth vertical sweep, closes the menu, swings the hero card to face the camera, clicks
 "Message Jitty", and ends in a white flash; v10 makes Home red only while the arrow is on it (no red Home before
-or after the sweep). The scene is still authored on its 5 s clock (times below are scene times; divide by 5/3 for output times).
+or after the sweep); v11 is sound only — the three clicks now use a Pixabay mouse click. The scene is still authored on its 5 s clock (times below are scene times; divide by 5/3 for output times).
 - **Intro = hard cut + pull-out, matching the outro card Jitty's editor already uses** (example:
   `~/Downloads/Autodrive downloads/Example screen recording/`): the panels no longer rise. The whole picture
   starts 2.6× zoomed in (centred on the FB logo disc) with zoom-streak motion blur and settles to size over
@@ -537,17 +537,19 @@ or after the sweep). The scene is still authored on its 5 s clock (times below a
   the screen goes out in a clean white flash and the clip ends on the empty grey backdrop. Still no glitch slices
   or distortion — those stay rejected. The distorted zoom
   (v3) and the glitch/flash (v1) are both gone — kept as `scene.v3-zoomexit.html` / `scene.v1-glitch.html`; their MP4s are in `old/`.
-- **Sound v10** (`sfx10.py`, = v9): NO whoosh, iPhone-style taps (~15/s in the output), the real CC0 mouse click at 2.16,
+- **Sound v11** (`sfx11.py`): NO whoosh, iPhone-style taps (~15/s in the output), the Pixabay mouse click
+  ("Computer Mouse Click" by Universfield, id 352734, Pixabay Content License, owner-approved download; MP3 in
+  `Outro video Autodrive/sound effects/`, `pixabay-click.wav` in the build) at 2.16,
   3.57 and 7.38 output s (bio link, menu icon, Message Jitty), otherwise silence; card pops, sweep and flash are
   silent. No music by design.
 - Files in `~/Downloads/Autodrive downloads/Outro video Autodrive/` (copies on the Desktop):
-  `V10 AutoDrive Outro 15-09-2026.mp4` (deliverable, 8.0 s), `V10 … silent.mp4`, `V10 … sfx.m4a` (stem).
+  `V11 AutoDrive Outro 16-09-2026.mp4` (deliverable, 8.0 s), `V11 … silent.mp4`, `V11 … sfx.m4a` (stem).
   **Naming rule (version FIRST):** `V<N> AutoDrive Outro <dd-mm-yyyy>.mp4` + ` silent`/` sfx` variants; bump N on
   every new render; only the current version sits at the top level of the Outro folder + Desktop, previous
-  version's files move to `old/` inside the Outro folder. Every earlier version (v9 = Home flipped red at the end, v8 = item-by-item walk, v7 = no walk, v6 = card only,
+  version's files move to `old/` inside the Outro folder. Every earlier version (v10 = Wikimedia click, v9 = Home flipped red at the end, v8 = item-by-item walk, v7 = no walk, v6 = card only,
   v5 = no card, v4 = 5 s with whoosh, v3, v1) is in `old/` inside that folder.
 - Rebuild (inside `BioLink-phase1-source/phase1-source/`): `node render.js all` (≈5 min, the blurred entry
-  frames are slow) → ffmpeg frames → mp4; `python3 sfx10.py outro-sfx-v10.wav`; mux with ffmpeg (≈8 min all up, 240 frames). Full handoff:
+  frames are slow) → ffmpeg frames → mp4; `python3 sfx11.py outro-sfx-v11.wav`; mux with ffmpeg (≈8 min all up, 240 frames). Full handoff:
   `~/Downloads/Autodrive downloads/HANDOFF - Outro video + AutoDrive context (14 Sep 2026).md`.
 
 **Phase 2 — built (v6 + v7, 14–15 Sep):**
