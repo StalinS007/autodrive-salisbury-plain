@@ -502,7 +502,7 @@ website and to "Message Jitty". Built for Stalin to demo to Jitty. **Phase 1 is 
 - Ending: still 3.6–3.9, distortion 3.9–4.4 (judder, 12 horizontal slices, red/cyan split), white flash
   4.4, decays to the empty backdrop by 5.0. End of phase 1.
 
-**Update 17 Sep 2026 (v13 — current deliverable, 5.0 s):** v4 changed the intro and the ending; v5 played the
+**Update 17 Sep 2026 (v14 — current deliverable, 6.64 s):** v4 changed the intro and the ending; v5 played the
 whole thing 5/3 faster and dropped the whoosh; v6 added the website card; v7 the arrow that clicks the site's
 menu icon and the menu screen that pops up after it (replacing the old "arrow to Message Jitty" idea); v8 slowed
 those pops down (owner: "too quick") and added the hover walk; v9 makes old screens disappear as the next arrives,
@@ -510,7 +510,8 @@ turns the walk into one smooth vertical sweep, closes the menu, swings the hero 
 "Message Jitty", and ends in a white flash; v10 makes Home red only while the arrow is on it (no red Home before
 or after the sweep); v11/v12 are sound only — the owner auditioned five Pixabay clicks and five typing recordings and picked
 DRAGON-STUDIO's "Mouse Click SFX" for the three clicks and "Typing Keyboard ASMR" for the typing; v13 plays the
-whole thing in 5.0 s (`SPEED = 13.33/5`, every beat kept) at half the volume. The scene is still authored on its 5 s clock (times below are scene times; divide by 5/3 for output times).
+whole thing in 5.0 s (`SPEED = 13.33/5`, every beat kept) at half the volume; v14 replaces the white-flash exit
+with the logo ending (below), adding ~1.6 s. The scene is still authored on its 5 s clock (times below are scene times; divide by 5/3 for output times).
 - **Intro = hard cut + pull-out, matching the outro card Jitty's editor already uses** (example:
   `~/Downloads/Autodrive downloads/Example screen recording/`): the panels no longer rise. The whole picture
   starts 2.6× zoomed in (centred on the FB logo disc) with zoom-streak motion blur and settles to size over
@@ -533,27 +534,31 @@ whole thing in 5.0 s (`SPEED = 13.33/5`, every beat kept) at half the volume. Th
   while the tip is inside its row — Home included, black at all other times — via `assets/menu-<item>.png`, strips of
   the real pixels recoloured (Home's strip goes the other way, black + grey line). 10.70 the menu screen fades out,
   the hero card is back; 10.90–11.90 it swings to face the camera while the arrow moves to the white "Message
-  Jitty" pill; 12.00 ring; 12.30 click; 12.45 white flash takes the screen out; 13.33 end on the empty backdrop.
+  Jitty" pill; 12.00 ring; 12.30 click; then the logo ending — see below; 17.7 end.
   `ARW`, `WEB2`, `HOV`, `FIN`, `JITTY`, `MENU` in `scene.html`; `assets/menu.json` = strip boxes + tips in IMG_6858 px.
-- **Ending = flash (v9, owner's request — supersedes the earlier "static" rule).** After the Message Jitty click
-  the screen goes out in a clean white flash and the clip ends on the empty grey backdrop at 5.00 s. Still no glitch slices
+- **Ending = the site logo with its hover sweep (v14, owner's request — supersedes the v9 flash).** After the Message
+  Jitty click the card dissolves and the screen brightens to white; the REAL header logo (the inline `logo-traced`
+  SVG from `index.html`, copied to the build as `assets/logo.svg.html`) lifts off the card's top-left corner and zooms
+  to the centre, 820 px wide; then the site's own `.glint` hover sweep (same keyframes as `assets/css/styles.css`
+  `logo-sweep`, staggered per layer) runs left→right through it; hold on the logo; end at 6.64 s. If the site logo or
+  its sweep ever changes, refresh `assets/logo.svg.html` and the `LOGO` block in `scene.html`. Still no glitch slices
   or distortion — those stay rejected. The distorted zoom
   (v3) and the glitch/flash (v1) are both gone — kept as `scene.v3-zoomexit.html` / `scene.v1-glitch.html`; their MP4s are in `old/`.
-- **Sound v13** (`sfx13.py`, master at half level): NO whoosh; real typing 0.15–0.83 output s (Pixabay "Typing Keyboard ASMR", DRAGON-STUDIO
+- **Sound v14** (`sfx14.py`, = v13 plus silence over the logo ending; master at half level): NO whoosh; real typing 0.15–0.83 output s (Pixabay "Typing Keyboard ASMR", DRAGON-STUDIO
   id 356116, its busiest stretch at double tempo with pitch kept so it matches the on-screen typing rate); the Pixabay
   mouse click ("Mouse Click SFX", DRAGON-STUDIO id 444806) at 1.35,
   2.23 and 4.61 output s (bio link, menu icon, Message Jitty), otherwise silence; card pops, sweep and flash are
   silent. No music by design.
 - Files in `~/Downloads/Autodrive downloads/Outro video Autodrive/` (copies on the Desktop):
-  `V13 AutoDrive Outro 17-09-2026.mp4` (deliverable, 5.0 s), `V13 … silent.mp4`, `V13 … sfx.m4a` (stem).
+  `V14 AutoDrive Outro 17-09-2026.mp4` (deliverable, 6.64 s), `V14 … silent.mp4`, `V14 … sfx.m4a` (stem).
   All SFX are Pixabay Content License (free commercial use, no credit); MP3s + the audition set in
   `Outro video Autodrive/sound effects/`.
   **Naming rule (version FIRST):** `V<N> AutoDrive Outro <dd-mm-yyyy>.mp4` + ` silent`/` sfx` variants; bump N on
   every new render; only the current version sits at the top level of the Outro folder + Desktop, previous
-  version's files move to `old/` inside the Outro folder. Every earlier version (v12 = 8 s full volume, v11 = Universfield click + synth taps, v10 = Wikimedia click, v9 = Home flipped red at the end, v8 = item-by-item walk, v7 = no walk, v6 = card only,
+  version's files move to `old/` inside the Outro folder. Every earlier version (v13 = 5 s flash exit, v12 = 8 s full volume, v11 = Universfield click + synth taps, v10 = Wikimedia click, v9 = Home flipped red at the end, v8 = item-by-item walk, v7 = no walk, v6 = card only,
   v5 = no card, v4 = 5 s with whoosh, v3, v1) is in `old/` inside that folder.
 - Rebuild (inside `BioLink-phase1-source/phase1-source/`): `node render.js all` (≈5 min, the blurred entry
-  frames are slow) → ffmpeg frames → mp4; `python3 sfx13.py outro-sfx-v13.wav`; mux with ffmpeg (≈6 min all up, 150 frames). Full handoff:
+  frames are slow) → ffmpeg frames → mp4; `python3 sfx14.py outro-sfx-v14.wav`; mux with ffmpeg (≈7 min all up, 199 frames). Full handoff:
   `~/Downloads/Autodrive downloads/HANDOFF - Outro video + AutoDrive context (14 Sep 2026).md`.
 
 **Phase 2 — built (v6 + v7, 14–15 Sep):**
