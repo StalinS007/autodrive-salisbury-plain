@@ -502,7 +502,7 @@ website and to "Message Jitty". Built for Stalin to demo to Jitty. **Phase 1 is 
 - Ending: still 3.6–3.9, distortion 3.9–4.4 (judder, 12 horizontal slices, red/cyan split), white flash
   4.4, decays to the empty backdrop by 5.0. End of phase 1.
 
-**Update 17 Sep 2026 (v15 — current deliverable, 6.98 s):** v4 changed the intro and the ending; v5 played the
+**Update 17 Sep 2026 (v16 — current deliverable, 5.0 s):** v4 changed the intro and the ending; v5 played the
 whole thing 5/3 faster and dropped the whoosh; v6 added the website card; v7 the arrow that clicks the site's
 menu icon and the menu screen that pops up after it (replacing the old "arrow to Message Jitty" idea); v8 slowed
 those pops down (owner: "too quick") and added the hover walk; v9 makes old screens disappear as the next arrives,
@@ -512,7 +512,9 @@ or after the sweep); v11/v12 are sound only — the owner auditioned five Pixaba
 DRAGON-STUDIO's "Mouse Click SFX" for the three clicks and "Typing Keyboard ASMR" for the typing; v13 plays the
 whole thing in 5.0 s (`SPEED = 13.33/5`, every beat kept) at half the volume; v14 replaces the white-flash exit
 with the logo ending (below); v15 makes the light much brighter, adds a flash streak through it, and has the car drive
-off to the right. The scene is still authored on its 5 s clock (times below are scene times; divide by 5/3 for output times).
+off to the right; v16 brings the whole thing back to 5.0 s with per-section pacing (a `KEY` time table shared by
+`render.js` and `sfx16.py` replaces the single SPEED factor: bio-link click and menu sweep a little slower, the car
+drive-off slower and starting right as the logo lands, everything else faster) and adds a Pixabay car drive-off sound. The scene is still authored on its 5 s clock (times below are scene times; divide by 5/3 for output times).
 - **Intro = hard cut + pull-out, matching the outro card Jitty's editor already uses** (example:
   `~/Downloads/Autodrive downloads/Example screen recording/`): the panels no longer rise. The whole picture
   starts 2.6× zoomed in (centred on the FB logo disc) with zoom-streak motion blur and settles to size over
@@ -542,26 +544,27 @@ off to the right. The scene is still authored on its 5 s clock (times below are 
   SVG from `index.html`, copied to the build as `assets/logo.svg.html`) lifts off the card's top-left corner and zooms
   to the centre, 820 px wide; then the site's `.glint` hover sweep (same keyframes as `assets/css/styles.css`
   `logo-sweep`, staggered per layer) runs left→right through it, made much brighter (wider band, hot white core), with a
-  diagonal flash streak crossing over the logo; then the car mark drives off to the right; the wordmark holds; end at
-  6.98 s. If the site logo or
+  diagonal flash streak crossing over the logo; the car mark starts driving off to the right almost as soon as the logo
+  lands and takes ~0.9 s, with a Pixabay car sound ("Sports Car Acceleration and Driving Away", Chrysalyn 562433); the
+  wordmark holds; end at 5.0 s. If the site logo or
   its sweep ever changes, refresh `assets/logo.svg.html` and the `LOGO` block in `scene.html`. Still no glitch slices
   or distortion — those stay rejected. The distorted zoom
   (v3) and the glitch/flash (v1) are both gone — kept as `scene.v3-zoomexit.html` / `scene.v1-glitch.html`; their MP4s are in `old/`.
-- **Sound v15** (`sfx15.py`, = v13 plus silence over the logo ending; master at half level): NO whoosh; real typing 0.15–0.83 output s (Pixabay "Typing Keyboard ASMR", DRAGON-STUDIO
+- **Sound v16** (`sfx16.py`, master at half level): NO whoosh; real typing 0.15–0.62 output s (Pixabay "Typing Keyboard ASMR", DRAGON-STUDIO
   id 356116, its busiest stretch at double tempo with pitch kept so it matches the on-screen typing rate); the Pixabay
-  mouse click ("Mouse Click SFX", DRAGON-STUDIO id 444806) at 1.35,
-  2.23 and 4.61 output s (bio link, menu icon, Message Jitty), otherwise silence; card pops, sweep and flash are
+  mouse click ("Mouse Click SFX", DRAGON-STUDIO id 444806) at 1.07,
+  1.84 and 3.87 output s; car drive-off 4.06 s to the end (bio link, menu icon, Message Jitty), otherwise silence; card pops, sweep and flash are
   silent. No music by design.
 - Files in `~/Downloads/Autodrive downloads/Outro video Autodrive/` (copies on the Desktop):
-  `V15 AutoDrive Outro 17-09-2026.mp4` (deliverable, 6.98 s), `V15 … silent.mp4`, `V15 … sfx.m4a` (stem).
+  `V16 AutoDrive Outro 17-09-2026.mp4` (deliverable, 5.0 s), `V16 … silent.mp4`, `V16 … sfx.m4a` (stem).
   All SFX are Pixabay Content License (free commercial use, no credit); MP3s + the audition set in
   `Outro video Autodrive/sound effects/`.
   **Naming rule (version FIRST):** `V<N> AutoDrive Outro <dd-mm-yyyy>.mp4` + ` silent`/` sfx` variants; bump N on
   every new render; only the current version sits at the top level of the Outro folder + Desktop, previous
-  version's files move to `old/` inside the Outro folder. Every earlier version (v14 = soft sweep, car stays; v13 = 5 s flash exit, v12 = 8 s full volume, v11 = Universfield click + synth taps, v10 = Wikimedia click, v9 = Home flipped red at the end, v8 = item-by-item walk, v7 = no walk, v6 = card only,
+  version's files move to `old/` inside the Outro folder. Every earlier version (v15 = 7 s single speed; v14 = soft sweep, car stays; v13 = 5 s flash exit, v12 = 8 s full volume, v11 = Universfield click + synth taps, v10 = Wikimedia click, v9 = Home flipped red at the end, v8 = item-by-item walk, v7 = no walk, v6 = card only,
   v5 = no card, v4 = 5 s with whoosh, v3, v1) is in `old/` inside that folder.
 - Rebuild (inside `BioLink-phase1-source/phase1-source/`): `node render.js all` (≈5 min, the blurred entry
-  frames are slow) → ffmpeg frames → mp4; `python3 sfx15.py outro-sfx-v15.wav`; mux with ffmpeg (≈7 min all up, 209 frames). Full handoff:
+  frames are slow) → ffmpeg frames → mp4; `python3 sfx16.py outro-sfx-v16.wav`; mux with ffmpeg (≈6 min all up, 150 frames). Full handoff:
   `~/Downloads/Autodrive downloads/HANDOFF - Outro video + AutoDrive context (14 Sep 2026).md`.
 
 **Phase 2 — built (v6 + v7, 14–15 Sep):**
