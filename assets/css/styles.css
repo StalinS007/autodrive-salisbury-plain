@@ -912,15 +912,15 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
    scroll-snap gives swipe, the arrows drive it too.
    Markup: index.html .hstock / JS: main.js [data-hstock]. */
 .hstock {
-  position: relative; max-width: 330px; margin-top: .2rem; background: #fff; overflow: hidden;
-  border: 2px solid var(--brand-red); border-radius: 18px; box-shadow: var(--shadow);
+  position: relative; max-width: 228px; margin-top: .2rem; background: #fff; overflow: hidden;
+  border: 2px solid var(--brand-red); border-radius: 16px; box-shadow: var(--shadow);
 }
 .hstock__bar {
   display: flex; align-items: center; justify-content: space-between; gap: .8rem;
-  background: var(--brand-red); color: #fff; padding: .5rem .85rem;
-  font-weight: 800; font-size: .72rem; letter-spacing: .05em; text-transform: uppercase;
+  background: var(--brand-red); color: #fff; padding: .4rem .65rem;
+  font-weight: 800; font-size: .62rem; letter-spacing: .04em; text-transform: uppercase;
 }
-.hstock__bar a { color: #fff; text-decoration: none; font-size: .72rem; opacity: .92; white-space: nowrap; }
+.hstock__bar a { color: #fff; text-decoration: none; font-size: .62rem; opacity: .92; white-space: nowrap; }
 .hstock__bar a:hover { opacity: 1; text-decoration: underline; }
 .hstock__viewport { position: relative; overflow: hidden; }
 .hstock__track {
@@ -931,35 +931,36 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .hstock__car { flex: 0 0 100%; scroll-snap-align: start; display: flex; flex-direction: column; text-decoration: none; background: #fff; }
 /* Portrait photo centred on the same dark ground as the used-cars galleries. */
 .hstock__media { display: flex; justify-content: center; background: linear-gradient(135deg,#232326,#0e0e0e); }
-.hstock__media img { width: 150px; height: 200px; object-fit: cover; display: block; }
-.hstock__info { display: flex; align-items: center; justify-content: space-between; gap: .7rem; padding: .6rem .85rem .7rem; }
-.hstock__text { min-width: 0; display: flex; flex-direction: column; gap: .2rem; }
+.hstock__media img { width: 114px; height: 152px; object-fit: cover; display: block; }
+/* Narrow card: details stack (name, detail line, price) instead of sitting beside the price. */
+.hstock__info { display: flex; flex-direction: column; align-items: flex-start; gap: .22rem; padding: .5rem .65rem .6rem; }
+.hstock__text { min-width: 0; max-width: 100%; display: flex; flex-direction: column; gap: .16rem; }
 .hstock__name {
-  font-weight: 800; font-size: .95rem; line-height: 1.2; color: var(--ink-black);
+  font-weight: 800; font-size: .86rem; line-height: 1.2; color: var(--ink-black);
   white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
 }
-.hstock__meta { font-size: .74rem; font-weight: 600; color: var(--grey-700); display: flex; align-items: center; gap: .35rem; white-space: nowrap; }
+.hstock__meta { font-size: .69rem; font-weight: 600; color: var(--grey-700); display: flex; align-items: center; gap: .35rem; white-space: nowrap; }
 .hstock__meta em {
-  font-style: normal; font-weight: 700; font-size: .64rem; color: var(--grey-500);
+  font-style: normal; font-weight: 700; font-size: .6rem; color: var(--grey-500);
   background: var(--off-white); border: 1px solid var(--grey-100);
-  padding: .04rem .34rem; border-radius: 5px; flex: none;
+  padding: .03rem .3rem; border-radius: 5px; flex: none;
 }
-.hstock__price { font-family: var(--font-display); font-size: 1.4rem; line-height: 1; color: var(--brand-red); white-space: nowrap; }
+.hstock__price { font-family: var(--font-display); font-size: 1.22rem; line-height: 1; color: var(--brand-red); white-space: nowrap; }
 /* Same red stepper arrows as .stock-carousel__arrow, scaled down; centred on the photo. */
 .hstock__nav {
-  position: absolute; top: calc(2.05rem + 100px); transform: translateY(-50%); z-index: 3;
-  width: 34px; height: 34px; padding: 0; border-radius: 50%; border: 2px solid #fff; cursor: pointer;
+  position: absolute; top: calc(1.7rem + 76px); transform: translateY(-50%); z-index: 3;
+  width: 30px; height: 30px; padding: 0; border-radius: 50%; border: 2px solid #fff; cursor: pointer;
   background: var(--brand-red); color: #fff; display: flex; align-items: center; justify-content: center;
   box-shadow: 0 4px 12px rgba(0,0,0,.28); transition: background .2s ease, transform .15s ease, opacity .2s ease;
 }
 .hstock__nav:hover { background: #a81d24; }
 .hstock__nav:active { transform: translateY(-50%) scale(.92); }
 .hstock__nav:disabled { opacity: .32; cursor: default; box-shadow: none; }
-.hstock__nav svg { width: 18px; height: 18px; }
-.hstock__nav--prev { left: 8px; }
-.hstock__nav--next { right: 8px; }
+.hstock__nav svg { width: 16px; height: 16px; }
+.hstock__nav--prev { left: 6px; }
+.hstock__nav--next { right: 6px; }
 /* Dots sit over the foot of the photo, like the gallery dots on the listings. */
-.hstock__dots { position: absolute; left: 0; right: 0; top: 184px; display: flex; gap: 5px; justify-content: center; pointer-events: none; }
-.hstock__dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.5); transition: all .25s var(--ease); }
+.hstock__dots { position: absolute; left: 0; right: 0; top: 138px; display: flex; gap: 5px; justify-content: center; pointer-events: none; }
+.hstock__dots i { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.5); transition: all .25s var(--ease); }
 .hstock__dots i.on { background: #fff; transform: scale(1.3); }
 @media (prefers-reduced-motion: reduce) { .hstock__track { scroll-behavior: auto; } }
