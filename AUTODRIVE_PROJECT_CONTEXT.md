@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-09-17**.
+touching the site. Last verified against the live code: **2026-09-20**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=52`** → next `?v=53`.
+  html page** (all root pages + any subpages). Current version: **`?v=56`** → next `?v=57`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -369,6 +369,16 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
 
 ## 8. Known constraints & pending items
 
+- **⚠ "Accident-free" vs the Kia Rio (raised 2026-09-20 — owner's decision needed).** The Rio
+  added on 20 Sep is **PPSR listed and professionally repaired**, disclosed plainly in its own
+  description. But `used-cars.html` still promises **accident-free** cars in three places: the
+  hero paragraph ("Reliable, accident-free vehicles"), the `.stock-intro` chip row, and the
+  "Why buy from us?" card 01 ("Spotless, accident-free and mechanically sound"). A blanket
+  claim plus a repaired car in the same page is both a trust problem and an ACL
+  misleading-conduct risk. Options: soften the three claims (e.g. "workshop-inspected",
+  "every car’s history disclosed"), or keep them and don't list repaired cars. **Do not
+  silently drop the Rio's disclosure.**
+
 - **Contact form sends by SMS (not Formspree):** `#booking-form` composes a pre-filled text
   to **0432 247 691** via an `sms:` link (handler in `assets/js/main.js`, reads `data-sms`),
   with a quiet "prefer email" `mailto` fallback. There is a leftover unused
@@ -385,11 +395,28 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
     details, and change the prefilled WhatsApp text to name that car. **To add a photo:**
     drop the image in `images/` and swap the `<div class="car__ph">…</div>` placeholder for an
     `<img>` (there's an HTML comment in the file showing exactly how).
-  - Currently **one live listing** (2009 Honda Civic VTi, $9,600) with a **promo video**
-    (`images/promohondacivic.mp4` — muted autoplay loop) + a "Looking for something specific?"
-    enquiry card. The video is a web-compressed 720×1280 / ~7.5 MB version of the owner's
-    original 4K clip (compress every video before committing — Cloudflare Pages rejects files
-    over 25 MB and GitHub rejects over 100 MB). More stock to be listed as it comes in.
+  - Cars live in a **carousel** (`.stock-carousel__track`); the "Car N of M" red bar and the
+    arrows count the `<article class="car">` blocks automatically, so adding one needs no other
+    change. Currently **four listings**: 2009 Honda Civic VTi $9,600 (with a **promo video**,
+    `images/promohondacivic.mp4` — keep that slide LAST), 2021 VW Polo Comfortline $17,400,
+    2008 Toyota Corolla Ascent $8,900, and **2018 Kia Rio $11,900** (added 2026-09-20).
+    Plus a "Looking for something specific?" enquiry card. The Civic video is a web-compressed
+    720×1280 / ~7.5 MB version of the owner's original 4K clip (compress every video before
+    committing — Cloudflare Pages rejects files over 25 MB and GitHub rejects over 100 MB).
+  - **Photo spec (set 2026-09-20 with the Rio):** each car gets its own `images/<car>/` folder,
+    files named `<car>-01.jpg…`, sized **607×1080 (9:16)** — the gallery is a hard `aspect-ratio:9/16`
+    box 205 px wide with `object-fit:cover`, so 607 px = 3× for retina and **landscape photos get
+    gutted** (only the middle ~31 % survives). Shoot and pick portrait only. JPEG q82 progressive,
+    ~60–130 KB each. Order follows used-car listing practice: **exterior walk-around (front 3/4
+    first — the hero must show the WHOLE car) → rear → side → cabin → odometer → boot/extras**,
+    10+ photos. Don't publish the build-plate/VIN photo (VIN cloning risk).
+  - **⚠ The Kia Rio is PPSR listed / professionally repaired** and says so in its description,
+    but the page still claims **"accident-free"** in three places (hero copy, the `.stock-intro`
+    chips, and "Why buy from us?" card 01). Those blanket claims now contradict the stock and
+    need the owner's call — see §8 pending items.
+  - **Dealer licence:** `.stock-licence` line under the deck — "Licensed motor vehicle dealer —
+    MVD 343921". SA requires the licence number on vehicle advertising; keep it on any page that
+    advertises cars.
   - **Design intent (mobile-first + buyer psychology):** cars shown first (right after hero),
     price up front, risk-reducing trust chips, one primary CTA (WhatsApp), honest status
     badges — no fake scarcity. Don't put AI-generated car images on real listings (misleading);
