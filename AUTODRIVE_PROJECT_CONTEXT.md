@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=56`** → next `?v=57`.
+  html page** (all root pages + any subpages). Current version: **`?v=57`** → next `?v=58`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -197,6 +197,19 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
 ---
 
 ## 7. What's been added recently (already live — preserve)
+
+- **Hero stock swiper on the homepage (added 2026-09-20, owner request).** The hero's intro
+  paragraph ("Dealer-quality servicing, repairs, diagnostics…") is **gone**, replaced in the same
+  slot by `.hstock` — a compact one-car-at-a-time swiper (78 px thumb + name/km/price, prev/next
+  arrows, dots). Swipe is native CSS scroll-snap; `main.js` (`[data-hstock]`) drives the arrows and
+  syncs the dots, and disables an arrow at each end. Everything else in the hero is **deliberately
+  unchanged** — same H1 size, same buttons, same rating chip position (owner was explicit: only the
+  paragraph changes). Thumbs are dedicated 200×200 files in `images/home-stock/` (~10 KB each) so the
+  hero stays fast — don't point these at the big gallery JPEGs.
+  - **Keep in sync by hand:** the four cars are hard-coded in `index.html`; when stock changes, edit
+    both `index.html` (`.hstock__car` blocks) and `used-cars.html`.
+  - The removed paragraph's keywords still live in the meta description, the JSON-LD description and
+    the body sections, so the SEO hit is minimal.
 
 - **Customer reviews section** near the top of the homepage — real Google reviews, grouped
   by category, shortened to ~90-char snippets with a more/less toggle.

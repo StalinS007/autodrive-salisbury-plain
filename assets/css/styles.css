@@ -904,3 +904,48 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 
 /* Dealer licence line under the stock deck (SA advertising requirement) */
 .stock-licence { margin:1.5rem 0 0; text-align:center; font-size:.82rem; color:var(--grey-500); letter-spacing:.02em; }
+
+/* ---------- Hero stock swiper (replaces the hero intro paragraph) ----------
+   Sits in the same slot the old <p> occupied, at a similar height so the rest
+   of the hero does not move. One car per view; native scroll-snap gives swipe,
+   the arrows drive it too. Markup: index.html .hstock / JS: main.js. */
+.hstock { position: relative; max-width: 560px; margin-top: .2rem; }
+.hstock__label { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: .5rem; }
+.hstock__label span { font-weight: 700; font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.62); }
+.hstock__label a { font-weight: 700; font-size: .78rem; color: #fff; opacity: .85; text-decoration: none; }
+.hstock__label a:hover { opacity: 1; }
+.hstock__viewport { overflow: hidden; border-radius: 14px; }
+.hstock__track {
+  display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
+  -ms-overflow-style: none; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.hstock__track::-webkit-scrollbar { display: none; }
+.hstock__car {
+  flex: 0 0 100%; scroll-snap-align: start; display: flex; align-items: center; gap: .75rem;
+  padding: .5rem; text-decoration: none; box-sizing: border-box;
+  background: rgba(14,14,16,.82); border: 1px solid rgba(255,255,255,.16);
+  -webkit-backdrop-filter: blur(12px) saturate(120%); backdrop-filter: blur(12px) saturate(120%);
+  border-radius: 14px;
+}
+.hstock__car img { width: 78px; height: 78px; flex: 0 0 78px; object-fit: cover; border-radius: 10px; display: block; background: #111; }
+.hstock__info { min-width: 0; display: flex; flex-direction: column; gap: .12rem; padding-right: 4.4rem; }
+.hstock__name { font-weight: 700; font-size: .88rem; line-height: 1.2; color: #fff; }
+.hstock__name em { font-style: normal; font-weight: 600; font-size: .74rem; color: rgba(255,255,255,.6); }
+.hstock__meta { font-size: .73rem; color: rgba(255,255,255,.58); }
+.hstock__price { font-family: var(--font-display); font-size: 1.16rem; line-height: 1.1; letter-spacing: .02em; color: #ff5a4f; }
+.hstock__nav {
+  position: absolute; bottom: 1.45rem; z-index: 3; width: 30px; height: 30px; padding: 0;
+  display: grid; place-items: center; cursor: pointer; border-radius: 50%;
+  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.3); color: #fff;
+  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  transition: background .2s var(--ease), opacity .2s var(--ease);
+}
+.hstock__nav:hover { background: rgba(255,255,255,.22); }
+.hstock__nav:disabled { opacity: .3; cursor: default; }
+.hstock__nav svg { width: 15px; height: 15px; }
+.hstock__nav--prev { right: 2.75rem; }
+.hstock__nav--next { right: .6rem; }
+.hstock__dots { display: flex; gap: 5px; margin-top: .5rem; }
+.hstock__dots i { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.3); transition: all .25s var(--ease); }
+.hstock__dots i.on { width: 15px; border-radius: 99px; background: #fff; }
+@media (prefers-reduced-motion: reduce) { .hstock__track { scroll-behavior: auto; } }

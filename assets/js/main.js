@@ -308,6 +308,51 @@
     reveals.forEach(function (el) { el.classList.add("in"); });
   }
 
+  // Hero stock swiper — one car at a time in the homepage hero.
+  // Swipe is native (CSS scroll-snap); the arrows just scroll the track by one
+  // card and the dots follow whatever the track is actually showing.
+  document.querySelectorAll("[data-hstock]").forEach(function (root) {
+    var track = root.querySelector(".hstock__track");
+    var cars = root.querySelectorAll(".hstock__car");
+    var prev = root.querySelector(".hstock__nav--prev");
+    var next = root.querySelector(".hstock__nav--next");
+    var dots = root.querySelector(".hstock__dots");
+    if (!track || cars.length < 2) { if (dots) dots.style.display = "none"; return; }
+
+    if (dots) {
+      cars.forEach(function () { dots.appendChild(document.createElement("i")); });
+    }
+
+    function index() {
+      var w = track.clientWidth || 1;
+      return Math.max(0, Math.min(cars.length - 1, Math.round(track.scrollLeft / w)));
+    }
+    function sync() {
+      var i = index();
+      if (dots) {
+        dots.querySelectorAll("i").forEach(function (d, n) { d.classList.toggle("on", n === i); });
+      }
+      if (prev) prev.disabled = i === 0;
+      if (next) next.disabled = i === cars.length - 1;
+    }
+    function go(step) {
+      var w = track.clientWidth || 1;
+      var i = Math.max(0, Math.min(cars.length - 1, index() + step));
+      track.scrollTo({ left: i * w, behavior: "smooth" });
+    }
+
+    if (prev) prev.addEventListener("click", function () { go(-1); });
+    if (next) next.addEventListener("click", function () { go(1); });
+
+    var tick;
+    track.addEventListener("scroll", function () {
+      clearTimeout(tick);
+      tick = setTimeout(sync, 60);
+    }, { passive: true });
+    window.addEventListener("resize", sync);
+    sync();
+  });
+
   // Booking form — packages the details into a pre-filled SMS to the workshop.
   // The customer's messages app opens with everything filled in; they just hit send.
   var form = document.getElementById("booking-form");
