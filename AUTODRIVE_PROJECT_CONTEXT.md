@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=58`** → next `?v=59`.
+  html page** (all root pages + any subpages). Current version: **`?v=59`** → next `?v=60`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -200,20 +200,22 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
 
 - **Hero stock swiper on the homepage (added 2026-09-20, owner request).** The hero's intro
   paragraph ("Dealer-quality servicing, repairs, diagnostics…") is **gone**, replaced in the same
-  slot by `.hstock` — a compact one-car-at-a-time swiper (84×112 **portrait** thumb + name/km/price,
-  prev/next arrows, dots). **Styled to match the used-cars `.car` listings on purpose** (owner asked for
-  it to look less "AI"): white surface, `--grey-100` border, `--shadow-sm`, ink-black 800 title, grey-700
-  detail line, `--brand-red` Anton price, and the same translucent dark arrow pill as `.car__nav`. Don't
-  reintroduce the dark frosted-glass look. Swipe is native CSS scroll-snap; `main.js` (`[data-hstock]`) drives the arrows and
-  syncs the dots, and disables an arrow at each end. Everything else in the hero is **deliberately
-  unchanged** — same H1 size, same buttons, same rating chip position (owner was explicit: only the
-  paragraph changes). Thumbs are dedicated 200×200 files in `images/home-stock/` (~10 KB each) so the
+  slot by `.hstock` — a small **vertical** one-car-at-a-time swiper in the SAME red-and-white frame as
+  the used-cars carousel (`.stock-carousel`): 2 px `--brand-red` border, 18 px radius, red top bar
+  ("In stock · car N of 4" — live, plus "View all ›"), portrait 150×200 photo centred on the dark gallery
+  ground, white body (ink title, grey Auto pill + detail line, brand-red Anton price on the right), and
+  the red round stepper arrows with a white ring centred on the photo; dots over the foot of the photo.
+  Owner iterations on 20 Sep: square thumb → portrait; dark frosted glass ("AI feel") → used-cars
+  styling; horizontal row → vertical card in the red frame. Don't reintroduce the dark glass look.
+  Swipe is native CSS scroll-snap; `main.js` (`[data-hstock]`) drives the arrows, dots and bar count and
+  disables an arrow at each end. The rest of the hero is unchanged (same H1, buttons, rating chip); on a
+  390×844 phone the rating chip ends at y≈749, above the fixed bottom bar. Card is max 330 px wide so it
+  stays vertical on desktop too. Thumbs are dedicated 450×600 files in `images/home-stock/` (~50 KB) so the
   hero stays fast — don't point these at the big gallery JPEGs.
   - **Keep in sync by hand:** the four cars are hard-coded in `index.html`; when stock changes, edit
     both `index.html` (`.hstock__car` blocks) and `used-cars.html`.
-  - **Card height is pinned** (`min-height:112px`) and the title is one line (`nowrap` + ellipsis), with
-    the transmission pill on the *detail* line — a long name like "2008 Toyota Corolla" used to wrap and
-    make that one card taller than the rest. Verified: all four cards render 114 px.
+  - Titles are one line (`nowrap` + ellipsis) with the transmission pill on the detail line, so every
+    card renders the same height (verified 262 px each) whatever the car is called.
   - The removed paragraph's keywords still live in the meta description, the JSON-LD description and
     the body sections, so the SEO hit is minimal.
 

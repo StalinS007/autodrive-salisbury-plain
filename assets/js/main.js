@@ -317,6 +317,7 @@
     var prev = root.querySelector(".hstock__nav--prev");
     var next = root.querySelector(".hstock__nav--next");
     var dots = root.querySelector(".hstock__dots");
+    var count = root.querySelector(".hstock__count");
     if (!track || cars.length < 2) { if (dots) dots.style.display = "none"; return; }
 
     if (dots) {
@@ -334,6 +335,7 @@
       }
       if (prev) prev.disabled = i === 0;
       if (next) next.disabled = i === cars.length - 1;
+      if (count) count.textContent = "In stock \u00b7 car " + (i + 1) + " of " + cars.length;
     }
     function go(step) {
       var w = track.clientWidth || 1;
