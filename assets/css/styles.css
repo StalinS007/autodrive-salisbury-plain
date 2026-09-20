@@ -906,46 +906,62 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .stock-licence { margin:1.5rem 0 0; text-align:center; font-size:.82rem; color:var(--grey-500); letter-spacing:.02em; }
 
 /* ---------- Hero stock swiper (replaces the hero intro paragraph) ----------
-   Sits in the same slot the old <p> occupied, at a similar height so the rest
-   of the hero does not move. One car per view; native scroll-snap gives swipe,
-   the arrows drive it too. Markup: index.html .hstock / JS: main.js. */
+   Sits in the same slot the old <p> occupied. One car per view; native
+   scroll-snap gives swipe, the arrows drive it too. Card styling deliberately
+   mirrors the used-cars listings (.car): white surface, ink title, grey spec
+   text, brand-red Anton price — so the two pages read as one system.
+   Markup: index.html .hstock / JS: main.js. */
 .hstock { position: relative; max-width: 560px; margin-top: .2rem; }
-.hstock__label { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: .5rem; }
-.hstock__label span { font-weight: 700; font-size: .7rem; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.62); }
-.hstock__label a { font-weight: 700; font-size: .78rem; color: #fff; opacity: .85; text-decoration: none; }
+.hstock__label { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: .55rem; }
+.hstock__label span { font-weight: 800; font-size: .7rem; letter-spacing: .05em; text-transform: uppercase; color: rgba(255,255,255,.72); }
+.hstock__label a { font-weight: 700; font-size: .78rem; color: #fff; opacity: .88; text-decoration: none; }
 .hstock__label a:hover { opacity: 1; }
-.hstock__viewport { overflow: hidden; border-radius: 14px; }
+.hstock__viewport { overflow: hidden; border-radius: var(--radius); }
 .hstock__track {
   display: flex; overflow-x: auto; scroll-snap-type: x mandatory;
   -ms-overflow-style: none; scrollbar-width: none; -webkit-overflow-scrolling: touch;
 }
 .hstock__track::-webkit-scrollbar { display: none; }
 .hstock__car {
-  flex: 0 0 100%; scroll-snap-align: start; display: flex; align-items: center; gap: .75rem;
-  padding: .5rem; text-decoration: none; box-sizing: border-box;
-  background: rgba(14,14,16,.82); border: 1px solid rgba(255,255,255,.16);
-  -webkit-backdrop-filter: blur(12px) saturate(120%); backdrop-filter: blur(12px) saturate(120%);
-  border-radius: 14px;
+  flex: 0 0 100%; scroll-snap-align: start; display: flex; align-items: stretch; gap: .8rem; min-height: 112px;
+  text-decoration: none; box-sizing: border-box;
+  background: #fff; border: 1px solid var(--grey-100);
+  border-radius: var(--radius); box-shadow: var(--shadow-sm); overflow: hidden;
 }
-.hstock__car img { width: 78px; height: 78px; flex: 0 0 78px; object-fit: cover; border-radius: 10px; display: block; background: #111; }
-.hstock__info { min-width: 0; display: flex; flex-direction: column; gap: .12rem; padding-right: 4.4rem; }
-.hstock__name { font-weight: 700; font-size: .88rem; line-height: 1.2; color: #fff; }
-.hstock__name em { font-style: normal; font-weight: 600; font-size: .74rem; color: rgba(255,255,255,.6); }
-.hstock__meta { font-size: .73rem; color: rgba(255,255,255,.58); }
-.hstock__price { font-family: var(--font-display); font-size: 1.16rem; line-height: 1.1; letter-spacing: .02em; color: #ff5a4f; }
+/* Portrait crop, matching the tall photos on the used-cars cards. */
+.hstock__car img {
+  width: 84px; flex: 0 0 84px; aspect-ratio: 3 / 4; height: auto;
+  object-fit: cover; display: block; background: var(--grey-100);
+}
+.hstock__info { min-width: 0; display: flex; flex-direction: column; justify-content: center; gap: .12rem; padding: .5rem 4.9rem .5rem 0; }
+.hstock__name {
+  font-weight: 800; font-size: .92rem; line-height: 1.25; color: var(--ink-black);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+/* Transmission sits on the detail line, not the title — keeps every title to one
+   line so all four cards stay the same height whatever the car is called. */
+.hstock__meta { font-size: .76rem; font-weight: 600; color: var(--grey-700); display: flex; align-items: center; gap: .35rem; min-width: 0; }
+.hstock__meta em {
+  font-style: normal; font-weight: 700; font-size: .64rem; color: var(--grey-500);
+  background: var(--off-white); border: 1px solid var(--grey-100);
+  padding: .04rem .34rem; border-radius: 5px; white-space: nowrap; flex: none;
+}
+.hstock__price { font-family: var(--font-display); font-size: 1.28rem; line-height: 1.1; color: var(--brand-red); margin-top: .1rem; }
+/* Same pill as the used-cars gallery arrows. */
 .hstock__nav {
-  position: absolute; bottom: 1.45rem; z-index: 3; width: 30px; height: 30px; padding: 0;
+  position: absolute; z-index: 3; width: 32px; height: 32px; padding: 0;
   display: grid; place-items: center; cursor: pointer; border-radius: 50%;
-  background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.3); color: #fff;
-  -webkit-backdrop-filter: blur(6px); backdrop-filter: blur(6px);
+  background: rgba(15,15,17,.42); border: 0; color: #fff;
+  -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px);
   transition: background .2s var(--ease), opacity .2s var(--ease);
 }
-.hstock__nav:hover { background: rgba(255,255,255,.22); }
-.hstock__nav:disabled { opacity: .3; cursor: default; }
-.hstock__nav svg { width: 15px; height: 15px; }
-.hstock__nav--prev { right: 2.75rem; }
-.hstock__nav--next { right: .6rem; }
-.hstock__dots { display: flex; gap: 5px; margin-top: .5rem; }
-.hstock__dots i { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.3); transition: all .25s var(--ease); }
-.hstock__dots i.on { width: 15px; border-radius: 99px; background: #fff; }
+.hstock__nav:hover { background: rgba(15,15,17,.62); }
+.hstock__nav:active { transform: translateY(-50%) scale(.92); }
+.hstock__nav:disabled { opacity: .28; cursor: default; }
+.hstock__nav svg { width: 16px; height: 16px; }
+.hstock__nav--prev { right: 3.05rem; top: 56px; transform: translateY(-50%); }
+.hstock__nav--next { right: .7rem; top: 56px; transform: translateY(-50%); }
+.hstock__dots { display: flex; gap: 5px; margin-top: .55rem; }
+.hstock__dots i { width: 6px; height: 6px; border-radius: 50%; background: rgba(255,255,255,.34); transition: all .25s var(--ease); }
+.hstock__dots i.on { width: 16px; border-radius: 99px; background: #fff; }
 @media (prefers-reduced-motion: reduce) { .hstock__track { scroll-behavior: auto; } }
