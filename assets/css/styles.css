@@ -912,7 +912,7 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
    scroll-snap gives swipe, the arrows drive it too.
    Markup: index.html .hstock / JS: main.js [data-hstock]. */
 .hstock {
-  position: relative; max-width: 228px; margin-top: .2rem; background: #fff; overflow: hidden;
+  position: relative; max-width: 228px; margin: .2rem auto 0; background: #fff; overflow: hidden;
   border: 2px solid var(--brand-red); border-radius: 16px; box-shadow: var(--shadow);
 }
 .hstock__bar {
