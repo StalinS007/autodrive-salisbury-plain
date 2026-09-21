@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=61`** → next `?v=62`.
+  html page** (all root pages + any subpages). Current version: **`?v=63`** → next `?v=64`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -200,20 +200,24 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
 
 - **Hero stock swiper on the homepage (added 2026-09-20, owner request).** The hero's intro
   paragraph ("Dealer-quality servicing, repairs, diagnostics…") is **gone**, replaced in the same
-  slot by `.hstock` — a small **vertical** one-car-at-a-time swiper in the SAME red-and-white frame as
-  the used-cars carousel (`.stock-carousel`): 2 px `--brand-red` border, 18 px radius, red top bar
-  ("In stock · car N of 4" — live, plus "View all ›"), portrait 114×152 photo centred on the dark gallery
-  ground, white body with the details STACKED (ink title, grey Auto pill + detail line, brand-red Anton price), and
-  the red round stepper arrows with a white ring centred on the photo; dots over the foot of the photo.
-  Owner iterations on 20 Sep: square thumb → portrait; dark frosted glass ("AI feel") → used-cars
-  styling; horizontal row → vertical card in the red frame. Don't reintroduce the dark glass look.
-  Swipe is native CSS scroll-snap; `main.js` (`[data-hstock]`) drives the arrows, dots and bar count and
-  disables an arrow at each end. The rest of the hero is unchanged (same H1, buttons, rating chip); on a
-  390×844 phone the rating chip ends at y≈712, above the fixed bottom bar. Card is deliberately small and
-  THIN — max 228 px wide, 230 px tall (owner, 20 Sep: "smaller, especially thinner") — and **centred** in the hero
-  (`margin: .2rem auto 0`, owner 21 Sep), so it sits mid-screen rather than hugging the left under the H1.
-  Narrowing the frame below ~228 px was tried and reverted: the red bar's "In stock · car N of 4" wraps to two
-  lines and the bar doubles in height. Thumbs are dedicated 450×600 files in `images/home-stock/` (~50 KB) so the
+  slot by `.hstock` — a one-car-at-a-time swiper in the SAME red-and-white frame as the used-cars carousel
+  (`.stock-carousel`): 2 px `--brand-red` border, red top bar ("In stock · car N of 4" — live, plus "View all ›"),
+  photo filling the card width (5:3 crop), white body (ink title, grey Auto pill + detail line, brand-red Anton
+  price), a green **"New stock"** flag on the newest car's photo, and a red **"Enquire stock"** button at the foot.
+  - **Phone:** one car, card 304 px wide, centred, covering the middle of the hero (owner wanted Jitty's face only
+    part-visible behind it). **Desktop (≥760 px): TWO cars side by side** in a 560 px frame — one small card looked
+    lost on a big screen (owner, 21 Sep).
+  - **Each card deep-links to its own listing** — `used-cars#car-<slug>`; `used-cars.html` articles carry
+    `id="car-civic|car-polo|car-corolla|car-rio"` and the stock carousel opens that car on load AND on `hashchange`
+    (a second #car- link while already on the page does not reload the document — that bug is handled).
+  - The card is one `<a>`, so "Enquire stock" is a styled `<span>`, not a nested `<a>` (invalid HTML) — the whole
+    card is the tap target. Owner said "Inquire"; the site uses Australian "Enquire" everywhere, so it matches that.
+  - **`height: auto` on `.hstock__media img` is load-bearing** — the img's `height` attribute is a presentational
+    hint that otherwise beats `auto` and defeats `aspect-ratio`, making the card ~2× too tall.
+  - Arrows/dots sit at fixed `top` values matching the photo height (card width × 3/5): 90/160 px phone, 84/150 px
+    desktop. If the card width changes, retune those. Narrowing below ~228 px wraps the red bar onto two lines.
+  Swipe is native CSS scroll-snap; `main.js` (`[data-hstock]`) steps by ONE CARD (not one viewport, so 2-up works),
+  rebuilds the dots on resize, and disables an arrow at each end. Thumbs are 900×540 files in `images/home-stock/` so the
   hero stays fast — don't point these at the big gallery JPEGs.
   - **Keep in sync by hand:** the four cars are hard-coded in `index.html`; when stock changes, edit
     both `index.html` (`.hstock__car` blocks) and `used-cars.html`.

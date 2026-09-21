@@ -320,13 +320,18 @@
     var count = root.querySelector(".hstock__count");
     if (!track || cars.length < 2) { if (dots) dots.style.display = "none"; return; }
 
-    if (dots) {
-      cars.forEach(function () { dots.appendChild(document.createElement("i")); });
+    function buildDots() {
+      if (!dots) return;
+      dots.innerHTML = "";
+      for (var n = 0; n <= lastIndex(); n++) dots.appendChild(document.createElement("i"));
     }
+    buildDots();
 
+    function cardW() { return cars[0].getBoundingClientRect().width || 1; }
+    function perView() { return Math.max(1, Math.round(track.clientWidth / cardW())); }
+    function lastIndex() { return Math.max(0, cars.length - perView()); }
     function index() {
-      var w = track.clientWidth || 1;
-      return Math.max(0, Math.min(cars.length - 1, Math.round(track.scrollLeft / w)));
+      return Math.max(0, Math.min(lastIndex(), Math.round(track.scrollLeft / cardW())));
     }
     function sync() {
       var i = index();
@@ -334,13 +339,17 @@
         dots.querySelectorAll("i").forEach(function (d, n) { d.classList.toggle("on", n === i); });
       }
       if (prev) prev.disabled = i === 0;
-      if (next) next.disabled = i === cars.length - 1;
-      if (count) count.textContent = "In stock \u00b7 car " + (i + 1) + " of " + cars.length;
+      if (next) next.disabled = i >= lastIndex();
+      if (count) {
+        var pv = perView(), last = Math.min(cars.length, i + pv);
+        count.textContent = pv > 1
+          ? "In stock \u00b7 cars " + (i + 1) + "\u2013" + last + " of " + cars.length
+          : "In stock \u00b7 car " + (i + 1) + " of " + cars.length;
+      }
     }
     function go(step) {
-      var w = track.clientWidth || 1;
-      var i = Math.max(0, Math.min(cars.length - 1, index() + step));
-      track.scrollTo({ left: i * w, behavior: "smooth" });
+      var i = Math.max(0, Math.min(lastIndex(), index() + step));
+      track.scrollTo({ left: i * cardW(), behavior: "smooth" });
     }
 
     if (prev) prev.addEventListener("click", function () { go(-1); });
@@ -351,7 +360,7 @@
       clearTimeout(tick);
       tick = setTimeout(sync, 60);
     }, { passive: true });
-    window.addEventListener("resize", sync);
+    window.addEventListener("resize", function () { buildDots(); sync(); });
     sync();
   });
 
@@ -626,6 +635,28 @@
       render();
     });
 
+    // Deep link from the homepage swiper: /used-cars#car-rio opens that car.
+    // Also handles hash changes, because arriving at a second #car- link while
+    // already on this page does NOT reload the document.
+    function openFromHash(scroll) {
+      var id = (location.hash || "").replace("#", "");
+      if (!id) return false;
+      for (var i = 0; i < cars.length; i++) {
+        if (cars[i].id === id) {
+          page = Math.floor(i / perView());
+          render();
+          if (scroll) sc.scrollIntoView({ behavior: "smooth", block: "center" });
+          return true;
+        }
+      }
+      return false;
+    }
+    window.addEventListener("hashchange", function () { openFromHash(true); });
+
     render();
+    if (openFromHash(false)) {
+      // let layout settle, then bring the deck into view
+      setTimeout(function () { sc.scrollIntoView({ block: "center" }); }, 60);
+    }
   }());
 })();
