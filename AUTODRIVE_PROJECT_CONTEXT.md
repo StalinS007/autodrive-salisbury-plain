@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-09-20**.
+touching the site. Last verified against the live code: **2026-09-21**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=65`** → next `?v=66`.
+  html page** (all root pages + any subpages). Current version: **`?v=66`** → next `?v=67`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -203,8 +203,25 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   slot by `.hstock` — a one-car-at-a-time swiper in the SAME red-and-white frame as the used-cars carousel
   (`.stock-carousel`): 2 px `--brand-red` border, red top bar ("In stock · car N of 4" — live, plus "View all ›"),
   photo filling the card width (5:3 crop), white body (ink title, grey Auto pill + detail line, brand-red Anton
-  price), a green **"New stock"** flag on EVERY car's photo, and a **green "Enquire stock"** button at the foot. The
-  price is green too (`#0a7a33`, the trust-chip green) — owner's call on 21 Sep; frame, bar and arrows stay brand red.
+  price), a **neutral dark "New stock"** flag on every car's photo, an **ink-black price**, and a **green "Enquire stock →"**
+  button — the ONLY green in the card.
+  - **COLOUR ROLES — researched 21 Sep, do not reshuffle without reading this.** Owner liked green but felt the
+    red/green mix was "off"; it was green doing three jobs (flag + price + button). What the evidence says:
+    (1) **CTA = isolation, not hue.** The famous "red beat green by 21 %" HubSpot test won because red was the only red
+    on a green page; a button that matches a nearby badge "reads as decoration, not an action". So green goes on the
+    button and NOWHERE else in the card; a red button in a red-framed card was equally wrong (blends into the brand).
+    (2) **Never a red price without a real discount.** Red says "sale"; when the discount is small/absent the mismatch
+    LOWERS perceived value (PMC9712978: red font 2.68 vs green 3.40 at a 3 % discount; red 2.57 vs neutral 3.58 at 5 %).
+    Our cars are not discounted → price is neutral ink (the best-scoring option), which also keeps green exclusive.
+    (3) **1 in 12 men are red-green colour-blind** and our brand red vs this green differ by only **1.15:1** in luminance —
+    to them they are the same colour. So hierarchy cannot rest on colour: the button also carries an arrow, a filled pill
+    shape and a position cue. Red = brand/structure (frame, bar, arrows) only.
+  - **Frosted-glass buttons (owner, 21 Sep), hero only** (`.hero__actions .btn`, `.hstock__nav`, `.hstock__cta`). True
+    backdrop blur is used only where a photo sits behind (the two hero buttons, the arrows). "Enquire" sits on the white
+    card body — nothing to frost — so it gets the glass FINISH (top-lit gradient, hairline rim, sheen) but stays solid so
+    the one action keeps its weight. **Contrast is measured from rendered pixels, not assumed:** Book a Service 6.7:1,
+    Enquire 5.5:1 (4.97 worst), Message Jitty 13.9:1. White-on-light-glass for Message Jitty was tried and measured
+    **3.62:1 — fails 4.5:1** — so it is light material + ink text. Re-measure if tints change.
   - **Phone:** one car, card 304 px wide, centred, covering the middle of the hero (owner wanted Jitty's face only
     part-visible behind it). **Desktop (≥760 px): TWO cars side by side** in a 560 px frame — one small card looked
     lost on a big screen (owner, 21 Sep).
