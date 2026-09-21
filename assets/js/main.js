@@ -420,7 +420,45 @@
       }
       if (prev) prev.addEventListener("click", function (e) { e.stopPropagation(); show(i - 1); });
       if (next) next.addEventListener("click", function (e) { e.stopPropagation(); show(i + 1); });
+
+      // "… see more reviews" — the phone control (arrows are hidden there). Cycles forward
+      // through this category's reviews and wraps. Categories with one review don't get it.
+      var ctrl = cat.querySelector(".revcat__ctrl");
+      if (ctrl && cards.length > 1) {
+        var more = document.createElement("button");
+        more.type = "button";
+        more.className = "revcat__more";
+        more.innerHTML = "&hellip; see more reviews";
+        more.addEventListener("click", function (e) { e.stopPropagation(); show(i + 1); });
+        ctrl.appendChild(more);
+      }
     });
+  }());
+
+  // Reviews — on phones the categories become ONE left-right swipe strip (CSS does the
+  // snapping; this just tracks which category is centred and lights the matching dot).
+  (function () {
+    var strip = document.querySelector(".revcats");
+    if (!strip) return;
+    var cats = Array.prototype.slice.call(strip.querySelectorAll(".revcat"));
+    if (cats.length < 2) return;
+    var dots = document.createElement("div");
+    dots.className = "revcats__dots";
+    dots.setAttribute("aria-hidden", "true");
+    cats.forEach(function () { dots.appendChild(document.createElement("i")); });
+    strip.parentNode.insertBefore(dots, strip.nextSibling);
+    function sync() {
+      var mid = strip.scrollLeft + strip.clientWidth / 2, best = 0, bd = Infinity;
+      cats.forEach(function (c, n) {
+        var d = Math.abs((c.offsetLeft + c.offsetWidth / 2) - mid);
+        if (d < bd) { bd = d; best = n; }
+      });
+      dots.querySelectorAll("i").forEach(function (d, n) { d.classList.toggle("on", n === best); });
+    }
+    var t;
+    strip.addEventListener("scroll", function () { clearTimeout(t); t = setTimeout(sync, 60); }, { passive: true });
+    window.addEventListener("resize", sync);
+    sync();
   }());
 
   // Reviews — shorten long review text to a snippet with a "more/less" toggle

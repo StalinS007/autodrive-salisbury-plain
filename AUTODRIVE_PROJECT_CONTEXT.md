@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=69`** → next `?v=70`.
+  html page** (all root pages + any subpages). Current version: **`?v=70`** → next `?v=71`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -279,6 +279,16 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   - The removed paragraph's keywords still live in the meta description, the JSON-LD description and
     the body sections, so the SEO hit is minimal.
 
+- **Reviews on PHONES are a left-right swipe strip (owner, 21 Sep).** They used to stack vertically, so reaching
+  "General" meant a long scroll past every category. Under `@media (max-width:759px)` `.revcats` becomes a flex
+  scroll-snap strip: one category per view at 85 % width (max 340 px) so the next card peeks, category dots below
+  (built by `main.js`, which tracks the centred card), and the `‹ 1/4 ›` arrows are replaced by a bottom-right
+  **"… see more reviews"** button that cycles that category's reviews and wraps. `.revcat--single` (Panel & Body,
+  1 review) keeps an invisible control row so card heights stay level. **Desktop is unchanged** — 4-column grid,
+  arrows + count, no dots, no see-more. Categories: Servicing 4, Diagnostics 2, Panel & Body 1, General 10.
+  - ⚠ Specificity trap: the base `.revcat__ctrl button` rule styles the round arrows, so it is written
+    `button:not(.revcat__more)` and the phone rules use `button.revcat__prev` / `.revcat__ctrl .revcat__more` to
+    match it. Weaken either and the text button renders as a 30 px circle, or the arrows come back on phones.
 - **Customer reviews section** near the top of the homepage — real Google reviews, grouped
   by category, shortened to ~90-char snippets with a more/less toggle.
 - **Google Analytics 4** (`G-5QT9NZ63W1`) with contact-event tracking on call/WhatsApp/form.

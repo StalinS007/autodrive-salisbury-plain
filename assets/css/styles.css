@@ -385,14 +385,45 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .rev-card__who strong { display: block; font-size: .8rem; color: var(--ink-black); }
 .rev-card__who small { font-size: .68rem; color: var(--grey-500); }
 .revcat__ctrl { display: flex; align-items: center; justify-content: space-between; gap: .5rem; margin-top: .6rem; }
-.revcat__ctrl button { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--grey-100); background: #fff; color: var(--brand-red); font-size: 1.2rem; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .15s ease, color .15s ease; }
-.revcat__ctrl button:hover { background: var(--brand-red); color: #fff; }
+.revcat__ctrl button:not(.revcat__more) { width: 30px; height: 30px; border-radius: 50%; border: 1px solid var(--grey-100); background: #fff; color: var(--brand-red); font-size: 1.2rem; line-height: 1; cursor: pointer; display: grid; place-items: center; transition: background .15s ease, color .15s ease; }
+.revcat__ctrl button:not(.revcat__more):hover { background: var(--brand-red); color: #fff; }
 .revcat__count { font-size: .72rem; color: var(--grey-500); font-weight: 600; }
 .revcat--single .revcat__ctrl { visibility: hidden; }
 .rev-foot { text-align: center; margin-top: 1.4rem; color: var(--grey-500); font-size: .9rem; }
 .rev-foot a { color: var(--brand-red); font-weight: 600; }
+/* "… see more reviews" — the phone control; desktop keeps the ‹ 1/4 › arrows instead. */
+.revcat__ctrl .revcat__more { display: none; background: none; border: 0; padding: .1rem 0; cursor: pointer;
+  font-family: "Inter", -apple-system, system-ui, sans-serif; font-size: .74rem; font-weight: 700;
+  color: var(--brand-red); white-space: nowrap; }
+.revcat__ctrl .revcat__more:hover { text-decoration: underline; }
+.revcats__dots { display: none; }
+
 @media (max-width: 900px) { .revcats { grid-template-columns: repeat(2, 1fr); } }
-@media (max-width: 520px) { .revcats { grid-template-columns: 1fr; } }
+
+/* ---------- Phone: the four categories become ONE left-right swipe strip ----------
+   (owner, 21 Sep — they used to stack vertically, so reaching "General" meant a long scroll).
+   One category per view with the next peeking so it reads as swipeable; the arrows are
+   replaced by a bottom-right "… see more reviews" that cycles within that category. */
+@media (max-width: 759px) {
+  .revcats {
+    display: flex; grid-template-columns: none; align-items: stretch;
+    gap: .7rem; margin-top: 1.2rem; padding: .2rem 1rem .5rem;
+    overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none; -ms-overflow-style: none;
+  }
+  .revcats::-webkit-scrollbar { display: none; }
+  .revcat { flex: 0 0 85%; max-width: 340px; scroll-snap-align: center; }
+  .revcat__title { margin-bottom: .5rem; }
+  .rev-card { min-height: 0; }
+  .revcat__ctrl { justify-content: space-between; margin-top: .5rem; }
+  .revcat__ctrl button.revcat__prev, .revcat__ctrl button.revcat__next { display: none; }
+  .revcat__count { font-size: .68rem; }
+  .revcat__ctrl .revcat__more { display: inline-block; }
+  .revcat--single .revcat__ctrl { visibility: hidden; }   /* keeps card heights aligned */
+  .revcats__dots { display: flex; gap: 6px; justify-content: center; margin: .1rem 0 0; }
+  .revcats__dots i { width: 6px; height: 6px; border-radius: 50%; background: var(--grey-300); transition: all .25s var(--ease); }
+  .revcats__dots i.on { width: 18px; border-radius: 99px; background: var(--brand-red); }
+}
 
 /* Date-ask modal — small commitment step before WhatsApp */
 .dateask { position: fixed; inset: 0; z-index: 200; display: none; align-items: center; justify-content: center; padding: 1.2rem; }
