@@ -317,7 +317,6 @@
     var prev = root.querySelector(".hstock__nav--prev");
     var next = root.querySelector(".hstock__nav--next");
     var dots = root.querySelector(".hstock__dots");
-    var count = root.querySelector(".hstock__count");
     if (!track || cars.length < 2) { if (dots) dots.style.display = "none"; return; }
 
     function buildDots() {
@@ -340,12 +339,6 @@
       }
       if (prev) prev.disabled = i === 0;
       if (next) next.disabled = i >= lastIndex();
-      if (count) {
-        var pv = perView(), last = Math.min(cars.length, i + pv);
-        count.textContent = pv > 1
-          ? "In stock \u00b7 cars " + (i + 1) + "\u2013" + last + " of " + cars.length
-          : "In stock \u00b7 car " + (i + 1) + " of " + cars.length;
-      }
     }
     function go(step) {
       var i = Math.max(0, Math.min(lastIndex(), index() + step));

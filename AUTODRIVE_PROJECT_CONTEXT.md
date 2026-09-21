@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=68`** → next `?v=69`.
+  html page** (all root pages + any subpages). Current version: **`?v=69`** → next `?v=70`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -231,10 +231,13 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   - **Phone hero (owner's ruling, 21 Sep): the H1 keeps its ORIGINAL three-line size — do not shrink it.** The room comes
     from a SMALLER car card plus smaller hero buttons and reviews chip (`@media (max-width:759px)` + `.hero:has(.hstock)`).
     The card width is a variable (`--hs-w`; photo height `--hs-ph` derives from it and positions the arrows/dots) with
-    **height tiers**: 214 px default, 262 px when the viewport is ≥760 tall, 204 px when ≤690, and **≤610 px (iPhone SE) the
+    **height tiers**: 236 px default, 288 px when the viewport is ≥760 tall, 214 px when ≤690, and **≤610 px (iPhone SE) the
     card turns SIDEWAYS** (photo left, details + Enquire right, both arrows on the photo). **Never go below ~200 px wide:**
     at 182 px the red bar wraps to two lines and the details row overflows the card (tried, measured, reverted).
-    Spare room with a 3-line H1: 31 / 87 / 16 / 51 px.
+    Spare room with a 3-line H1: 15 / 68 / 13 / 56 px — the owner's phone (393×698) is near its limit, so widening the
+    card again means taking height from somewhere else (each +10 px of width costs +7.5 px of height at 4:3).
+    The red bar just says **"In stock"** (owner, 21 Sep — no "car N of 4" count; the dots show position) and the price
+    was taken down a size.
   - **Homepage car photos are ZOOMED OUT so the whole car sits inside the frame with margin** (owner: "bigger view of the
     car is important", even in the small card). `images/home-stock/*.jpg` (900×675) are built from the ORIGINALS by taking
     the car's bounding box + ~10 % margin and the smallest 4:3 window that holds it. The Corolla original is wide enough for
