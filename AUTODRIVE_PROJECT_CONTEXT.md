@@ -378,91 +378,16 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
 
 ---
 
-## 7b. Marketing assets — `marketing/` folder (added 2026-08-21)
+## 7b. Marketing assets — NOT in this repo (removed 2026-09-21)
 
-- **`marketing/AutoDrive-Reel-Playbook.pdf`** (+ `reel-playbook.html` source): the content
-  strategy the owner is pitching to Jitty — problem-first reels, one symptom per video,
-  ten ready-to-shoot scripts, all funnelling to the bio link → "Issues with my car" flow.
-  Also published as a Claude artifact:
-  https://claude.ai/code/artifact/e9e7595b-98fe-4f95-b6d1-423db348fd3a
-- **🖥️ TODO for the MAC session:** copy the PDF to the owner's Desktop after pulling:
-  `cp marketing/AutoDrive-Reel-Playbook.pdf ~/Desktop/` — the cloud session can't reach
-  the Mac's filesystem, which is why it's parked here.
-- **Pending:** owner will supply Instagram Professional-Dashboard screenshots (30/90-day
-  views + reach, external link taps, follower growth, top content, follower/non-follower
-  split). When they arrive, add a "The Evidence" section to the playbook pairing IG's
-  numbers with GA's (instagram/bio = 160 sessions / 44% of traffic, post-day spikes,
-  Cyril's ABS booking as the end-to-end proof) and re-render the PDF. Any session can do
-  this; keep the artifact URL the same.
-- **`marketing/AutoDrive-Pitch-Brief.pdf`** (+ `pitch-brief.html` source, added 2026-09-11):
-  Stalin's briefing for the retainer pitch to Jitty (12 Sep 2026) — AU market pricing research,
-  scope priced as 11 separately-bought pieces (~$5.2–9.6k/mo market vs $2,500 asked), "already delivered" list
-  with market values, break-even in cars/services, compound-effect argument, Royalty Auto
-  Service case study, multicultural edge, a 3-tier ladder (Maintain $1,500 / **Grow $2,500
-  recommended** / Dominate $3,800), the anchoring script, objection handling, walk-away line.
-  Sections are tagged "show Jitty" vs "your eyes only". **2026-09-12: the "Open with this"
-  section (before/after tables from the evidence run, the 8 Sep viral reel, the honest local-reach
-  read) is now the first section and the anchoring script leads with it.** Also published as a Claude artifact
-  (keep this URL when re-rendering): https://claude.ai/code/artifact/6d742a25-6f9c-4351-b8bb-b37258a3b7b7
-  **Next step:** once Stalin fixes the Grow price, build the 2-page Jitty-facing proposal from
-  the "show Jitty" sections.
-- **`marketing/AutoDrive-Data.pdf`** (+ `data.html`; added 2026-09-12 as "Current Growth", renamed "Data"): the Jitty-facing
-  evidence document. Five sections: Google Business Profile (monthly calls/clicks/interactions, reviews
-  20→26), Facebook (reach 20×, follows +8→+271), Instagram (reach 30×, follows +55→+811, the 8 Sep reel),
-  "Is it reaching Adelaide?" (honest read: Adelaide #1 city, everyday reels reach SA first, viral reel went
-  national; a customer called after seeing the videos), and "Why it has to be consistent" (ordinary post
-  reach 44→430). Written in Stalin's first-person voice, no prices (the price is in the pitch brief).
-  Copies on the Desktop (`AutoDrive-Evidence/`) and in `Downloads/Autodrive downloads/`.
-- **Evidence run — STATUS 12 Sep 2026, 01:10:** DONE for Google Business Profile (read via the in-search
-  manager panel) and Meta Business Suite (read by a Claude-in-Chrome session; full text saved). Numbers are
-  in `ANALYTICS_CONTEXT.md` → "Evidence run 2026-09-11". Evidence images for the pitch:
-  `~/Desktop/AutoDrive-Evidence/01-GBP-before-after.png` and `02-Meta-before-after.png` (HTML sources beside
-  them). Still open: GA4 (traffic by source/city, events, post-reel days) — the extension prompt is in the
-  chat; and the reel-comment/DM local scan. Filmed-but-unposted footage: `~/Downloads/Autodrive downloads/`
-  → `Jitty service footage 22:8/` = 21 raw clips (25 Aug) + edited cut `7:09 DV DV edit 7-seater and
-  5seaters/Autodrive Sep 7.mp4`; `footage 11:09/AUTODRIVE.mp4` = second edited cut (11 Sep). Owner to
-  confirm which count as "in the can". Original TODO kept below for the steps.
-- **`marketing/AutoDrive-Content-System.pdf`** (+ `content-system-plan.html`, added 2026-09-12): the
-  **Jitty-facing pitch document**, written by Stalin, laid out by Claude — the weekly content system
-  (16 videos/month, Friday 8 pm sign-off, Mon–Sat 5–6 pm posting, FB-group strategy, weekly used-car
-  videos into highlights, GBP revamp, website/profiles/analytics already running, "what I need from
-  you"). Mentions **DV** = the editing/posting team Jitty already uses; Stalin coordinates them. No
-  price in the document (price is said in the room, last). The pitch brief above is Stalin's private
-  playbook, not shown to Jitty.
-- **🖥️ TODO for the MAC session — "Evidence run" (added 2026-09-11, needed before the 12 Sep pitch).**
-  The cloud session cannot reach Instagram/Meta/Google (egress-blocked — verified), so the
-  before/after performance data must be collected on the Mac, ideally with **Claude in Chrome**
-  driving Stalin's logged-in browser (`claude --chrome`, or `/chrome` inside a session). Steps:
-  1. Ask Stalin for the **pivot date** — the week he gave Jitty the video direction. Before/after
-     windows are equal length either side of it.
-  2. **Meta Business Suite** (business.facebook.com → Insights, desktop): Overview → Reach chart
-     for Facebook and Instagram separately, custom range 1 Jan 2026 → today; Content tab →
-     **Export CSV** (or screenshot the list sorted by reach); Audience → follower growth.
-  3. **Instagram professional dashboard** (instagram.com/autodrive_salisburyplain → Professional
-     dashboard, or the app): last 90 days — Views with followers/non-followers split, Reach,
-     Profile visits, External link taps, "vs previous 90 days" %; Content sorted by views (note
-     the viral reels' dates + view counts).
-  4. **Google Business Profile → Performance, last 6 months** (Google Maps signed into the manager
-     account, or search "my business"): Overview interactions, Calls, Directions, Website clicks,
-     Messages, "How people discovered you". Also current review count/rating (was 20 × 5.0★ in Jul).
-  5. **GA4** (analytics.google.com, property 545462187): Traffic acquisition 14 Jul → today by
-     source/medium; Events counts for whatsapp_click / booking_date_picked / vehicle_info_submitted;
-     daily users chart.
-  6. Save every screenshot + the CSV to `~/Desktop/AutoDrive-Evidence/`, then **write the numbers
-     (not the images) into `ANALYTICS_CONTEXT.md`** under a new "Evidence run 2026-09-11" heading
-     — posts/week before vs after, avg reach per post before vs after, follower growth, GBP calls/
-     directions by month, top 5 reels with dates/views, IG 90-day link taps + non-follower share,
-     GA source rows + lead events. Commit + push to `reviews-preview`. Narrate each step to Stalin
-     as it happens (he wants to learn where the data lives).
-  Any session can then build the "before / after" section of the pitch brief from those numbers.
-  Also on the Mac: Stalin has a folder of **filmed-but-unposted reels** — count them and note the
-  folder path here; "two weeks of content already in the can" is a pitch beat.
-- **⚠ `marketing/` is publicly reachable on the deployed site** (Cloudflare serves the whole
-  repo) — same accepted trade-off as the context .md files. Nothing secret goes in here. The
-  pitch brief contains Stalin's negotiation notes; if that ever matters, add a `_redirects`
-  rule or move it out of the repo before merging to `main`.
+The pitch/marketing documents used to live in `marketing/` here. They were **deleted from the repo** on
+2026-09-21: Cloudflare serves the whole repo, so merging to `main` would have published
+`AutoDrive-Pitch-Brief.pdf` (Stalin's own negotiation notes — "your eyes only" sections, walk-away line,
+anchoring script) at the live domain, where Jitty could find it. **Do not put pitch, pricing-strategy or
+client-negotiation material in this repo again.**
 
----
+Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
+`~/Downloads/Autodrive downloads/Pitch items/`. The old files remain in git history if ever needed.
 
 ## 8. Known constraints & pending items
 
