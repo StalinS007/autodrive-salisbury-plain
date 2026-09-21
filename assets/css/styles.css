@@ -955,15 +955,17 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   background: var(--off-white); border: 1px solid var(--grey-100);
   padding: .03rem .3rem; border-radius: 5px; flex: none;
 }
-.hstock__price { font-family: var(--font-display); font-size: 1.22rem; line-height: 1; color: var(--brand-red); white-space: nowrap; }
+/* Price + Enquire are GREEN here (owner, 21 Sep) — same green as the "New stock" flag and the
+   used-cars trust chips. The frame, bar and arrows stay brand red. */
+.hstock__price { font-family: var(--font-display); font-size: 1.22rem; line-height: 1; color: #0a7a33; white-space: nowrap; }
 /* Looks like a button; the whole card is the link, so this is a span (no nested <a>). */
 .hstock__cta {
   display: block; margin: 0 .7rem .6rem; padding: .42rem .6rem; text-align: center;
-  background: var(--brand-red); color: #fff; border-radius: 999px;
+  background: #0a7a33; color: #fff; border-radius: 999px;
   font-weight: 800; font-size: .74rem; letter-spacing: .01em;
   transition: background .2s var(--ease);
 }
-.hstock__car:hover .hstock__cta { background: var(--brand-red-dk); }
+.hstock__car:hover .hstock__cta { background: #075c26; }
 /* Red stepper arrows, centred on the photo (photo height = card width x 3/4). */
 .hstock__nav {
   position: absolute; top: 112px; transform: translateY(-50%); z-index: 3;

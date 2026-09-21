@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=64`** → next `?v=65`.
+  html page** (all root pages + any subpages). Current version: **`?v=65`** → next `?v=66`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -203,7 +203,8 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   slot by `.hstock` — a one-car-at-a-time swiper in the SAME red-and-white frame as the used-cars carousel
   (`.stock-carousel`): 2 px `--brand-red` border, red top bar ("In stock · car N of 4" — live, plus "View all ›"),
   photo filling the card width (5:3 crop), white body (ink title, grey Auto pill + detail line, brand-red Anton
-  price), a green **"New stock"** flag on the newest car's photo, and a red **"Enquire stock"** button at the foot.
+  price), a green **"New stock"** flag on EVERY car's photo, and a **green "Enquire stock"** button at the foot. The
+  price is green too (`#0a7a33`, the trust-chip green) — owner's call on 21 Sep; frame, bar and arrows stay brand red.
   - **Phone:** one car, card 304 px wide, centred, covering the middle of the hero (owner wanted Jitty's face only
     part-visible behind it). **Desktop (≥760 px): TWO cars side by side** in a 560 px frame — one small card looked
     lost on a big screen (owner, 21 Sep).
