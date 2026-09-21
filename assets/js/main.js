@@ -421,16 +421,20 @@
       if (prev) prev.addEventListener("click", function (e) { e.stopPropagation(); show(i - 1); });
       if (next) next.addEventListener("click", function (e) { e.stopPropagation(); show(i + 1); });
 
-      // "… see more reviews" — the phone control (arrows are hidden there). Cycles forward
-      // through this category's reviews and wraps. Categories with one review don't get it.
-      var ctrl = cat.querySelector(".revcat__ctrl");
-      if (ctrl && cards.length > 1) {
-        var more = document.createElement("button");
-        more.type = "button";
-        more.className = "revcat__more";
-        more.innerHTML = "&hellip; see more reviews";
-        more.addEventListener("click", function (e) { e.stopPropagation(); show(i + 1); });
-        ctrl.appendChild(more);
+      // "… see more reviews" — sits INSIDE each card, bottom-right, level with "Google review"
+      // (owner, 21 Sep). Cycles forward through this category's reviews and wraps. One button per
+      // card because only the active card is displayed. Categories with one review don't get it.
+      if (cards.length > 1) {
+        cards.forEach(function (card) {
+          var who = card.querySelector(".rev-card__who");
+          if (!who || who.querySelector(".revcat__more")) return;
+          var more = document.createElement("button");
+          more.type = "button";
+          more.className = "revcat__more";
+          more.innerHTML = "&hellip; see more reviews";
+          more.addEventListener("click", function (e) { e.stopPropagation(); show(i + 1); });
+          who.appendChild(more);
+        });
       }
     });
   }());
