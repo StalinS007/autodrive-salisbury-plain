@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=63`** → next `?v=64`.
+  html page** (all root pages + any subpages). Current version: **`?v=64`** → next `?v=65`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -212,12 +212,23 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
     (a second #car- link while already on the page does not reload the document — that bug is handled).
   - The card is one `<a>`, so "Enquire stock" is a styled `<span>`, not a nested `<a>` (invalid HTML) — the whole
     card is the tap target. Owner said "Inquire"; the site uses Australian "Enquire" everywhere, so it matches that.
+  - **Lead-photo rule (owner, 21 Sep): every car opens on its FRONT THREE-QUARTER shot, and the homepage uses that
+    same shot framed ZOOMED OUT so the whole car is visible** — never a tight crop of a bonnet. Gallery order in
+    `used-cars.html` now leads with `civic-02`, `polo-03`, `corolla-05`, `rio-01`. `images/home-stock/*.jpg` are
+    900×675 (4:3) and cut from the ORIGINALS, not the 607×1080 gallery copies: originals live in
+    `~/Downloads/Autodrive downloads/Car images/WhatsApp Unknown 2026-07-27…/<car>/` (Rio: the chat uploads). Cars that
+    span their photo's width (Rio, Civic) are a full-width 4:3 crop centred on the car; the Corolla original is a level
+    landscape shot and crops cleanly; the Polo is taller than wide in its photo, so the whole car sits on a blurred
+    fill of the same photo. `corolla-05.jpg` was rebuilt from that landscape original (whole car on a blurred fill, 9:16)
+    — the old file was the same photo squeezed into portrait on a tilt.
   - **`height: auto` on `.hstock__media img` is load-bearing** — the img's `height` attribute is a presentational
     hint that otherwise beats `auto` and defeats `aspect-ratio`, making the card ~2× too tall.
-  - Arrows/dots sit at fixed `top` values matching the photo height (card width × 3/5): 90/160 px phone, 84/150 px
-    desktop. If the card width changes, retune those. Narrowing below ~228 px wraps the red bar onto two lines.
+  - Arrows/dots sit at fixed `top` values matching the photo height: originally 90/160 px phone, 84/150 px
+    desktop — now 112/206 px phone, 104/190 px desktop for the 4:3 photo (card width × 3/4). If the card width changes, retune those. Narrowing below ~228 px wraps the red bar onto two lines.
   Swipe is native CSS scroll-snap; `main.js` (`[data-hstock]`) steps by ONE CARD (not one viewport, so 2-up works),
-  rebuilds the dots on resize, and disables an arrow at each end. Thumbs are 900×540 files in `images/home-stock/` so the
+  rebuilds the dots on resize, and disables an arrow at each end. On phones the hero's gaps are tightened
+  (`.hero:has(.hstock)` rules) so the taller 4:3 card still leaves the rating chip above the fixed bottom bar (y≈751 of 844).
+  Thumbs are 900×675 files in `images/home-stock/` so the
   hero stays fast — don't point these at the big gallery JPEGs.
   - **Keep in sync by hand:** the four cars are hard-coded in `index.html`; when stock changes, edit
     both `index.html` (`.hstock__car` blocks) and `used-cars.html`.

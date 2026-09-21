@@ -907,7 +907,8 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 
 /* ---------- Hero stock swiper (replaces the hero intro paragraph) ----------
    Same red-and-white frame as the used-cars carousel (.stock-carousel). Photo fills
-   the card width (5:3 crop) so there is no dead space beside it at any card size.
+   the card width at 4:3 and is framed ZOOMED OUT so the whole car is visible (owner,
+   21 Sep) — images/home-stock/*.jpg are cut from the originals for that, not from the gallery JPEGs.
    Phone: one car, card spans most of the hero so it covers the middle.
    Desktop (>=760px): two cars side by side in a wider frame — a single small card
    looked lost on a big screen. Each card deep-links to that car on /used-cars.
@@ -934,7 +935,7 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   text-decoration: none; background: #fff; box-sizing: border-box;
 }
 .hstock__media { position: relative; display: block; background: #111; }
-.hstock__media img { width: 100%; height: auto; aspect-ratio: 5 / 3; object-fit: cover; display: block; }
+.hstock__media img { width: 100%; height: auto; aspect-ratio: 4 / 3; object-fit: cover; display: block; }
 /* Green "new stock" flag — same pill shape as the red .car__badge on the listings. */
 .hstock__badge {
   position: absolute; top: .45rem; left: .45rem; z-index: 2;
@@ -963,9 +964,9 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   transition: background .2s var(--ease);
 }
 .hstock__car:hover .hstock__cta { background: var(--brand-red-dk); }
-/* Red stepper arrows, centred on the photo (photo height = card width x 3/5). */
+/* Red stepper arrows, centred on the photo (photo height = card width x 3/4). */
 .hstock__nav {
-  position: absolute; top: 90px; transform: translateY(-50%); z-index: 3;
+  position: absolute; top: 112px; transform: translateY(-50%); z-index: 3;
   width: 30px; height: 30px; padding: 0; border-radius: 50%; border: 2px solid #fff; cursor: pointer;
   background: var(--brand-red); color: #fff; display: flex; align-items: center; justify-content: center;
   box-shadow: 0 4px 12px rgba(0,0,0,.28); transition: background .2s ease, transform .15s ease, opacity .2s ease;
@@ -976,7 +977,7 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .hstock__nav svg { width: 16px; height: 16px; }
 .hstock__nav--prev { left: 6px; }
 .hstock__nav--next { right: 6px; }
-.hstock__dots { position: absolute; left: 0; right: 0; top: 160px; display: flex; gap: 5px; justify-content: center; pointer-events: none; }
+.hstock__dots { position: absolute; left: 0; right: 0; top: 206px; display: flex; gap: 5px; justify-content: center; pointer-events: none; }
 .hstock__dots i { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.6);
   box-shadow: 0 0 0 1px rgba(0,0,0,.28), 0 1px 3px rgba(0,0,0,.45); transition: all .25s var(--ease); }
 .hstock__dots i.on { background: #fff; transform: scale(1.35); }
@@ -989,8 +990,16 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
   .hstock__car + .hstock__car { border-left: 1px solid var(--grey-100); }
   .hstock__name { font-size: .92rem; }
   .hstock__price { font-size: 1.3rem; }
-  .hstock__nav { top: 84px; width: 34px; height: 34px; }
+  .hstock__nav { top: 104px; width: 34px; height: 34px; }
   .hstock__nav svg { width: 18px; height: 18px; }
-  .hstock__dots { top: 150px; }
+  .hstock__dots { top: 190px; }
+}
+/* Phone: the 4:3 photo makes the card ~45px taller, so take that back from the gaps around it
+   to keep the rating chip clear of the fixed bottom bar. */
+@media (max-width: 759px) {
+  .hero:has(.hstock) { padding-top: 1.7rem; }
+  .hero:has(.hstock) h1 { margin-bottom: .7rem; }
+  .hero:has(.hstock) .hero__actions { margin-top: 1rem; }
+  .hero:has(.hstock) .rating-chip { margin-top: 1.1rem; }
 }
 @media (prefers-reduced-motion: reduce) { .hstock__track { scroll-behavior: auto; } }
