@@ -914,7 +914,9 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
    looked lost on a big screen. Each card deep-links to that car on /used-cars.
    Markup: index.html .hstock / JS: main.js [data-hstock]. */
 .hstock {
-  position: relative; max-width: 304px; margin: .2rem auto 0; background: #fff; overflow: hidden;
+  --hs-w: 264px;                                   /* card width */
+  --hs-ph: calc((var(--hs-w) - 4px) * .75);        /* photo height = inner width x 3/4 */
+  position: relative; max-width: var(--hs-w); margin: .2rem auto 0; background: #fff; overflow: hidden;
   border: 2px solid var(--brand-red); border-radius: 16px; box-shadow: var(--shadow);
 }
 .hstock__bar {
@@ -987,9 +989,9 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .hstock__car:hover .hstock__cta { filter: brightness(1.08); }
 .hstock__car:hover .hstock__cta::after { transform: translateX(3px); }
 .hstock__car:active .hstock__cta { transform: scale(.98); }
-/* Red stepper arrows, centred on the photo (photo height = card width x 3/4). */
+/* Red stepper arrows, centred on the photo. */
 .hstock__nav {
-  position: absolute; top: 112px; transform: translateY(-50%); z-index: 3;
+  position: absolute; top: calc(var(--hs-ph) / 2); transform: translateY(-50%); z-index: 3;
   width: 30px; height: 30px; padding: 0; border-radius: 50%; border: 2px solid #fff; cursor: pointer;
   background: var(--brand-red); color: #fff; display: flex; align-items: center; justify-content: center;
   box-shadow: 0 4px 12px rgba(0,0,0,.28); transition: background .2s ease, transform .15s ease, opacity .2s ease;
@@ -1000,30 +1002,64 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .hstock__nav svg { width: 16px; height: 16px; }
 .hstock__nav--prev { left: 6px; }
 .hstock__nav--next { right: 6px; }
-.hstock__dots { position: absolute; left: 0; right: 0; top: 206px; display: flex; gap: 5px; justify-content: center; pointer-events: none; }
+.hstock__dots { position: absolute; left: 0; right: 0; top: calc(var(--hs-ph) - 16px); display: flex; gap: 5px; justify-content: center; pointer-events: none; }
 .hstock__dots i { width: 5px; height: 5px; border-radius: 50%; background: rgba(255,255,255,.6);
   box-shadow: 0 0 0 1px rgba(0,0,0,.28), 0 1px 3px rgba(0,0,0,.45); transition: all .25s var(--ease); }
 .hstock__dots i.on { background: #fff; transform: scale(1.35); }
 /* Desktop: two cars at a time in a bigger frame. */
 @media (min-width: 760px) {
-  .hstock { max-width: 560px; margin-inline: 0; }
+  .hstock { --hs-w: 560px; --hs-ph: calc((var(--hs-w) - 4px) / 2 * .75); margin-inline: 0; }
   .hstock__bar { padding: .5rem .9rem; font-size: .72rem; }
   .hstock__bar a { font-size: .72rem; }
   .hstock__car { flex: 0 0 50%; }
   .hstock__car + .hstock__car { border-left: 1px solid var(--grey-100); }
   .hstock__name { font-size: .92rem; }
   .hstock__price { font-size: 1.42rem; }
-  .hstock__nav { top: 104px; width: 34px; height: 34px; }
+  .hstock__nav { width: 34px; height: 34px; }
   .hstock__nav svg { width: 18px; height: 18px; }
-  .hstock__dots { top: 190px; }
 }
-/* Phone: the 4:3 photo makes the card ~45px taller, so take that back from the gaps around it
-   to keep the rating chip clear of the fixed bottom bar. */
+/* Phone — sized for the REAL Safari viewport, not the device height. With Safari's toolbars showing,
+   an iPhone 15/16 Pro gives ~698px, of which the site header takes ~89 and the fixed bottom bar ~61,
+   leaving ~547px for the whole hero. Everything below is tuned so the H1, the car card, BOTH hero
+   buttons and the Google-reviews chip are visible without scrolling (owner, 21 Sep). */
 @media (max-width: 759px) {
-  .hero:has(.hstock) { padding-top: 1.7rem; }
-  .hero:has(.hstock) h1 { margin-bottom: .7rem; }
-  .hero:has(.hstock) .hero__actions { margin-top: 1rem; }
-  .hero:has(.hstock) .rating-chip { margin-top: 1.1rem; }
+  .hero:has(.hstock) { padding: .85rem 0 .9rem; }
+  .hero:has(.hstock) h1 { font-size: clamp(1.5rem, 7.1vw, 1.95rem); line-height: 1.04; margin-bottom: .55rem; letter-spacing: .2px; }
+  .hero:has(.hstock) h1 .text-red { white-space: nowrap; }      /* never split "ONE-" / "STOP" */
+  .hero:has(.hstock) .hero__actions { margin-top: .65rem; gap: .55rem; flex-wrap: nowrap; }
+  .hero:has(.hstock) .hero__actions .btn { flex: 1 1 0; justify-content: center; text-align: center; padding: .62rem .5rem; font-size: .9rem; white-space: nowrap; }
+  .hero:has(.hstock) .rating-chip { margin-top: .6rem; padding: .38rem .8rem; gap: .5rem; }
+  .hero:has(.hstock) .rating-chip .stars { font-size: .82rem; }
+  .hero:has(.hstock) .rating-chip strong { font-size: .98rem; }
+  .hero:has(.hstock) .rating-chip small { font-size: .74rem; }
+  .hero:has(.hstock) .rating-chip .divider { height: 16px; }
+  .hstock__bar { padding: .32rem .65rem; font-size: .62rem; }
+  .hstock__bar a { font-size: .62rem; }
+  .hstock__info { padding: .4rem .65rem .25rem; }
+  .hstock__name { font-size: .84rem; }
+  .hstock__price { font-size: 1.18rem; }
+  .hstock__cta { margin: .05rem .65rem .5rem; padding: .42rem .6rem; font-size: .74rem; }
+  .hstock__nav { width: 28px; height: 28px; }
+}
+/* Height tiers — the card scales with the room the phone actually has. */
+@media (max-width: 759px) and (min-height: 760px) { .hstock { --hs-w: 304px; } }     /* Pro Max / Plus */
+@media (max-width: 759px) and (max-height: 690px) { .hstock { --hs-w: 248px; } }     /* iPhone 13/14 class */
+/* Short phones (iPhone SE / mini with toolbars showing, ~550px): a stacked card cannot fit, so the
+   card turns sideways — photo left, details + Enquire right — which is ~150px shorter. */
+@media (max-width: 759px) and (max-height: 610px) {
+  .hstock { --hs-w: 330px; --hs-ph: 108px; }
+  .hero:has(.hstock) h1 { font-size: clamp(1.35rem, 6.4vw, 1.7rem); margin-bottom: .45rem; }
+  .hstock__car { display: grid; grid-template-columns: 136px 1fr; grid-template-rows: 1fr auto; }
+  .hstock__media { grid-row: 1 / span 2; }
+  .hstock__media img { width: 136px; height: var(--hs-ph); aspect-ratio: auto; }
+  .hstock__info { flex-direction: column; align-items: flex-start; gap: .1rem; padding: .4rem .6rem .1rem; }
+  .hstock__cta { margin: .15rem .6rem .45rem; }
+  .hstock__badge { font-size: .5rem; padding: .18rem .38rem; top: .3rem; left: .3rem; }
+  .hstock__nav { width: 24px; height: 24px; }
+  .hstock__nav svg { width: 13px; height: 13px; }
+  .hstock__nav--prev { left: 4px; }
+  .hstock__nav--next { left: 108px; right: auto; }      /* both arrows sit on the photo, clear of the price + button */
+  .hstock__dots { right: auto; width: 136px; top: calc(var(--hs-ph) - 12px); }
 }
 /* ---------- Frosted-glass hero buttons (owner, 21 Sep) ----------
    Scoped to the hero only — these sit over the photograph, so the blur has something to frost.

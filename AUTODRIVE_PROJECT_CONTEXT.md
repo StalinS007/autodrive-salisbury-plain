@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=66`** → next `?v=67`.
+  html page** (all root pages + any subpages). Current version: **`?v=67`** → next `?v=68`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -222,7 +222,18 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
     the one action keeps its weight. **Contrast is measured from rendered pixels, not assumed:** Book a Service 6.7:1,
     Enquire 5.5:1 (4.97 worst), Message Jitty 13.9:1. White-on-light-glass for Message Jitty was tried and measured
     **3.62:1 — fails 4.5:1** — so it is light material + ink text. Re-measure if tints change.
-  - **Phone:** one car, card 304 px wide, centred, covering the middle of the hero (owner wanted Jitty's face only
+  - **⚠ TEST PHONES AT THE REAL SAFARI VIEWPORT, NOT THE DEVICE HEIGHT (learned 21 Sep from the owner's screenshot).**
+    With Safari's toolbars showing, an iPhone 15/16 Pro gives **~698 px**, not 852; the site header takes ~89 and the fixed
+    `.mobile-bar` ~61, leaving **~547 px for the whole hero**. Earlier "fits above the fold" checks at 844 px were wrong and
+    the hero buttons + reviews chip were hidden on the owner's phone. Real visible sizes to test: 393×698 (15/16 Pro),
+    440×790 (Pro Max), 390×664 (13/14), 375×548 (SE). The pass condition is: `.hero__actions` and `.rating-chip` bottoms are
+    above `.mobile-bar`'s top. Current spare: 45 / 100 / 23 / 81 px.
+  - **Phone hero is compacted to fit that** (`@media (max-width:759px)` + `.hero:has(.hstock)`): H1 drops to ~7.1vw and
+    two lines ("ONE-STOP" kept together), hero buttons share one row, chip and card type scale down. The card width is a
+    variable (`--hs-w`, photo height `--hs-ph` derived from it, arrows/dots positioned from `--hs-ph`) with **height
+    tiers**: 264 px default, 304 px when the viewport is ≥760 tall, 248 px when ≤690, and **≤610 px (iPhone SE) the card
+    turns SIDEWAYS** — photo left, details + Enquire right, both arrows on the photo — because a stacked card cannot fit.
+  - **Phone (superseded sizes below kept for history):** one car, card 304 px wide, centred, covering the middle of the hero (owner wanted Jitty's face only
     part-visible behind it). **Desktop (≥760 px): TWO cars side by side** in a 560 px frame — one small card looked
     lost on a big screen (owner, 21 Sep).
   - **Each card deep-links to its own listing** — `used-cars#car-<slug>`; `used-cars.html` articles carry
