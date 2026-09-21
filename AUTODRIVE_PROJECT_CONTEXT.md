@@ -51,7 +51,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
 - **⚠ CSS/JS cache-busting (mandatory):** Cloudflare serves CSS/JS with a 4-hour browser
   cache and the `_headers` no-cache override does **not** stick. So **whenever you edit
   `styles.css` or `main.js`, bump the `?v=` query on their `<link>`/`<script>` tags in EVERY
-  html page** (all root pages + any subpages). Current version: **`?v=67`** → next `?v=68`.
+  html page** (all root pages + any subpages). Current version: **`?v=68`** → next `?v=69`.
   (Note: this figure drifts if a session forgets to update it — always trust the actual `?v=`
   in the HTML over this note. It was at v=34 on 2026-07-22.)
   (As of 2026-07-22 the six `services/` subpages are now versioned too — previously they had
@@ -228,11 +228,21 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
     the hero buttons + reviews chip were hidden on the owner's phone. Real visible sizes to test: 393×698 (15/16 Pro),
     440×790 (Pro Max), 390×664 (13/14), 375×548 (SE). The pass condition is: `.hero__actions` and `.rating-chip` bottoms are
     above `.mobile-bar`'s top. Current spare: 45 / 100 / 23 / 81 px.
-  - **Phone hero is compacted to fit that** (`@media (max-width:759px)` + `.hero:has(.hstock)`): H1 drops to ~7.1vw and
-    two lines ("ONE-STOP" kept together), hero buttons share one row, chip and card type scale down. The card width is a
-    variable (`--hs-w`, photo height `--hs-ph` derived from it, arrows/dots positioned from `--hs-ph`) with **height
-    tiers**: 264 px default, 304 px when the viewport is ≥760 tall, 248 px when ≤690, and **≤610 px (iPhone SE) the card
-    turns SIDEWAYS** — photo left, details + Enquire right, both arrows on the photo — because a stacked card cannot fit.
+  - **Phone hero (owner's ruling, 21 Sep): the H1 keeps its ORIGINAL three-line size — do not shrink it.** The room comes
+    from a SMALLER car card plus smaller hero buttons and reviews chip (`@media (max-width:759px)` + `.hero:has(.hstock)`).
+    The card width is a variable (`--hs-w`; photo height `--hs-ph` derives from it and positions the arrows/dots) with
+    **height tiers**: 214 px default, 262 px when the viewport is ≥760 tall, 204 px when ≤690, and **≤610 px (iPhone SE) the
+    card turns SIDEWAYS** (photo left, details + Enquire right, both arrows on the photo). **Never go below ~200 px wide:**
+    at 182 px the red bar wraps to two lines and the details row overflows the card (tried, measured, reverted).
+    Spare room with a 3-line H1: 31 / 87 / 16 / 51 px.
+  - **Homepage car photos are ZOOMED OUT so the whole car sits inside the frame with margin** (owner: "bigger view of the
+    car is important", even in the small card). `images/home-stock/*.jpg` (900×675) are built from the ORIGINALS by taking
+    the car's bounding box + ~10 % margin and the smallest 4:3 window that holds it. The Corolla original is wide enough for
+    a plain crop. Rio, Civic and Polo fill their photos edge to edge, so the scene is extended sideways — edges mirrored
+    (tones stay continuous at the seam) then melted into a soft blur with a feathered mask; 7 %, 8 % and 21 % of the frame
+    per side. The Polo is the weak one (tall composition, nose cut by the photo itself) — a new photo shot from further
+    back would fix it. Bounding boxes used (fractions of the original): rio 0.03,0.385–0.99,0.735 · polo 0,0.215–1,0.885 ·
+    corolla 0.14,0.295–0.755,0.835 · civic 0,0.265–1,0.575.
   - **Phone (superseded sizes below kept for history):** one car, card 304 px wide, centred, covering the middle of the hero (owner wanted Jitty's face only
     part-visible behind it). **Desktop (≥760 px): TWO cars side by side** in a 560 px frame — one small card looked
     lost on a big screen (owner, 21 Sep).

@@ -1020,46 +1020,59 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 }
 /* Phone — sized for the REAL Safari viewport, not the device height. With Safari's toolbars showing,
    an iPhone 15/16 Pro gives ~698px, of which the site header takes ~89 and the fixed bottom bar ~61,
-   leaving ~547px for the whole hero. Everything below is tuned so the H1, the car card, BOTH hero
-   buttons and the Google-reviews chip are visible without scrolling (owner, 21 Sep). */
+   leaving ~547px for the whole hero. The H1 keeps its ORIGINAL three-line size (owner, 21 Sep — do not
+   shrink it); the room comes from a smaller car card and smaller buttons + reviews chip, so the H1,
+   the card, BOTH hero buttons and the Google-reviews chip are all visible without scrolling. */
 @media (max-width: 759px) {
-  .hero:has(.hstock) { padding: .85rem 0 .9rem; }
-  .hero:has(.hstock) h1 { font-size: clamp(1.5rem, 7.1vw, 1.95rem); line-height: 1.04; margin-bottom: .55rem; letter-spacing: .2px; }
+  .hero:has(.hstock) { padding: 1.15rem 0 .8rem; }
+  .hero:has(.hstock) h1 { margin-bottom: .7rem; }
   .hero:has(.hstock) h1 .text-red { white-space: nowrap; }      /* never split "ONE-" / "STOP" */
-  .hero:has(.hstock) .hero__actions { margin-top: .65rem; gap: .55rem; flex-wrap: nowrap; }
-  .hero:has(.hstock) .hero__actions .btn { flex: 1 1 0; justify-content: center; text-align: center; padding: .62rem .5rem; font-size: .9rem; white-space: nowrap; }
-  .hero:has(.hstock) .rating-chip { margin-top: .6rem; padding: .38rem .8rem; gap: .5rem; }
-  .hero:has(.hstock) .rating-chip .stars { font-size: .82rem; }
-  .hero:has(.hstock) .rating-chip strong { font-size: .98rem; }
-  .hero:has(.hstock) .rating-chip small { font-size: .74rem; }
-  .hero:has(.hstock) .rating-chip .divider { height: 16px; }
-  .hstock__bar { padding: .32rem .65rem; font-size: .62rem; }
-  .hstock__bar a { font-size: .62rem; }
-  .hstock__info { padding: .4rem .65rem .25rem; }
-  .hstock__name { font-size: .84rem; }
-  .hstock__price { font-size: 1.18rem; }
-  .hstock__cta { margin: .05rem .65rem .5rem; padding: .42rem .6rem; font-size: .74rem; }
-  .hstock__nav { width: 28px; height: 28px; }
+  .hero:has(.hstock) .hero__actions { margin-top: .6rem; gap: .5rem; flex-wrap: nowrap; }
+  .hero:has(.hstock) .hero__actions .btn { flex: 1 1 0; justify-content: center; text-align: center; padding: .5rem .4rem; font-size: .82rem; white-space: nowrap; }
+  .hero:has(.hstock) .rating-chip { margin-top: .5rem; padding: .28rem .7rem; gap: .45rem; }
+  .hero:has(.hstock) .rating-chip .stars { font-size: .72rem; letter-spacing: .5px; }
+  .hero:has(.hstock) .rating-chip strong { font-size: .86rem; }
+  .hero:has(.hstock) .rating-chip small { font-size: .68rem; }
+  .hero:has(.hstock) .rating-chip .divider { height: 14px; }
+  .hstock { --hs-w: 214px; }
+  .hstock__bar { padding: .28rem .55rem; font-size: .56rem; gap: .4rem; white-space: nowrap; }
+  .hstock__bar a { font-size: .56rem; }
+  .hstock__badge { font-size: .5rem; padding: .18rem .4rem; top: .35rem; left: .35rem; }
+  .hstock__info { padding: .35rem .55rem .2rem; gap: .4rem; }
+  .hstock__name { font-size: .78rem; }
+  .hstock__meta { font-size: .62rem; gap: .25rem; }
+  .hstock__meta em { font-size: .54rem; }
+  .hstock__price { font-size: 1.05rem; }
+  .hstock__cta { margin: .05rem .55rem .45rem; padding: .36rem .5rem; font-size: .7rem; }
+  .hstock__nav { width: 26px; height: 26px; }
+  .hstock__nav svg { width: 14px; height: 14px; }
+  .hstock__dots i { width: 4px; height: 4px; }
 }
 /* Height tiers — the card scales with the room the phone actually has. */
-@media (max-width: 759px) and (min-height: 760px) { .hstock { --hs-w: 304px; } }     /* Pro Max / Plus */
-@media (max-width: 759px) and (max-height: 690px) { .hstock { --hs-w: 248px; } }     /* iPhone 13/14 class */
-/* Short phones (iPhone SE / mini with toolbars showing, ~550px): a stacked card cannot fit, so the
-   card turns sideways — photo left, details + Enquire right — which is ~150px shorter. */
+@media (max-width: 759px) and (min-height: 760px) { .hstock { --hs-w: 262px; } }     /* Pro Max / Plus */
+/* iPhone 13/14 class (~664px). Do NOT go narrower than ~200px: at 182px the red bar wraps to two
+   lines and the details row overflows the card. Recover the height from spacing instead. */
+@media (max-width: 759px) and (max-height: 690px) {
+  .hstock { --hs-w: 204px; }
+  .hero:has(.hstock) { padding-top: .65rem; }
+  .hero:has(.hstock) h1 { margin-bottom: .5rem; }
+}
+/* Short phones (iPhone SE / mini with toolbars showing, ~550px): a stacked card cannot fit under a
+   three-line H1, so the card turns sideways — photo left, details + Enquire right. */
 @media (max-width: 759px) and (max-height: 610px) {
-  .hstock { --hs-w: 330px; --hs-ph: 108px; }
-  .hero:has(.hstock) h1 { font-size: clamp(1.35rem, 6.4vw, 1.7rem); margin-bottom: .45rem; }
-  .hstock__car { display: grid; grid-template-columns: 136px 1fr; grid-template-rows: 1fr auto; }
+  .hstock { --hs-w: 318px; --hs-ph: 96px; }
+  .hero:has(.hstock) { padding-top: .8rem; }
+  .hero:has(.hstock) h1 { font-size: 2.05rem; margin-bottom: .5rem; }
+  .hstock__car { display: grid; grid-template-columns: 128px 1fr; grid-template-rows: 1fr auto; }
   .hstock__media { grid-row: 1 / span 2; }
-  .hstock__media img { width: 136px; height: var(--hs-ph); aspect-ratio: auto; }
-  .hstock__info { flex-direction: column; align-items: flex-start; gap: .1rem; padding: .4rem .6rem .1rem; }
-  .hstock__cta { margin: .15rem .6rem .45rem; }
-  .hstock__badge { font-size: .5rem; padding: .18rem .38rem; top: .3rem; left: .3rem; }
-  .hstock__nav { width: 24px; height: 24px; }
-  .hstock__nav svg { width: 13px; height: 13px; }
-  .hstock__nav--prev { left: 4px; }
-  .hstock__nav--next { left: 108px; right: auto; }      /* both arrows sit on the photo, clear of the price + button */
-  .hstock__dots { right: auto; width: 136px; top: calc(var(--hs-ph) - 12px); }
+  .hstock__media img { width: 128px; height: var(--hs-ph); aspect-ratio: auto; }
+  .hstock__info { flex-direction: column; align-items: flex-start; gap: .05rem; padding: .3rem .55rem .05rem; }
+  .hstock__cta { margin: .1rem .55rem .4rem; }
+  .hstock__nav { width: 22px; height: 22px; }
+  .hstock__nav svg { width: 12px; height: 12px; }
+  .hstock__nav--prev { left: 3px; }
+  .hstock__nav--next { left: 103px; right: auto; }      /* both arrows sit on the photo, clear of the price + button */
+  .hstock__dots { right: auto; width: 128px; top: calc(var(--hs-ph) - 10px); }
 }
 /* ---------- Frosted-glass hero buttons (owner, 21 Sep) ----------
    Scoped to the hero only — these sit over the photograph, so the blur has something to frost.
