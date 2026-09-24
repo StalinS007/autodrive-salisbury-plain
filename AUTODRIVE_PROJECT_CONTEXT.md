@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-09-21**.
+touching the site. Last verified against the live code: **2026-09-24**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -250,13 +250,13 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
     part-visible behind it). **Desktop (≥760 px): TWO cars side by side** in a 560 px frame — one small card looked
     lost on a big screen (owner, 21 Sep).
   - **Each card deep-links to its own listing** — `used-cars#car-<slug>`; `used-cars.html` articles carry
-    `id="car-civic|car-polo|car-corolla|car-rio"` and the stock carousel opens that car on load AND on `hashchange`
+    `id="car-civic|car-polo|car-corolla|car-rio|car-mg"` and the stock carousel opens that car on load AND on `hashchange`
     (a second #car- link while already on the page does not reload the document — that bug is handled).
   - The card is one `<a>`, so "Enquire stock" is a styled `<span>`, not a nested `<a>` (invalid HTML) — the whole
     card is the tap target. Owner said "Inquire"; the site uses Australian "Enquire" everywhere, so it matches that.
   - **Lead-photo rule (owner, 21 Sep): every car opens on its FRONT THREE-QUARTER shot, and the homepage uses that
     same shot framed ZOOMED OUT so the whole car is visible** — never a tight crop of a bonnet. Gallery order in
-    `used-cars.html` now leads with `civic-02`, `polo-03`, `corolla-05`, `rio-01`. `images/home-stock/*.jpg` are
+    `used-cars.html` now leads with `civic-02`, `polo-03`, `corolla-05`, `rio-01`, `mg-01`. `images/home-stock/*.jpg` are
     900×675 (4:3) and cut from the ORIGINALS, not the 607×1080 gallery copies: originals live in
     `~/Downloads/Autodrive downloads/Car images/WhatsApp Unknown 2026-07-27…/<car>/` (Rio: the chat uploads). Cars that
     span their photo's width (Rio, Civic) are a full-width 4:3 crop centred on the car; the Corolla original is a level
@@ -391,7 +391,7 @@ Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
 
 ## 8. Known constraints & pending items
 
-- **⚠ "Accident-free" vs the Kia Rio (raised 2026-09-20 — owner's decision needed).** The Rio
+- **⚠ "Accident-free" vs the Kia Rio and MG ZS (raised 2026-09-20, worse since the MG, a repairable write-off, was added 2026-09-24 — owner's decision needed).** The Rio
   added on 20 Sep is **PPSR listed and professionally repaired**, disclosed plainly in its own
   description. But `used-cars.html` still promises **accident-free** cars in three places: the
   hero paragraph ("Reliable, accident-free vehicles"), the `.stock-intro` chip row, and the
@@ -419,9 +419,11 @@ Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
     `<img>` (there's an HTML comment in the file showing exactly how).
   - Cars live in a **carousel** (`.stock-carousel__track`); the "Car N of M" red bar and the
     arrows count the `<article class="car">` blocks automatically, so adding one needs no other
-    change. Currently **four listings**: 2009 Honda Civic VTi $9,600 (with a **promo video**,
+    change. Currently **five listings**: 2009 Honda Civic VTi $9,600 (with a **promo video**,
     `images/promohondacivic.mp4` — keep that slide LAST), 2021 VW Polo Comfortline $17,400,
-    2008 Toyota Corolla Ascent $8,900, and **2018 Kia Rio $11,900** (added 2026-09-20).
+    2008 Toyota Corolla Ascent $8,900, and **2018 Kia Rio $11,900** (added 2026-09-20), and **2023 MG ZS Excite $14,600 FIRM, 13,330 km**
+    (added 2026-09-24; also FIRST in the homepage `.hstock` swiper as newest stock; photo originals in
+    iCloud Drive `Downloads/Autodrive/MG /`, build-plate/VIN photo deliberately left out).
     Plus a "Looking for something specific?" enquiry card. The Civic video is a web-compressed
     720×1280 / ~7.5 MB version of the owner's original 4K clip (compress every video before
     committing — Cloudflare Pages rejects files over 25 MB and GitHub rejects over 100 MB).
@@ -432,7 +434,7 @@ Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
     ~60–130 KB each. Order follows used-car listing practice: **exterior walk-around (front 3/4
     first — the hero must show the WHOLE car) → rear → side → cabin → odometer → boot/extras**,
     10+ photos. Don't publish the build-plate/VIN photo (VIN cloning risk).
-  - **⚠ The Kia Rio is PPSR listed / professionally repaired** and says so in its description,
+  - **⚠ The Kia Rio AND the MG ZS (repairable write-off) are PPSR listed / professionally repaired** and say so in their descriptions,
     but the page still claims **"accident-free"** in three places (hero copy, the `.stock-intro`
     chips, and "Why buy from us?" card 01). Those blanket claims now contradict the stock and
     need the owner's call — see §8 pending items.
