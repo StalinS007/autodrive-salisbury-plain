@@ -88,7 +88,7 @@ programming & electronics, air conditioning, fuel injector, radiator & cooling, 
 & batteries, steering & alignment.
 **Detailing:** paint correction, ceramic coating, interior, pre-sale, headlight
 restoration, engine bay, window tinting, cosmetic touch-ups, premium hand wash.
-**Used cars:** stock ~$5,000–$40,000, workshop-inspected & accident-free, 3 months free
+**Used cars:** stock ~$5,000–$40,000, workshop-inspected & road-ready (**never say "accident-free"**: owner removed it site-wide 2026-09-24 because PPSR-listed repaired cars are stocked), 3 months free
 rego, optional 12–36 month warranty, roadside assistance, post-sale discounted repairs.
 
 ---
@@ -391,16 +391,6 @@ Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
 
 ## 8. Known constraints & pending items
 
-- **⚠ "Accident-free" vs the Kia Rio and MG ZS (raised 2026-09-20, worse since the MG, a repairable write-off, was added 2026-09-24 — owner's decision needed).** The Rio
-  added on 20 Sep is **PPSR listed and professionally repaired**, disclosed plainly in its own
-  description. But `used-cars.html` still promises **accident-free** cars in three places: the
-  hero paragraph ("Reliable, accident-free vehicles"), the `.stock-intro` chip row, and the
-  "Why buy from us?" card 01 ("Spotless, accident-free and mechanically sound"). A blanket
-  claim plus a repaired car in the same page is both a trust problem and an ACL
-  misleading-conduct risk. Options: soften the three claims (e.g. "workshop-inspected",
-  "every car’s history disclosed"), or keep them and don't list repaired cars. **Do not
-  silently drop the Rio's disclosure.**
-
 - **Contact form sends by SMS (not Formspree):** `#booking-form` composes a pre-filled text
   to **0432 247 691** via an `sms:` link (handler in `assets/js/main.js`, reads `data-sms`),
   with a quiet "prefer email" `mailto` fallback. There is a leftover unused
@@ -435,9 +425,8 @@ Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
     first — the hero must show the WHOLE car) → rear → side → cabin → odometer → boot/extras**,
     10+ photos. Don't publish the build-plate/VIN photo (VIN cloning risk).
   - **⚠ The Kia Rio AND the MG ZS (repairable write-off) are PPSR listed / professionally repaired** and say so in their descriptions,
-    but the page still claims **"accident-free"** in three places (hero copy, the `.stock-intro`
-    chips, and "Why buy from us?" card 01). Those blanket claims now contradict the stock and
-    need the owner's call — see §8 pending items.
+    the reason "accident-free" was removed from every page on 2026-09-24 (replaced with "road-ready" /
+    "workshop-tested"). Keep every repaired car's disclosure in its own description.
   - **Dealer licence:** `.stock-licence` line under the deck — "Licensed motor vehicle dealer —
     MVD 343921". SA requires the licence number on vehicle advertising; keep it on any page that
     advertises cars.
