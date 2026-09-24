@@ -250,13 +250,13 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
     part-visible behind it). **Desktop (≥760 px): TWO cars side by side** in a 560 px frame — one small card looked
     lost on a big screen (owner, 21 Sep).
   - **Each card deep-links to its own listing** — `used-cars#car-<slug>`; `used-cars.html` articles carry
-    `id="car-civic|car-polo|car-corolla|car-rio|car-mg"` and the stock carousel opens that car on load AND on `hashchange`
+    `id="car-civic|car-polo|car-corolla|car-rio|car-mg|car-polo18"` and the stock carousel opens that car on load AND on `hashchange`
     (a second #car- link while already on the page does not reload the document — that bug is handled).
   - The card is one `<a>`, so "Enquire stock" is a styled `<span>`, not a nested `<a>` (invalid HTML) — the whole
     card is the tap target. Owner said "Inquire"; the site uses Australian "Enquire" everywhere, so it matches that.
   - **Lead-photo rule (owner, 21 Sep): every car opens on its FRONT THREE-QUARTER shot, and the homepage uses that
     same shot framed ZOOMED OUT so the whole car is visible** — never a tight crop of a bonnet. Gallery order in
-    `used-cars.html` now leads with `civic-02`, `polo-03`, `corolla-05`, `rio-01`, `mg-01`. `images/home-stock/*.jpg` are
+    `used-cars.html` now leads with `civic-02`, `polo-03`, `corolla-05`, `rio-01`, `mg-01`, `polo18-01`. `images/home-stock/*.jpg` are
     900×675 (4:3) and cut from the ORIGINALS, not the 607×1080 gallery copies: originals live in
     `~/Downloads/Autodrive downloads/Car images/WhatsApp Unknown 2026-07-27…/<car>/` (Rio: the chat uploads). Cars that
     span their photo's width (Rio, Civic) are a full-width 4:3 crop centred on the car; the Corolla original is a level
@@ -409,11 +409,13 @@ Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
     `<img>` (there's an HTML comment in the file showing exactly how).
   - Cars live in a **carousel** (`.stock-carousel__track`); the "Car N of M" red bar and the
     arrows count the `<article class="car">` blocks automatically, so adding one needs no other
-    change. Currently **five listings**: 2009 Honda Civic VTi $9,600 (with a **promo video**,
+    change. Currently **six listings**: 2009 Honda Civic VTi $9,600 (with a **promo video**,
     `images/promohondacivic.mp4` — keep that slide LAST), 2021 VW Polo Comfortline $17,400,
     2008 Toyota Corolla Ascent $8,900, and **2018 Kia Rio $11,900** (added 2026-09-20), and **2023 MG ZS Excite $14,600 FIRM, 13,330 km**
     (added 2026-09-24; also FIRST in the homepage `.hstock` swiper as newest stock; photo originals in
-    iCloud Drive `Downloads/Autodrive/MG /`, build-plate/VIN photo deliberately left out).
+    iCloud Drive `Downloads/Autodrive/MG /`, build-plate/VIN photo deliberately left out), and **2018 VW Polo 70TSI Trendline $12,900 FIRM, 57,109 km**
+    (added 2026-09-24, slug `polo18` so it never clashes with the 2021 `polo`; now FIRST in the homepage swiper;
+    originals in iCloud `Downloads/Autodrive/VW polo 2018 /`).
     Plus a "Looking for something specific?" enquiry card. The Civic video is a web-compressed
     720×1280 / ~7.5 MB version of the owner's original 4K clip (compress every video before
     committing — Cloudflare Pages rejects files over 25 MB and GitHub rejects over 100 MB).
@@ -424,7 +426,7 @@ Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
     ~60–130 KB each. Order follows used-car listing practice: **exterior walk-around (front 3/4
     first — the hero must show the WHOLE car) → rear → side → cabin → odometer → boot/extras**,
     10+ photos. Don't publish the build-plate/VIN photo (VIN cloning risk).
-  - **⚠ The Kia Rio AND the MG ZS (repairable write-off) are PPSR listed / professionally repaired** and say so in their descriptions,
+  - **⚠ The Kia Rio, the MG ZS (repairable write-off) AND the 2018 Polo are PPSR listed / professionally repaired** and say so in their descriptions,
     the reason "accident-free" was removed from every page on 2026-09-24 (replaced with "road-ready" /
     "workshop-tested"). Keep every repaired car's disclosure in its own description.
   - **Dealer licence:** `.stock-licence` line under the deck — "Licensed motor vehicle dealer —
