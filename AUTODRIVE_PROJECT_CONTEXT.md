@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-09-24**.
+touching the site. Last verified against the live code: **2026-09-25**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -392,7 +392,7 @@ Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
 ## 8. Known constraints & pending items
 
 - **Contact form sends by SMS (not Formspree):** `#booking-form` composes a pre-filled text
-  to **0432 247 691** via an `sms:` link (handler in `assets/js/main.js`, reads `data-sms`),
+  to **0432 520 230** via an `sms:` link (handler in `assets/js/main.js`, reads `data-sms`; verified 2026-09-25),
   with a quiet "prefer email" `mailto` fallback. There is a leftover unused
   `data-endpoint="...formspree..."` attribute on the form that the JS ignores — safe to delete;
   do NOT wire up Formspree.
