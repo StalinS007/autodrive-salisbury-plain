@@ -605,6 +605,17 @@
     var next = sc.querySelector('.stock-carousel__arrow--next');
     var page = 0;
 
+    // The track moves by transform only. A #car- link also makes the browser scroll the
+    // clipped viewport sideways to the anchor, which stacks on the transform and shows the
+    // WRONG car (story link to #car-xv opened the Dualis). Pin the native scroll at 0.
+    var vp = track.parentElement;
+    function pinScroll() {
+      if (vp && vp.scrollLeft) vp.scrollLeft = 0;
+      if (sc.scrollLeft) sc.scrollLeft = 0;
+    }
+    if (vp) vp.addEventListener('scroll', pinScroll);
+    sc.addEventListener('scroll', pinScroll);
+
     function perView() { return window.matchMedia('(min-width:760px)').matches ? 2 : 1; }
     function pageCount() { return Math.ceil(total / perView()); }
 
@@ -632,6 +643,7 @@
       if (page > maxPage) page = maxPage;
       if (page < 0) page = 0;
       track.style.transform = 'translateX(' + (-page * 100) + '%)';
+      pinScroll();
       updateLabel();
       if (prev) prev.disabled = (page <= 0);
       if (next) next.disabled = (page >= maxPage);
