@@ -426,7 +426,8 @@ Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
     (added 2026-09-24, built 06/17, PPSR listed; FIRST in the homepage swiper; originals in iCloud
     `Downloads/Autodrive/Vw golf rline 2017/`). Added 2026-09-30 from Jitty's flyer: **2015 VW Tiguan 2.0 TSI 4MOTION $13,600
     (76,639 km), 2013 Kia Rio 3-Door $8,600 (138,000 km), 2015 Hyundai i20 manual $9,400 (22,809 km), 2012 Subaru XV
-    2.0i AWD $7,600 (222,158 km), 2013 Nissan Dualis ST $9,600 (163,055 km)**; all PPSR listed (disclosed, repair status
+    2.0i AWD $7,600 (222,158 km), 2013 Nissan Dualis ST $9,600 (163,055 km)**; Tiguan, 2013 Rio and i20 are PPSR listed, **the Subaru XV and Nissan
+    Dualis are NOT** (owner correction 1 Oct: the flyer's PPSR badge on those two was wrong) (disclosed where true, repair status
     unknown so not claimed), no firm/drive-away label (not given). Originals in iCloud `Autodrive/Cars /<car>/` (the
     i20 folder is misnamed "i50"). The Tiguan originals are LANDSCAPE, so its gallery frames show the whole photo on a
     blurred copy of itself. **Homepage swiper order (owner, 1 Oct): Subaru XV FIRST (the featured car of the Instagram story campaign;
@@ -442,7 +443,10 @@ Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
     ~60–130 KB each. Order follows used-car listing practice: **exterior walk-around (front 3/4
     first — the hero must show the WHOLE car) → rear → side → cabin → odometer → boot/extras**,
     10+ photos. Don't publish the build-plate/VIN photo (VIN cloning risk).
-  - **⚠ The Kia Rio, the MG ZS (repairable write-off) the 2018 Polo, the 2017 Golf AND all five flyer cars added 30 Sep are PPSR listed / professionally repaired** and say so in their descriptions,
+  - **⚠ PPSR status per car (owner-confirmed 1 Oct 2026).** PPSR listed, and disclosed in their descriptions: 2018 Kia Rio, MG ZS
+    (repairable write-off), 2018 Polo, 2017 Golf, 2015 Tiguan, 2013 Kia Rio, 2015 i20. **NOT PPSR listed: 2012 Subaru XV and
+    2013 Nissan Dualis** (no PPSR line on their listings; Jitty's flyer badge was wrong for these two, never copy a
+    flyer badge without confirming). No PPSR statement either way on the 2021 Polo, Corolla, Civic. Listed cars say so in their descriptions,
     the reason "accident-free" was removed from every page on 2026-09-24 (replaced with "road-ready" /
     "workshop-tested"). Keep every repaired car's disclosure in its own description.
   - **Dealer licence:** `.stock-licence` line under the deck — "Licensed motor vehicle dealer —
