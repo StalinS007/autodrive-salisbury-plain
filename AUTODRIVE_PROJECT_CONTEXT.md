@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-09-30**.
+touching the site. Last verified against the live code: **2026-10-01**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -422,8 +422,9 @@ Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
     2.0i AWD $7,600 (222,158 km), 2013 Nissan Dualis ST $9,600 (163,055 km)**; all PPSR listed (disclosed, repair status
     unknown so not claimed), no firm/drive-away label (not given). Originals in iCloud `Autodrive/Cars /<car>/` (the
     i20 folder is misnamed "i50"). The Tiguan originals are LANDSCAPE, so its gallery frames show the whole photo on a
-    blurred copy of itself. **Homepage swiper order (owner, 30 Sep): Golf R-Line FIRST (prettiest car), then the flyer
-    order, then MG / 2021 Polo / Corolla / Civic** (these four are NOT on Jitty's 28 Sep flyer: sold status unconfirmed).
+    blurred copy of itself. **Homepage swiper order (owner, 1 Oct): Subaru XV FIRST (the featured car of the Instagram story campaign;
+    its story Link sticker lands on `/used-cars#car-xv`), then Golf R-Line, then the flyer order, then MG / 2021 Polo /
+    Corolla / Civic** (these four are NOT on Jitty's 28 Sep flyer: sold status unconfirmed).
     Plus a "Looking for something specific?" enquiry card. The Civic video is a web-compressed
     720×1280 / ~7.5 MB version of the owner's original 4K clip (compress every video before
     committing — Cloudflare Pages rejects files over 25 MB and GitHub rejects over 100 MB).
