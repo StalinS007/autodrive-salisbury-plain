@@ -309,9 +309,13 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
   - **Standard — from $229 (⭐ Most Popular, highlighted card):** everything in Basic PLUS air
     filter, battery test, brake inspection, fault-code scan, detailed safety check, reminder
     reset, full road test.
-  - **Premium — from $329 (gold accent):** everything in Standard PLUS cabin air filter, fuel
-    system treatment, detailed inspection report, extensive road test, priority booking, expert
-    care, peace-of-mind guarantee.
+  - **Logbook Servicing — from $329 (gold accent, the top tier):** renamed from "Premium" on
+    2026-10-01 (owner: the Premium service no longer exists; logbook servicing takes its slot).
+    Price and feature list unchanged: everything in Standard PLUS cabin air filter, fuel system
+    treatment, detailed inspection report, extensive road test, priority booking, expert care,
+    peace-of-mind guarantee. Gold styling still comes from the `pt-premium` / `tier--premium`
+    CSS classes (names kept on purpose). WhatsApp prefill now reads "...book the Logbook
+    Servicing (from $329)", so GA `whatsapp_click` link_urls change wording from that date.
   - **Responsive display (2026-07-22): comparison table on desktop, stacked cards on mobile
     (≤820px)** — the Apple/Stripe pattern; a sticky-sidebar table was tried and rejected as too
     cramped on phones (research: ~78% of pricing pages stack cards on mobile). Both blocks are
@@ -319,7 +323,7 @@ Some real-photo filenames contain spaces and **must stay URL-encoded (`%20`)** i
     (`.tier` cards, shown ≤820px) — the CSS toggles `display` at 820px. Heading asks *"What
     Does Your Car Want Today?"* (desire framing, not "we offer…"); each tier carries a "Your car
     wants the essentials / full protection / the best" tagline. Standard is highlighted ("Most
-    Popular"), Premium gold. Every Book CTA is a WhatsApp button (`data-ctx="service"`) with a
+    Popular"), Logbook Servicing gold. Every Book CTA is a WhatsApp button (`data-ctx="service"`) with a
     **tier-named prefilled message** (GA `whatsapp_click` shows which tier). Keep BOTH blocks in
     sync if prices/features change. CSS: `.ptable*` and `.tier*` at the end of `styles.css`.
   - **These prices are owner-set — confirm before changing.** Note the Basic tier is **$149**
@@ -399,7 +403,7 @@ Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
   with a quiet "prefer email" `mailto` fallback. There is a leftover unused
   `data-endpoint="...formspree..."` attribute on the form that the JS ignores — safe to delete;
   do NOT wire up Formspree.
-- **Prices on the site:** the **service tiers** (Basic $149 / Standard $229 / Premium $329, see §7) and **used-car listings**. Everything else (detailing, individual mechanical services) is enquire-for-a-quote (the old $129/$299/$699 detailing tiers were removed).
+- **Prices on the site:** the **service tiers** (Basic $149 / Standard $229 / Logbook Servicing $329, see §7) and **used-car listings**. Everything else (detailing, individual mechanical services) is enquire-for-a-quote (the old $129/$299/$699 detailing tiers were removed).
 - **Used-cars listings** (`used-cars.html`, `#stock` section, added 2026-07-22): a real
   mobile-first listing grid. Each car = an `<article class="car">` with photo/placeholder,
   status badge, price, spec chips, green trust chips, and a **prefilled WhatsApp "Enquire"
