@@ -1,3 +1,7 @@
+// base64url-encoded JSON: used to hand the customer's details to Jitty's /confirm tool in a link.
+function adB64u(o) {
+  return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
 /* AutoDrive Salisbury Plain — interactions */
 (function () {
   "use strict";
@@ -94,6 +98,7 @@
           '<div class="field"><label for="dateask-year">Year</label><input type="text" inputmode="numeric" id="dateask-year" placeholder="e.g. 2009" maxlength="4" autocomplete="off" /></div>' +
           '<div class="field"><label for="dateask-km">Odometer (km)</label><input type="text" inputmode="numeric" id="dateask-km" placeholder="e.g. 85,000" autocomplete="off" /></div>' +
           '<div class="field dateask__issuefield"><label for="dateask-issue">In a few words, describe what&rsquo;s wrong <span class="dateask__opt">(optional)</span></label><textarea id="dateask-issue" rows="2" maxlength="120" placeholder="e.g. ABS light flashing on the dashboard while driving"></textarea><span class="dateask__count">0/120</span></div>' +
+          '<div class="field"><label for="dateask-email">Email <span class="dateask__opt">(optional, so we can send you a calendar invite)</span></label><input type="email" id="dateask-email" inputmode="email" autocomplete="email" placeholder="e.g. you@gmail.com" /></div>' +
           '<p class="dateask__verr" hidden>Please fill in your car&rsquo;s details so we can quote you accurately.</p>' +
           '<button type="button" class="btn btn--lg btn--block dateask__vgo">Continue to WhatsApp</button>' +
         "</div>" +
@@ -137,14 +142,21 @@
           inp.classList.toggle("is-invalid", bad);
           if (bad) missing = true;
         });
-        el(".dateask__verr").hidden = !missing;
-        if (missing) return;
+        var emailEl = el("#dateask-email"), email = emailEl.value.trim();
+        var badEmail = !!email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
+        emailEl.classList.toggle("is-invalid", badEmail);
+        el(".dateask__verr").textContent = badEmail && !missing
+          ? "That email doesn\u2019t look right \u2014 check it or leave it blank."
+          : "Please fill in your car\u2019s details so we can quote you accurately.";
+        el(".dateask__verr").hidden = !(missing || badEmail);
+        if (missing || badEmail) return;
         finish(pendingDate, {
           make: inputs[0].value.trim(),
           model: inputs[1].value.trim(),
           year: inputs[2].value.trim(),
           km: inputs[3].value.trim(),
-          issue: curCtx.issue ? el("#dateask-issue").value.slice(0, 120) : ""
+          issue: curCtx.issue ? el("#dateask-issue").value.slice(0, 120) : "",
+          email: email
         });
       });
       el(".dateask__vehiclewrap").addEventListener("input", function (e) {
@@ -181,7 +193,7 @@
       if (modal) {
         renderCal();
         el(".dateask__go").hidden = true;
-        ["#dateask-make", "#dateask-model", "#dateask-year", "#dateask-km", "#dateask-issue"].forEach(function (id) {
+        ["#dateask-make", "#dateask-model", "#dateask-year", "#dateask-km", "#dateask-issue", "#dateask-email"].forEach(function (id) {
           var inp = el(id); inp.value = ""; inp.classList.remove("is-invalid");
         });
         el(".dateask__verr").hidden = true;
@@ -241,6 +253,16 @@
         extra += " " + bits.join(", ") + ".";
         var issueText = tidy(vehicle.issue);
         if (issueText) extra += " Issue: " + issueText;
+        if (vehicle.email) extra += " Email: " + vehicle.email + ".";
+        // Link that opens Jitty's /confirm tool with these details already filled in,
+        // so nothing the customer typed here has to be asked for again.
+        try {
+          // (the issue stays in the chat only: Jitty's note field is customer-facing)
+          var pre = { e: vehicle.email || "", c: [[vehicle.year, car].filter(Boolean).join(" "), vehicle.km ? vehicle.km + " km" : ""].filter(Boolean).join(", "),
+                      s: svc ? svc.label.replace("&amp;", "&") : (curCtx === CTX.detail ? "Car detailing" : (curCtx === CTX.paint ? "Paint & panel" : "Service")),
+                      d: selISO || "" };
+          extra += "\n\nBooking ref (for Jitty): https://autodrivesalisburyplain.com.au/confirm?p=" + adB64u(pre);
+        } catch (err) {}
         if (typeof window.gtag === "function") window.gtag("event", "vehicle_info_submitted", { make: vehicle.make, model: vehicle.model, year: vehicle.year, km: vehicle.km, has_issue: issueText ? "yes" : "no" });
       }
       if (mode === "service") {
@@ -380,9 +402,7 @@
       try {
         var pre = { n: val("name"), p: val("phone"), e: val("email"), c: val("vehicle"),
                     s: val("service"), d: val("preferred_date"), note: val("message") };
-        var b64 = btoa(unescape(encodeURIComponent(JSON.stringify(pre))))
-          .replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-        lines.push("Confirm: https://autodrivesalisburyplain.com.au/confirm?p=" + b64);
+        lines.push("Confirm: https://autodrivesalisburyplain.com.au/confirm?p=" + adB64u(pre));
       } catch (e) {}
       return lines.join("\n");
     }
