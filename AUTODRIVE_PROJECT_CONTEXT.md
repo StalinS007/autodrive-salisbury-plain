@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-10-01**.
+touching the site. Last verified against the live code: **2026-10-08**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -535,8 +535,10 @@ Three files, no server, no database — the booking details travel inside the li
   autodrivesalisburyplain.com.au/confirm and /booking both work today. The Apps Script is still
   **NOT deployed**: `booking.html` → `ENDPOINT` is still `""`, so the emailed Google invite path is off
   and `/booking` silently falls back to "Just add it to my calendar" + the `.ics` download. Deploying
-  `tools/booking-webhook.gs` as a Web app from **Jitty's** Google account and pasting the `/exec` URL
-  into `ENDPOINT` is ~10 min and is the last step. Until then bookings do not land on Jitty's calendar.
+  `tools/booking-webhook.gs` as a Web app and pasting the `/exec` URL into `ENDPOINT` is ~10 min and is
+  the last step. Since 8 Oct the script creates events on the AutoDrive calendar by id (`CALENDAR_ID =
+  autodrive5109@gmail.com`), so it can be deployed from **Stalin's own** Google account (he has edit rights
+  on that calendar) as well as Jitty's. Until then bookings do not land on the AutoDrive calendar.
 
 ---
 
