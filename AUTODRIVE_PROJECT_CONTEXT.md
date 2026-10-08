@@ -530,6 +530,13 @@ Three files, no server, no database — the booking details travel inside the li
 - **`tools/booking-webhook.gs`** — the Google Apps Script. Deploy from Jitty's Google account as a
   Web app (Execute as Me / Anyone), paste the `/exec` URL into `booking.html` → `ENDPOINT`. Has a daily
   cap (40) and sanity checks. Deployment steps are in the file header.
+- **No re-asking (added 2026-10-08):** the website booking SMS to Jitty now includes the customer's email and a
+  `Confirm: /confirm?p=<base64url JSON>` link that opens the confirm tool with name, phone, email, car,
+  service, preferred date and note already filled in. The booking link carries the email (`e`) so `/booking`
+  shows "We'll send the invite to x@y" instead of asking for it (with a "Not your email?" fallback). When
+  `ENDPOINT` is set, `/confirm` also gets a "Send calendar invite to their email" button that creates the
+  event + invite directly, so the customer has nothing to do. `ENDPOINT` lives in BOTH `confirm.html` and
+  `booking.html` (paste the same `/exec` URL into each).
 - All times are computed as Adelaide wall time → UTC in the browser (verified across ACST/ACDT).
 - **Status (checked 2026-10-08):** `confirm.html` + `booking.html` are **live on `main`** —
   autodrivesalisburyplain.com.au/confirm and /booking both work today. The Apps Script is still

@@ -161,6 +161,8 @@
       Open in WhatsApp
     </a>
     <button class="btn btn--copy" id="copyBtn" type="button">Copy message</button>
+    <button class="btn btn--red" id="inviteBtn" type="button" hidden>Send calendar invite to their email</button>
+    <p class="hint" id="inviteRes" hidden></p>
     <a class="btn btn--ghost" id="mineBtn" href="#" target="_blank" rel="noopener">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg>
       <span id="mineLabel">Add to my calendar</span>
@@ -177,6 +179,7 @@
   var LOC = "AutoDrive, 6 Lolands Rd, Salisbury Plain SA 5109";
   var TZ  = "Australia/Adelaide";
   var TOKEN = "ad-book-2026";   // must match tools/booking-webhook.gs
+  var ENDPOINT = "";            // Apps Script web-app URL (same value as in booking.html)
   var SERVICES = ["Logbook service","Basic service","Standard service",
                   "Brakes","Air conditioning","Diagnostics","Detailing","Paint & panel","Car viewing"];
 
@@ -191,6 +194,28 @@
     var n = new Date();
     f.date.value = n.getFullYear() + "-" + String(n.getMonth()+1).padStart(2,"0") + "-" + String(n.getDate()).padStart(2,"0");
   }());
+
+  // Pre-fill from the website booking request: the SMS Jitty receives carries a
+  // "Confirm:" link with ?p=<base64url JSON>, so he never retypes what the customer gave.
+  var PRE = null;
+  try {
+    var pq = new URLSearchParams(location.search).get("p");
+    if(pq){ var ps = pq.replace(/-/g,"+").replace(/_/g,"/"); while(ps.length % 4) ps += "=";
+            PRE = JSON.parse(decodeURIComponent(escape(atob(ps)))); }
+  } catch(e){ PRE = null; }
+  if(PRE){
+    if(PRE.n) f.name.value = PRE.n;
+    if(PRE.p) f.phone.value = PRE.p;
+    if(PRE.e) f.email.value = PRE.e;
+    if(PRE.s) f.service.value = PRE.s;
+    if(PRE.c) f.car.value = PRE.c;
+    if(PRE.note) f.note.value = PRE.note;
+    if(PRE.d && /^\d{4}-\d{2}-\d{2}$/.test(PRE.d)) f.date.value = PRE.d;
+    var preNote = document.createElement("p");
+    preNote.className = "hint"; preNote.id = "preNote";
+    preNote.textContent = "Pre-filled from the customer's website booking request. Check it, set the time, send.";
+    var firstCard = f.name.closest(".card"); if(firstCard) firstCard.insertBefore(preNote, firstCard.firstElementChild.nextSibling);
+  }
 
   // service quick-pick chips
   var chipWrap = $("svcChips");
@@ -302,6 +327,7 @@
   function bookingLink(){
     var p = parts(); if(!p) return "";
     var payload = { n:f.name.value.trim(), s:f.service.value.trim(), c:f.car.value.trim(), p:f.phone.value.trim(),
+                    e:f.email.value.trim(),   // known email travels with the link so /booking never asks again
                     note:f.note.value.trim(), su:p.startUTC.toISOString(), eu:p.endUTC.toISOString(), k:TOKEN };
     return location.origin + "/booking?b=" + b64u(JSON.stringify(payload));
   }
@@ -425,6 +451,37 @@
   });
 
   render();
+  // Send the calendar invite straight from here when the email is known (needs ENDPOINT).
+  function invitePayload(){
+    var p = parts(); if(!p) return null;
+    return { token:TOKEN, email:f.email.value.trim(), name:f.name.value.trim(), service:f.service.value.trim(),
+             car:f.car.value.trim(), phone:f.phone.value.trim(), note:f.note.value.trim(),
+             startUTC:p.startUTC.toISOString(), endUTC:p.endUTC.toISOString() };
+  }
+  function syncInviteBtn(){
+    var em = f.email.value.trim();
+    var ok = ENDPOINT && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(em) && parts();
+    $("inviteBtn").hidden = !ok;
+  }
+  $("inviteBtn").addEventListener("click", function(){
+    var pl = invitePayload(); var res = $("inviteRes"); var btn = $("inviteBtn");
+    if(!pl) return;
+    btn.disabled = true; btn.textContent = "Sending…"; res.hidden = false; res.textContent = "";
+    fetch(ENDPOINT, { method:"POST", body: JSON.stringify(pl) })
+      .then(function(r){ return r.json(); })
+      .then(function(j){
+        if(!(j && j.ok)) throw new Error((j && j.error) || "unknown");
+        res.textContent = "Invite sent to " + pl.email + " and the booking is on the AutoDrive calendar.";
+        btn.textContent = "Invite sent"; 
+      })
+      .catch(function(err){
+        res.textContent = "Couldn't send the invite (" + String(err.message || err) + "). Use \"Create booking + email invite\" instead.";
+        btn.disabled = false; btn.textContent = "Send calendar invite to their email";
+      });
+  });
+  Object.keys(f).forEach(function(k){ f[k].addEventListener("input", syncInviteBtn); f[k].addEventListener("change", syncInviteBtn); });
+  syncInviteBtn();
+
 }());
 </script>
 </body>
