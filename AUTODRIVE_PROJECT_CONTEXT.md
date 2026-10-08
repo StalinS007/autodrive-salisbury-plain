@@ -531,7 +531,12 @@ Three files, no server, no database — the booking details travel inside the li
   Web app (Execute as Me / Anyone), paste the `/exec` URL into `booking.html` → `ENDPOINT`. Has a daily
   cap (40) and sanity checks. Deployment steps are in the file header.
 - All times are computed as Adelaide wall time → UTC in the browser (verified across ACST/ACDT).
-- **Status:** built and on `reviews-preview`; Apps Script not yet deployed (needs Jitty's login).
+- **Status (checked 2026-10-08):** `confirm.html` + `booking.html` are **live on `main`** —
+  autodrivesalisburyplain.com.au/confirm and /booking both work today. The Apps Script is still
+  **NOT deployed**: `booking.html` → `ENDPOINT` is still `""`, so the emailed Google invite path is off
+  and `/booking` silently falls back to "Just add it to my calendar" + the `.ics` download. Deploying
+  `tools/booking-webhook.gs` as a Web app from **Jitty's** Google account and pasting the `/exec` URL
+  into `ENDPOINT` is ~10 min and is the last step. Until then bookings do not land on Jitty's calendar.
 
 ---
 
