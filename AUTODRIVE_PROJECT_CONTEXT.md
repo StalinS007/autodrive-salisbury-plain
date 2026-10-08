@@ -530,7 +530,7 @@ Three files, no server, no database — the booking details travel inside the li
 - **`tools/booking-webhook.gs`** — the Google Apps Script. Deploy from Jitty's Google account as a
   Web app (Execute as Me / Anyone), paste the `/exec` URL into `booking.html` → `ENDPOINT`. Has a daily
   cap (40) and sanity checks. Deployment steps are in the file header.
-- **No re-asking (added 2026-10-08):** the WhatsApp booking modal ("Tell us about your car") now has an optional
+- **No re-asking (added 2026-10-08):** the WhatsApp booking modal ("Tell us about your car") now has a required
   **Email** field, and its message to Jitty ends with a "Booking ref (for Jitty)" `/confirm?p=` link carrying
   email, car, service, chosen date, odometer and issue. Likewise the contact-page SMS to Jitty now includes the customer's email and a
   `Confirm: /confirm?p=<base64url JSON>` link that opens the confirm tool with name, phone, email, car,

@@ -98,7 +98,7 @@ function adB64u(o) {
           '<div class="field"><label for="dateask-year">Year</label><input type="text" inputmode="numeric" id="dateask-year" placeholder="e.g. 2009" maxlength="4" autocomplete="off" /></div>' +
           '<div class="field"><label for="dateask-km">Odometer (km)</label><input type="text" inputmode="numeric" id="dateask-km" placeholder="e.g. 85,000" autocomplete="off" /></div>' +
           '<div class="field dateask__issuefield"><label for="dateask-issue">In a few words, describe what&rsquo;s wrong <span class="dateask__opt">(optional)</span></label><textarea id="dateask-issue" rows="2" maxlength="120" placeholder="e.g. ABS light flashing on the dashboard while driving"></textarea><span class="dateask__count">0/120</span></div>' +
-          '<div class="field"><label for="dateask-email">Email <span class="dateask__opt">(optional, so we can send you a calendar invite)</span></label><input type="email" id="dateask-email" inputmode="email" autocomplete="email" placeholder="e.g. you@gmail.com" /></div>' +
+          '<div class="field"><label for="dateask-email">Email</label><input type="email" id="dateask-email" inputmode="email" autocomplete="email" placeholder="e.g. you@gmail.com" /></div>' +
           '<p class="dateask__verr" hidden>Please fill in your car&rsquo;s details so we can quote you accurately.</p>' +
           '<button type="button" class="btn btn--lg btn--block dateask__vgo">Continue to WhatsApp</button>' +
         "</div>" +
@@ -136,6 +136,7 @@ function adB64u(o) {
       el(".dateask__vgo").addEventListener("click", function () {
         var inputs = [el("#dateask-make"), el("#dateask-model"), el("#dateask-year"), el("#dateask-km")];
         if (curCtx.issueRequired) inputs.push(el("#dateask-issue"));
+        inputs.push(el("#dateask-email"));
         var missing = false;
         inputs.forEach(function (inp) {
           var bad = !inp.value.trim();
@@ -144,10 +145,10 @@ function adB64u(o) {
         });
         var emailEl = el("#dateask-email"), email = emailEl.value.trim();
         var badEmail = !!email && !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email);
-        emailEl.classList.toggle("is-invalid", badEmail);
+        emailEl.classList.toggle("is-invalid", badEmail || !email);
         el(".dateask__verr").textContent = badEmail && !missing
-          ? "That email doesn\u2019t look right \u2014 check it or leave it blank."
-          : "Please fill in your car\u2019s details so we can quote you accurately.";
+          ? "That email doesn\u2019t look right \u2014 check it and try again."
+          : "Please fill in your car\u2019s details and email so we can quote you accurately.";
         el(".dateask__verr").hidden = !(missing || badEmail);
         if (missing || badEmail) return;
         finish(pendingDate, {
