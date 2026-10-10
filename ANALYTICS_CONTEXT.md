@@ -73,6 +73,12 @@ channel gets its own clean row in Traffic acquisition:
   — optionally add `&utm_campaign=<group-or-post>` (e.g. `adelaide-indian-community`,
   `civic-2009`) to split by group/post. Deep links work too, e.g.
   `/used-cars.html?utm_source=fbgroup&utm_medium=post&utm_campaign=civic-2009`.
+- Instagram Stories — used cars (link sticker, added 2026-10-10). General CARS link:
+  `https://autodrivesalisburyplain.com.au/used-cars.html?utm_source=instagram&utm_medium=story&utm_campaign=cars#stock`
+  Per-car stories: same source/medium, `utm_campaign=<model>-<year>` and `#car-<id>` anchor so the tap
+  lands on that car, e.g. `/used-cars.html?utm_source=instagram&utm_medium=story&utm_campaign=polo-2021#car-polo`.
+  Slugs in use: civic-2009, polo-2021, corolla-2008, rio-2018, mgzs-2023, polo-2018, golf-2017,
+  tiguan-2015, rio-2013, i20-2015, xv-2012, dualis-2013. Shows in GA as `instagram / story`.
 - WhatsApp/SMS shares by Jitty (OPTIONAL, lowest priority — only useful if Jitty saves it
   as a canned message; makes word-of-mouth forwards visible instead of landing in Direct):
   `https://autodrivesalisburyplain.com.au/?utm_source=whatsapp&utm_medium=share`
