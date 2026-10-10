@@ -205,7 +205,13 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   so offer cleaning and repair only); window tint beyond SA limits (unverified source says
   no windscreen tint, 35% front sides, 20% behind driver, max 10% reflectance; confirm
   before advertising tint packages); number plate covers/tints; child seats or safety items
-  without Australian Standards marking.
+  without Australian Standards marking; lithium jump starters and chargers only from a
+  reputable Australian supplier meeting electrical safety standards (fire risk + liability).
+- Promo idea (proposed 2026-10-10, not launched): free jump starter with a major service.
+  Bundling beats selling gadgets alone and keeps service prices intact. Before launch:
+  name the qualifying tier (e.g. Logbook Servicing $329), cap it (first N bookings or one
+  month) to protect margin, and frame it for the pre-Christmas road-trip season rather
+  than cold-start, since it is spring.
 
 ## Decision log (append newest first)
 - 2026-08-23 — Bio CTA set to "Prices and booking"; quote-close playbook agreed; language
