@@ -188,6 +188,25 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   real signal at current traffic; zero for a fortnight = change the value prop and
   retest. Analytics chat owns the weekly count.
 
+## Promo products via Instagram (explored 2026-10-10)
+- Radar detectors (e.g. Cobra RAD 390) and laser jammers: ILLEGAL in SA and every state
+  except WA, including possession. Never sell or promote. Waze / Google Maps camera alerts
+  are the legal alternative to mention.
+- Legal shortlist: dash cams (hardwired install upsell), portable jump starters, cordless
+  tyre inflators, OBD2 scanners (lead to diagnostic bookings), TPMS sensors, reversing
+  cameras and parking sensors (sold with fitting), commercially made fixed phone mounts,
+  branded car care/detailing kits, emergency roadside kits, wiper blades and cabin filters.
+- Priority = items that bring the car into the bay (anything with fitting, plus OBD2 ->
+  "bring it in for a proper diagnosis"). Jump starters / inflators work best as
+  "what to keep in your boot" reel content rather than stock.
+- Avoid or be careful: LED globe conversions in halogen housings (generally not ADR
+  compliant, "off-road use only"; promote only complete compliant assemblies); DPF deletes
+  and emissions-defeating tunes (illegal tampering; AutoDrive advertises diesel/DPF/ECU work,
+  so offer cleaning and repair only); window tint beyond SA limits (unverified source says
+  no windscreen tint, 35% front sides, 20% behind driver, max 10% reflectance; confirm
+  before advertising tint packages); number plate covers/tints; child seats or safety items
+  without Australian Standards marking.
+
 ## Decision log (append newest first)
 - 2026-08-23 — Bio CTA set to "Prices and booking"; quote-close playbook agreed; language
   packaging = subtitles-first (see above). Pending: "from $" prices for detailing/paint.
