@@ -1,0 +1,62 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Story · hero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700&display=block">
+<style>
+  /* 1080×1920 Instagram story. Instagram's own UI covers the top ~250px and bottom ~250px, and the
+     link sticker is placed by hand in the app at roughly y 1420–1680 — that band is left empty. */
+  :root { --red:#C01418; --ink:#0E0E0E; }
+  html,body { margin:0; width:1080px; height:1920px; overflow:hidden; background:var(--ink); }
+  body { position:relative; font-family:Inter, "Helvetica Neue", Arial, sans-serif; color:#fff; }
+  .photo { position:absolute; inset:0; width:1080px; height:1920px; object-fit:cover; object-position:center 42%; }
+  .shade { position:absolute; left:0; right:0; bottom:0; height:62%;
+    background:linear-gradient(to top, rgba(0,0,0,.92) 0%, rgba(0,0,0,.78) 32%, rgba(0,0,0,.35) 68%, rgba(0,0,0,0) 100%); }
+  .top { position:absolute; left:0; right:0; top:0; height:36%;
+    background:linear-gradient(to bottom, rgba(0,0,0,.72) 0%, rgba(0,0,0,.35) 55%, rgba(0,0,0,0) 100%); }
+  .brand { position:absolute; left:60px; top:296px; font-family:Anton, Impact, sans-serif; font-size:34px;
+    letter-spacing:.06em; text-transform:uppercase; opacity:.82; }
+  .brand b { color:#ef5a5e; font-weight:400; }
+  .title { position:absolute; left:60px; right:60px; top:360px; font-family:Anton, Impact, sans-serif; font-weight:400;
+    font-size:92px; line-height:.98; text-transform:uppercase; letter-spacing:.005em; text-wrap:balance;
+    text-shadow:0 4px 24px rgba(0,0,0,.55); }
+  .price { position:absolute; left:60px; right:60px; top:1040px; font-family:Anton, Impact, sans-serif;
+    font-weight:400; font-size:168px; line-height:1; color:#ff2d33; letter-spacing:-.005em;
+    text-shadow:0 6px 30px rgba(0,0,0,.6); font-variant-numeric:tabular-nums; }
+  .price small { display:block; font-family:Inter, sans-serif; font-size:40px; font-weight:600; color:#fff;
+    opacity:.92; margin-top:14px; letter-spacing:.01em; }
+  .chips { position:absolute; left:60px; right:60px; top:1296px; display:flex; flex-wrap:wrap; gap:16px; }
+  .chips span { font-size:34px; font-weight:700; color:#fff; background:rgba(255,255,255,.14);
+    border:2px solid rgba(255,255,255,.35); border-radius:999px; padding:12px 26px; backdrop-filter:blur(6px); }
+  .sold { position:absolute; left:60px; top:296px; background:#fff; color:var(--ink); font-size:34px; font-weight:800;
+    letter-spacing:.1em; text-transform:uppercase; padding:14px 30px; border-radius:999px; }
+</style>
+<body>
+  <img class="photo" id="photo" alt="">
+  <div class="top"></div>
+  <div class="shade"></div>
+  <div class="brand" id="brand">Auto<b>Drive</b></div>
+  <div class="title" id="title"></div>
+  <div class="price" id="price"></div>
+  <div class="chips" id="chips"></div>
+  <script>
+    const CAR = /*CAR_JSON*/null;
+    const $ = (id) => document.getElementById(id);
+    const money = (n) => "$" + Number(n).toLocaleString("en-AU");
+    const hero = CAR.photos.find(p => p.role === "hero") || CAR.photos[0];
+    $("photo").src = hero.src;
+    // Non-breaking hyphen so "R-Line" / "3-Door" never splits across lines.
+    $("title").textContent = `${CAR.year} ${CAR.make_short || CAR.make} ${CAR.model}`.replace(/-/g, "‑");
+    $("price").innerHTML = money(CAR.price) + (CAR.price_note ? `<small>${CAR.price_note}</small>` : "");
+    const chips = [
+      CAR.transmission === "Manual" ? "Manual" : "Auto",
+      CAR.rego_months ? `${CAR.rego_months} months rego` : null,
+      "Inspected by us",
+    ].filter(Boolean);
+    $("chips").innerHTML = chips.map(c => `<span>${c}</span>`).join("");
+    if (CAR.status === "sold") { $("brand").outerHTML = '<div class="sold">Sold</div>'; }
+    // Long titles: step the size down until it fits in two lines.
+    const t = $("title"); let fs = 92;
+    while (t.scrollHeight > 2 * fs * 0.98 + 8 && fs > 60) { fs -= 4; t.style.fontSize = fs + "px"; }
+  </script>
+</body>

@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AutoDrive used-car record (car.json)",
+  "description": "One file per car. Written by the extract step (Claude reads Jitty's WhatsApp message + photos) or by hand. Everything downstream — the website listing, the two Instagram story frames, the links — is generated from this. Never invent a value: leave it null and the generators will cope.",
+  "type": "object",
+  "required": ["slug", "year", "make", "model", "transmission", "body", "km", "price", "photos"],
+  "properties": {
+    "slug":         { "type": "string", "pattern": "^[a-z0-9]+$", "description": "Short id. Becomes #car-<slug> on the page and images/<slug>/. Must be unique on the site — if a slug exists, add the year: polo18." },
+    "campaign":     { "type": ["string", "null"], "pattern": "^[a-z0-9-]+$", "description": "utm_campaign for story links, e.g. golf-2017. Default: <slug>-<year>." },
+    "year":         { "type": "integer", "minimum": 1990, "maximum": 2030 },
+    "make":         { "type": "string", "description": "Full make as shown on the listing, e.g. Volkswagen." },
+    "make_short":   { "type": ["string", "null"], "description": "Short form for stories and the WhatsApp text, e.g. VW. Default: make." },
+    "model":        { "type": "string", "description": "Model + variant as one string, e.g. Golf R-Line Wagon." },
+    "transmission": { "type": "string", "enum": ["Automatic", "Manual"] },
+    "body":         { "type": "string", "description": "Hatch, Sedan, Wagon, SUV, Ute, Van…" },
+    "built":        { "type": ["string", "null"], "description": "Build date as on the compliance plate, e.g. Jun 2017. Null if unknown." },
+    "km":           { "type": "integer", "description": "Odometer reading, exact if the odometer photo shows it." },
+    "price":        { "type": "integer", "description": "Asking price in whole dollars." },
+    "price_note":   { "type": ["string", "null"], "description": "Small line under the price: Drive-away price · Firm, no offers · Firm price. Null = nothing." },
+    "engine":       { "type": ["string", "null"], "description": "e.g. 1.4L petrol, TSI turbo petrol, 2.0 diesel." },
+    "trust":        { "type": "array", "items": { "type": "string" }, "maxItems": 3, "description": "Up to three green tick lines after the automatic 'Workshop-inspected': the car's best features." },
+    "description":  { "type": ["string", "null"], "description": "The listing paragraph, 60–110 words, plain English, no hype. The PPSR / repaired disclosure sentences are added automatically — do not write them here." },
+    "ppsr_listed":  { "type": "boolean", "default": false, "description": "True if the car is on the PPSR register. Adds the standard disclosure line." },
+    "repaired":     { "type": "boolean", "default": false, "description": "True if it has been professionally repaired (write-off history). Adds the standard disclosure line." },
+    "rego_months":  { "type": ["integer", "null"], "default": 3, "description": "Months of rego included. Drives the '3 months rego' story chip." },
+    "status":       { "type": "string", "enum": ["available", "sold"], "default": "available" },
+    "photos": {
+      "type": "array", "minItems": 1,
+      "items": {
+        "type": "object", "required": ["file", "alt"],
+        "properties": {
+          "file": { "type": "string", "description": "Filename inside the car's folder (the orchestrator renames to <slug>-NN.jpg for the site)." },
+          "alt":  { "type": "string", "description": "3–8 words describing the shot: 'front angle', 'odometer showing 62,937 km', 'engine bay'." },
+          "role": { "type": ["string", "null"], "enum": ["hero", "rear34", "side", "front", "dash", "rear_seats", "odometer", "engine", "boot", "detail", null],
+                    "description": "What the shot is. hero = front three-quarter, the one that leads the listing and the story. Used to order the collage." }
+        }
+      }
+    }
+  }
+}

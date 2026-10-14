@@ -396,6 +396,30 @@ client-negotiation material in this repo again.**
 Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
 `~/Downloads/Autodrive downloads/Pitch items/`. The old files remain in git history if ever needed.
 
+## 7e. Used-car pipeline — WhatsApp → iCloud → listing + stories (built 2026-10-14, Mac install pending)
+
+`tools/cars/` turns a car Jitty sends on WhatsApp into a website listing, two Instagram story PNGs
+and the tracked links, from one share action. **Read `tools/cars/README.md` first** — it is the manual.
+- **Stalin's only manual step:** WhatsApp → select photos → Save to Files → iCloud `AutoDrive/Cars/_inbox/<new folder>`
+  + a screenshot of Jitty's message (or `details.txt`). The free WhatsApp Business app has no API, so this
+  hand-off cannot be zero-touch without moving the number to the Business Platform (rejected — kills the app).
+- **Mac side (launchd → `process-inbox.sh`):** waits for iCloud quiet → `claude -p` + `extract-prompt.md`
+  reads the message and captions/roles every photo → `car.json` (or `NEEDS-INFO.txt`) → `sips` resizes to
+  `images/<slug>/<slug>-NN.jpg` → `make-listing.mjs --insert` → `stories/render.mjs` (Chrome screenshot of
+  `hero.html` + `collage.html`, 1080×1920, sticker band y≈1420–1680 left clear) → commit + push to
+  **`reviews-preview` only** → files to `Cars/<slug>/{photos,web,stories,car.json}` → macOS notification.
+- **Verified in the cloud session:** `make-listing.mjs` output is byte-identical to the hand-written Golf block;
+  `--insert`/`--mark-sold`/`--remove` round-trip cleanly; both story frames render correctly with the real
+  Golf photos (Anton loads). **Not yet verified on the Mac:** `process-inbox.sh`, `sips`, `claude -p`
+  non-interactive, the launchd plist. 🖥️ **TODO Mac session:** follow README "Install", then run
+  `DRY_RUN=1 QUIET_SECONDS=0 tools/cars/process-inbox.sh` on a test folder and fix anything that breaks.
+- Schema: `tools/cars/car.schema.json`. Worked example: `tools/cars/example/car.json` (= the live Golf).
+- Story links use the `instagram / story` + `utm_campaign=<slug>-<year>` convention from `ANALYTICS_CONTEXT.md`;
+  `links.txt` also carries the `fbgroup / post` link for the community groups.
+- Maintenance commands (sold / price change / remove) are in the README under "Day-to-day".
+
+---
+
 ## 8. Known constraints & pending items
 
 - **Contact form sends by SMS (not Formspree):** `#booking-form` composes a pre-filled text
