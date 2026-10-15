@@ -213,6 +213,22 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   month) to protect margin, and frame it for the pre-Christmas road-trip season rather
   than cold-start, since it is spring.
 
+## High-ticket offer: done-for-you car acquisition (PROPOSED 2026-10-15, not launched)
+- Owner idea: AutoDrive finds, inspects, negotiates and hands over a used car for the buyer.
+- Edge: a mechanic-led buyer's agent (inspection + negotiation + service/detail before
+  handover), which brokers can't match. Productises the PPI idea and fits the used-car
+  buying reels and the new-migrant/student "first car" audience.
+- GATE 1, licensing: unclear whether a buyer's agent falls under the SA Second-hand
+  Vehicle Dealers Act (licence needed for 4+ vehicles bought/sold in 12 months, or carrying
+  on business as a dealer; no buyer's-agent exemption listed). Confirm with CBS (131 882)
+  before launch, together with the still-open question of Jitty's own dealer licence.
+  Other states have separate regimes, so start SA only.
+- Pricing benchmark (weak source): Australian car brokers $500 to $1,500 flat or 2 to 5%.
+  Going higher needs workshop value in the package (full service + detail + paperwork).
+- Rules: fee-only, disclose if recommending AutoDrive's own stock, no undisclosed seller
+  kickbacks. Cap clients per month (one-man workshop). Validate by pre-selling to ~3
+  founding clients (WhatsApp waitlist angle + one reel) before building anything.
+
 ## Decision log (append newest first)
 - 2026-08-23 — Bio CTA set to "Prices and booking"; quote-close playbook agreed; language
   packaging = subtitles-first (see above). Pending: "from $" prices for detailing/paint.
