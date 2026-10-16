@@ -243,6 +243,13 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   "Just looking" removed from the form: timing question is now a yes/no gate
   ("I'm looking to buy within the next couple of months").
   Names: "First Car in 60 Days Programme" / "Family Car Sorted in 60 Days Programme".
+- ROLES (owner, 2026-10-16): Stalin sells and closes on the call (deposit paid before hanging
+  up); Jitty receives a SOLD client and runs a ~20 min kickoff, not a sales meeting: welcome,
+  confirm brief, his model advice, set expectations (7-day shortlist, 60-day keys, updates,
+  48h reply rule), next step. Kickoff booked within 48-72h of the call. Stalin hands Jitty a
+  one-page client brief: name, mobile, segment, budget + payment method, main use,
+  must-haves/deal-breakers, liked/unwanted models, timeframe, deposit paid, main worry in
+  their words, anything promised on the call.
 - OPEN QUESTIONS FOR JITTY (full checklist, 2026-10-16; * = deal-breaker, ask first):
   Offer: *on board with find/inspect/negotiate/prepare/hand over in 30-60 days; does $7k get
   a car he's proud of (his max age/kms line); makes/models he refuses; CONFIRMED 2026-10-16: he will run client
