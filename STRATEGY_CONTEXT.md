@@ -294,6 +294,15 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   Australian account (overseas transfers break the window); families = partner agrees.
   Default until Jitty decides: no bank statements (friction + privacy duty); call answers
   for cash buyers, pre-approval letter for finance buyers.
+- Form channel (owner leaning, 2026-10-16): Meta Instant Form. Facts: instant forms only
+  run inside a lead ad (paid; one ad covers Facebook + Instagram placements). Organic
+  workaround (publish the lead ad as a Facebook Page post, then turn the ad off) is
+  Facebook only, not Instagram. Use "Higher intent" type (review screen); name/phone
+  prefill from profile. Conditional logic can end the form for Not yet / Outside Australia
+  / Under $7k, but people can go back and change answers, so the call stays the real
+  filter. No embedded calendar: qualified ending screen button links to Stalin's booking
+  page. Requires a privacy policy URL; site has none yet (build chat: add privacy.html).
+  Leads land in Meta Business Suite; turn on notifications, contact within 5 min.
 - LAUNCH QUESTIONS FOR JITTY (owner, 2026-10-16: launch ASAP, only these three block launch; the rest
   of the checklist below is answered as real client queries come up):
   1 On board: find, inspect, negotiate, prepare and hand over in 30-60 days, $7k+ cars he's
