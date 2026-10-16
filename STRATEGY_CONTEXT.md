@@ -265,16 +265,11 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   assesses credit or arranges loans); written pre-approval needed before the car search
   starts so the 2-week window holds. Copy: "Happy to help, we'll connect you with a
   finance broker first."
-  Anyone outside those three (not ready, no funds, vague answer on the call or in DMs) gets
-  this reply, verbatim (owner, 2026-10-16): "When you are ready to purchase with us, please
-  let us know how much deposit you can put down and the time frame that you would like the
-  car." No call booked; save the contact (WhatsApp label) for follow-up.
-  Always end it with a WhatsApp prompt so their answer lands in WhatsApp: "Just message us
-  on WhatsApp when you're ready:" + prefilled link (deposit + timeframe template):
-  https://wa.me/61432520230?text=Hi%20AutoDrive%2C%20I%27m%20ready%20to%20buy%20a%20car.%0ADeposit%3A%20%24%0ATimeframe%3A%20
-  Not needed if the message is already being sent inside WhatsApp. If this goes on the
-  website (form "not eligible" screen), the build chat must add data-ctx="direct" so the
-  main.js booking modal doesn't intercept it.
+  Anyone outside those three (no funds now, vague answer on the call or in DMs) gets
+  Message B, verbatim (owner, 2026-10-16): "Please contact us through our website or
+  WhatsApp when you have the funds ready for the purchase." Deliberately narrow: no call,
+  no deposit/timeframe questions, no prefilled link, no chasing. They come back when ready.
+  (Replaces the earlier "how much deposit / time frame" reply.)
   Call confirms: pay within days if found next week; source of funds; full drive-away
   amount; finance = written pre-approval and amount; students = money already in an
   Australian account (overseas transfers break the window); families = partner agrees.
