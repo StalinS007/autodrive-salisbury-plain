@@ -281,9 +281,9 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
 - Financial qualification (owner, 2026-10-16): client must have funds ready to buy within
   2 weeks. Form adds one tap after budget: "Do you have the funds ready to buy within 2
   weeks?" Only TWO client types for now (owner, 2026-10-16, narrowed from three):
-  Yes, cash ready / Yes, finance approved (written pre-approval). "Willing to get finance"
+  Yes, cash/savings ready / Yes, finance approved (written pre-approval). "Willing to get finance"
   dropped; revisit later, possibly with a broker partner.
-  Form options CONFIRMED (owner, 2026-10-16): Yes, cash ready / Yes, finance approved /
+  Form options CONFIRMED (owner, 2026-10-16): Yes, cash/savings ready / Yes, finance approved /
   Not yet. "Not yet" ends the form (no call booked) and shows, verbatim: "Please get in
   touch with us when you do have the funds and are ready for a purchase."
   On calls and in DMs, anyone outside those two (no funds now, vague answer) gets
