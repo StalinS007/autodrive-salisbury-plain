@@ -294,7 +294,13 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   Australian account (overseas transfers break the window); families = partner agrees.
   Default until Jitty decides: no bank statements (friction + privacy duty); call answers
   for cash buyers, pre-approval letter for finance buyers.
-- Form channel (owner leaning, 2026-10-16): Meta Instant Form. Facts: instant forms only
+- Form channel DECIDED (owner, 2026-10-16): NO Instant Form / no paid lead ad. Priority is a
+  second Instagram bio link placed FIRST (above the website link), titled e.g. "Find my
+  next car", pointing to the application form. Suggested build: Tally form (free,
+  conditional logic, separate ending pages per answer) with the booking page (Google
+  Calendar appointment schedule or Calendly) on the qualified ending. Website link stays
+  second, unchanged.
+- (Superseded) Instant Form research: Facts: instant forms only
   run inside a lead ad (paid; one ad covers Facebook + Instagram placements). Organic
   workaround (publish the lead ad as a Facebook Page post, then turn the ad off) is
   Facebook only, not Instagram. Use "Higher intent" type (review screen); name/phone
