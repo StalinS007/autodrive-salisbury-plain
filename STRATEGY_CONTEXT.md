@@ -232,20 +232,22 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   book the call. Under $7k and "just looking" get a polite WhatsApp, no call. Payment
   method (cash / approved / needs finance) is the first thing confirmed on the call.
 - DRAFT OFFER (2026-10-16, Hormozi $100M Offers structure): sell the transformation,
-  "keys in your hand within 30 days, no stress, nothing to figure out". Two versions of one
-  30-day done-for-you programme (Students / Families). Value stack: brief with Jitty,
+  "keys in your hand within 30 to 60 days, no stress, nothing to figure out". Two versions
+  of one done-for-you programme (timeframe 30-60 days, owner 2026-10-16; name and guarantee
+  use the outer 60) (Students / Families). Value stack: brief with Jitty,
   shortlist in 7 days, mechanic inspection + PPSR check on every shortlisted car,
   negotiation, paperwork, full service + detail before handover, 30-day check-up.
-  Conditional guarantee (keys within 30 days or programme fee back, if the client responds
+  Conditional guarantee (keys within 60 days or programme fee back, if the client responds
   to shortlists within 48h and the brief fits the budget). Real scarcity: 5 clients/month.
   Suggested test pricing: Students $690, Families $1,290, $300 deposit credited.
   "Just looking" removed from the form: timing question is now a yes/no gate
-  ("I'm looking to buy within the next month or so").
+  ("I'm looking to buy within the next couple of months").
+  Names: "First Car in 60 Days Programme" / "Family Car Sorted in 60 Days Programme".
 - OPEN QUESTIONS FOR JITTY (must answer before launch):
   Reach: deliver anywhere in Australia or Adelaide only? (interstate transport cost, who
   handles interstate rego + safety certificate); local delivery radius and fee.
   Sourcing: where cars come from (auctions / trade-ins / private / dealers); is 7-day
-  shortlist + 30-day keys realistic at every budget; which types/budgets are reliable
+  shortlist + 30-60 day keys realistic at every budget; which types/budgets are reliable
   (e.g. 7-seaters $25k+); buy into stock and resell vs act as buyer's agent (pricing, GST,
   warranty).
   Capacity: programme clients/month alongside workshop (5?); hours per client; who does the
@@ -253,7 +255,7 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   Money: how car price is set and whether margin + fee prices us out; who holds deposits and
   refund terms; finance broker partner for referrals.
   Warranty/guarantee: statutory dealer warranty on programme cars; do the site's 3 months
-  free rego + optional 12-36 month warranty apply; is he comfortable with "keys in 30 days
+  free rego + optional 12-36 month warranty apply; is he comfortable with "keys in 60 days
   or fee back" (48h reply condition).
   Avatars: students' rego/insurance on overseas licence or temporary visa (for the starter
   kit); families' trade-ins and valuation.
