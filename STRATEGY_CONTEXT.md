@@ -293,6 +293,15 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   Australian account (overseas transfers break the window); families = partner agrees.
   Default until Jitty decides: no bank statements (friction + privacy duty); call answers
   + paid deposit for cash buyers, pre-approval letter for finance buyers.
+- LAUNCH FIVE FOR JITTY (owner, 2026-10-16: launch ASAP, only these block launch; the rest
+  of the checklist below is answered as real client queries come up):
+  1 On board: find, inspect, negotiate, prepare and hand over in 30-60 days, $7k+ cars he's
+    proud of. 2 Capacity: clients a month (5?). 3 Delivery: Australia-wide or Adelaide only
+    (sets the form's location answers). 4 Money: fee $690 / $1,290 and $300 deposit work;
+    deposit refundable or not if client backs out. 5 Guarantee: OK with "keys in 60 days or
+    fee back" (client replies within 48h, brief fits budget).
+  Defaults until told otherwise: no proof of funds beyond call + deposit; cash ready or
+  finance approved only; Jitty runs kickoffs and handovers (confirmed).
 - OPEN QUESTIONS FOR JITTY (full checklist, 2026-10-16; * = deal-breaker, ask first):
   Offer: *on board with find/inspect/negotiate/prepare/hand over in 30-60 days; does $7k get
   a car he's proud of (his max age/kms line); makes/models he refuses; CONFIRMED 2026-10-16: he will run client
