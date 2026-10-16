@@ -225,6 +225,12 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   closes on a call (commitment deposit credited to the purchase) -> booked appointment with
   Jitty, who only asks car / timeframe / expectations while Stalin leads. Finance: refer
   to a licensed broker; AutoDrive does not assess credit itself.
+- Minimum budget $7k drive-away (no cheap "shit boxes"). Form (minimal friction, mostly
+  one-tap): Student/Family; full name; mobile; budget ($7-10k / $10-20k / $20-30k / $30k+ /
+  Under $7k, label says "our cars start from $7k"); main use; when needed (incl. "just
+  looking"); what matters most. No calendar in the form: Stalin WhatsApps within 5 min to
+  book the call. Under $7k and "just looking" get a polite WhatsApp, no call. Payment
+  method (cash / approved / needs finance) is the first thing confirmed on the call.
 - Pricing benchmark (weak source): Australian car brokers $500 to $1,500 flat or 2 to 5%.
   Going higher needs workshop value in the package (full service + detail + paperwork).
 - Rules: fee-only, disclose if recommending AutoDrive's own stock, no undisclosed seller
