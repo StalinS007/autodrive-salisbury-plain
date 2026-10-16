@@ -263,6 +263,18 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   done-for-you car programme", button "Check my eligibility"; Stalin's call is an
   "eligibility call" ("we only take a handful of clients each month, this call is to see if
   we're the right fit"). Scarcity: ready buyers only, 5 clients a month.
+- Location (owner, 2026-10-16): Australia only. Form question after mobile: "Where are you
+  based?" Adelaide / Elsewhere in Australia / Outside Australia.
+  Outside Australia = form ends: "Sorry, we can only help buyers who are based in
+  Australia." Elsewhere in Australia = still qualifies, shown: "Good news, we can deliver
+  to you anywhere in Australia. Interstate delivery comes with a few extra things to
+  consider, and we'll go through them on your call." Call covers: transport time and cost
+  (car + delivery must fit budget), rego transfer and roadworthy rules in their state,
+  inspection shown by video. Depends on Jitty confirming Australia-wide delivery
+  (deal-breaker question).
+  Current form order: 1 Student/Family; 2 name; 3 mobile; 4 location; 5 budget; 6 funds
+  within 2 weeks; 7 main use; 8 buying in next couple of months (owner to decide whether to
+  drop, overlaps 6); 9 what matters most; then booking for qualified only.
 - Financial qualification (owner, 2026-10-16): client must have funds ready to buy within
   2 weeks. Form adds one tap after budget: "Do you have the funds ready to buy within 2
   weeks?" Only TWO client types for now (owner, 2026-10-16, narrowed from three):
