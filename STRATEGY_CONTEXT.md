@@ -262,9 +262,10 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   weeks?" Only TWO client types for now (owner, 2026-10-16, narrowed from three):
   Yes, cash ready / Yes, finance approved (written pre-approval). "Willing to get finance"
   dropped; revisit later, possibly with a broker partner.
-  Form mechanics (recommendation, owner to OK): add a third tap "Not yet" that instantly
-  shows Message B instead of booking a call, so non-qualified people don't lie or abandon.
-  Anyone outside those two (no funds now, vague answer on the call or in DMs) gets
+  Form options CONFIRMED (owner, 2026-10-16): Yes, cash ready / Yes, finance approved /
+  Not yet. "Not yet" ends the form (no call booked) and shows, verbatim: "Please get in
+  touch with us when you do have the funds and are ready for a purchase."
+  On calls and in DMs, anyone outside those two (no funds now, vague answer) gets
   Message B, verbatim (owner, 2026-10-16): "Please contact us through our website or
   WhatsApp when you have the funds ready for the purchase." Deliberately narrow: no call,
   no deposit/timeframe questions, no prefilled link, no chasing. They come back when ready.
