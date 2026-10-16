@@ -416,8 +416,9 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   purchase."); timing "Not yet". "Elsewhere in Australia" qualifies with an interstate
   delivery note.
 - Qualified ending books the eligibility call into **Stalin's** availability via `BOOKING_URL`
-  at the top of the script. **Currently empty**, so qualified people get a WhatsApp button
-  (520 230) with all answers prefilled. Paste the Calendly event link to prefill the booking:
+  at the top of the script. **Set 2026-10-16 to `https://calendly.com/autodrive5109/30min`**
+  (15 min Zoom; slug still the default "30min"; if renamed, update `BOOKING_URL`). If emptied,
+  qualified people get a WhatsApp button (520 230) with all answers prefilled. The link prefills:
   `name` plus `a1` = mobile (+61 format) and every answer incl. lead source, one per line.
   Calendly setup: ONE invitee question after Name/Email, "Your application" (multiple lines),
   in first position. Calendly account: login autodrive5109@gmail.com, profile "AutoDrive

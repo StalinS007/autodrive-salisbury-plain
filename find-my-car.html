@@ -110,7 +110,7 @@
   // Calendly: answers are pre-filled into the booking (its first invitee question must be
   // "Your application", multiple lines; see AUTODRIVE_PROJECT_CONTEXT.md 7f). Google booking page: opens as-is. Empty: qualified people
   // get a WhatsApp button with their answers instead.
-  var BOOKING_URL = "";
+  var BOOKING_URL = "https://calendly.com/autodrive5109/30min";
   var WHATSAPP = "61432520230";
 
   var STEPS = [
@@ -271,7 +271,7 @@
     var btn;
     if (link){
       btn = "<a class=\"btn btn--red\" id=\"bookBtn\" href=\"" + esc(link) + "\" target=\"_blank\" rel=\"noopener\">Book my eligibility call</a>" +
-            "<p class=\"hint\">Pick a time that suits you. The call takes about 15 minutes.</p>";
+            "<p class=\"hint\">Pick a time that suits you. It's a quick 15 minute Zoom call, and the link comes in your confirmation email.</p>";
     } else {
       var msg = "Hi AutoDrive, I've applied for the car programme. Please book my eligibility call.\n" +
                 "Name: " + answers.name + "\nMobile: " + answers.mobile + "\n" + summary().split(" | ").join("\n");
