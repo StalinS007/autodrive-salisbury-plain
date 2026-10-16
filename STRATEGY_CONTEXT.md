@@ -265,6 +265,10 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   assesses credit or arranges loans); written pre-approval needed before the car search
   starts so the 2-week window holds. Copy: "Happy to help, we'll connect you with a
   finance broker first."
+  Anyone outside those three (not ready, no funds, vague answer on the call or in DMs) gets
+  this reply, verbatim (owner, 2026-10-16): "When you are ready to purchase with us, please
+  let us know how much deposit you can put down and the time frame that you would like the
+  car." No call booked; save the contact (WhatsApp label) for follow-up.
   Call confirms: pay within days if found next week; source of funds; full drive-away
   amount; finance = written pre-approval and amount; students = money already in an
   Australian account (overseas transfers break the window); families = partner agrees.
