@@ -417,10 +417,12 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   delivery note.
 - Qualified ending books the eligibility call into **Stalin's** availability via `BOOKING_URL`
   at the top of the script. **Currently empty**, so qualified people get a WhatsApp button
-  (520 230) with all answers prefilled. Paste a Calendly link to prefill the booking
-  (`name`, `a1` = mobile in +61 format, `a2` = one-line answer summary incl. lead source, plus
-  UTM tags): in Calendly create invitee questions in this order: 1 "Mobile number" (phone),
-  2 "Your application" (multi-line). A Google Calendar booking page link also works but opens
+  (520 230) with all answers prefilled. Paste the Calendly event link to prefill the booking:
+  `name` plus `a1` = mobile (+61 format) and every answer incl. lead source, one per line.
+  Calendly setup: ONE invitee question after Name/Email, "Your application" (multiple lines),
+  in first position. Calendly account: login autodrive5109@gmail.com, profile "AutoDrive
+  Salisbury Plain", Stalin's calendar connected, Zoom location (notetaker off), Zoom display
+  name "AutoDrive Salisbury Plain". A Google Calendar booking page link also works but opens
   without the answers.
 - GA4 events: `car_apply_start` (source), `car_apply_step` (step, answer; one-tap answers
   only, never name/mobile), `car_apply_disqualified` (reason), `car_apply_qualified`
