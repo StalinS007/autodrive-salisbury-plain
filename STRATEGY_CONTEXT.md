@@ -222,7 +222,7 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
 - Two offers: (1) STUDENTS, first car in Australia, lower budget, reliability and honest
   guidance; (2) FAMILIES, bigger budget, safety and space, time-poor. Funnel: Instagram
   form (segment, budget, payment method, timeframe, availability) -> Stalin qualifies and
-  closes on a call (commitment deposit credited to the purchase) -> booked appointment with
+  closes on a call (no deposit, see NO SET FEE below) -> booked appointment with
   Jitty, who only asks car / timeframe / expectations while Stalin leads. Finance: refer
   to a licensed broker; AutoDrive does not assess credit itself.
 - Minimum budget $7k drive-away (no cheap "shit boxes"). Form (minimal friction, mostly
@@ -245,16 +245,17 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   negotiation, paperwork, full service + detail before handover, 30-day check-up.
   Conditional guarantee (keys within 60 days or programme fee back, if the client responds
   to shortlists within 48h and the brief fits the budget). Real scarcity: 5 clients/month.
-  Suggested test pricing: Students $690, Families $1,290, $300 deposit credited.
+  SUPERSEDED (owner, 2026-10-16): no set fee or deposit; Jitty discusses the fee with the
+  client directly. Stalin only confirms the budget covers everything.
   "Just looking" removed from the form: timing question is now a yes/no gate
   ("I'm looking to buy within the next couple of months").
   Names: "First Car in 60 Days Programme" / "Family Car Sorted in 60 Days Programme".
-- ROLES (owner, 2026-10-16): Stalin sells and closes on the call (deposit paid before hanging
-  up); Jitty receives a SOLD client and runs a ~20 min kickoff, not a sales meeting: welcome,
+- ROLES (owner, 2026-10-16): Stalin qualifies on the call (budget covers everything) and
+  books the kickoff; Jitty receives a SOLD client and runs a ~20 min kickoff, not a sales meeting: welcome,
   confirm brief, his model advice, set expectations (7-day shortlist, 60-day keys, updates,
   48h reply rule), next step. Kickoff booked within 48-72h of the call. Stalin hands Jitty a
   one-page client brief: name, mobile, segment, budget + payment method, main use,
-  must-haves/deal-breakers, liked/unwanted models, timeframe, deposit paid, main worry in
+  must-haves/deal-breakers, liked/unwanted models, timeframe, main worry in
   their words, anything promised on the call.
 - Delivery (owner, 2026-10-16): included in the package, cost built into the price, and
   car + delivery must fit the client's stated budget. Word it "delivery included", never
@@ -292,15 +293,19 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   amount; finance = written pre-approval and amount; students = money already in an
   Australian account (overseas transfers break the window); families = partner agrees.
   Default until Jitty decides: no bank statements (friction + privacy duty); call answers
-  + paid deposit for cash buyers, pre-approval letter for finance buyers.
-- LAUNCH FIVE FOR JITTY (owner, 2026-10-16: launch ASAP, only these block launch; the rest
+  for cash buyers, pre-approval letter for finance buyers.
+- LAUNCH QUESTIONS FOR JITTY (owner, 2026-10-16: launch ASAP, only these four block launch; the rest
   of the checklist below is answered as real client queries come up):
   1 On board: find, inspect, negotiate, prepare and hand over in 30-60 days, $7k+ cars he's
     proud of. 2 Capacity: clients a month (5?). 3 Delivery: Australia-wide or Adelaide only
-    (sets the form's location answers). 4 Money: fee $690 / $1,290 and $300 deposit work;
-    deposit refundable or not if client backs out. 5 Guarantee: OK with "keys in 60 days or
-    fee back" (client replies within 48h, brief fits budget).
-  Defaults until told otherwise: no proof of funds beyond call + deposit; cash ready or
+    (sets the form's location answers). 4 Guarantee: OK with "keys in 60 days" promise
+    (client replies within 48h, brief fits budget); remedy if missed is his call since there
+    is no set fee to refund.
+  NO SET FEE (owner, 2026-10-16): no programme fee or deposit set; Jitty discusses his fee
+  with the client once they're talking. Funnel only checks the budget covers everything
+  (car, delivery, his fee, on-road costs). Budget question label: "Total budget for
+  everything".
+  Defaults until told otherwise: no proof of funds beyond the call answers; cash ready or
   finance approved only; Jitty runs kickoffs and handovers (confirmed).
 - OPEN QUESTIONS FOR JITTY (full checklist, 2026-10-16; * = deal-breaker, ask first):
   Offer: *on board with find/inspect/negotiate/prepare/hand over in 30-60 days; does $7k get
