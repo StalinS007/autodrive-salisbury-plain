@@ -241,6 +241,23 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   Suggested test pricing: Students $690, Families $1,290, $300 deposit credited.
   "Just looking" removed from the form: timing question is now a yes/no gate
   ("I'm looking to buy within the next month or so").
+- OPEN QUESTIONS FOR JITTY (must answer before launch):
+  Reach: deliver anywhere in Australia or Adelaide only? (interstate transport cost, who
+  handles interstate rego + safety certificate); local delivery radius and fee.
+  Sourcing: where cars come from (auctions / trade-ins / private / dealers); is 7-day
+  shortlist + 30-day keys realistic at every budget; which types/budgets are reliable
+  (e.g. 7-seaters $25k+); buy into stock and resell vs act as buyer's agent (pricing, GST,
+  warranty).
+  Capacity: programme clients/month alongside workshop (5?); hours per client; who does the
+  search legwork.
+  Money: how car price is set and whether margin + fee prices us out; who holds deposits and
+  refund terms; finance broker partner for referrals.
+  Warranty/guarantee: statutory dealer warranty on programme cars; do the site's 3 months
+  free rego + optional 12-36 month warranty apply; is he comfortable with "keys in 30 days
+  or fee back" (48h reply condition).
+  Avatars: students' rego/insurance on overseas licence or temporary visa (for the starter
+  kit); families' trade-ins and valuation.
+  Aftercare: capacity for a free 30-day check-up per client.
 - Pricing benchmark (weak source): Australian car brokers $500 to $1,500 flat or 2 to 5%.
   Going higher needs workshop value in the package (full service + detail + paperwork).
 - Rules: fee-only, disclose if recommending AutoDrive's own stock, no undisclosed seller
