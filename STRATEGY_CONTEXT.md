@@ -259,13 +259,12 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   we're the right fit"). Scarcity: ready buyers only, 5 clients a month.
 - Financial qualification (owner, 2026-10-16): client must have funds ready to buy within
   2 weeks. Form adds one tap after budget: "Do you have the funds ready to buy within 2
-  weeks?" Only three client types we work with (owner, 2026-10-16): Yes, cash ready /
-  Yes, finance approved / Willing to get finance. No "not yet" option.
-  Willing to get finance = referred to a licensed broker straight away (AutoDrive never
-  assesses credit or arranges loans); written pre-approval needed before the car search
-  starts so the 2-week window holds. Copy: "Happy to help, we'll connect you with a
-  finance broker first."
-  Anyone outside those three (no funds now, vague answer on the call or in DMs) gets
+  weeks?" Only TWO client types for now (owner, 2026-10-16, narrowed from three):
+  Yes, cash ready / Yes, finance approved (written pre-approval). "Willing to get finance"
+  dropped; revisit later, possibly with a broker partner.
+  Form mechanics (recommendation, owner to OK): add a third tap "Not yet" that instantly
+  shows Message B instead of booking a call, so non-qualified people don't lie or abandon.
+  Anyone outside those two (no funds now, vague answer on the call or in DMs) gets
   Message B, verbatim (owner, 2026-10-16): "Please contact us through our website or
   WhatsApp when you have the funds ready for the purchase." Deliberately narrow: no call,
   no deposit/timeframe questions, no prefilled link, no chasing. They come back when ready.
@@ -299,8 +298,7 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   Avatars: students' rego/insurance on overseas licence or temporary visa; families'
   trade-ins, valuation, seven-seater availability.
   Funds: proof of funds before kickoff (pre-approval letter / balance screenshot) or is the
-  deposit enough; for "willing to get finance" clients: does he have a broker he trusts
-  to refer to, and does the deposit come before or after pre-approval; is $300 enough or a larger
+  deposit enough; (finance-approved buyers only for now; "willing to get finance" parked); is $300 enough or a larger
   holding deposit once a car is found; client can't pay when car is ready = deposit
   forfeited?; accept students whose money comes from overseas.
   Aftercare/growth: free 30-day check-up capacity; filming handovers + client photos with
