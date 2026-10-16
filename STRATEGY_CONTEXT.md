@@ -230,7 +230,7 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   Under $7k, label says "our cars start from $7k"); main use; when needed (incl. "just
   looking"); what matters most. No calendar in the form: Stalin WhatsApps within 5 min to
   book the call. Under $7k and "just looking" get a polite WhatsApp, no call. Payment
-  method (cash / approved / needs finance) is the first thing confirmed on the call.
+  method (cash ready / finance approved only) is the first thing confirmed on the call.
 - DRAFT OFFER (2026-10-16, Hormozi $100M Offers structure): sell the transformation,
   "keys in your hand within 30 to 60 days, no stress, nothing to figure out". Two versions
   of one done-for-you programme (timeframe 30-60 days, owner 2026-10-16; name and guarantee
