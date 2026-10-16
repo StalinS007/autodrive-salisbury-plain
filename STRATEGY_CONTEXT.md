@@ -294,13 +294,17 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   Australian account (overseas transfers break the window); families = partner agrees.
   Default until Jitty decides: no bank statements (friction + privacy duty); call answers
   for cash buyers, pre-approval letter for finance buyers.
-- LAUNCH QUESTIONS FOR JITTY (owner, 2026-10-16: launch ASAP, only these four block launch; the rest
+- LAUNCH QUESTIONS FOR JITTY (owner, 2026-10-16: launch ASAP, only these five block launch; the rest
   of the checklist below is answered as real client queries come up):
   1 On board: find, inspect, negotiate, prepare and hand over in 30-60 days, $7k+ cars he's
-    proud of. 2 Capacity: clients a month (5?). 3 Delivery: Australia-wide or Adelaide only
-    (sets the form's location answers). 4 Guarantee: OK with "keys in 60 days" promise
-    (client replies within 48h, brief fits budget); remedy if missed is his call since there
-    is no set fee to refund.
+    proud of. 2 Delivery: Australia-wide or Adelaide only (sets the form's location
+    answers). 3 Guarantee: OK with "keys in 60 days" promise (client replies within 48h,
+    brief fits budget); remedy if missed is his call since there is no set fee to refund.
+    4 Kickoff times: which days/times he can do the ~20 min kickoff (booked within 48-72h
+    of Stalin's call). 5 Filming: OK filming handovers for reels with client consent
+    (faceless option).
+  Capacity NOT asked (owner, 2026-10-16): scarcity ("limited spots each month") stated on
+  the website; keep the claim true (ACL: no false scarcity).
   NO SET FEE (owner, 2026-10-16): no programme fee or deposit set; Jitty discusses his fee
   with the client once they're talking. Funnel only checks the budget covers everything
   (car, delivery, his fee, on-road costs). Budget question label: "Total budget for
