@@ -245,8 +245,9 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   Names: "First Car in 60 Days Programme" / "Family Car Sorted in 60 Days Programme".
 - OPEN QUESTIONS FOR JITTY (full checklist, 2026-10-16; * = deal-breaker, ask first):
   Offer: *on board with find/inspect/negotiate/prepare/hand over in 30-60 days; does $7k get
-  a car he's proud of (his max age/kms line); makes/models he refuses; happy to be the face
-  (client appointment, handovers on camera).
+  a car he's proud of (his max age/kms line); makes/models he refuses; CONFIRMED 2026-10-16: he will run client
+  appointments and handovers (still to confirm: OK with handovers being filmed for reels,
+  with client consent; faceless option for clients who prefer it).
   Reach: *anywhere in Australia or Adelaide only; interstate transport cost, rego + safety
   certificate, or fly in and drive home; local delivery radius and fee.
   Search: sources (auctions/trade-ins/private/dealers); *7-day shortlist + 30-60 day keys
