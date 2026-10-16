@@ -397,7 +397,7 @@ client-negotiation material in this repo again.**
 Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
 `~/Downloads/Autodrive downloads/Pitch items/`. The old files remain in git history if ever needed.
 
-## 7f. Car-finding programme application — `find-my-car.html` (added 2026-10-16, preview only)
+## 7f. Car-finding programme application — `find-my-car.html` (added 2026-10-16, LIVE on main 2026-10-16)
 
 Standalone page (own inline styles + GA tag; does NOT load `styles.css`/`main.js`, so no `?v=`
 bump and no booking-modal interception). Unlisted (not in nav or sitemap) and `noindex` while
@@ -429,9 +429,8 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   only, never name/mobile), `car_apply_disqualified` (reason), `car_apply_qualified`
   (segment, location, budget, funds), `car_apply_book_click` (method) + `generate_lead`
   (lead_type=car_finder).
-- Pending before launch: Jitty's 3 launch answers (on board 30 to 60 days; Australia-wide
-  delivery or Adelaide only; "keys in 60 days" promise), Stalin's booking link, owner approval
-  to merge to `main`.
+- Still open: Jitty's 3 answers (on board 30 to 60 days; Australia-wide delivery or Adelaide
+  only; "keys in 60 days" promise). The interstate delivery note assumes Australia-wide.
 
 ## 7e. Used-car pipeline — WhatsApp → iCloud → listing + stories (built 2026-10-14, Mac install pending)
 
