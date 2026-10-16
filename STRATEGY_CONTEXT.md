@@ -307,6 +307,10 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   Booking: BOOKING_URL empty until Stalin creates his booking page (recommend Calendly free,
   connected to his Google Calendar, so answers prefill); until then qualified people get a
   prefilled WhatsApp. Details in AUTODRIVE_PROJECT_CONTEXT.md 7f.
+- Budget cap and funds rule (owner, 2026-10-16): programme covers $7k to $50k (top option
+  "$30k to $50k"). Disclaimer on the budget question: "We cannot proceed with any purchase
+  until a deposit or proof of funds is obtained." This replaces the earlier no-deposit /
+  no-proof-of-funds default; Jitty decides which (deposit or proof) per client.
 - (Superseded) Instant Form research: Facts: instant forms only
   run inside a lead ad (paid; one ad covers Facebook + Instagram placements). Organic
   workaround (publish the lead ad as a Facebook Page post, then turn the ad off) is
