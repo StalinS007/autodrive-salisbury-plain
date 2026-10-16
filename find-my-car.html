@@ -46,6 +46,9 @@
   .hint{font-size:13px; color:var(--grey); margin:10px 0 0;}
   .err{font-size:14px; color:#8a1f1f; margin:8px 0 0;}
   .note{border-radius:10px; padding:13px 15px; margin-top:14px; font-size:15px; background:#eef4fb; border:1px solid #d3e2f3; color:#1f3d5c;}
+  .disclaimer{ border:3px solid var(--red); background:#fff; border-radius:14px; padding:18px 18px; margin:18px 0 0; text-align:center; }
+  .disclaimer b{ display:block; font-family:Anton,Impact,sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:.4px; color:var(--red); font-size:20px; margin:0 0 6px; }
+  .disclaimer p{ margin:0; font-size:18px; font-weight:800; line-height:1.35; }
   .foot{text-align:center; font-size:12.5px; color:#999; margin-top:22px;}
   .foot a{color:var(--grey);}
   [hidden]{display:none !important;}
@@ -115,8 +118,8 @@
     { id:"segment", q:"I'm looking for a car as a...", opts:["Student","Family"] },
     { id:"name", q:"Your full name", type:"text", placeholder:"First and last name", autocomplete:"name" },
     { id:"mobile", q:"Your mobile number", sub:"We'll contact you on this number.", type:"tel", placeholder:"04xx xxx xxx", autocomplete:"tel" },
-    { id:"budget", q:"Total budget for everything", sub:"Our cars start from $7k.",
-      opts:["$7k to $10k","$10k to $20k","$20k to $30k","$30k+","Under $7k"], stop:{ "Under $7k":"budget" } },
+    { id:"budget", q:"Total budget for everything", sub:"Our cars range from $7k to $50k.", disclaimer:true,
+      opts:["$7k to $10k","$10k to $20k","$20k to $30k","$30k to $50k","Under $7k"], stop:{ "Under $7k":"budget" } },
     { id:"funds", q:"Do you have the funds ready to buy within 2 weeks?",
       opts:["Yes, cash ready","Yes, finance approved","Not yet"], stop:{ "Not yet":"funds" } },
     { id:"use", q:"What will it mostly be used for?", opts:["Uni and work","Family and school runs","Long drives","Work vehicle"] },
@@ -154,6 +157,9 @@
         var picked = answers[s.id] === o || (s.other && o === s.other && answers[s.id] && s.opts.indexOf(answers[s.id]) < 0);
         return "<button type=\"button\" class=\"opt" + (picked ? " is-picked" : "") + "\" data-v=\"" + esc(o) + "\">" + esc(o) + "</button>";
       }).join("") + "</div>";
+      if (s.disclaimer){
+        html += "<div class=\"disclaimer\" role=\"note\"><b>Important</b><p>We cannot proceed with any purchase until a deposit or proof of funds is obtained.</p></div>";
+      }
       if (s.other){
         html += "<div id=\"otherWrap\" hidden><label for=\"otherIn\">Tell us what matters most</label>" +
                 "<input type=\"text\" id=\"otherIn\" maxlength=\"80\" /><button class=\"btn btn--red\" id=\"otherNext\" type=\"button\">Next</button></div>";

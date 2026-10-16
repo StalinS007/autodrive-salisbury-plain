@@ -408,6 +408,9 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   Then one question per screen: Adelaide or elsewhere in Australia; Student/Family; name;
   mobile; total budget; funds ready within 2 weeks; main use; buying in next couple of
   months; what matters most.
+- Budget (Q5) options: $7k to $10k / $10k to $20k / $20k to $30k / $30k to $50k / Under $7k
+  (programme max $50k). Q5 carries a big red-bordered disclaimer at the bottom: "We cannot
+  proceed with any purchase until a deposit or proof of funds is obtained."
 - Stops (own message, no booking): Not in Australia; Under $7k (links to used cars); funds
   "Not yet" ("Please get in touch with us when you do have the funds and are ready for a
   purchase."); timing "Not yet". "Elsewhere in Australia" qualifies with an interstate
