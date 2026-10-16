@@ -243,23 +243,30 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   "Just looking" removed from the form: timing question is now a yes/no gate
   ("I'm looking to buy within the next couple of months").
   Names: "First Car in 60 Days Programme" / "Family Car Sorted in 60 Days Programme".
-- OPEN QUESTIONS FOR JITTY (must answer before launch):
-  Reach: deliver anywhere in Australia or Adelaide only? (interstate transport cost, who
-  handles interstate rego + safety certificate); local delivery radius and fee.
-  Sourcing: where cars come from (auctions / trade-ins / private / dealers); is 7-day
-  shortlist + 30-60 day keys realistic at every budget; which types/budgets are reliable
-  (e.g. 7-seaters $25k+); buy into stock and resell vs act as buyer's agent (pricing, GST,
-  warranty).
-  Capacity: programme clients/month alongside workshop (5?); hours per client; who does the
-  search legwork.
-  Money: how car price is set and whether margin + fee prices us out; who holds deposits and
-  refund terms; finance broker partner for referrals.
-  Warranty/guarantee: statutory dealer warranty on programme cars; do the site's 3 months
-  free rego + optional 12-36 month warranty apply; is he comfortable with "keys in 60 days
-  or fee back" (48h reply condition).
-  Avatars: students' rego/insurance on overseas licence or temporary visa (for the starter
-  kit); families' trade-ins and valuation.
-  Aftercare: capacity for a free 30-day check-up per client.
+- OPEN QUESTIONS FOR JITTY (full checklist, 2026-10-16; * = deal-breaker, ask first):
+  Offer: *on board with find/inspect/negotiate/prepare/hand over in 30-60 days; does $7k get
+  a car he's proud of (his max age/kms line); makes/models he refuses; happy to be the face
+  (client appointment, handovers on camera).
+  Reach: *anywhere in Australia or Adelaide only; interstate transport cost, rego + safety
+  certificate, or fly in and drive home; local delivery radius and fee.
+  Search: sources (auctions/trade-ins/private/dealers); *7-day shortlist + 30-60 day keys
+  realistic at every budget; easy vs hard types/budgets; shortlist rounds included before
+  "too picky" (guarantee limit); test drives; who sends progress updates and how often.
+  Inspection/prep: what the inspection covers, photo report, time per car; PPSR checks and
+  cost; fault found = walk away or fix, who pays; full service + detail on every car, who
+  details.
+  Capacity: *clients/month alongside workshop (5?); hours per client; who searches;
+  appointment days/times, workshop or video, Malayalam on request.
+  Money: buy into stock vs buyer's agent; how car price is set and whether margin + fee
+  ($690 / $1,290) works, GST on fee; who holds the $300 deposit, refund terms, client backs
+  out after car secured; payment methods; finance broker partner.
+  Warranty/paperwork: statutory dealer warranty; 3 months free rego + optional 12-36 month
+  warranty; *comfortable with "keys in 60 days or fee back" (brief fits budget, 48h
+  replies); buyer paperwork and transfer.
+  Avatars: students' rego/insurance on overseas licence or temporary visa; families'
+  trade-ins, valuation, seven-seater availability.
+  Aftercare/growth: free 30-day check-up capacity; filming handovers + client photos with
+  consent; referral reward.
 - Pricing benchmark (weak source): Australian car brokers $500 to $1,500 flat or 2 to 5%.
   Going higher needs workshop value in the package (full service + detail + paperwork).
 - Rules: fee-only, disclose if recommending AutoDrive's own stock, no undisclosed seller
