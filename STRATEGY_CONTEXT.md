@@ -250,6 +250,13 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   one-page client brief: name, mobile, segment, budget + payment method, main use,
   must-haves/deal-breakers, liked/unwanted models, timeframe, deposit paid, main worry in
   their words, anything promised on the call.
+- Delivery (owner, 2026-10-16): included in the package, cost built into the price, and
+  car + delivery must fit the client's stated budget. Word it "delivery included", never
+  "free" (ACL: don't call something free if its cost is recovered in the price).
+- Eligibility framing: an application, not a booking. Form title "See if you qualify for our
+  done-for-you car programme", button "Check my eligibility"; Stalin's call is an
+  "eligibility call" ("we only take a handful of clients each month, this call is to see if
+  we're the right fit"). Scarcity: ready buyers only, 5 clients a month.
 - OPEN QUESTIONS FOR JITTY (full checklist, 2026-10-16; * = deal-breaker, ask first):
   Offer: *on board with find/inspect/negotiate/prepare/hand over in 30-60 days; does $7k get
   a car he's proud of (his max age/kms line); makes/models he refuses; CONFIRMED 2026-10-16: he will run client
