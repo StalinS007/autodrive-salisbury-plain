@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-10-01**.
+touching the site. Last verified against the live code: **2026-10-16**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -143,6 +143,7 @@ autodrive-salisbury-plain/
 ├── paint-panel.html           # Paint & Panel Repair (4th service)
 ├── used-cars.html             # Used cars
 ├── contact.html               # Contact + booking form + Google Map
+├── find-my-car.html           # Car-finding programme application (Instagram bio link, unlisted, noindex)
 ├── assets/
 │   ├── css/styles.css
 │   └── js/main.js             # mobile nav, scroll reveal, form handler, video labels
@@ -395,6 +396,41 @@ client-negotiation material in this repo again.**
 
 Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
 `~/Downloads/Autodrive downloads/Pitch items/`. The old files remain in git history if ever needed.
+
+## 7f. Car-finding programme application — `find-my-car.html` (added 2026-10-16, LIVE on main 2026-10-16)
+
+Standalone page (own inline styles + GA tag; does NOT load `styles.css`/`main.js`, so no `?v=`
+bump and no booking-modal interception). Unlisted (not in nav or sitemap) and `noindex` while
+the programme is tested. Reached from the **first Instagram bio link** ("Find my next car"):
+`https://autodrivesalisburyplain.com.au/find-my-car?utm_source=instagram&utm_medium=bio&utm_campaign=car-finder`.
+Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
+- First page (the intro card itself) asks "Are you based in Australia?" Yes / No; No ends it.
+  Then one question per screen: Adelaide or elsewhere in Australia; Student/Family; name;
+  mobile; total budget; funds ready within 2 weeks; main use; buying in next couple of
+  months; what matters most.
+- Budget (Q5) options: $7k to $10k / $10k to $20k / $20k to $30k / $30k to $50k / Under $7k
+  (programme max $50k). Q5 carries a big red-bordered disclaimer at the bottom: "We cannot
+  proceed with any purchase until a deposit or proof of funds is obtained."
+- Stops (own message, no booking): Not in Australia; Under $7k (links to used cars); funds
+  "Not yet" ("Please get in touch with us when you do have the funds and are ready for a
+  purchase."); timing "Not yet". "Elsewhere in Australia" qualifies with an interstate
+  delivery note.
+- Qualified ending books the eligibility call into **Stalin's** availability via `BOOKING_URL`
+  at the top of the script. **Set 2026-10-16 to `https://calendly.com/autodrive5109/30min`**
+  (15 min Zoom; slug still the default "30min"; if renamed, update `BOOKING_URL`). If emptied,
+  qualified people get a WhatsApp button (520 230) with all answers prefilled. The link prefills:
+  `name` plus `a1` = mobile (+61 format) and every answer incl. lead source, one per line.
+  Calendly setup: ONE invitee question after Name/Email, "Your application" (multiple lines),
+  in first position. Calendly account: login autodrive5109@gmail.com, profile "AutoDrive
+  Salisbury Plain", Stalin's calendar connected, Zoom location (notetaker off), Zoom display
+  name "AutoDrive Salisbury Plain". A Google Calendar booking page link also works but opens
+  without the answers.
+- GA4 events: `car_apply_start` (source), `car_apply_step` (step, answer; one-tap answers
+  only, never name/mobile), `car_apply_disqualified` (reason), `car_apply_qualified`
+  (segment, location, budget, funds), `car_apply_book_click` (method) + `generate_lead`
+  (lead_type=car_finder).
+- Still open: Jitty's 3 answers (on board 30 to 60 days; Australia-wide delivery or Adelaide
+  only; "keys in 60 days" promise). The interstate delivery note assumes Australia-wide.
 
 ## 8. Known constraints & pending items
 
