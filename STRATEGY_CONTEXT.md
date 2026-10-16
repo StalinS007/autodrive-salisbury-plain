@@ -218,11 +218,13 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
 - Edge: a mechanic-led buyer's agent (inspection + negotiation + service/detail before
   handover), which brokers can't match. Productises the PPI idea and fits the used-car
   buying reels and the new-migrant/student "first car" audience.
-- GATE 1, licensing: unclear whether a buyer's agent falls under the SA Second-hand
-  Vehicle Dealers Act (licence needed for 4+ vehicles bought/sold in 12 months, or carrying
-  on business as a dealer; no buyer's-agent exemption listed). Confirm with CBS (131 882)
-  before launch, together with the still-open question of Jitty's own dealer licence.
-  Other states have separate regimes, so start SA only.
+- Licensing: CLEARED (owner, 2026-10-16): Jitty holds an authorised dealer licence.
+- Two offers: (1) STUDENTS, first car in Australia, lower budget, reliability and honest
+  guidance; (2) FAMILIES, bigger budget, safety and space, time-poor. Funnel: Instagram
+  form (segment, budget, payment method, timeframe, availability) -> Stalin qualifies and
+  closes on a call (commitment deposit credited to the purchase) -> booked appointment with
+  Jitty, who only asks car / timeframe / expectations while Stalin leads. Finance: refer
+  to a licensed broker; AutoDrive does not assess credit itself.
 - Pricing benchmark (weak source): Australian car brokers $500 to $1,500 flat or 2 to 5%.
   Going higher needs workshop value in the package (full service + detail + paperwork).
 - Rules: fee-only, disclose if recommending AutoDrive's own stock, no undisclosed seller
