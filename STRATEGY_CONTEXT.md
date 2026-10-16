@@ -307,6 +307,13 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   Booking: BOOKING_URL empty until Stalin creates his booking page (recommend Calendly free,
   connected to his Google Calendar, so answers prefill); until then qualified people get a
   prefilled WhatsApp. Details in AUTODRIVE_PROJECT_CONTEXT.md 7f.
+- Booking tool DECIDED (owner, 2026-10-16): Calendly free, customers must not see Stalin.
+  Account login = autodrive5109@gmail.com (reply-to shows login email), profile name
+  "AutoDrive Salisbury Plain" + logo; connected calendar = stalinsajie@gmail.com (busy times +
+  bookings written there). Event "Eligibility call" 15 min, custom location "We'll call you on
+  your mobile", 2h notice, 7 days ahead, max 4/day, 10 min buffer. Questions in order: 1 Mobile
+  number (phone), 2 Your application (multi-line). Keep Email confirmations (Calendar
+  invitations would expose his gmail). Waiting on the event link to paste into BOOKING_URL.
 - Budget cap and funds rule (owner, 2026-10-16): programme covers $7k to $50k (top option
   "$30k to $50k"). Disclaimer on the budget question: "We cannot proceed with any purchase
   until a deposit or proof of funds is obtained." This replaces the earlier no-deposit /
