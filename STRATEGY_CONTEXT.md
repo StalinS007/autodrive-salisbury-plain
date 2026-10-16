@@ -231,6 +231,16 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   looking"); what matters most. No calendar in the form: Stalin WhatsApps within 5 min to
   book the call. Under $7k and "just looking" get a polite WhatsApp, no call. Payment
   method (cash / approved / needs finance) is the first thing confirmed on the call.
+- DRAFT OFFER (2026-10-16, Hormozi $100M Offers structure): sell the transformation,
+  "keys in your hand within 30 days, no stress, nothing to figure out". Two versions of one
+  30-day done-for-you programme (Students / Families). Value stack: brief with Jitty,
+  shortlist in 7 days, mechanic inspection + PPSR check on every shortlisted car,
+  negotiation, paperwork, full service + detail before handover, 30-day check-up.
+  Conditional guarantee (keys within 30 days or programme fee back, if the client responds
+  to shortlists within 48h and the brief fits the budget). Real scarcity: 5 clients/month.
+  Suggested test pricing: Students $690, Families $1,290, $300 deposit credited.
+  "Just looking" removed from the form: timing question is now a yes/no gate
+  ("I'm looking to buy within the next month or so").
 - Pricing benchmark (weak source): Australian car brokers $500 to $1,500 flat or 2 to 5%.
   Going higher needs workshop value in the package (full service + detail + paperwork).
 - Rules: fee-only, disclose if recommending AutoDrive's own stock, no undisclosed seller
