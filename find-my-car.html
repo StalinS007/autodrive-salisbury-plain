@@ -75,7 +75,11 @@
       <li>Delivery included</li>
     </ul>
     <span class="tag">Limited spots each month</span>
-    <button class="btn btn--red" id="startBtn" type="button">Check my eligibility</button>
+    <h2 style="margin-top:20px">Check your eligibility: are you based in Australia?</h2>
+    <div class="opts">
+      <button class="opt" id="ausYes" type="button">Yes, I'm in Australia</button>
+      <button class="opt" id="ausNo" type="button">No</button>
+    </div>
     <p class="hint">Takes under a minute. Most answers are one tap.</p>
   </div>
 
@@ -107,11 +111,10 @@
   var WHATSAPP = "61432520230";
 
   var STEPS = [
+    { id:"location", q:"Where in Australia?", opts:["Adelaide","Elsewhere in Australia"] },
     { id:"segment", q:"I'm looking for a car as a...", opts:["Student","Family"] },
     { id:"name", q:"Your full name", type:"text", placeholder:"First and last name", autocomplete:"name" },
     { id:"mobile", q:"Your mobile number", sub:"We'll contact you on this number.", type:"tel", placeholder:"04xx xxx xxx", autocomplete:"tel" },
-    { id:"location", q:"Where are you based?", opts:["Adelaide","Elsewhere in Australia","Outside Australia"],
-      stop:{ "Outside Australia":"outside" } },
     { id:"budget", q:"Total budget for everything", sub:"Our cars start from $7k.",
       opts:["$7k to $10k","$10k to $20k","$20k to $30k","$30k+","Under $7k"], stop:{ "Under $7k":"budget" } },
     { id:"funds", q:"Do you have the funds ready to buy within 2 weeks?",
@@ -219,7 +222,10 @@
     $("endBody").innerHTML = "<h1>" + esc(e.h) + "</h1><p class=\"sub\">" + esc(e.p) + "</p>" +
       (e.link ? "<a class=\"btn btn--ghost\" href=\"" + e.link.href + "\">" + esc(e.link.text) + "</a>" : "") +
       "<button class=\"back\" type=\"button\" id=\"endBack\">Back</button>";
-    $("endBack").addEventListener("click", function(){ show("quiz"); render(); });
+    $("endBack").addEventListener("click", function(){
+      if (reason === "outside"){ show("intro"); return; }
+      show("quiz"); render();
+    });
     show("end");
   }
 
@@ -276,9 +282,15 @@
     show("end");
   }
 
-  $("startBtn").addEventListener("click", function(){
+  $("ausYes").addEventListener("click", function(){
+    answers.australia = "Yes";
     track("car_apply_start", { source: sourceText });
-    show("quiz"); render();
+    i = 0; show("quiz"); render();
+  });
+  $("ausNo").addEventListener("click", function(){
+    answers.australia = "No";
+    track("car_apply_start", { source: sourceText });
+    stop("outside");
   });
   $("backBtn").addEventListener("click", function(){
     if (i === 0){ show("intro"); return; }

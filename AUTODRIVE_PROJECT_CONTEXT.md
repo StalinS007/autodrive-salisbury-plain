@@ -404,9 +404,11 @@ bump and no booking-modal interception). Unlisted (not in nav or sitemap) and `n
 the programme is tested. Reached from the **first Instagram bio link** ("Find my next car"):
 `https://autodrivesalisburyplain.com.au/find-my-car?utm_source=instagram&utm_medium=bio&utm_campaign=car-finder`.
 Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
-- One question per screen: Student/Family; name; mobile; location; total budget; funds ready
-  within 2 weeks; main use; buying in next couple of months; what matters most.
-- Stops (own message, no booking): Outside Australia; Under $7k (links to used cars); funds
+- First page (the intro card itself) asks "Are you based in Australia?" Yes / No; No ends it.
+  Then one question per screen: Adelaide or elsewhere in Australia; Student/Family; name;
+  mobile; total budget; funds ready within 2 weeks; main use; buying in next couple of
+  months; what matters most.
+- Stops (own message, no booking): Not in Australia; Under $7k (links to used cars); funds
   "Not yet" ("Please get in touch with us when you do have the funds and are ready for a
   purchase."); timing "Not yet". "Elsewhere in Australia" qualifies with an interstate
   delivery note.
