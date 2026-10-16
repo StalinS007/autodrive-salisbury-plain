@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>Find My Next Car | AutoDrive Salisbury Plain</title>
+<meta name="description" content="Our done-for-you car programme: we find, inspect, negotiate and prepare your next car. See if you qualify." />
+<link rel="icon" type="image/png" href="images/logo-autodrive.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{ --red:#c0392b; --ink:#141414; --grey:#6b6b6b; --line:#e4e4e4; --bg:#f4f4f5; --ok:#0a7a33; }
+  *{box-sizing:border-box;}
+  body{ margin:0; background:var(--bg); color:var(--ink); font-family:Inter,-apple-system,Segoe UI,Helvetica,Arial,sans-serif; font-size:16px; line-height:1.5; }
+  .wrap{max-width:520px; margin:0 auto; padding:0 16px 50px;}
+  header{background:var(--ink); padding:18px 0; margin-bottom:20px;}
+  header .wrap{padding-bottom:0; display:flex; align-items:center; justify-content:space-between;}
+  header img{height:52px; display:block;}
+  .card{background:#fff; border:1px solid var(--line); border-radius:14px; padding:22px 20px; margin-bottom:14px;}
+  h1{ font-family:Anton,Impact,sans-serif; font-weight:400; text-transform:uppercase; font-size:30px; letter-spacing:.3px; margin:0 0 8px; line-height:1.05; }
+  h1 span{color:var(--red);}
+  h2{ font-size:20px; font-weight:800; margin:0 0 4px; line-height:1.25; }
+  .sub{color:var(--grey); margin:0 0 16px;}
+  .ticks{list-style:none; padding:0; margin:0 0 6px;}
+  .ticks li{padding:7px 0 7px 30px; position:relative; border-top:1px solid var(--line);}
+  .ticks li:last-child{border-bottom:1px solid var(--line);}
+  .ticks li::before{content:"\2713"; position:absolute; left:4px; top:7px; color:var(--red); font-weight:800;}
+  .tag{display:inline-block; background:#fdecec; color:#8a1f1f; font-size:13px; font-weight:700; border-radius:999px; padding:5px 12px; margin:14px 0 0;}
+  .progress{height:6px; background:var(--line); border-radius:999px; overflow:hidden; margin:0 0 18px;}
+  .progress i{display:block; height:100%; width:0; background:var(--red); transition:width .25s ease;}
+  .step-count{font-size:12px; text-transform:uppercase; letter-spacing:.08em; color:var(--grey); font-weight:600; margin:0 0 6px;}
+  .opts{display:grid; gap:10px; margin-top:16px;}
+  .opt{ display:block; width:100%; text-align:left; font:inherit; font-size:16.5px; font-weight:600; color:var(--ink); background:#fff; border:2px solid #d6d6d6; border-radius:12px; padding:15px 16px; cursor:pointer; }
+  .opt:hover{border-color:var(--ink);}
+  .opt:focus-visible{outline:2px solid var(--red); outline-offset:2px;}
+  .opt.is-picked{border-color:var(--red); background:#fff6f5;}
+  label{display:block; font-weight:600; font-size:14px; margin:16px 0 6px;}
+  input[type=text], input[type=tel]{ width:100%; font:inherit; font-size:17px; padding:14px; border:1px solid #cfcfcf; border-radius:10px; }
+  input:focus{outline:2px solid var(--red); outline-offset:1px; border-color:var(--red);}
+  .btn{ display:flex; align-items:center; justify-content:center; gap:8px; width:100%; font:inherit; font-size:16px; font-weight:700; cursor:pointer; padding:15px; border-radius:999px; border:2px solid transparent; text-decoration:none; margin-top:16px; }
+  .btn--red{background:var(--red); color:#fff; border-color:var(--red);}
+  .btn--ghost{background:#fff; color:var(--ink); border-color:#cfcfcf;}
+  .back{background:none; border:0; font:inherit; font-size:14px; color:var(--grey); cursor:pointer; padding:10px 0 0; text-decoration:underline;}
+  .hint{font-size:13px; color:var(--grey); margin:10px 0 0;}
+  .err{font-size:14px; color:#8a1f1f; margin:8px 0 0;}
+  .note{border-radius:10px; padding:13px 15px; margin-top:14px; font-size:15px; background:#eef4fb; border:1px solid #d3e2f3; color:#1f3d5c;}
+  .foot{text-align:center; font-size:12.5px; color:#999; margin-top:22px;}
+  .foot a{color:var(--grey);}
+  [hidden]{display:none !important;}
+</style>
+<!-- Google Analytics 4 (same property as the rest of the site) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5QT9NZ63W1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag("js", new Date());
+  gtag("config", "G-5QT9NZ63W1");
+</script>
+</head>
+<body>
+<header><div class="wrap"><a href="/"><img src="images/logo-dark.png" alt="AutoDrive Salisbury Plain" onerror="this.src='images/logo-autodrive.png'"></a></div></header>
+
+<div class="wrap">
+  <!-- Intro -->
+  <div class="card" id="intro">
+    <h1>We find your <span>next car</span></h1>
+    <p class="sub">Our done-for-you car programme. A licensed dealer and mechanic does the hard work, you pick up the keys.</p>
+    <ul class="ticks">
+      <li>We find cars that fit your budget</li>
+      <li>Mechanic inspection on every car</li>
+      <li>We negotiate the price for you</li>
+      <li>Full service and detail before handover</li>
+      <li>Delivery included</li>
+    </ul>
+    <span class="tag">Limited spots each month</span>
+    <button class="btn btn--red" id="startBtn" type="button">Check my eligibility</button>
+    <p class="hint">Takes under a minute. Most answers are one tap.</p>
+  </div>
+
+  <!-- Question steps are rendered here -->
+  <div class="card" id="quiz" hidden>
+    <div class="progress"><i id="bar"></i></div>
+    <p class="step-count" id="count"></p>
+    <div id="stepBody"></div>
+    <button class="back" id="backBtn" type="button">Back</button>
+  </div>
+
+  <!-- Endings -->
+  <div class="card" id="end" hidden>
+    <div id="endBody"></div>
+  </div>
+
+  <p class="foot">AutoDrive Salisbury Plain · 6 Lolands Rd, Salisbury Plain SA 5109<br>We only use your details to contact you about the programme.</p>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // === Paste Stalin's booking page link here (Calendly or Google Calendar appointment schedule). ===
+  // Calendly: answers are pre-filled into the booking (set up the two questions described in
+  // AUTODRIVE_PROJECT_CONTEXT.md). Google booking page: opens as-is. Empty: qualified people
+  // get a WhatsApp button with their answers instead.
+  var BOOKING_URL = "";
+  var WHATSAPP = "61432520230";
+
+  var STEPS = [
+    { id:"segment", q:"I'm looking for a car as a...", opts:["Student","Family"] },
+    { id:"name", q:"Your full name", type:"text", placeholder:"First and last name", autocomplete:"name" },
+    { id:"mobile", q:"Your mobile number", sub:"We'll contact you on this number.", type:"tel", placeholder:"04xx xxx xxx", autocomplete:"tel" },
+    { id:"location", q:"Where are you based?", opts:["Adelaide","Elsewhere in Australia","Outside Australia"],
+      stop:{ "Outside Australia":"outside" } },
+    { id:"budget", q:"Total budget for everything", sub:"Our cars start from $7k.",
+      opts:["$7k to $10k","$10k to $20k","$20k to $30k","$30k+","Under $7k"], stop:{ "Under $7k":"budget" } },
+    { id:"funds", q:"Do you have the funds ready to buy within 2 weeks?",
+      opts:["Yes, cash ready","Yes, finance approved","Not yet"], stop:{ "Not yet":"funds" } },
+    { id:"use", q:"What will it mostly be used for?", opts:["Uni and work","Family and school runs","Long drives","Work vehicle"] },
+    { id:"timing", q:"I'm looking to buy within the next couple of months", opts:["Yes","Not yet"], stop:{ "Not yet":"timing" } },
+    { id:"priority", q:"What matters most in your next car?", opts:["Reliability","Low running costs","Safety","Space","Other"], other:"Other" }
+  ];
+
+  var ENDINGS = {
+    outside: { h:"Sorry, we can't help this time", p:"We can only help buyers who are based in Australia." },
+    budget:  { h:"Thanks for checking", p:"Our cars start from $7k drive-away, so this programme isn't the right fit right now.", link:{ href:"used-cars.html", text:"See our used cars" } },
+    funds:   { h:"Thanks for checking", p:"Please get in touch with us when you do have the funds and are ready for a purchase." },
+    timing:  { h:"Thanks for checking", p:"Please get in touch with us when you're ready to buy." }
+  };
+
+  var answers = {};
+  var i = 0;
+  var $ = function(id){ return document.getElementById(id); };
+
+  // Lead source: the page's own UTM tags (e.g. the Instagram bio link) travel with the application.
+  var params = new URLSearchParams(location.search);
+  var src = ["utm_source","utm_medium","utm_campaign"].map(function(k){ return params.get(k) || ""; });
+  var sourceText = src[0] ? src.filter(Boolean).join(" / ") : "direct";
+
+  function track(name, p){ if (typeof gtag === "function") gtag("event", name, p || {}); }
+
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+
+  function render(){
+    var s = STEPS[i];
+    $("bar").style.width = Math.round(i / STEPS.length * 100) + "%";
+    $("count").textContent = "Question " + (i + 1) + " of " + STEPS.length;
+    var html = "<h2>" + esc(s.q) + "</h2>" + (s.sub ? "<p class=\"sub\">" + esc(s.sub) + "</p>" : "");
+    if (s.opts){
+      html += "<div class=\"opts\">" + s.opts.map(function(o){
+        var picked = answers[s.id] === o || (s.other && o === s.other && answers[s.id] && s.opts.indexOf(answers[s.id]) < 0);
+        return "<button type=\"button\" class=\"opt" + (picked ? " is-picked" : "") + "\" data-v=\"" + esc(o) + "\">" + esc(o) + "</button>";
+      }).join("") + "</div>";
+      if (s.other){
+        html += "<div id=\"otherWrap\" hidden><label for=\"otherIn\">Tell us what matters most</label>" +
+                "<input type=\"text\" id=\"otherIn\" maxlength=\"80\" /><button class=\"btn btn--red\" id=\"otherNext\" type=\"button\">Next</button></div>";
+      }
+    } else {
+      html += "<input type=\"" + s.type + "\" id=\"textIn\" aria-label=\"" + esc(s.q) + "\" placeholder=\"" + esc(s.placeholder) + "\" autocomplete=\"" + s.autocomplete + "\"" +
+              (s.type === "tel" ? " inputmode=\"tel\"" : "") + " value=\"" + esc(answers[s.id] || "") + "\" />" +
+              "<p class=\"err\" id=\"err\" hidden></p>" +
+              "<button class=\"btn btn--red\" id=\"textNext\" type=\"button\">Next</button>";
+    }
+    $("stepBody").innerHTML = html;
+    $("backBtn").hidden = false;
+
+    if (s.opts){
+      Array.prototype.forEach.call(document.querySelectorAll(".opt"), function(b){
+        b.addEventListener("click", function(){
+          var v = b.getAttribute("data-v");
+          if (s.other && v === s.other){
+            $("otherWrap").hidden = false; $("otherIn").focus();
+            return;
+          }
+          pick(s, v);
+        });
+      });
+      if (s.other){
+        $("otherNext").addEventListener("click", function(){
+          var v = $("otherIn").value.trim();
+          pick(s, v ? "Other: " + v : "Other");
+        });
+      }
+    } else {
+      var inp = $("textIn");
+      inp.focus();
+      var go = function(){
+        var v = inp.value.trim();
+        var bad = s.type === "tel" ? v.replace(/\D/g, "").length < 9 : v.length < 2;
+        if (bad){
+          $("err").textContent = s.type === "tel" ? "Please enter a valid mobile number." : "Please enter your name.";
+          $("err").hidden = false; return;
+        }
+        pick(s, v);
+      };
+      $("textNext").addEventListener("click", go);
+      inp.addEventListener("keydown", function(e){ if (e.key === "Enter"){ e.preventDefault(); go(); } });
+    }
+  }
+
+  function pick(s, v){
+    answers[s.id] = v;
+    if (s.opts) track("car_apply_step", { step: s.id, answer: v });
+    if (s.stop && s.stop[v]) return stop(s.stop[v]);
+    i++;
+    if (i < STEPS.length) render(); else qualified();
+  }
+
+  function show(id){
+    $("intro").hidden = id !== "intro";
+    $("quiz").hidden = id !== "quiz";
+    $("end").hidden = id !== "end";
+    window.scrollTo(0, 0);
+  }
+
+  function stop(reason){
+    var e = ENDINGS[reason];
+    track("car_apply_disqualified", { reason: reason });
+    $("endBody").innerHTML = "<h1>" + esc(e.h) + "</h1><p class=\"sub\">" + esc(e.p) + "</p>" +
+      (e.link ? "<a class=\"btn btn--ghost\" href=\"" + e.link.href + "\">" + esc(e.link.text) + "</a>" : "") +
+      "<button class=\"back\" type=\"button\" id=\"endBack\">Back</button>";
+    $("endBack").addEventListener("click", function(){ show("quiz"); render(); });
+    show("end");
+  }
+
+  function summary(){
+    return [
+      answers.segment, answers.location, "Budget " + answers.budget, answers.funds,
+      answers.use, "Buying in next couple of months: " + answers.timing,
+      "Matters most: " + answers.priority, "Source: " + sourceText
+    ].join(" | ");
+  }
+
+  function intlMobile(m){
+    var d = m.replace(/[^\d+]/g, "");
+    if (/^0\d{9}$/.test(d)) return "+61" + d.slice(1);
+    if (/^61\d{9}$/.test(d)) return "+" + d;
+    return d;
+  }
+
+  function bookingLink(){
+    if (!BOOKING_URL) return "";
+    if (BOOKING_URL.indexOf("calendly.com") < 0) return BOOKING_URL;
+    var u = new URL(BOOKING_URL);
+    u.searchParams.set("name", answers.name);
+    u.searchParams.set("a1", intlMobile(answers.mobile));
+    u.searchParams.set("a2", summary());
+    ["utm_source","utm_medium","utm_campaign"].forEach(function(k, n){ if (src[n]) u.searchParams.set(k, src[n]); });
+    return u.toString();
+  }
+
+  function qualified(){
+    $("bar").style.width = "100%";
+    track("car_apply_qualified", { segment: answers.segment, location: answers.location, budget: answers.budget, funds: answers.funds });
+    var interstate = answers.location === "Elsewhere in Australia"
+      ? "<div class=\"note\">Good news, we can deliver to you anywhere in Australia. Interstate delivery comes with a few extra things to consider, and we'll go through them on your call.</div>"
+      : "";
+    var link = bookingLink();
+    var btn;
+    if (link){
+      btn = "<a class=\"btn btn--red\" id=\"bookBtn\" href=\"" + esc(link) + "\" target=\"_blank\" rel=\"noopener\">Book my eligibility call</a>" +
+            "<p class=\"hint\">Pick a time that suits you. The call takes about 15 minutes.</p>";
+    } else {
+      var msg = "Hi AutoDrive, I've applied for the car programme. Please book my eligibility call.\n" +
+                "Name: " + answers.name + "\nMobile: " + answers.mobile + "\n" + summary().split(" | ").join("\n");
+      btn = "<a class=\"btn btn--red\" id=\"bookBtn\" href=\"https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg) + "\" target=\"_blank\" rel=\"noopener\">Book my call on WhatsApp</a>" +
+            "<p class=\"hint\">Your answers are already in the message. Just press send and we'll lock in a time.</p>";
+    }
+    $("endBody").innerHTML = "<h1>You may <span>qualify</span></h1>" +
+      "<p class=\"sub\">Thanks " + esc(answers.name.split(" ")[0]) + ". The next step is a quick eligibility call to talk through the car you want.</p>" +
+      interstate + btn;
+    $("bookBtn").addEventListener("click", function(){
+      track("car_apply_book_click", { method: link ? "booking_page" : "whatsapp" });
+      track("generate_lead", { lead_type: "car_finder", segment: answers.segment, budget: answers.budget });
+    });
+    show("end");
+  }
+
+  $("startBtn").addEventListener("click", function(){
+    track("car_apply_start", { source: sourceText });
+    show("quiz"); render();
+  });
+  $("backBtn").addEventListener("click", function(){
+    if (i === 0){ show("intro"); return; }
+    i--; render();
+  });
+}());
+</script>
+</body>
+</html>

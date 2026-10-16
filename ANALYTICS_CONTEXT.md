@@ -82,6 +82,10 @@ channel gets its own clean row in Traffic acquisition:
 - WhatsApp/SMS shares by Jitty (OPTIONAL, lowest priority — only useful if Jitty saves it
   as a canned message; makes word-of-mouth forwards visible instead of landing in Direct):
   `https://autodrivesalisburyplain.com.au/?utm_source=whatsapp&utm_medium=share`
+- Instagram bio link #1, car-finding programme application (added 2026-10-16):
+  `https://autodrivesalisburyplain.com.au/find-my-car?utm_source=instagram&utm_medium=bio&utm_campaign=car-finder`
+  Funnel events on that page: car_apply_start, car_apply_step, car_apply_disqualified
+  (reason), car_apply_qualified, car_apply_book_click, generate_lead (lead_type=car_finder).
 Rules: lowercase everything; never tag internal links on the site itself; one source
 name per platform (don't invent variants).
 
