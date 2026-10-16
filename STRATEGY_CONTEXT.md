@@ -228,8 +228,14 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
 - Minimum budget $7k drive-away (no cheap "shit boxes"). Form (minimal friction, mostly
   one-tap): Student/Family; full name; mobile; budget ($7-10k / $10-20k / $20-30k / $30k+ /
   Under $7k, label says "our cars start from $7k"); main use; when needed (incl. "just
-  looking"); what matters most. No calendar in the form: Stalin WhatsApps within 5 min to
-  book the call. Under $7k and "just looking" get a polite WhatsApp, no call. Payment
+  looking"); what matters most. UPDATED 2026-10-16 (owner): after the last question,
+  qualified people are prompted to book the eligibility call straight into Stalin's
+  availability ("Book your eligibility call"). Only shown if budget $7k+, funds = cash ready
+  or finance approved, timing = Yes; everyone else gets their message instead. Stalin
+  WhatsApps after booking to confirm. Booking tool not chosen yet; suggestion: Google
+  Calendar appointment schedule (or Calendly free) linked from a form tool with branching
+  (e.g. Tally); 15 min slots, next 7 days only, 2h min notice, max ~4 a day, mobile number
+  required, email reminder on. Under $7k and "just looking" get a polite WhatsApp, no call. Payment
   method (cash ready / finance approved only) is the first thing confirmed on the call.
 - DRAFT OFFER (2026-10-16, Hormozi $100M Offers structure): sell the transformation,
   "keys in your hand within 30 to 60 days, no stress, nothing to figure out". Two versions
