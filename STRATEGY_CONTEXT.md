@@ -259,7 +259,12 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   we're the right fit"). Scarcity: ready buyers only, 5 clients a month.
 - Financial qualification (owner, 2026-10-16): client must have funds ready to buy within
   2 weeks. Form adds one tap after budget: "Do you have the funds ready to buy within 2
-  weeks?" (cash ready / finance approved / not yet; "not yet" = polite WhatsApp, no call).
+  weeks?" Only three client types we work with (owner, 2026-10-16): Yes, cash ready /
+  Yes, finance approved / Willing to get finance. No "not yet" option.
+  Willing to get finance = referred to a licensed broker straight away (AutoDrive never
+  assesses credit or arranges loans); written pre-approval needed before the car search
+  starts so the 2-week window holds. Copy: "Happy to help, we'll connect you with a
+  finance broker first."
   Call confirms: pay within days if found next week; source of funds; full drive-away
   amount; finance = written pre-approval and amount; students = money already in an
   Australian account (overseas transfers break the window); families = partner agrees.
@@ -289,7 +294,8 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   Avatars: students' rego/insurance on overseas licence or temporary visa; families'
   trade-ins, valuation, seven-seater availability.
   Funds: proof of funds before kickoff (pre-approval letter / balance screenshot) or is the
-  deposit enough; accept finance buyers or cash + approved only; is $300 enough or a larger
+  deposit enough; for "willing to get finance" clients: does he have a broker he trusts
+  to refer to, and does the deposit come before or after pre-approval; is $300 enough or a larger
   holding deposit once a car is found; client can't pay when car is ready = deposit
   forfeited?; accept students whose money comes from overseas.
   Aftercare/growth: free 30-day check-up capacity; filming handovers + client photos with
