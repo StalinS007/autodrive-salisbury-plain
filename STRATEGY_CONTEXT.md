@@ -257,6 +257,14 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   done-for-you car programme", button "Check my eligibility"; Stalin's call is an
   "eligibility call" ("we only take a handful of clients each month, this call is to see if
   we're the right fit"). Scarcity: ready buyers only, 5 clients a month.
+- Financial qualification (owner, 2026-10-16): client must have funds ready to buy within
+  2 weeks. Form adds one tap after budget: "Do you have the funds ready to buy within 2
+  weeks?" (cash ready / finance approved / not yet; "not yet" = polite WhatsApp, no call).
+  Call confirms: pay within days if found next week; source of funds; full drive-away
+  amount; finance = written pre-approval and amount; students = money already in an
+  Australian account (overseas transfers break the window); families = partner agrees.
+  Default until Jitty decides: no bank statements (friction + privacy duty); call answers
+  + paid deposit for cash buyers, pre-approval letter for finance buyers.
 - OPEN QUESTIONS FOR JITTY (full checklist, 2026-10-16; * = deal-breaker, ask first):
   Offer: *on board with find/inspect/negotiate/prepare/hand over in 30-60 days; does $7k get
   a car he's proud of (his max age/kms line); makes/models he refuses; CONFIRMED 2026-10-16: he will run client
@@ -280,6 +288,10 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   replies); buyer paperwork and transfer.
   Avatars: students' rego/insurance on overseas licence or temporary visa; families'
   trade-ins, valuation, seven-seater availability.
+  Funds: proof of funds before kickoff (pre-approval letter / balance screenshot) or is the
+  deposit enough; accept finance buyers or cash + approved only; is $300 enough or a larger
+  holding deposit once a car is found; client can't pay when car is ready = deposit
+  forfeited?; accept students whose money comes from overseas.
   Aftercare/growth: free 30-day check-up capacity; filming handovers + client photos with
   consent; referral reward.
 - Pricing benchmark (weak source): Australian car brokers $500 to $1,500 flat or 2 to 5%.
