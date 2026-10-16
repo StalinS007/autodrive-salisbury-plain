@@ -273,7 +273,9 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   (car + delivery must fit budget), rego transfer and roadworthy rules in their state,
   inspection shown by video. Depends on Jitty confirming Australia-wide delivery
   (deal-breaker question).
-  Current form order: 1 Student/Family; 2 name; 3 mobile; 4 location; 5 budget; 6 funds
+  Form order UPDATED (owner, 2026-10-16): first page asks "Are you based in Australia?" (No =
+  end), then Adelaide / elsewhere in Australia, then Student/Family; name; mobile; budget;
+  (old order: 1 Student/Family; 2 name; 3 mobile; 4 location; 5 budget; 6 funds
   within 2 weeks; 7 main use; 8 buying in next couple of months (owner to decide whether to
   drop, overlaps 6); 9 what matters most; then booking for qualified only.
 - Financial qualification (owner, 2026-10-16): client must have funds ready to buy within
