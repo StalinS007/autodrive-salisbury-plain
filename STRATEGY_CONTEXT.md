@@ -302,7 +302,9 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   conditional logic, separate ending pages per answer) with the booking page (Google
   Calendar appointment schedule or Calendly) on the qualified ending. Website link stays
   second, unchanged.
-- BUILT (2026-10-16, reviews-preview f3c4ace, not live): find-my-car.html application page.
+- LIVE (2026-10-16, main 9de7240, owner approved after testing Calendly): find-my-car.html.
+  Only this page was promoted; other reviews-preview work (booking modal email, tools/cars)
+  still awaits its own approval.
   Bio link: autodrivesalisburyplain.com.au/find-my-car?utm_source=instagram&utm_medium=bio&utm_campaign=car-finder
   Booking: BOOKING_URL empty until Stalin creates his booking page (recommend Calendly free,
   connected to his Google Calendar, so answers prefill); until then qualified people get a
