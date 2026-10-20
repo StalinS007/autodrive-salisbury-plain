@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-10-16**.
+touching the site. Last verified against the live code: **2026-10-21**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -476,7 +476,7 @@ and the tracked links, from one share action. **Read `tools/cars/README.md` firs
     `<img>` (there's an HTML comment in the file showing exactly how).
   - Cars live in a **carousel** (`.stock-carousel__track`); the "Car N of M" red bar and the
     arrows count the `<article class="car">` blocks automatically, so adding one needs no other
-    change. Currently **twelve listings**: 2009 Honda Civic VTi $9,600 (with a **promo video**,
+    change. Currently **fifteen listings** (twelve below + three added 2026-10-21): 2009 Honda Civic VTi $9,600 (with a **promo video**,
     `images/promohondacivic.mp4` — keep that slide LAST), 2021 VW Polo Comfortline $17,400,
     2008 Toyota Corolla Ascent $8,900, and **2018 Kia Rio $11,900** (added 2026-09-20), and **2023 MG ZS Excite $14,600 FIRM, 13,330 km**
     (added 2026-09-24; also FIRST in the homepage `.hstock` swiper as newest stock; photo originals in
@@ -493,6 +493,15 @@ and the tracked links, from one share action. **Read `tools/cars/README.md` firs
     blurred copy of itself. **Homepage swiper order (owner, 1 Oct): Subaru XV FIRST (the featured car of the Instagram story campaign;
     its story Link sticker lands on `/used-cars#car-xv`), then Golf R-Line, then the flyer order, then MG / 2021 Polo /
     Corolla / Civic** (these four are NOT on Jitty's 28 Sep flyer: sold status unconfirmed).
+    **Added 2026-10-21 (preview, from Jitty's WhatsApp; photos in iCloud `Autodrive/Cars /<car>/`): 2020 Mercedes-Benz C200 Luxury
+    Sedan $39,600 (26,504 km, PPSR listed + professionally repaired per Jitty's own listing), 2017 Subaru Forester 2.5i AWD
+    $16,900 (87,219 km, PPSR listed per his listing; price from his 12 Oct flyer, his 10 Oct listing said $17,900, CONFIRM),
+    2015 Nissan X-Trail ST-L 7 Seater $12,900 (127,107 km from the odometer photo; price from the flyer only; flyer says PPSR
+    but NOT claimed until confirmed).** Slugs `c200`, `forester`, `xtrail`; built with `tools/cars/make-listing.mjs`; photos 607×1080,
+    hero = whole car on a blurred fill. Not on the homepage swiper yet. **2016 Subaru WRX held back: no price in Jitty's listing.**
+    Jitty's 12 Oct flyer disagrees with the site on several cars (Tiguan $13,700/96,639 km vs site $13,600/76,639; 2013 Rio
+    $8,400; Dualis listed as 2012 ST+2 7 seater 162,000 km) and omits XV, MG, 2018 Polo, 2018 Rio, 2021 Polo, Civic (possibly
+    sold), and shows cars with no photos yet (2014 i20 auto $6,900, 2016 HiAce $20,900, 2008 Corolla hatch $9,900). Await owner.
     Plus a "Looking for something specific?" enquiry card. The Civic video is a web-compressed
     720×1280 / ~7.5 MB version of the owner's original 4K clip (compress every video before
     committing — Cloudflare Pages rejects files over 25 MB and GitHub rejects over 100 MB).
