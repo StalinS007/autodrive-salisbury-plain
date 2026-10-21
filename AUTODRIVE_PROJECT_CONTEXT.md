@@ -476,7 +476,7 @@ and the tracked links, from one share action. **Read `tools/cars/README.md` firs
     `<img>` (there's an HTML comment in the file showing exactly how).
   - Cars live in a **carousel** (`.stock-carousel__track`); the "Car N of M" red bar and the
     arrows count the `<article class="car">` blocks automatically, so adding one needs no other
-    change. Currently **fifteen listings on preview / fourteen live** (twelve below + C200, X-Trail live; Forester preview-only): 2009 Honda Civic VTi $9,600 (with a **promo video**,
+    change. Currently **fifteen listings, live and preview** (twelve below + C200, X-Trail, Forester added 2026-10-21): 2009 Honda Civic VTi $9,600 (with a **promo video**,
     `images/promohondacivic.mp4` — keep that slide LAST), 2021 VW Polo Comfortline $17,400,
     2008 Toyota Corolla Ascent $8,900, and **2018 Kia Rio $11,900** (added 2026-09-20), and **2023 MG ZS Excite $14,600 FIRM, 13,330 km**
     (added 2026-09-24; also FIRST in the homepage `.hstock` swiper as newest stock; photo originals in
@@ -493,8 +493,8 @@ and the tracked links, from one share action. **Read `tools/cars/README.md` firs
     blurred copy of itself. **Homepage swiper order (owner, 1 Oct): Subaru XV FIRST (the featured car of the Instagram story campaign;
     its story Link sticker lands on `/used-cars#car-xv`), then Golf R-Line, then the flyer order, then MG / 2021 Polo /
     Corolla / Civic** (these four are NOT on Jitty's 28 Sep flyer: sold status unconfirmed).
-    **Added 2026-10-21 from Jitty's WhatsApp (photos in iCloud `Autodrive/Cars /<car>/`). C200 and X-Trail are LIVE on main
-    (owner approved 21 Oct, promoted alone); the Forester is preview-only until its price is confirmed: 2020 Mercedes-Benz C200 Luxury
+    **Added 2026-10-21 from Jitty's WhatsApp (photos in iCloud `Autodrive/Cars /<car>/`). C200, X-Trail and Forester are all LIVE on main
+    (owner approved 21 Oct, promoted alone; Forester price $16,900 still to confirm with Jitty): 2020 Mercedes-Benz C200 Luxury
     Sedan $39,600 (26,504 km, PPSR listed + professionally repaired per Jitty's own listing), 2017 Subaru Forester 2.5i AWD
     $16,900 (87,219 km, PPSR listed per his listing; price from his 12 Oct flyer, his 10 Oct listing said $17,900, CONFIRM),
     2015 Nissan X-Trail ST-L 7 Seater $12,900 (127,107 km from the odometer photo; price from the flyer only; flyer says PPSR
