@@ -452,7 +452,7 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
     `<img>` (there's an HTML comment in the file showing exactly how).
   - Cars live in a **carousel** (`.stock-carousel__track`); the "Car N of M" red bar and the
     arrows count the `<article class="car">` blocks automatically, so adding one needs no other
-    change. Currently **fourteen listings** (twelve below + C200 and X-Trail, 2026-10-21): 2009 Honda Civic VTi $9,600 (with a **promo video**,
+    change. Currently **fifteen listings** (twelve below + C200, X-Trail, Forester, 2026-10-21): 2009 Honda Civic VTi $9,600 (with a **promo video**,
     `images/promohondacivic.mp4` — keep that slide LAST), 2021 VW Polo Comfortline $17,400,
     2008 Toyota Corolla Ascent $8,900, and **2018 Kia Rio $11,900** (added 2026-09-20), and **2023 MG ZS Excite $14,600 FIRM, 13,330 km**
     (added 2026-09-24; also FIRST in the homepage `.hstock` swiper as newest stock; photo originals in
@@ -473,7 +473,8 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
     (26,504 km, PPSR listed + professionally repaired per Jitty's listing) and 2015 Nissan X-Trail ST-L 7 Seater $12,900
     (127,107 km; price from Jitty's 12 Oct flyer; PPSR NOT claimed).** Slugs `c200`, `xtrail` (CAR 13/14 on main). Story links:
     `/used-cars.html?utm_source=instagram&utm_medium=story&utm_campaign=c200-2020#car-c200` and `...campaign=xtrail-2015#car-xtrail`.
-    The Forester (price unconfirmed) stays on reviews-preview only.
+    **2017 Subaru Forester 2.5i AWD $16,900 also LIVE 2026-10-21** (87,219 km, PPSR listed per Jitty's listing; price from his
+    12 Oct flyer, his 10 Oct listing said $17,900: CONFIRM with Jitty). Slug `forester`, story link campaign `forester-2017`.
     Plus a "Looking for something specific?" enquiry card. The Civic video is a web-compressed
     720×1280 / ~7.5 MB version of the owner's original 4K clip (compress every video before
     committing — Cloudflare Pages rejects files over 25 MB and GitHub rejects over 100 MB).
