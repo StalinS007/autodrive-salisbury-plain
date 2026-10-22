@@ -115,7 +115,8 @@
 
   var STEPS = [
     { id:"location", q:"Where in Australia?", opts:["Adelaide","Elsewhere in Australia"] },
-    { id:"segment", q:"I'm looking for a car as a...", opts:["Student","Family"] },
+    { id:"segment", q:"I'm looking for a car as a...", opts:["Student","Family","Other"], other:"Other",
+      otherLabel:"Please tell us a bit about you", otherPlaceholder:"e.g. single, working professional", otherRequired:true },
     { id:"name", q:"Your full name", type:"text", placeholder:"First and last name", autocomplete:"name" },
     { id:"mobile", q:"Your mobile number", sub:"We'll contact you on this number.", type:"tel", placeholder:"04xx xxx xxx", autocomplete:"tel" },
     { id:"budget", q:"Total budget for everything", sub:"Our cars range from $7k to $50k.", disclaimer:true,
@@ -124,7 +125,7 @@
       opts:["Yes, cash/savings ready","Yes, finance approved","Not yet"], stop:{ "Not yet":"funds" } },
     { id:"use", q:"What will it mostly be used for?", opts:["Uni and work","Family and school runs","Long drives","Work vehicle"] },
     { id:"timing", q:"I'm looking to buy within the next couple of months", opts:["Yes","Not yet"], stop:{ "Not yet":"timing" } },
-    { id:"priority", q:"What matters most in your next car?", opts:["Reliability","Low running costs","Safety","Space","Other"], other:"Other" }
+    { id:"priority", q:"What matters most in your next car?", opts:["Reliability","Low running costs","Safety","Space","Other"], other:"Other", otherLabel:"Tell us what matters most" }
   ];
 
   var ENDINGS = {
@@ -161,8 +162,11 @@
         html += "<div class=\"disclaimer\" role=\"note\"><b>Important</b><p>We cannot proceed with any purchase until a deposit or proof of funds is obtained.</p></div>";
       }
       if (s.other){
-        html += "<div id=\"otherWrap\" hidden><label for=\"otherIn\">Tell us what matters most</label>" +
-                "<input type=\"text\" id=\"otherIn\" maxlength=\"80\" /><button class=\"btn btn--red\" id=\"otherNext\" type=\"button\">Next</button></div>";
+        html += "<div id=\"otherWrap\" hidden><label for=\"otherIn\">" + esc(s.otherLabel) + "</label>" +
+                "<input type=\"text\" id=\"otherIn\" maxlength=\"80\" placeholder=\"" + esc(s.otherPlaceholder || "") + "\" value=\"" +
+                esc(/^Other: /.test(answers[s.id] || "") ? answers[s.id].slice(7) : "") + "\" />" +
+                "<p class=\"err\" id=\"otherErr\" hidden>Please tell us a little about yourself.</p>" +
+                "<button class=\"btn btn--red\" id=\"otherNext\" type=\"button\">Next</button></div>";
       }
     } else {
       html += "<input type=\"" + s.type + "\" id=\"textIn\" aria-label=\"" + esc(s.q) + "\" placeholder=\"" + esc(s.placeholder) + "\" autocomplete=\"" + s.autocomplete + "\"" +
@@ -187,6 +191,7 @@
       if (s.other){
         $("otherNext").addEventListener("click", function(){
           var v = $("otherIn").value.trim();
+          if (!v && s.otherRequired){ $("otherErr").hidden = false; $("otherIn").focus(); return; }
           pick(s, v ? "Other: " + v : "Other");
         });
       }
