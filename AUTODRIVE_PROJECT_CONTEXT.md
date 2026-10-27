@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-10-21**.
+touching the site. Last verified against the live code: **2026-10-27**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -405,7 +405,8 @@ the programme is tested. Reached from the **first Instagram bio link** ("Find my
 `https://autodrivesalisburyplain.com.au/find-my-car?utm_source=instagram&utm_medium=bio&utm_campaign=car-finder`.
 Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
 - First page (the intro card itself) asks "Are you based in Australia?" Yes / No; No ends it.
-  Then one question per screen: Adelaide or elsewhere in Australia; Student/Family; name;
+  Then one question per screen: Adelaide or elsewhere in Australia; Student / Family / Other
+  (Other opens a required "Please tell us a bit about you" box, sent as "Other: <text>"); name;
   mobile; total budget; funds ready within 2 weeks; main use; buying in next couple of
   months; what matters most.
 - Budget (Q5) options: $7k to $10k / $10k to $20k / $20k to $30k / $30k to $50k / Under $7k
