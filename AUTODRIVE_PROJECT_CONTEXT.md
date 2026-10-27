@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-10-23**.
+touching the site. Last verified against the live code: **2026-10-27**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
