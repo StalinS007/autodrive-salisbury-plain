@@ -75,6 +75,41 @@ state" and "Decision log" sections updated as things move.
 4. **Retention/repeat:** service reminders, post-sale discounted repairs as a hook,
    turning the 150+ repeat clients into reviewers and referrers.
 
+## Next priorities (owner, 2026-10-31): double down on what works
+Paid ads parked (Google Search ads = later for servicing; Meta = later for the car programme).
+1. **Facebook groups with tracked links (FIRST).** Groups are the proven #1 source.
+   - List 8 to 10 groups: Adelaide Indian / Malayali groups, international students in
+     Adelaide, northern suburbs community groups (Salisbury, Mawson Lakes, Elizabeth,
+     Parafield Gardens, Gawler), Adelaide car buy/sell. Note each group's rules (business
+     post days, link bans).
+   - Post from Jitty's personal profile (groups trust people over Pages). 2 to 3 posts a
+     week, rotating groups; never the same post in every group on the same day.
+   - Mix: mostly helpful tips and answers; used cars with walkaround video; the car-finder
+     programme occasionally. Link in the FIRST COMMENT if a group buries posts with links.
+   - Daily: search each group for "mechanic", "service", "car" and answer within the hour.
+   - Links: fbgroup / post + utm_campaign=<group>-<topic>, e.g.
+     /?utm_source=fbgroup&utm_medium=post&utm_campaign=malayali-logbook ;
+     /used-cars.html?...&utm_campaign=indian-community-civic ;
+     /find-my-car?utm_source=fbgroup&utm_medium=post&utm_campaign=students-carfinder
+   - Stalin drafts posts + links in WhatsApp, Jitty posts. Measure: GA fbgroup rows +
+     "how did you find us?" per new customer.
+2. **Google Business Profile + AI answer visibility (AEO), SECOND.**
+   - GBP: confirm phone is 520 230; primary category "Auto repair shop" plus only true
+     secondaries (car detailing, used car dealer, auto body shop for paint & panel);
+     services with prices (Basic $149 / Standard $229 / Logbook Servicing $329); description
+     naming services + suburbs; weekly photo + weekly update post; website link
+     google/profile UTM; reply to every review.
+   - Reviews engine: ask every customer at handover (QR card / WhatsApp link). Never offer
+     incentives (Google policy, ACL). Target: past 20 to 50, steady recency.
+   - AEO: AI answers pull from GBP, Bing (ChatGPT/Copilot), Apple Maps and directories.
+     Claim Bing Places (import from Google) and Apple Business Connect; identical name,
+     address, phone everywhere ("6 Lolands Rd, Salisbury Plain SA 5109", 0432 520 230).
+   - Website hand-off (build chat): plain question-and-answer FAQ per service with prices
+     and suburbs ("How much is a logbook service in Salisbury?"), schema matching GBP
+     exactly (name, phone, hours, address).
+   - Monthly test: ask Google AI Mode, ChatGPT and Gemini "best mechanic Salisbury Plain /
+     northern Adelaide" and log whether AutoDrive is named.
+
 ## Instagram → Facebook attack plan (agreed direction, 2026-08-23)
 Grounded in the IG 90-day baseline (see ANALYTICS_CONTEXT.md on the analytics branch:
 54.8K views, 80% non-follower, ONE symptom reel = 69% of all bio taps, UK geo-skew) and
