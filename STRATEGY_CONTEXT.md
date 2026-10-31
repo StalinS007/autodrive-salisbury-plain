@@ -75,6 +75,27 @@ state" and "Decision log" sections updated as things move.
 4. **Retention/repeat:** service reminders, post-sale discounted repairs as a hook,
    turning the 150+ repeat clients into reviewers and referrers.
 
+## Predictable bookings engine (owner, 2026-10-31)
+Diagnosis: social gives bits here and there, not qualified buyers. Keep it as trust/brand,
+stop expecting it to fill the diary. Predictable = levers where effort or money in gives a
+known number of bookings out. Order:
+0. **Measure first:** one booking log (date, name, job, $ value, source, new/repeat).
+   Baseline 4 weeks. Ask Jitty: average invoice, % repeat, how often a customer returns.
+   That sets what a new customer is worth and how much we can pay to get one.
+1. **Past customers (fastest, cheapest):** 150+ repeat clients. Service-due reminders by
+   WhatsApp at ~5.5 months / 10,000 km; next-service sticker at every handover; one
+   reactivation message to everyone not seen in 6+ months. Spam Act: existing customers ok,
+   say who it's from, offer an opt-out.
+2. **Referral ask with a reward:** "Refer a friend, you both get $X off your next service"
+   card + WhatsApp message at handover (referral rewards are fine; review rewards are not).
+3. **Google search intent (the scalable dial):** GBP work (priority 2 below) + a capped
+   Google Search ads test (~$20/day, 4 weeks, 10 to 15 km, call ads) with a stop rule;
+   judge on cost per booking against customer value.
+4. **Niche with built-in repeat:** rideshare and delivery drivers (high km, strong overlap
+   with the Indian/Malayali community) and small business fleets (tradies, cleaners):
+   priority slots, quick turnaround, simple driver/fleet service plan.
+5. **Facebook groups** (priority 1 below) as the steady free lead source.
+
 ## Next priorities (owner, 2026-10-31): double down on what works
 Paid ads parked (Google Search ads = later for servicing; Meta = later for the car programme).
 1. **Facebook groups with tracked links (FIRST).** Groups are the proven #1 source.
