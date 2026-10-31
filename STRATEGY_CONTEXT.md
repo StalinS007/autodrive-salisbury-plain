@@ -75,6 +75,47 @@ state" and "Decision log" sections updated as things move.
 4. **Retention/repeat:** service reminders, post-sale discounted repairs as a hook,
    turning the 150+ repeat clients into reviewers and referrers.
 
+## Google Search ads engine (owner decision 2026-10-31: go aggressively, methodical)
+Trigger: Network Digital case study (Alpen Plumbing & Gas, Adelaide; agency in Brisbane).
+Mechanics only, all claims unaudited: Google Search ads only, no social, no offers, no new
+landing page; rebuilt conversion tracking; $100/day one campaign; Maximise clicks until 30
+conversions then Maximise conversions; cut unserviceable areas; months 1 to 2 teething; scaled
+to $150 then $200/day across 2 campaigns. Numbers quoted: Jan 2026 18 leads, $1,930 spend,
+$107/lead; Aug 2026 119 leads (ad account 116), $6,070, $52.35/lead, 4,230 clicks ($1.43
+CPC, suspiciously cheap). Caution: no revenue/close rate/ROI, lead = ad "conversion"
+(undefined), partial first month, maths inconsistent (-33% claimed vs -51% actual), one
+anonymous client. Lesson kept: measure cost per BOOKED JOB, never "leads".
+FRAMEWORK (gates, not dates):
+- Phase 0, readiness (week 1): (a) tracking before money: GA4 key events phone_click,
+  whatsapp_click, generate_lead; link GA4 to Google Ads and import them as conversions;
+  Google call assets with call reporting (forwarding number) and a 60s call-length rule;
+  landing = existing site (services.html) with utm_source=google&utm_medium=cpc. (b) Ops:
+  every call answered or missed-call text-back within 5 min ("AutoDrive here, missed your
+  call, reply with your car and the problem"), WhatsApp reply under 5 min in hours; booking
+  log with source and $ value; Jitty numbers (avg invoice, margin, repeat rate, spare slots
+  per week). (c) Target cost per booked job set from those numbers (placeholder $80).
+- Phase 1, learn (weeks 2 to 7): $35/day, ONE Search campaign, Expert mode, search partners
+  OFF, Display expansion OFF, no PMax, no Smart campaign, auto-apply recommendations OFF.
+  Location = presence only, 12 km radius of Salisbury Plain + named northern suburbs.
+  Ad groups: car service / logbook service / brakes / mechanic near me / emergency-repair
+  (check engine light, car won't start). Phrase + exact match only. Ads lead with 5.0 stars,
+  prices (from $149), Salisbury Plain, "Message on WhatsApp or call". Schedule = open hours
+  plus 1h either side. Bidding Maximise clicks with max CPC cap (~$6). Weekly: search terms
+  report, add negatives (jobs, course, DIY, parts, free, manual, how to, toyota dealer,
+  apprentice, salary), pause keywords with spend and no conversions after ~$60.
+- Gate to Phase 2: 30 conversions recorded AND calls/messages are real customers (log).
+- Phase 2, optimise (weeks 8 to 12): switch to Maximise conversions, no target CPA for 2
+  weeks, then set tCPA at observed CPL. Split into 2 campaigns (servicing vs repairs) only if
+  one is clearly stronger. Judge on cost per booked job vs target, revenue per job.
+- Phase 3, scale: raise budget ~20% per fortnight while cost per booked job <= target AND
+  Jitty has spare slots; stop raising when either fails. Capacity is the real ceiling.
+- Stop rules: after $1,500 spent, fewer than 5 booked jobs = pause and rebuild keywords/ads;
+  cost per booked job > 2x target for 2 consecutive weeks = cut budget 50%.
+- Agency: optional later (month to month, client owns account); run in house first.
+- Hand-off to build chat: GA4 key events + Google Ads link, call assets, tel/wa links
+  unchanged, a /service landing page later if site conversion < 5%.
+Related: FB groups and GBP/AEO (below) continue in parallel as the free channels.
+
 ## Predictable bookings engine (owner, 2026-10-31)
 Diagnosis: social gives bits here and there, not qualified buyers. Keep it as trust/brand,
 stop expecting it to fill the diary. Predictable = levers where effort or money in gives a
