@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en-AU">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Cars for Sale | AutoDrive Salisbury Plain, Adelaide</title>
+<meta name="description" content="Browse every used car in stock at AutoDrive Salisbury Plain. Workshop-inspected by our own mechanics. Tap Enquire to message us about any car." />
+<link rel="canonical" href="https://autodrivesalisburyplain.com.au/cars" />
+<meta property="og:title" content="Cars for Sale | AutoDrive Salisbury Plain" />
+<meta property="og:description" content="Every used car in stock, workshop-inspected by our own mechanics in Salisbury Plain, Adelaide." />
+<meta property="og:image" content="https://autodrivesalisburyplain.com.au/images/c200/c200-01.jpg" />
+<link rel="icon" type="image/png" href="images/logo-autodrive.png" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<!--
+  CARS FOR SALE — marketplace-style landing page (all stock in a grid, Enquire under each car).
+  The stock is NOT typed in here: the page reads every <article class="car"> from used-cars.html
+  and builds the grid from it. Add, edit or remove a car in used-cars.html and this page follows.
+-->
+<style>
+  :root{
+    --red:#C01418; --red-dk:#930E12; --ink:#0E0E0E; --charcoal:#1C1C1E;
+    --g700:#3F3F46; --g500:#6B7280; --g300:#D4D4D8; --g100:#ECECEE; --bg:#F7F7F8; --wa:#1FA855;
+  }
+  *{box-sizing:border-box;}
+  html{-webkit-text-size-adjust:100%;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:Inter,-apple-system,Segoe UI,Helvetica,Arial,sans-serif; font-size:16px; line-height:1.5;}
+  img{display:block; max-width:100%;}
+  a{color:inherit;}
+  button{font:inherit;}
+  .wrap{max-width:1180px; margin:0 auto; padding:0 16px;}
+  [hidden]{display:none !important;}
+
+  /* Header */
+  .top{background:var(--ink); position:sticky; top:0; z-index:20;}
+  .top .wrap{display:flex; align-items:center; justify-content:space-between; gap:12px; height:64px;}
+  .top__logo img{height:46px; width:auto;}
+  .top__links{display:flex; align-items:center; gap:8px;}
+  .top__site{color:#cfcfd4; font-size:14px; font-weight:600; text-decoration:none; padding:8px 10px;}
+  .top__site:hover{color:#fff;}
+  .top__call{display:inline-flex; align-items:center; gap:7px; background:var(--red); color:#fff; text-decoration:none; font-weight:700; font-size:14.5px; padding:9px 15px; border-radius:999px;}
+  .top__call:hover{background:var(--red-dk);}
+  .top__call svg{width:16px; height:16px;}
+
+  /* Intro */
+  .intro{background:var(--ink); color:#fff; padding:18px 0 22px; border-bottom:4px solid var(--red);}
+  .intro h1{font-family:Anton,Impact,sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:.4px; font-size:clamp(34px,7vw,56px); line-height:1; margin:0 0 10px;}
+  .intro h1 span{color:var(--red);}
+  .intro p{margin:0; color:#d4d4d8; max-width:620px; font-size:16.5px;}
+  .intro__trust{list-style:none; padding:0; margin:18px 0 0; display:flex; flex-wrap:wrap; gap:8px 18px; font-size:14px; font-weight:600; color:#fff;}
+  .intro__trust li{display:flex; align-items:center; gap:7px;}
+  .intro__trust svg{width:16px; height:16px; color:var(--red); flex:none;}
+
+  /* Toolbar */
+  .bar{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; padding:16px 0 14px;}
+  .bar__count{font-weight:800; font-size:17px; margin:0;}
+  .bar__count span{color:var(--g500); font-weight:600;}
+  .bar__filters{display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; margin:0 -16px; padding:2px 16px; width:calc(100% + 32px);}
+  .bar__filters::-webkit-scrollbar{display:none;}
+  @media (min-width:720px){ .bar__filters{width:auto; margin:0; padding:0; overflow:visible;} }
+  .sel{position:relative; flex:none;}
+  .sel select{appearance:none; -webkit-appearance:none; font:inherit; font-size:14px; font-weight:600; color:var(--ink); background:#fff; border:1px solid var(--g300); border-radius:999px; padding:8px 30px 8px 13px; cursor:pointer;}
+  .sel select:focus-visible{outline:2px solid var(--red); outline-offset:2px;}
+  .sel::after{content:""; position:absolute; right:12px; top:50%; width:7px; height:7px; border-right:2px solid var(--g500); border-bottom:2px solid var(--g500); transform:translateY(-70%) rotate(45deg); pointer-events:none;}
+
+  /* Grid of cars */
+  .grid{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:14px 12px; padding-bottom:10px;}
+  @media (min-width:720px){ .grid{grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px 18px;} }
+  @media (min-width:1040px){ .grid{grid-template-columns:repeat(4,minmax(0,1fr));} }
+  .tile{background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05); display:flex; flex-direction:column;}
+  .tile__open{all:unset; cursor:pointer; display:block;}
+  .tile__open:focus-visible{outline:2px solid var(--red); outline-offset:-2px;}
+  .tile__ph{position:relative; aspect-ratio:4/5; background:var(--g100); overflow:hidden;}
+  .tile__ph img{width:100%; height:100%; object-fit:cover; transition:transform .35s ease;}
+  .tile:hover .tile__ph img{transform:scale(1.03);}
+  .tile__n{position:absolute; right:8px; bottom:8px; display:flex; align-items:center; gap:4px; background:rgba(14,14,14,.72); color:#fff; font-size:12px; font-weight:700; padding:3px 8px; border-radius:999px;}
+  .tile__n svg{width:13px; height:13px;}
+  .tile__info{padding:10px 12px 4px;}
+  .tile__price{font-weight:800; font-size:18px; line-height:1.2;}
+  .tile__title{font-size:14.5px; font-weight:600; line-height:1.3; margin:2px 0 3px; display:-webkit-box; -webkit-line-clamp:2; -webkit-box-orient:vertical; overflow:hidden;}
+  .tile__meta{font-size:13px; color:var(--g500); line-height:1.35;}
+  .tile__cta{padding:10px 12px 12px; margin-top:auto;}
+  .enq{display:flex; align-items:center; justify-content:center; gap:7px; width:100%; background:var(--red); color:#fff; text-decoration:none; font-weight:700; font-size:15px; padding:11px 10px; border-radius:10px; border:0; cursor:pointer;}
+  .enq:hover{background:var(--red-dk);}
+  .enq svg{width:17px; height:17px; flex:none;}
+
+  .state{padding:40px 0; text-align:center; color:var(--g500);}
+  .state a{color:var(--red); font-weight:700;}
+  .sk{background:linear-gradient(90deg,var(--g100) 25%,#f4f4f6 50%,var(--g100) 75%); background-size:200% 100%; animation:sk 1.2s infinite linear;}
+  @keyframes sk{to{background-position:-200% 0;}}
+  .tile--sk .tile__info div{height:14px; border-radius:6px; margin:6px 0;}
+
+  /* Can't find it */
+  .more{background:#fff; border-radius:14px; padding:24px 20px; margin:26px 0 34px; display:grid; gap:14px; box-shadow:0 1px 2px rgba(0,0,0,.06);}
+  @media (min-width:720px){ .more{grid-template-columns:1fr auto; align-items:center; padding:28px 30px;} }
+  .more h2{font-family:Anton,Impact,sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:.3px; font-size:26px; line-height:1.05; margin:0 0 6px;}
+  .more p{margin:0; color:var(--g700);}
+  .more__btns{display:flex; flex-wrap:wrap; gap:10px;}
+  .btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; text-decoration:none; font-weight:700; font-size:15px; padding:12px 18px; border-radius:999px; border:2px solid transparent;}
+  .btn--red{background:var(--red); color:#fff;}
+  .btn--red:hover{background:var(--red-dk);}
+  .btn--ghost{background:#fff; border-color:var(--g300); color:var(--ink);}
+  .btn--ghost:hover{border-color:var(--ink);}
+  .btn svg{width:17px; height:17px;}
+
+  /* Footer */
+  .foot{background:var(--ink); color:#a1a1aa; font-size:14px; padding:26px 0 calc(26px + env(safe-area-inset-bottom));}
+  .foot .wrap{display:grid; gap:6px;}
+  .foot strong{color:#fff;}
+  .foot a{color:#fff;}
+
+  /* Car detail sheet */
+  .sheet{position:fixed; inset:0; z-index:50; display:flex; align-items:flex-end; justify-content:center; background:rgba(0,0,0,.6); opacity:0; transition:opacity .2s ease;}
+  .sheet.is-open{opacity:1;}
+  .sheet__panel{background:#fff; width:100%; max-width:980px; max-height:94vh; max-height:94dvh; border-radius:16px 16px 0 0; overflow:auto; transform:translateY(24px); transition:transform .22s ease; overscroll-behavior:contain;}
+  .sheet.is-open .sheet__panel{transform:none;}
+  @media (min-width:860px){
+    .sheet{align-items:center; padding:24px;}
+    .sheet__panel{border-radius:16px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); overflow:hidden; max-height:90vh;}
+    .sheet__body{overflow:auto;}
+  }
+  .sheet__x{position:absolute; top:10px; right:10px; z-index:3; width:40px; height:40px; border-radius:50%; border:0; background:rgba(14,14,14,.75); color:#fff; display:grid; place-items:center; cursor:pointer;}
+  .sheet__x svg{width:20px; height:20px;}
+  .gal{position:relative; background:#111;}
+  .gal__track{display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; aspect-ratio:4/5; max-height:70vh; max-height:70dvh; margin:0 auto;}
+  @media (min-width:860px){ .gal__track{height:90vh; max-height:90vh; aspect-ratio:auto;} }
+  .gal__track::-webkit-scrollbar{display:none;}
+  .gal__slide{flex:0 0 100%; scroll-snap-align:center; display:grid; place-items:center;}
+  .gal__slide img, .gal__slide video{width:100%; height:100%; object-fit:contain; background:#111;}
+  .gal__count{position:absolute; left:10px; bottom:10px; background:rgba(14,14,14,.75); color:#fff; font-size:13px; font-weight:700; padding:4px 10px; border-radius:999px;}
+  .gal__nav{position:absolute; top:50%; transform:translateY(-50%); width:42px; height:42px; border-radius:50%; border:0; background:rgba(255,255,255,.92); color:var(--ink); display:none; place-items:center; cursor:pointer; box-shadow:0 2px 8px rgba(0,0,0,.25);}
+  .gal__nav svg{width:20px; height:20px;}
+  .gal__nav--prev{left:10px;} .gal__nav--next{right:10px;}
+  @media (hover:hover){ .gal__nav{display:grid;} }
+  .sheet__body{padding:18px 18px calc(22px + env(safe-area-inset-bottom));}
+  .sheet__price{font-weight:800; font-size:28px; line-height:1.1;}
+  .sheet__note{font-size:13.5px; color:var(--g500); font-weight:600; margin-top:2px;}
+  .sheet__title{font-size:20px; font-weight:800; line-height:1.25; margin:8px 0 2px;}
+  .sheet__loc{font-size:14px; color:var(--g500); margin:0 0 12px;}
+  .chips{list-style:none; padding:0; margin:0 0 12px; display:flex; flex-wrap:wrap; gap:6px;}
+  .chips li{background:var(--g100); border-radius:999px; padding:5px 11px; font-size:13.5px; font-weight:600; color:var(--g700);}
+  .ticks{list-style:none; padding:0; margin:0 0 12px; display:grid; gap:4px;}
+  .ticks li{display:flex; gap:8px; font-size:14.5px; font-weight:600;}
+  .ticks svg{width:17px; height:17px; color:var(--wa); flex:none; margin-top:2px;}
+  .sheet__desc{font-size:15px; color:var(--g700); margin:0 0 16px;}
+  .sheet__cta{display:grid; grid-template-columns:1fr auto; gap:10px; position:sticky; bottom:0; background:#fff; padding:10px 0 0;}
+  .sheet__cta .enq{font-size:16px; padding:14px;}
+  .call{display:flex; align-items:center; justify-content:center; gap:7px; text-decoration:none; font-weight:700; font-size:15px; padding:0 18px; border-radius:10px; border:2px solid var(--g300); color:var(--ink);}
+  .call:hover{border-color:var(--ink);}
+  .call svg{width:17px; height:17px;}
+  body.no-scroll{overflow:hidden;}
+</style>
+<!-- Google Analytics 4 (same property as the rest of the site) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-5QT9NZ63W1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  gtag("js", new Date());
+  gtag("config", "G-5QT9NZ63W1");
+</script>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <a class="top__logo" href="/"><img src="images/logo-dark.png" alt="AutoDrive Salisbury Plain" width="46" height="46" onerror="this.src='images/logo-autodrive.png'"></a>
+    <nav class="top__links">
+      <a class="top__site" href="/">Main site</a>
+      <a class="top__call" href="tel:+61432520230"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>0432 520 230</a>
+    </nav>
+  </div>
+</header>
+
+<section class="intro">
+  <div class="wrap">
+    <h1>Cars for <span>sale</span></h1>
+    <p>Every car in stock right now, each one inspected in our own workshop in Salisbury Plain, Adelaide. Tap a car for photos, or Enquire to message us.</p>
+    <ul class="intro__trust">
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Workshop-inspected</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Mechanic-owned</li>
+      <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Independent inspections welcome</li>
+    </ul>
+  </div>
+</section>
+
+<main class="wrap">
+  <div class="bar">
+    <p class="bar__count" id="count">Loading cars&hellip;</p>
+    <div class="bar__filters">
+      <label class="sel"><span hidden>Body type</span><select id="fBody" aria-label="Body type"><option value="">All body types</option></select></label>
+      <label class="sel"><span hidden>Price</span><select id="fPrice" aria-label="Price">
+        <option value="">Any price</option>
+        <option value="0-10000">Under $10k</option>
+        <option value="10000-20000">$10k to $20k</option>
+        <option value="20000-1000000">Over $20k</option>
+      </select></label>
+      <label class="sel"><span hidden>Sort</span><select id="fSort" aria-label="Sort">
+        <option value="new">Newest first</option>
+        <option value="low">Price: low to high</option>
+        <option value="high">Price: high to low</option>
+      </select></label>
+    </div>
+  </div>
+
+  <div class="grid" id="grid" aria-live="polite">
+    <div class="tile tile--sk"><div class="tile__ph sk"></div><div class="tile__info"><div class="sk" style="width:50%"></div><div class="sk"></div><div class="sk" style="width:70%"></div></div></div>
+    <div class="tile tile--sk"><div class="tile__ph sk"></div><div class="tile__info"><div class="sk" style="width:50%"></div><div class="sk"></div><div class="sk" style="width:70%"></div></div></div>
+    <div class="tile tile--sk"><div class="tile__ph sk"></div><div class="tile__info"><div class="sk" style="width:50%"></div><div class="sk"></div><div class="sk" style="width:70%"></div></div></div>
+    <div class="tile tile--sk"><div class="tile__ph sk"></div><div class="tile__info"><div class="sk" style="width:50%"></div><div class="sk"></div><div class="sk" style="width:70%"></div></div></div>
+  </div>
+  <div class="state" id="empty" hidden>No cars match those filters. <a href="#" id="reset">Show all cars</a></div>
+  <noscript><div class="state">See all our cars on the <a href="used-cars.html">used cars page</a>.</div></noscript>
+
+  <section class="more">
+    <div>
+      <h2>Can't see the one you want?</h2>
+      <p>Tell us your budget and what you need. We'll find it, inspect it in our workshop and get it ready for you.</p>
+    </div>
+    <div class="more__btns">
+      <a class="btn btn--red" href="find-my-car?utm_source=website&amp;utm_medium=cars_page&amp;utm_campaign=car-finder">Find my car</a>
+      <a class="btn btn--ghost" href="https://wa.me/61432520230?text=Hi%20Jitty%2C%20I%27m%20looking%20for%20a%20car.%20Can%20you%20help%3F"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>Message us</a>
+    </div>
+  </section>
+</main>
+
+<footer class="foot">
+  <div class="wrap">
+    <strong>AutoDrive Salisbury Plain</strong>
+    <span>6 Lolands Rd, Salisbury Plain SA 5109</span>
+    <span>Mon to Fri 8:30am to 5:30pm &middot; Sat 8:30am to 4:00pm &middot; Sun closed</span>
+    <span><a href="tel:+61432520230">0432 520 230</a> &middot; <a href="/">autodrivesalisburyplain.com.au</a></span>
+  </div>
+</footer>
+
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sTitle" hidden>
+  <div class="sheet__panel">
+    <div class="gal">
+      <button class="sheet__x" type="button" id="sClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      <div class="gal__track" id="gTrack"></div>
+      <button class="gal__nav gal__nav--prev" type="button" id="gPrev" aria-label="Previous photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 6l-6 6 6 6"/></svg></button>
+      <button class="gal__nav gal__nav--next" type="button" id="gNext" aria-label="Next photo"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      <span class="gal__count" id="gCount"></span>
+    </div>
+    <div class="sheet__body">
+      <div class="sheet__price" id="sPrice"></div>
+      <div class="sheet__note" id="sNote"></div>
+      <h2 class="sheet__title" id="sTitle"></h2>
+      <p class="sheet__loc">Salisbury Plain, Adelaide SA</p>
+      <ul class="chips" id="sSpecs"></ul>
+      <ul class="ticks" id="sTrust"></ul>
+      <p class="sheet__desc" id="sDesc"></p>
+      <div class="sheet__cta">
+        <a class="enq" id="sEnq" href="#"></a>
+        <a class="call" href="tel:+61432520230"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>Call</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var $ = function(id){ return document.getElementById(id); };
+  var WA_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>';
+  var CAM_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>';
+  var TICK = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg>';
+  var BODIES = /^(Sedan|SUV|Hatch(back)?|Wagon|Ute|Van|Coupe|Convertible|People mover)$/i;
+  var cars = [];
+
+  function track(name, p){ if (typeof gtag === "function") gtag("event", name, p || {}); }
+  function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
+  function txt(el){ return el ? el.textContent.replace(/\s+/g, " ").trim() : ""; }
+
+  // Read one <article class="car"> from used-cars.html into a plain object
+  function readCar(a, i){
+    var titleEl = a.querySelector(".car__title");
+    var trans = txt(titleEl && titleEl.querySelector("span"));
+    var title = titleEl ? txt(titleEl).replace(new RegExp("\\s*" + trans + "$"), "") : "";
+    var priceEl = a.querySelector(".car__price");
+    var priceText = priceEl && priceEl.firstChild ? priceEl.firstChild.textContent.trim() : "";
+    var specs = [].map.call(a.querySelectorAll(".car__specs li"), txt);
+    var enq = a.querySelector('.car__cta a[href*="wa.me"]');
+    return {
+      id: a.id.replace(/^car-/, ""),
+      order: i,
+      title: title,
+      trans: trans,
+      price: parseInt(priceText.replace(/[^\d]/g, ""), 10) || 0,
+      priceText: priceText || "Enquire",
+      note: txt(priceEl && priceEl.querySelector("small")),
+      badge: txt(a.querySelector(".car__badge")),
+      km: specs.filter(function(s){ return /km$/i.test(s); })[0] || "",
+      body: specs.filter(function(s){ return BODIES.test(s); })[0] || "",
+      specs: specs,
+      trust: [].map.call(a.querySelectorAll(".car__trust li"), txt),
+      desc: a.querySelector(".car__desc") ? a.querySelector(".car__desc").innerHTML : "",
+      photos: [].map.call(a.querySelectorAll(".car__slide img"), function(img){ return { src: img.getAttribute("src"), alt: img.getAttribute("alt") || title }; }),
+      video: (a.querySelector(".car__slide video") || {}).getAttribute ? a.querySelector(".car__slide video").getAttribute("src") : "",
+      wa: enq ? enq.getAttribute("href") : "https://wa.me/61432520230?text=" + encodeURIComponent("Hi Jitty, I'm interested in the " + title + ". Is it still available?")
+    };
+  }
+
+  function tileHTML(c){
+    var n = c.photos.length + (c.video ? 1 : 0);
+    var hero = c.photos[0];
+    var meta = [c.km, c.trans].filter(Boolean).join(" · ");
+    return '<article class="tile" data-id="' + esc(c.id) + '">' +
+      '<button class="tile__open" type="button" data-open="' + esc(c.id) + '" aria-label="See photos and details: ' + esc(c.title) + '">' +
+        '<div class="tile__ph">' + (hero ? '<img src="' + esc(hero.src) + '" alt="' + esc(hero.alt) + '" loading="lazy">' : '') +
+          (n > 1 ? '<span class="tile__n">' + CAM_ICON + n + '</span>' : '') + '</div>' +
+        '<div class="tile__info"><div class="tile__price">' + esc(c.priceText) + '</div>' +
+          '<div class="tile__title">' + esc(c.title) + '</div>' +
+          '<div class="tile__meta">' + esc(meta) + '<br>Salisbury Plain, SA</div></div>' +
+      '</button>' +
+      '<div class="tile__cta"><a class="enq" href="' + esc(c.wa) + '" data-car="' + esc(c.id) + '" target="_blank" rel="noopener">' + WA_ICON + 'Enquire</a></div>' +
+    '</article>';
+  }
+
+  function render(){
+    var body = $("fBody").value, price = $("fPrice").value, sort = $("fSort").value;
+    var lo = 0, hi = Infinity;
+    if (price){ lo = +price.split("-")[0]; hi = +price.split("-")[1]; }
+    var list = cars.filter(function(c){
+      return (!body || c.body === body) && (!price || (c.price >= lo && c.price < hi));
+    });
+    list.sort(function(a, b){
+      if (sort === "low") return a.price - b.price;
+      if (sort === "high") return b.price - a.price;
+      return b.order - a.order; // newest listing first (used-cars.html adds new cars at the end)
+    });
+    $("grid").innerHTML = list.map(tileHTML).join("");
+    $("empty").hidden = list.length > 0;
+    $("count").innerHTML = cars.length + " cars in stock" + (list.length !== cars.length ? ' <span>&middot; showing ' + list.length + '</span>' : "");
+  }
+
+  /* ---- Detail sheet ---- */
+  var current = null, pushed = false;
+  function openCar(id, fromHash){
+    var c = cars.filter(function(x){ return x.id === id; })[0];
+    if (!c) return;
+    current = c;
+    var slides = c.photos.map(function(p, i){
+      return '<div class="gal__slide"><img src="' + esc(p.src) + '" alt="' + esc(p.alt) + '"' + (i > 1 ? ' loading="lazy"' : '') + '></div>';
+    });
+    if (c.video) slides.push('<div class="gal__slide"><video src="' + esc(c.video) + '" muted loop playsinline controls preload="none"></video></div>');
+    $("gTrack").innerHTML = slides.join("");
+    $("gTrack").scrollLeft = 0;
+    $("sPrice").textContent = c.priceText;
+    $("sNote").textContent = c.note;
+    $("sNote").hidden = !c.note;
+    $("sTitle").textContent = c.title;
+    $("sSpecs").innerHTML = c.specs.map(function(s){ return "<li>" + esc(s) + "</li>"; }).join("");
+    $("sTrust").innerHTML = c.trust.map(function(s){ return "<li>" + TICK + esc(s) + "</li>"; }).join("");
+    $("sDesc").innerHTML = c.desc; // our own markup from used-cars.html
+    $("sEnq").href = c.wa;
+    $("sEnq").setAttribute("data-car", c.id);
+    $("sEnq").setAttribute("target", "_blank");
+    $("sEnq").setAttribute("rel", "noopener");
+    $("sEnq").innerHTML = WA_ICON + "Enquire about this car";
+    updateCount();
+    var s = $("sheet");
+    s.hidden = false;
+    document.body.classList.add("no-scroll");
+    requestAnimationFrame(function(){ s.classList.add("is-open"); });
+    $("sClose").focus({ preventScroll: true });
+    if (!fromHash){ history.pushState({ car: id }, "", "#car-" + id); pushed = true; }
+    track("view_item", { item_id: c.id, item_name: c.title, price: c.price, currency: "AUD", source: "cars_page" });
+  }
+  function closeSheet(){
+    var s = $("sheet");
+    if (s.hidden) return;
+    s.classList.remove("is-open");
+    document.body.classList.remove("no-scroll");
+    s.querySelectorAll("video").forEach(function(v){ v.pause(); });
+    setTimeout(function(){ s.hidden = true; $("gTrack").innerHTML = ""; }, 200);
+    current = null;
+  }
+  function requestClose(){
+    if (pushed){ pushed = false; history.back(); }   // popstate closes it
+    else { closeSheet(); history.replaceState(null, "", location.pathname + location.search); }
+  }
+  function updateCount(){
+    var t = $("gTrack"), n = t.children.length;
+    var i = n ? Math.round(t.scrollLeft / Math.max(t.clientWidth, 1)) + 1 : 0;
+    $("gCount").textContent = i + " / " + n;
+    $("gPrev").hidden = i <= 1;
+    $("gNext").hidden = i >= n;
+  }
+  function step(d){ var t = $("gTrack"); t.scrollBy({ left: d * t.clientWidth, behavior: "smooth" }); }
+
+  $("gTrack").addEventListener("scroll", function(){ window.requestAnimationFrame(updateCount); }, { passive: true });
+  $("gPrev").addEventListener("click", function(){ step(-1); });
+  $("gNext").addEventListener("click", function(){ step(1); });
+  $("sClose").addEventListener("click", requestClose);
+  $("sheet").addEventListener("click", function(e){ if (e.target === this) requestClose(); });
+  document.addEventListener("keydown", function(e){
+    if (!current) return;
+    if (e.key === "Escape") requestClose();
+    else if (e.key === "ArrowRight") step(1);
+    else if (e.key === "ArrowLeft") step(-1);
+  });
+  window.addEventListener("popstate", function(){
+    var m = location.hash.match(/^#car-(.+)$/);
+    if (m) openCar(m[1], true); else { pushed = false; closeSheet(); }
+  });
+
+  document.addEventListener("click", function(e){
+    var o = e.target.closest("[data-open]");
+    if (o){ openCar(o.getAttribute("data-open")); return; }
+    var a = e.target.closest("a");
+    if (!a) return;
+    var href = a.getAttribute("href") || "";
+    if (/wa\.me/.test(href)) track("whatsapp_click", { link_url: href, car: a.getAttribute("data-car") || "", source: "cars_page" });
+    else if (href.indexOf("tel:") === 0) track("phone_click", { link_url: href, source: "cars_page" });
+  });
+  ["fBody", "fPrice", "fSort"].forEach(function(id){ $(id).addEventListener("change", render); });
+  $("reset").addEventListener("click", function(e){ e.preventDefault(); $("fBody").value = ""; $("fPrice").value = ""; render(); });
+
+  /* ---- Load the stock from used-cars.html ---- */
+  fetch("used-cars.html", { cache: "no-cache" })
+    .then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); })
+    .then(function(html){
+      var doc = new DOMParser().parseFromString(html, "text/html");
+      cars = [].slice.call(doc.querySelectorAll("article.car[id^='car-']"))
+        .filter(function(a){ return !a.classList.contains("car--ask"); })
+        .map(readCar)
+        .filter(function(c){ return !/sold/i.test(c.badge); });
+      var bodies = cars.map(function(c){ return c.body; }).filter(function(b, i, all){ return b && all.indexOf(b) === i; }).sort();
+      $("fBody").insertAdjacentHTML("beforeend", bodies.map(function(b){ return '<option value="' + esc(b) + '">' + esc(b) + "</option>"; }).join(""));
+      render();
+      var m = location.hash.match(/^#car-(.+)$/);
+      if (m) openCar(m[1], true);
+    })
+    .catch(function(){
+      $("grid").innerHTML = "";
+      $("count").textContent = "Cars for sale";
+      $("empty").hidden = false;
+      $("empty").innerHTML = 'We couldn’t load the cars just now. See them on our <a href="used-cars.html">used cars page</a> or call <a href="tel:+61432520230">0432 520 230</a>.';
+    });
+})();
+</script>
+</body>
+</html>
