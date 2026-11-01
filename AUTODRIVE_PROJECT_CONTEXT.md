@@ -426,10 +426,11 @@ the programme is tested. Reached from the **first Instagram bio link** ("Find my
 `https://autodrivesalisburyplain.com.au/find-my-car?utm_source=instagram&utm_medium=bio&utm_campaign=car-finder`.
 Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
 - First page (the intro card itself) asks "Are you based in Australia?" Yes / No; No ends it.
-  Then one question per screen: Adelaide or elsewhere in Australia; Student / Family / Other
-  (Other opens a required "Please tell us a bit about you" box, sent as "Other: <text>"); name;
-  mobile; total budget; funds ready within 2 weeks; main use; buying in next couple of
-  months; what matters most.
+  Then one question per screen: Adelaide or elsewhere in Australia; "Tell us who you are and
+  what you need the car for" (required free-text box, sent as "About: <text>"; replaced the
+  Student / Family / Other and main-use questions on 2026-11-01 when the Instagram offer
+  stopped targeting students and families); name; mobile; total budget; funds ready within
+  2 weeks; buying in next couple of months; what matters most.
 - Budget (Q5) options: $7k to $10k / $10k to $20k / $20k to $30k / $30k to $50k / Under $7k
   (programme max $50k). Q5 carries a big red-bordered disclaimer at the bottom: "We cannot
   proceed with any purchase until a deposit or proof of funds is obtained."
@@ -449,7 +450,7 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   without the answers.
 - GA4 events: `car_apply_start` (source), `car_apply_step` (step, answer; one-tap answers
   only, never name/mobile), `car_apply_disqualified` (reason), `car_apply_qualified`
-  (segment, location, budget, funds), `car_apply_book_click` (method) + `generate_lead`
+  (location, budget, funds; no segment since 2026-11-01, the free text never goes to GA), `car_apply_book_click` (method) + `generate_lead`
   (lead_type=car_finder).
 - Still open: Jitty's 3 answers (on board 30 to 60 days; Australia-wide delivery or Adelaide
   only; "keys in 60 days" promise). The interstate delivery note assumes Australia-wide.
