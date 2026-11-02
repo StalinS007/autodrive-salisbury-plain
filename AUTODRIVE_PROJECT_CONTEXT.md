@@ -418,6 +418,8 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   It depends on the listing classes (`car__title` + `span` for
   transmission, `car__price` first text + `small` note, `car__specs`, `car__trust`, `car__desc`, `car__slide img/video`,
   the `wa.me` link in `car__cta`); keep those if the listing markup changes.
+- Header: logo + "Main site" link only (the "Call us" button was removed 2026-11-02, owner request; the Call
+  button inside each car's detail sheet stays).
 - Grid: 2 columns on phones, 3 on tablet, 4 on desktop. Each tile = hero photo (4:5), photo count, price, title,
   km and transmission, "Salisbury Plain, SA", and a red **Enquire** button that opens WhatsApp with that car's own
   prefilled message (same link as its used-cars listing). Filters: body type (built from the specs), price band, sort
