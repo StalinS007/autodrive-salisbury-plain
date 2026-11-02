@@ -270,11 +270,11 @@
   // Replacement photos for this page only
   var PHOTOS = {
     corolla: { dir: "images/corolla-cars/corolla-cars-", n: 11, alt: "2008 Toyota Corolla Ascent" },
-    golf: { dir: "images/golf-cars/golf-cars-", n: 18, alt: "2017 Volkswagen Golf R-Line Wagon" }
+    golf: { dir: "images/golf-cars/golf-cars-", n: 18, alt: "2017 Volkswagen Golf R-Line Wagon", v: 2 }
   };
-  function numbered(dir, n, alt){
+  function numbered(dir, n, alt, v){
     return Array.apply(null, Array(n)).map(function(_, i){
-      return { src: dir + (i < 9 ? "0" : "") + (i + 1) + ".jpg", alt: alt + ", photo " + (i + 1) };
+      return { src: dir + (i < 9 ? "0" : "") + (i + 1) + ".jpg" + (v ? "?v=" + v : ""), alt: alt + ", photo " + (i + 1) };
     });
   }
   // Cars shown here that aren't on used-cars.html yet (same shape as readCar). The WRX, Audi S3, Venue,
@@ -284,7 +284,7 @@
     list = list.filter(function(c){ return HIDE.indexOf(c.id) < 0; });
     list.forEach(function(c){
       var p = PHOTOS[c.id];
-      if (p) c.photos = numbered(p.dir, p.n, p.alt);
+      if (p) c.photos = numbered(p.dir, p.n, p.alt, p.v);
     });
     return list.concat(EXTRA);
   }
