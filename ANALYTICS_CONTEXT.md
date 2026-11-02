@@ -86,6 +86,12 @@ channel gets its own clean row in Traffic acquisition:
   `https://autodrivesalisburyplain.com.au/find-my-car?utm_source=instagram&utm_medium=bio&utm_campaign=car-finder`
   Funnel events on that page: car_apply_start, car_apply_step, car_apply_disqualified
   (reason), car_apply_qualified, car_apply_book_click, generate_lead (lead_type=car_finder).
+- `/cars` stock page (Marketplace-style grid, added 2026-11-02), the PRIMARY offer:
+  Facebook Page bio/link: `https://autodrivesalisburyplain.com.au/cars?utm_source=facebook&utm_medium=social&utm_campaign=cars`
+  Instagram: `https://autodrivesalisburyplain.com.au/cars?utm_source=instagram&utm_medium=bio&utm_campaign=cars`
+  (Jitty's Instagram was first given the untagged `/cars` on 2 Nov, so early clicks may sit in Direct.)
+  Page events (all with `source: "cars_page"`): view_item (car opened, item_id = car slug), whatsapp_click (Enquire,
+  `car` param), phone_click.
 Rules: lowercase everything; never tag internal links on the site itself; one source
 name per platform (don't invent variants).
 
