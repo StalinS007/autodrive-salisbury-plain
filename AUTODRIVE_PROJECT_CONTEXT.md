@@ -408,9 +408,11 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   X-Trail, XV, 2018 Polo, 2018 Rio, 2021 Polo and Civic off `/cars` only (they stay on used-cars.html, owner's
   instruction), the Corolla uses his new photos (`images/corolla-cars/`), and the **2016 Subaru WRX** ($24,900, 98,000 km,
   `images/wrx/`) is added here only, plus the **2015 Audi S3 Quattro** ($26,500 + government charges, 82,117 km), the
-  **2019 Hyundai Venue** ($14,900, 47,548 km) and a **grey Toyota Corolla Sedan** ($11,900, 62,719 km); prices from the
-  owner 2 Nov (both unplated in the photos, owner said keep them up). `price: 0` shows "Ask for price". The Golf uses his new photos (`images/golf-cars/`).
-  Pending: grey **Mitsubishi Outlander** (photos + video 2 Nov 2:04 pm, details in a caption). **Jitty puts the listing
+  **2019 Hyundai Venue** ($14,900) and a **grey Toyota Corolla Sedan** ($11,900), then the **2022 Mitsubishi Outlander LS**
+  ($25,700 + govt charges). Later the same day the owner said new cars go on the main site too, so all five now live in
+  used-cars.html (§ used cars) and `EXTRA` is empty; use `EXTRA` only for a car that must be on `/cars` alone. `price: 0`
+  shows "Ask for price". The Golf uses his new photos (`images/golf-cars/`).
+  Outlander video (batch_1404 mp4) not used yet. **Jitty puts the listing
   text in the photo captions**; the WhatsApp bridge only stores captions since the 2 Nov patch (see memory). **Mazda 2: do NOT advertise** (being inspected, Jitty
   will say when). Source photos: `~/Downloads/Autodrive downloads/Jitty 2 Nov 2026 cars/`.
   It depends on the listing classes (`car__title` + `span` for
@@ -485,7 +487,7 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
     `<img>` (there's an HTML comment in the file showing exactly how).
   - Cars live in a **carousel** (`.stock-carousel__track`); the "Car N of M" red bar and the
     arrows count the `<article class="car">` blocks automatically, so adding one needs no other
-    change. Currently **fifteen listings** (twelve below + C200, X-Trail, Forester, 2026-10-21): 2009 Honda Civic VTi $9,600 (with a **promo video**,
+    change. Currently **twenty listings** (twelve below + C200, X-Trail, Forester, 2026-10-21 + five added 2026-11-02, see end of this list): 2009 Honda Civic VTi $9,600 (with a **promo video**,
     `images/promohondacivic.mp4` — keep that slide LAST), 2021 VW Polo Comfortline $17,400,
     2008 Toyota Corolla Ascent $8,900, and **2018 Kia Rio $11,900** (added 2026-09-20), and **2023 MG ZS Excite $14,600 FIRM, 13,330 km**
     (added 2026-09-24; also FIRST in the homepage `.hstock` swiper as newest stock; photo originals in
@@ -508,6 +510,12 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
     `/used-cars.html?utm_source=instagram&utm_medium=story&utm_campaign=c200-2020#car-c200` and `...campaign=xtrail-2015#car-xtrail`.
     **2017 Subaru Forester 2.5i AWD $16,900 also LIVE 2026-10-21** (87,219 km, PPSR listed per Jitty's listing; price from his
     12 Oct flyer, his 10 Oct listing said $17,900: CONFIRM with Jitty). Slug `forester`, story link campaign `forester-2017`.
+    **Added 2026-11-02 (owner: new cars go on the main site too), appended at the END of the track so `/cars` shows them first:**
+    grey Toyota Corolla Sedan $11,900 (62,719 km, no year), 2019 Hyundai Venue $14,900 (47,548 km), 2015 Audi S3 Quattro
+    $26,500 + government charges (82,117 km), 2016 Subaru WRX $24,900 (98,000 km), 2022 Mitsubishi Outlander LS 7-Seater
+    $25,700 + government charges (48,605 km, ZM MY22 2WD). Slugs `corolla-grey`, `venue`, `audi-s3`, `wrx`, `outlander`;
+    photos `images/<slug>/<slug>-NN.jpg`. Venue and grey Corolla were unplated in Jitty's photos; owner said keep them up.
+    PPSR status of these five is unknown, so not claimed. Not on the homepage swiper.
     Plus a "Looking for something specific?" enquiry card. The Civic video is a web-compressed
     720×1280 / ~7.5 MB version of the owner's original 4K clip (compress every video before
     committing — Cloudflare Pages rejects files over 25 MB and GitHub rejects over 100 MB).

@@ -281,46 +281,9 @@
       return { src: dir + (i < 9 ? "0" : "") + (i + 1) + ".jpg", alt: alt + ", photo " + (i + 1) };
     });
   }
-  function waText(s){ return "https://wa.me/61432520230?text=" + encodeURIComponent("Hi Jitty, I'm interested in the " + s + ". Is it still available?"); }
-  // Cars shown here that aren't on used-cars.html yet (same shape as readCar).
-  // price 0 = Jitty hasn't given a price yet: tile shows "Ask for price".
-  var EXTRA = [{
-    id: "wrx", order: 1000, title: "2016 Subaru WRX", trans: "Auto",
-    price: 24900, priceText: "$24,900", note: "", badge: "Available",
-    km: "98,000 km", body: "Sedan",
-    specs: ["98,000 km", "Automatic", "Sedan", "AWD"],
-    trust: ["Full service history", "2.0L turbo, 197 kW / 350 Nm", "Subaru all-wheel drive", "Reverse camera"],
-    desc: "Silver 2016 Subaru WRX with 98,000 km and a full service history. 2.0L direct-injection boxer turbo petrol making 197 kW and 350 Nm, Sport Lineartronic automatic with paddle shifters and manual mode, Subaru Symmetrical all-wheel drive and SI-DRIVE driving modes. Sports-tuned suspension, quad exhaust, bonnet scoop and rear spoiler. Inside: sports seats, leather-wrapped steering wheel, touchscreen with Bluetooth and USB, reverse camera, cruise control and automatic climate control. 18-inch alloys and 7 airbags. A turbo performance sedan that is still practical every day.",
-    photos: numbered("images/wrx/wrx-", 15, "2016 Subaru WRX"), video: "",
-    wa: waText("2016 Subaru WRX ($24,900)")
-  }, {
-    id: "audi-s3", order: 999, title: "2015 Audi S3 Quattro", trans: "Auto",
-    price: 26500, priceText: "$26,500", note: "+ government charges", badge: "Available",
-    km: "82,117 km", body: "Sedan",
-    specs: ["82,117 km", "Automatic", "Sedan", "AWD"],
-    trust: ["Full service history", "Performance upgraded", "2.0L turbo, S tronic", "quattro all-wheel drive"],
-    desc: "Grey 2015 Audi S3 quattro sedan with only 82,117 km, a full service history and performance upgrades. 2.0L turbo petrol, S tronic automatic and quattro all-wheel drive. Black leather sports seats, sunroof, and S3 alloys with red brake calipers. Message Jitty for the full list of upgrades, or to book an inspection and test drive.",
-    photos: numbered("images/audi-s3/audi-s3-", 13, "2015 Audi S3 Quattro"), video: "",
-    wa: waText("2015 Audi S3 Quattro ($26,500)")
-  }, {
-    id: "venue", order: 998, title: "2019 Hyundai Venue", trans: "Auto",
-    price: 14900, priceText: "$14,900", note: "", badge: "Available",
-    km: "47,548 km", body: "SUV",
-    specs: ["47,548 km", "Automatic", "SUV", "Built Aug 2019"],
-    trust: [],
-    desc: "White Hyundai Venue small SUV, built August 2019, automatic, with 47,548 km on the odometer. Touchscreen with reverse camera. Message Jitty for full details, or to book an inspection and test drive.",
-    photos: numbered("images/venue/venue-", 12, "2019 Hyundai Venue"), video: "",
-    wa: waText("2019 Hyundai Venue ($14,900)")
-  }, {
-    id: "corolla-grey", order: 997, title: "Toyota Corolla Sedan", trans: "Auto",
-    price: 11900, priceText: "$11,900", note: "", badge: "Available",
-    km: "62,719 km", body: "Sedan",
-    specs: ["62,719 km", "Automatic", "Sedan"],
-    trust: [],
-    desc: "Grey Toyota Corolla sedan, automatic, with only 62,719 km on the odometer. Message Jitty for full details, or to book an inspection and test drive.",
-    photos: numbered("images/corolla-grey/corolla-grey-", 12, "Toyota Corolla Sedan, grey"), video: "",
-    wa: waText("grey Toyota Corolla Sedan ($11,900)")
-  }];
+  // Cars shown here that aren't on used-cars.html yet (same shape as readCar). The WRX, Audi S3, Venue,
+  // grey Corolla and Outlander moved into used-cars.html on 2 Nov 2026, so this is empty for now.
+  var EXTRA = [];
   function pageEdits(list){
     list = list.filter(function(c){ return HIDE.indexOf(c.id) < 0; });
     list.forEach(function(c){
