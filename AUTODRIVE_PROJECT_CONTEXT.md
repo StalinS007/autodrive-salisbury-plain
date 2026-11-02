@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-11-01**.
+touching the site. Last verified against the live code: **2026-11-02**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -403,7 +403,13 @@ A standalone used-car landing page in the style of Facebook Marketplace, under A
 Instagram bio and Marketplace-style sharing. URL: `/cars`.
 - **No stock is typed into it.** On load it fetches `used-cars.html`, reads every `<article class="car" id="car-…">`
   (skips `.car--ask` and any badge containing "Sold") and builds the grid. **Add, edit or remove a car in
-  `used-cars.html` and `/cars` follows automatically.** It depends on the listing classes (`car__title` + `span` for
+  `used-cars.html` and `/cars` follows automatically.** Exception: a small `/cars`-only override block at the top of
+  the page script (`HIDE`, `PHOTOS`, `EXTRA`, applied by `pageEdits()`). On 2026-11-02 Jitty asked to take the Forester,
+  X-Trail, XV, 2018 Polo, 2018 Rio, 2021 Polo and Civic off `/cars` only (they stay on used-cars.html, owner's
+  instruction), the Corolla uses his new photos (`images/corolla-cars/`), and the **2016 Subaru WRX** ($24,900, 98,000 km,
+  `images/wrx/`) is added here only. Pending from Jitty: Audi S3, grey Corolla, Mazda 2 (do not advertise yet, being
+  inspected), Hyundai Venue: photos in `~/Downloads/Autodrive downloads/Jitty 2 Nov 2026 cars/`, no details yet.
+  It depends on the listing classes (`car__title` + `span` for
   transmission, `car__price` first text + `small` note, `car__specs`, `car__trust`, `car__desc`, `car__slide img/video`,
   the `wa.me` link in `car__cta`); keep those if the listing markup changes.
 - Grid: 2 columns on phones, 3 on tablet, 4 on desktop. Each tile = hero photo (4:5), photo count, price, title,

@@ -268,6 +268,38 @@
   var BODIES = /^(Sedan|SUV|Hatch(back)?|Wagon|Ute|Van|Coupe|Convertible|People mover)$/i;
   var cars = [];
 
+  /* ---- /cars-only changes (used-cars.html and the live listings are NOT touched) ---- */
+  // Listings Jitty asked to take off this page (2 Nov 2026). They stay on used-cars.html.
+  var HIDE = ["forester", "xtrail", "xv", "polo18", "rio", "polo", "civic"];
+  // Replacement photos for this page only
+  var PHOTOS = {
+    corolla: { dir: "images/corolla-cars/corolla-cars-", n: 11, alt: "2008 Toyota Corolla Ascent" }
+  };
+  // Cars shown here that aren't on used-cars.html yet (same shape as readCar)
+  var EXTRA = [{
+    id: "wrx", order: 1000, title: "2016 Subaru WRX", trans: "Auto",
+    price: 24900, priceText: "$24,900", note: "", badge: "Available",
+    km: "98,000 km", body: "Sedan",
+    specs: ["98,000 km", "Automatic", "Sedan", "AWD"],
+    trust: ["Full service history", "2.0L turbo, 197 kW / 350 Nm", "Subaru all-wheel drive", "Reverse camera"],
+    desc: "Silver 2016 Subaru WRX with 98,000 km and a full service history. 2.0L direct-injection boxer turbo petrol making 197 kW and 350 Nm, Sport Lineartronic automatic with paddle shifters and manual mode, Subaru Symmetrical all-wheel drive and SI-DRIVE driving modes. Sports-tuned suspension, quad exhaust, bonnet scoop and rear spoiler. Inside: sports seats, leather-wrapped steering wheel, touchscreen with Bluetooth and USB, reverse camera, cruise control and automatic climate control. 18-inch alloys and 7 airbags. A turbo performance sedan that is still practical every day.",
+    photos: [], video: "",
+    wa: "https://wa.me/61432520230?text=" + encodeURIComponent("Hi Jitty, I'm interested in the 2016 Subaru WRX ($24,900). Is it still available?")
+  }];
+  EXTRA[0].photos = Array.apply(null, Array(15)).map(function(_, i){
+    return { src: "images/wrx/wrx-" + (i < 9 ? "0" : "") + (i + 1) + ".jpg", alt: "2016 Subaru WRX, photo " + (i + 1) };
+  });
+  function pageEdits(list){
+    list = list.filter(function(c){ return HIDE.indexOf(c.id) < 0; });
+    list.forEach(function(c){
+      var p = PHOTOS[c.id];
+      if (p) c.photos = Array.apply(null, Array(p.n)).map(function(_, i){
+        return { src: p.dir + (i < 9 ? "0" : "") + (i + 1) + ".jpg", alt: p.alt + ", photo " + (i + 1) };
+      });
+    });
+    return list.concat(EXTRA);
+  }
+
   function track(name, p){ if (typeof gtag === "function") gtag("event", name, p || {}); }
   function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
   function txt(el){ return el ? el.textContent.replace(/\s+/g, " ").trim() : ""; }
@@ -426,6 +458,7 @@
         .filter(function(a){ return !a.classList.contains("car--ask"); })
         .map(readCar)
         .filter(function(c){ return !/sold/i.test(c.badge); });
+      cars = pageEdits(cars);
       var bodies = cars.map(function(c){ return c.body; }).filter(function(b, i, all){ return b && all.indexOf(b) === i; }).sort();
       $("fBody").insertAdjacentHTML("beforeend", bodies.map(function(b){ return '<option value="' + esc(b) + '">' + esc(b) + "</option>"; }).join(""));
       render();
