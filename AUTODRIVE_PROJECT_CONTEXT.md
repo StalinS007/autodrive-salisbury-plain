@@ -144,7 +144,7 @@ autodrive-salisbury-plain/
 ├── used-cars.html             # Used cars
 ├── contact.html               # Contact + booking form + Google Map
 ├── find-my-car.html           # Car-finding programme application (Instagram bio link, unlisted, noindex)
-├── cars.html                  # Cars for sale: marketplace-style stock grid, Enquire under each car (PREVIEW only, §7g)
+├── cars.html                  # Cars for sale: marketplace-style stock grid, Enquire under each car (LIVE, §7g)
 ├── assets/
 │   ├── css/styles.css
 │   └── js/main.js             # mobile nav, scroll reveal, form handler, video labels
@@ -398,7 +398,7 @@ client-negotiation material in this repo again.**
 Stalin's copies live outside the repo: `~/Desktop/AutoDrive-Evidence/` and
 `~/Downloads/Autodrive downloads/Pitch items/`. The old files remain in git history if ever needed.
 
-## 7g. Cars for sale marketplace — `cars.html` (added 2026-11-01, PREVIEW only, not on main)
+## 7g. Cars for sale marketplace — `cars.html` (added 2026-11-01, LIVE on main 2026-11-02 for Jitty's Instagram)
 A standalone used-car landing page in the style of Facebook Marketplace, under AutoDrive's own brand, for ads, the
 Instagram bio and Marketplace-style sharing. URL: `/cars`.
 - **No stock is typed into it.** On load it fetches `used-cars.html`, reads every `<article class="car" id="car-…">`
@@ -407,8 +407,10 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   the page script (`HIDE`, `PHOTOS`, `EXTRA`, applied by `pageEdits()`). On 2026-11-02 Jitty asked to take the Forester,
   X-Trail, XV, 2018 Polo, 2018 Rio, 2021 Polo and Civic off `/cars` only (they stay on used-cars.html, owner's
   instruction), the Corolla uses his new photos (`images/corolla-cars/`), and the **2016 Subaru WRX** ($24,900, 98,000 km,
-  `images/wrx/`) is added here only. Pending from Jitty: Audi S3, grey Corolla, Mazda 2 (do not advertise yet, being
-  inspected), Hyundai Venue: photos in `~/Downloads/Autodrive downloads/Jitty 2 Nov 2026 cars/`, no details yet.
+  `images/wrx/`) is added here only, plus the **Audi S3 Sedan** (82,117 km), **2019 Hyundai Venue** (47,548 km) and a **grey
+  Toyota Corolla Sedan** (62,719 km), km read off the odometer photos, no price from Jitty yet so they show "Ask for
+  price" (`price: 0`; fill in price/year when he sends them). **Mazda 2: do NOT advertise** (being inspected, Jitty
+  will say when). Source photos: `~/Downloads/Autodrive downloads/Jitty 2 Nov 2026 cars/`.
   It depends on the listing classes (`car__title` + `span` for
   transmission, `car__price` first text + `small` note, `car__specs`, `car__trust`, `car__desc`, `car__slide img/video`,
   the `wa.me` link in `car__cta`); keep those if the listing markup changes.
@@ -422,7 +424,7 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
 - Self-contained: inline CSS with the locked tokens, own GA4 tag; does NOT load main.js (so the booking/date modal never
   intercepts Enquire). Events: `whatsapp_click` (link_url, car, source=cars_page), `phone_click`, `view_item`
   (item_id, item_name, price) when a car's detail opens.
-- Not in the main nav and not linked from other pages yet; indexable, canonical `/cars`.
+- Not in the main nav and not linked from other pages; it's the link for Jitty's Instagram. Indexable, canonical `/cars`.
 
 ## 7f. Car-finding programme application — `find-my-car.html` (added 2026-10-16, LIVE on main 2026-10-16)
 
