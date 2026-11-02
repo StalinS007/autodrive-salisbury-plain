@@ -415,6 +415,9 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   Outlander video (batch_1404 mp4) not used yet. **Jitty puts the listing
   text in the photo captions**; the WhatsApp bridge only stores captions since the 2 Nov patch (see memory). **Mazda 2: do NOT advertise** (being inspected, Jitty
   will say when). Source photos: `~/Downloads/Autodrive downloads/Jitty 2 Nov 2026 cars/`.
+  **Photo resizing: keep each photo's own shape (fit inside 1080 px), never force 607×1080.** Jitty's Golf photos are 3:4
+  and came out stretched on 2 Nov until redone; when a photo file is replaced in place, add `?v=N` to its URL
+  (the `v` field in `PHOTOS`, or the src in used-cars.html) because images cache for 4 hours.
   It depends on the listing classes (`car__title` + `span` for
   transmission, `car__price` first text + `small` note, `car__specs`, `car__trust`, `car__desc`, `car__slide img/video`,
   the `wa.me` link in `car__cta`); keep those if the listing markup changes.
