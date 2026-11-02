@@ -476,7 +476,32 @@ they recruit discount-shoppers and undercut a 5.0-star shop competing on trust.
   kickbacks. Cap clients per month (one-man workshop). Validate by pre-selling to ~3
   founding clients (WhatsApp waitlist angle + one reel) before building anything.
 
+## Paid car-buying consultation: $30 / 15 min (PROPOSED 2026-11-02, Jitty not asked yet)
+- Problem: Jitty's Instagram DMs fill with general car questions ("is the Kia Sportage any good?",
+  "what should I buy?") that take his time for free and rarely turn into a sale.
+- Owner idea: a paid 15 to 20 minute phone chat with Jitty, $30: which car suits them, what's
+  reliable, what to watch for. Sent as an automated/saved DM reply to anyone with general questions.
+- Recommended shape (website chat, 2 Nov): **$30 comes off the car if they buy from AutoDrive** (serious
+  buyers see it as free, time-wasters still pay or drop off); pay upfront when booking (Calendly + Stripe,
+  Cal.com or Square Appointments); fixed weekly slots outside workshop hours (e.g. weekdays 6 to 8 pm);
+  short intake form (budget, what the car is for, models considering) so 15 min stays 15 min.
+- Draft pitch to Jitty: "People keep DMing you questions like 'is the Sportage any good', 'what should I buy'
+  and it eats your time for free. What if we offer a 15 min phone chat for $30? You go through what car
+  suits them, what's reliable, what to watch out for. If they end up buying from us, the $30 comes off the
+  car. Time-wasters stop messaging, serious buyers book, and you get paid either way."
+- Draft DM auto-reply: "Hey {first name}, happy to help you pick the right car! Jitty does a 15 min
+  one-on-one chat for $30: what suits your budget, what's reliable, and what to watch out for before you
+  buy. Buy from us and the $30 comes off the car. Book here: [booking link]. Or see what we've got right
+  now: https://autodrivesalisburyplain.com.au/cars"
+- Fit with other offers: sits below the done-for-you car acquisition (the call is a natural upsell to it)
+  and next to `/cars` (the primary offer in the FB/IG bios since 2 Nov) and `/find-my-car`.
+- Open: Jitty's yes; who takes the payment (his account); slot times; whether it replaces or sits beside
+  the free Find My Car flow. Hand-off to the website chat once agreed: booking page + "Book a 15 min chat"
+  on /cars and /find-my-car; DM saved replies/automation in Meta Business Suite.
+
 ## Decision log (append newest first)
+- 2026-11-02 — /cars Marketplace-style stock page is now the PRIMARY offer in the Facebook and Instagram
+  bios. Paid $30 / 15 min car-buying consultation PROPOSED (section above), awaiting Jitty.
 - 2026-08-23 — Bio CTA set to "Prices and booking"; quote-close playbook agreed; language
   packaging = subtitles-first (see above). Pending: "from $" prices for detailing/paint.
 - 2026-08-23 — Influencer research completed (20 creators, 4 research sweeps). Verdict:
