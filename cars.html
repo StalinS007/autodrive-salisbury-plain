@@ -51,8 +51,6 @@
 
   /* Toolbar */
   .bar{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; padding:16px 0 14px;}
-  .bar__count{font-weight:800; font-size:17px; margin:0;}
-  .bar__count span{color:var(--g500); font-weight:600;}
   .bar__filters{display:flex; gap:8px; overflow-x:auto; scrollbar-width:none; margin:0 -16px; padding:2px 16px; width:calc(100% + 32px);}
   .bar__filters::-webkit-scrollbar{display:none;}
   @media (min-width:720px){ .bar__filters{width:auto; margin:0; padding:0; overflow:visible;} }
@@ -182,7 +180,6 @@
 
 <main class="wrap">
   <div class="bar">
-    <p class="bar__count" id="count">Loading cars&hellip;</p>
     <div class="bar__filters">
       <label class="sel"><span hidden>Body type</span><select id="fBody" aria-label="Body type"><option value="">All body types</option></select></label>
       <label class="sel"><span hidden>Price</span><select id="fPrice" aria-label="Price">
@@ -352,7 +349,6 @@
     });
     $("grid").innerHTML = list.map(tileHTML).join("");
     $("empty").hidden = list.length > 0;
-    $("count").innerHTML = cars.length + " cars in stock" + (list.length !== cars.length ? ' <span>&middot; showing ' + list.length + '</span>' : "");
   }
 
   /* ---- Detail sheet ---- */
@@ -456,7 +452,6 @@
     })
     .catch(function(){
       $("grid").innerHTML = "";
-      $("count").textContent = "Cars for sale";
       $("empty").hidden = false;
       $("empty").innerHTML = 'We couldn’t load the cars just now. See them on our <a href="used-cars.html">used cars page</a> or <a href="https://wa.me/61432520230">message us on WhatsApp</a>.';
     });
