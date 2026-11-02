@@ -407,9 +407,11 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   the page script (`HIDE`, `PHOTOS`, `EXTRA`, applied by `pageEdits()`). On 2026-11-02 Jitty asked to take the Forester,
   X-Trail, XV, 2018 Polo, 2018 Rio, 2021 Polo and Civic off `/cars` only (they stay on used-cars.html, owner's
   instruction), the Corolla uses his new photos (`images/corolla-cars/`), and the **2016 Subaru WRX** ($24,900, 98,000 km,
-  `images/wrx/`) is added here only, plus the **Audi S3 Sedan** (82,117 km), **2019 Hyundai Venue** (47,548 km) and a **grey
-  Toyota Corolla Sedan** (62,719 km), km read off the odometer photos, no price from Jitty yet so they show "Ask for
-  price" (`price: 0`; fill in price/year when he sends them). **Mazda 2: do NOT advertise** (being inspected, Jitty
+  `images/wrx/`) is added here only, plus the **2015 Audi S3 Quattro** ($26,500 + government charges, 82,117 km), the
+  **2019 Hyundai Venue** (47,548 km) and a **grey Toyota Corolla Sedan** (62,719 km). Venue and grey Corolla show "Ask for
+  price" (`price: 0`) until their prices are read from Jitty's captions. The Golf uses his new photos (`images/golf-cars/`).
+  Pending: grey **Mitsubishi Outlander** (photos + video 2 Nov 2:04 pm, details in a caption). **Jitty puts the listing
+  text in the photo captions**; the WhatsApp bridge only stores captions since the 2 Nov patch (see memory). **Mazda 2: do NOT advertise** (being inspected, Jitty
   will say when). Source photos: `~/Downloads/Autodrive downloads/Jitty 2 Nov 2026 cars/`.
   It depends on the listing classes (`car__title` + `span` for
   transmission, `car__price` first text + `small` note, `car__specs`, `car__trust`, `car__desc`, `car__slide img/video`,
@@ -426,7 +428,7 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   (item_id, item_name, price) when a car's detail opens.
 - Not in the main nav and not linked from other pages; it's the link for Jitty's Instagram. Indexable, canonical `/cars`.
 
-## 7f. Car-finding programme application — `find-my-car.html` (added 2026-10-16, LIVE on main 2026-10-16)
+## 7f. Car-finding programme application — `find-my-car.html` (added 2026-10-16, LIVE on main 2026-10-16; free-text 'who you are' question LIVE 2026-11-02)
 
 Standalone page (own inline styles + GA tag; does NOT load `styles.css`/`main.js`, so no `?v=`
 bump and no booking-modal interception). Unlisted (not in nav or sitemap) and `noindex` while

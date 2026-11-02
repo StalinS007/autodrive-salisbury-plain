@@ -273,7 +273,8 @@
   var HIDE = ["forester", "xtrail", "xv", "polo18", "rio", "polo", "civic"];
   // Replacement photos for this page only
   var PHOTOS = {
-    corolla: { dir: "images/corolla-cars/corolla-cars-", n: 11, alt: "2008 Toyota Corolla Ascent" }
+    corolla: { dir: "images/corolla-cars/corolla-cars-", n: 11, alt: "2008 Toyota Corolla Ascent" },
+    golf: { dir: "images/golf-cars/golf-cars-", n: 18, alt: "2017 Volkswagen Golf R-Line Wagon" }
   };
   function numbered(dir, n, alt){
     return Array.apply(null, Array(n)).map(function(_, i){
@@ -293,14 +294,14 @@
     photos: numbered("images/wrx/wrx-", 15, "2016 Subaru WRX"), video: "",
     wa: waText("2016 Subaru WRX ($24,900)")
   }, {
-    id: "audi-s3", order: 999, title: "Audi S3 Sedan", trans: "Auto",
-    price: 0, priceText: "Ask for price", note: "", badge: "Available",
+    id: "audi-s3", order: 999, title: "2015 Audi S3 Quattro", trans: "Auto",
+    price: 26500, priceText: "$26,500", note: "+ government charges", badge: "Available",
     km: "82,117 km", body: "Sedan",
-    specs: ["82,117 km", "Automatic", "Sedan"],
-    trust: [],
-    desc: "Grey Audi S3 sedan, automatic, with 82,117 km on the odometer. Black leather sports seats, sunroof and S3 alloys with red brake calipers. Message Jitty for the price and full details, or to book an inspection and test drive.",
-    photos: numbered("images/audi-s3/audi-s3-", 13, "Audi S3 Sedan"), video: "",
-    wa: waText("Audi S3 Sedan")
+    specs: ["82,117 km", "Automatic", "Sedan", "AWD"],
+    trust: ["Full service history", "Performance upgraded", "2.0L turbo, S tronic", "quattro all-wheel drive"],
+    desc: "Grey 2015 Audi S3 quattro sedan with only 82,117 km, a full service history and performance upgrades. 2.0L turbo petrol, S tronic automatic and quattro all-wheel drive. Black leather sports seats, sunroof, and S3 alloys with red brake calipers. Message Jitty for the full list of upgrades, or to book an inspection and test drive.",
+    photos: numbered("images/audi-s3/audi-s3-", 13, "2015 Audi S3 Quattro"), video: "",
+    wa: waText("2015 Audi S3 Quattro ($26,500)")
   }, {
     id: "venue", order: 998, title: "2019 Hyundai Venue", trans: "Auto",
     price: 0, priceText: "Ask for price", note: "", badge: "Available",
