@@ -408,9 +408,11 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   X-Trail, XV, 2018 Polo, 2018 Rio, 2021 Polo and Civic off `/cars` only (they stay on used-cars.html, owner's
   instruction), the Corolla uses his new photos (`images/corolla-cars/`), and the **2016 Subaru WRX** ($24,900, 98,000 km,
   `images/wrx/`) is added here only, plus the **2015 Audi S3 Quattro** ($26,500 + government charges, 82,117 km), the
-  **2019 Hyundai Venue** ($14,900, 47,548 km) and a **grey Toyota Corolla Sedan** ($11,900, 62,719 km); prices from the
-  owner 2 Nov (both unplated in the photos, owner said keep them up). `price: 0` shows "Ask for price". The Golf uses his new photos (`images/golf-cars/`).
-  Pending: grey **Mitsubishi Outlander** (photos + video 2 Nov 2:04 pm, details in a caption). **Jitty puts the listing
+  **2019 Hyundai Venue** ($14,900) and a **grey Toyota Corolla Sedan** ($11,900), then the **2022 Mitsubishi Outlander LS**
+  ($25,700 + govt charges). Later the same day the owner said new cars go on the main site too, so all five now live in
+  used-cars.html (§ used cars) and `EXTRA` is empty; use `EXTRA` only for a car that must be on `/cars` alone. `price: 0`
+  shows "Ask for price". The Golf uses his new photos (`images/golf-cars/`).
+  Outlander video (batch_1404 mp4) not used yet. **Jitty puts the listing
   text in the photo captions**; the WhatsApp bridge only stores captions since the 2 Nov patch (see memory). **Mazda 2: do NOT advertise** (being inspected, Jitty
   will say when). Source photos: `~/Downloads/Autodrive downloads/Jitty 2 Nov 2026 cars/`.
   It depends on the listing classes (`car__title` + `span` for
@@ -509,7 +511,7 @@ and the tracked links, from one share action. **Read `tools/cars/README.md` firs
     `<img>` (there's an HTML comment in the file showing exactly how).
   - Cars live in a **carousel** (`.stock-carousel__track`); the "Car N of M" red bar and the
     arrows count the `<article class="car">` blocks automatically, so adding one needs no other
-    change. Currently **fifteen listings, live and preview** (twelve below + C200, X-Trail, Forester added 2026-10-21): 2009 Honda Civic VTi $9,600 (with a **promo video**,
+    change. Currently **twenty listings, live and preview** (twelve below + C200, X-Trail, Forester added 2026-10-21 + five added 2026-11-02, see end of this list): 2009 Honda Civic VTi $9,600 (with a **promo video**,
     `images/promohondacivic.mp4` — keep that slide LAST), 2021 VW Polo Comfortline $17,400,
     2008 Toyota Corolla Ascent $8,900, and **2018 Kia Rio $11,900** (added 2026-09-20), and **2023 MG ZS Excite $14,600 FIRM, 13,330 km**
     (added 2026-09-24; also FIRST in the homepage `.hstock` swiper as newest stock; photo originals in
@@ -532,7 +534,13 @@ and the tracked links, from one share action. **Read `tools/cars/README.md` firs
     $16,900 (87,219 km, PPSR listed per his listing; price from his 12 Oct flyer, his 10 Oct listing said $17,900, CONFIRM),
     2015 Nissan X-Trail ST-L 7 Seater $12,900 (127,107 km from the odometer photo; price from the flyer only; flyer says PPSR
     but NOT claimed until confirmed).** Slugs `c200`, `forester`, `xtrail`; built with `tools/cars/make-listing.mjs`; photos 607×1080,
-    hero = whole car on a blurred fill. Not on the homepage swiper yet. **2016 Subaru WRX held back: no price in Jitty's listing.**
+    hero = whole car on a blurred fill. Not on the homepage swiper yet.
+    **Added 2026-11-02 (owner: new cars go on the main site too), appended at the END of the track so `/cars` shows them first:**
+    grey Toyota Corolla Sedan $11,900 (62,719 km, no year), 2019 Hyundai Venue $14,900 (47,548 km), 2015 Audi S3 Quattro
+    $26,500 + government charges (82,117 km), 2016 Subaru WRX $24,900 (98,000 km), 2022 Mitsubishi Outlander LS 7-Seater
+    $25,700 + government charges (48,605 km, ZM MY22 2WD). Slugs `corolla-grey`, `venue`, `audi-s3`, `wrx`, `outlander`;
+    photos `images/<slug>/<slug>-NN.jpg`. Venue and grey Corolla were unplated in Jitty's photos; owner said keep them up.
+    PPSR status of these five is unknown, so not claimed. Not on the homepage swiper.
     Jitty's 12 Oct flyer disagrees with the site on several cars (Tiguan $13,700/96,639 km vs site $13,600/76,639; 2013 Rio
     $8,400; Dualis listed as 2012 ST+2 7 seater 162,000 km) and omits XV, MG, 2018 Polo, 2018 Rio, 2021 Polo, Civic (possibly
     sold), and shows cars with no photos yet (2014 i20 auto $6,900, 2016 HiAce $20,900, 2008 Corolla hatch $9,900). Await owner.
