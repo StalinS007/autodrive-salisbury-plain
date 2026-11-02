@@ -408,8 +408,8 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   X-Trail, XV, 2018 Polo, 2018 Rio, 2021 Polo and Civic off `/cars` only (they stay on used-cars.html, owner's
   instruction), the Corolla uses his new photos (`images/corolla-cars/`), and the **2016 Subaru WRX** ($24,900, 98,000 km,
   `images/wrx/`) is added here only, plus the **2015 Audi S3 Quattro** ($26,500 + government charges, 82,117 km), the
-  **2019 Hyundai Venue** (47,548 km) and a **grey Toyota Corolla Sedan** (62,719 km). Venue and grey Corolla show "Ask for
-  price" (`price: 0`) until their prices are read from Jitty's captions. The Golf uses his new photos (`images/golf-cars/`).
+  **2019 Hyundai Venue** ($14,900, 47,548 km) and a **grey Toyota Corolla Sedan** ($11,900, 62,719 km); prices from the
+  owner 2 Nov (both unplated in the photos, owner said keep them up). `price: 0` shows "Ask for price". The Golf uses his new photos (`images/golf-cars/`).
   Pending: grey **Mitsubishi Outlander** (photos + video 2 Nov 2:04 pm, details in a caption). **Jitty puts the listing
   text in the photo captions**; the WhatsApp bridge only stores captions since the 2 Nov patch (see memory). **Mazda 2: do NOT advertise** (being inspected, Jitty
   will say when). Source photos: `~/Downloads/Autodrive downloads/Jitty 2 Nov 2026 cars/`.
