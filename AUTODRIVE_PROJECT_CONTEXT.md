@@ -429,7 +429,7 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   prefilled message (same link as its used-cars listing). Filters: body type (built from the specs), price band, sort
   (newest first = last listing in used-cars.html first).
 - Tapping a car opens a detail sheet: swipeable full gallery (plus the Civic video), price and price note, specs,
-  trust ticks, description, Enquire + Call. Each car has a shareable deep link: `/cars#car-<slug>` (e.g. `#car-c200`).
+  trust ticks, description, Enquire only (the Call button was removed 2026-11-03, owner: no call options on /cars). Each car has a shareable deep link: `/cars#car-<slug>` (e.g. `#car-c200`).
 - Bottom panel "Can't see the one you want?" links to a plain `find-my-car` (no UTM tags: tagged internal links restart the visit and lose the real source) and WhatsApp.
 - Self-contained: inline CSS with the locked tokens, own GA4 tag; does NOT load main.js (so the booking/date modal never
   intercepts Enquire). Events: `whatsapp_click` (link_url, car, placement=cars_page), `phone_click`, `view_item`
