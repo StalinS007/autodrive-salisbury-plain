@@ -445,16 +445,20 @@ bump and no booking-modal interception). Unlisted (not in nav or sitemap) and `n
 the programme is tested. Reached from the **first Instagram bio link** ("Find my next car"):
 `https://autodrivesalisburyplain.com.au/find-my-car?utm_source=instagram&utm_medium=bio&utm_campaign=car-finder`.
 Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
-- First page (the intro card itself) asks "Are you based in Australia?" Yes / No; No ends it.
+- **Audience (ICP, owner 2026-11-03):** skilled migrants (incl. arriving from overseas, e.g. UAE), settled migrant
+  professionals and families wanting a reliable, safety-first car done for them. Not bargain hunters, small-budget
+  students or Uber buyers. Intro sub + the "who you are" sub/example say this.
+- First page (the intro card itself) asks "are you in Australia, or moving here soon?" Yes / Moving to Australia soon / No;
+  No ends it. "Moving soon" adds Q1 "When do you land in Australia?" (Within a month / 1 to 3 / 3 to 6 months / Not sure
+  yet) and skips the buy-timing gate; the landing answer goes into the Calendly notes and the email alert.
   Then one question per screen: Adelaide or elsewhere in Australia; "Tell us who you are and
   what you need the car for" (required free-text box, sent as "About: <text>"; replaced the
   Student / Family / Other and main-use questions on 2026-11-01 when the Instagram offer
   stopped targeting students and families); name; mobile; total budget; funds ready within
   2 weeks; buying in next couple of months; what matters most.
-- Budget (Q5) options: $7k to $10k / $10k to $20k / $20k to $30k / $30k to $50k / Under $7k
-  (programme max $50k). Q5 carries a big red-bordered disclaimer at the bottom: "We cannot
+- Budget options (minimum $12k, owner 2026-11-03): $12k to $20k / $20k to $30k / $30k to $50k / $50k+ / Under $12k. Q5 carries a big red-bordered disclaimer at the bottom: "We cannot
   proceed with any purchase until a deposit or proof of funds is obtained."
-- Stops (own message, no booking): Not in Australia; Under $7k (links to used cars); funds
+- Stops (own message, no booking): Not in Australia; Under $12k (links to the quality cars page); funds
   "Not yet" ("Please get in touch with us when you do have the funds and are ready for a
   purchase."); timing "Not yet". "Elsewhere in Australia" qualifies with an interstate
   delivery note.
@@ -478,7 +482,7 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
 - **Email alert to Stalin (added 2026-11-03):** when someone qualifies, or is stopped after giving
   name + mobile, the page POSTs every answer (text/plain, no-cors) to `ALERT_URL`, a Google Apps Script
   web app (`tools/car-finder-alert.gs`, project "AutoDrive car finder alert" in **stalinsajie@gmail.com**'s
-  Apps Script, Execute as Me / Anyone). It emails stalinsajie@gmail.com: subject
+  Apps Script, Execute as Me / Anyone; deployed + tested 2026-11-03, URL set in `ALERT_URL`). It emails stalinsajie@gmail.com: subject
   "Find My Car: <name> | QUALIFIED/not qualified | <budget> | <location>", body with all answers + a wa.me
   link. `ALERT_TOKEN` must match `TOKEN` in the script; cap 30/day. Empty `ALERT_URL` = no email.
   Calendly's own host notifications still go to autodrive5109@gmail.com (not Stalin). Calendly trial ended
