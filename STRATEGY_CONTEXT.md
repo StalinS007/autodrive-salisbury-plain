@@ -92,7 +92,7 @@ Measurement stack (all owner-controlled):
 3. Website path: GBP website field already google/profile; add the GBP "Appointments" link
    to the site booking page with utm_source=google&utm_medium=profile&utm_content=appointment
    and read whatsapp_click / phone_click / generate_lead by source in GA4.
-4. WhatsApp: GBP chat via WhatsApp only works on the listed business number (reported, not
+4. WhatsApp: already set up on the profile (owner, 2026-11-03). Chat via WhatsApp only works on the listed business number (reported, not
    verified for AU); messages land in Jitty's WhatsApp, readable by Stalin if linked on his
    phone. Otherwise rely on 3.
 Jobs/revenue still need Jitty: ask for ONE number a month (cars booked) or read access to
