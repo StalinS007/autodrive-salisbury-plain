@@ -445,7 +445,7 @@ bump and no booking-modal interception). Unlisted (not in nav or sitemap) and `n
 the programme is tested. Reached from the **first Instagram bio link** ("Find my next car"):
 `https://autodrivesalisburyplain.com.au/find-my-car?utm_source=instagram&utm_medium=bio&utm_campaign=car-finder`.
 Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
-- **Intro (owner 2026-11-03, preview):** H1 "Exactly the car you want, in 30 days or less", sub "For skilled
+- **Intro (owner 2026-11-03):** H1 "Exactly the car you want, in 30 days or less", sub "For skilled
   professionals and families looking to save time and hassle." The feature tick list was removed (owner: sell the outcome, not
   features). "30 days or less" is the owner's own promise; Jitty must be able to keep it.
 - **Audience (ICP, owner 2026-11-03):** skilled migrants (incl. arriving from overseas, e.g. UAE), settled migrant
@@ -478,8 +478,8 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   Salisbury Plain", Stalin's calendar connected, Zoom location (notetaker off), Zoom display
   name "AutoDrive Salisbury Plain". A Google Calendar booking page link also works but opens
   without the answers.
-- **Calendly embedded (preview 2026-11-03, owner wanted AutoDrive branding):** when `BOOKING_URL` is Calendly, the
-  qualified screen shows a dark panel: round Jitty headshot (`images/jitty-headshot.jpg`, 320px crop of `Uncle .jpeg`)
+- **Calendly embedded (LIVE 2026-11-03, owner wanted AutoDrive branding):** when `BOOKING_URL` is Calendly, the
+  qualified screen shows a dark panel: round Jitty headshot (`images/jitty-headshot.jpg`, 320px face close-up of `Uncle .jpeg`, owner-picked 2026-11-03)
   + white logo (`images/logo-white-trim.png`, trimmed `logo-transparent.png`), then "AutoDrive Salisbury Plain /
   6 Lolands Rd... / Jitty, licensed dealer and mechanic" (owner rejected the `workshop-hoist.jpg` photo here) and the Calendly calendar inline (`widget.js`, `hide_event_type_details`,
   `hide_gdpr_banner`, `primary_color=c0392b`). Name + answers are appended to the embed URL with %20 encoding (a "+"
@@ -488,9 +488,6 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   only, never name/mobile), `car_apply_disqualified` (reason), `car_apply_qualified`
   (location, budget, funds; no segment since 2026-11-01, the free text never goes to GA), `car_apply_book_click` (method; `calendly_embed` = picked a time in the embedded calendar) + `car_apply_booked` (budget; embedded booking confirmed) + `generate_lead`
   (lead_type=car_finder).
-- **'Who you are' question aimed at the ideal client (2026-11-03, owner):** sub line "This is for busy people who want
-  the whole thing done for them..." and example "I work long hours and don't have time to deal with sellers..."
-  (was a shift-work nurse). Goal: the wrong-fit people click away.
 - **Email alert to Stalin (added 2026-11-03):** when someone qualifies, or is stopped after giving
   name + mobile, the page POSTs every answer (text/plain, no-cors) to `ALERT_URL`, a Google Apps Script
   web app (`tools/car-finder-alert.gs`, project "AutoDrive car finder alert" in **stalinsajie@gmail.com**'s

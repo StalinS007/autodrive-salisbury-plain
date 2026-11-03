@@ -86,7 +86,7 @@ channel gets its own clean row in Traffic acquisition:
   `https://autodrivesalisburyplain.com.au/find-my-car?utm_source=instagram&utm_medium=bio&utm_campaign=car-finder`
   Funnel events on that page: car_apply_start (lead_source param; `source` until 3 Nov 2026), car_apply_step, car_apply_disqualified
   (reason), car_apply_qualified, car_apply_book_click, generate_lead (lead_type=car_finder).
-  From the embedded Calendly (preview 2026-11-03, live once promoted): car_apply_book_click method=calendly_embed fires when a
+  From the embedded Calendly (live 2026-11-03): car_apply_book_click method=calendly_embed fires when a
   time is picked; car_apply_booked + generate_lead fire only on a CONFIRMED booking (before: generate_lead fired on the button tap).
 - `/cars` stock page (Marketplace-style grid, added 2026-11-02), the PRIMARY offer:
   Facebook Page bio/link: `https://autodrivesalisburyplain.com.au/cars?utm_source=facebook&utm_medium=social&utm_campaign=cars`
