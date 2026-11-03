@@ -211,7 +211,7 @@
       <p>Tell us your budget and what you need. We'll find it, inspect it in our workshop and get it ready for you.</p>
     </div>
     <div class="more__btns">
-      <a class="btn btn--red" href="find-my-car?utm_source=website&amp;utm_medium=cars_page&amp;utm_campaign=car-finder">Find my car</a>
+      <a class="btn btn--red" href="find-my-car">Find my car</a>
       <a class="btn btn--ghost" href="https://wa.me/61432520230?text=Hi%20Jitty%2C%20I%27m%20looking%20for%20a%20car.%20Can%20you%20help%3F"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>Message us</a>
     </div>
   </section>
@@ -382,7 +382,7 @@
     requestAnimationFrame(function(){ s.classList.add("is-open"); });
     $("sClose").focus({ preventScroll: true });
     if (!fromHash){ history.pushState({ car: id }, "", "#car-" + id); pushed = true; }
-    track("view_item", { item_id: c.id, item_name: c.title, price: c.price, currency: "AUD", source: "cars_page" });
+    track("view_item", { item_id: c.id, item_name: c.title, price: c.price, currency: "AUD", placement: "cars_page" });
   }
   function closeSheet(){
     var s = $("sheet");
@@ -428,8 +428,8 @@
     var a = e.target.closest("a");
     if (!a) return;
     var href = a.getAttribute("href") || "";
-    if (/wa\.me/.test(href)) track("whatsapp_click", { link_url: href, car: a.getAttribute("data-car") || "", source: "cars_page" });
-    else if (href.indexOf("tel:") === 0) track("phone_click", { link_url: href, source: "cars_page" });
+    if (/wa\.me/.test(href)) track("whatsapp_click", { link_url: href, car: a.getAttribute("data-car") || "", placement: "cars_page" });
+    else if (href.indexOf("tel:") === 0) track("phone_click", { link_url: href, placement: "cars_page" });
   });
   ["fBody", "fPrice", "fSort"].forEach(function(id){ $(id).addEventListener("change", render); });
   $("reset").addEventListener("click", function(e){ e.preventDefault(); $("fBody").value = ""; $("fPrice").value = ""; render(); });
