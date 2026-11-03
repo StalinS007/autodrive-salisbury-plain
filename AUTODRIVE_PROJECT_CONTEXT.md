@@ -445,16 +445,26 @@ bump and no booking-modal interception). Unlisted (not in nav or sitemap) and `n
 the programme is tested. Reached from the **first Instagram bio link** ("Find my next car"):
 `https://autodrivesalisburyplain.com.au/find-my-car?utm_source=instagram&utm_medium=bio&utm_campaign=car-finder`.
 Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
-- First page (the intro card itself) asks "Are you based in Australia?" Yes / No; No ends it.
+- **Intro (owner 2026-11-03):** H1 "Exactly the car you want, in 30 days or less", sub "For skilled
+  professionals and families looking to save time and hassle." The feature tick list was removed (owner: sell the outcome, not
+  features). "30 days or less" is the owner's own promise; Jitty must be able to keep it.
+- **Audience (ICP, owner 2026-11-03):** skilled migrants (incl. arriving from overseas, e.g. UAE), settled migrant
+  professionals and families wanting a reliable, safety-first car done for them. Not bargain hunters, small-budget
+  students or Uber buyers. Customer copy says "skilled professionals and families" (owner: "skilled", never the
+  word "migrant" on the page); intro sub + the "who you are" sub line carry it. The answer box has NO example text (owner, 2026-11-03).
+- First page (the intro card itself) asks "Are you based in Australia?" Yes / No; No ends it. A "Moving to Australia
+  soon" path was built and pulled on 2026-11-03 (owner: not yet; no "we can start before you land" wording either).
   Then one question per screen: Adelaide or elsewhere in Australia; "Tell us who you are and
   what you need the car for" (required free-text box, sent as "About: <text>"; replaced the
   Student / Family / Other and main-use questions on 2026-11-01 when the Instagram offer
   stopped targeting students and families); name; mobile; total budget; funds ready within
-  2 weeks; buying in next couple of months; what matters most.
-- Budget (Q5) options: $7k to $10k / $10k to $20k / $20k to $30k / $30k to $50k / Under $7k
-  (programme max $50k). Q5 carries a big red-bordered disclaimer at the bottom: "We cannot
-  proceed with any purchase until a deposit or proof of funds is obtained."
-- Stops (own message, no booking): Not in Australia; Under $7k (links to used cars); funds
+  30 days (was 2 weeks until 2026-11-03); buying in next couple of months; what matters most (Reliability / Low running costs /
+  Safety / Size (SUV, sedan, hatch, etc.) / Other; "Size" replaced "Space" 2026-11-03).
+- Budget options (minimum $12k, owner 2026-11-03): $12k to $20k / $20k to $30k / $30k to $50k / $50k+ (no "Under" option since 2026-11-03; the
+  question sub says "This service starts from $12k."). The funds question
+  carries a small grey note "Note: proof of funds may be necessary." (owner 2026-11-03; replaced the big red
+  "Important" disclaimer that sat on the budget question).
+- Stops (own message, no booking): Not in Australia; funds
   "Not yet" ("Please get in touch with us when you do have the funds and are ready for a
   purchase."); timing "Not yet". "Elsewhere in Australia" qualifies with an interstate
   delivery note.
@@ -468,14 +478,20 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   Salisbury Plain", Stalin's calendar connected, Zoom location (notetaker off), Zoom display
   name "AutoDrive Salisbury Plain". A Google Calendar booking page link also works but opens
   without the answers.
+- **Calendly embedded (LIVE 2026-11-03, owner wanted AutoDrive branding):** when `BOOKING_URL` is Calendly, the
+  qualified screen shows a dark panel: round Jitty headshot (`images/jitty-headshot.jpg`, 320px face close-up of `Uncle .jpeg`, owner-picked 2026-11-03)
+  + white logo (`images/logo-white-trim.png`, trimmed `logo-transparent.png`), then "AutoDrive Salisbury Plain /
+  6 Lolands Rd... / Jitty, licensed dealer and mechanic" (owner rejected the `workshop-hoist.jpg` photo here) and the Calendly calendar inline (`widget.js`, `hide_event_type_details`,
+  `hide_gdpr_banner`, `primary_color=c0392b`). Name + answers are appended to the embed URL with %20 encoding (a "+"
+  gets re-encoded by the widget). Fallback link "Open the booking page" under it.
 - GA4 events: `car_apply_start` (lead_source; was `source` until 2026-11-03), `car_apply_step` (step, answer; one-tap answers
   only, never name/mobile), `car_apply_disqualified` (reason), `car_apply_qualified`
-  (location, budget, funds; no segment since 2026-11-01, the free text never goes to GA), `car_apply_book_click` (method) + `generate_lead`
+  (location, budget, funds; no segment since 2026-11-01, the free text never goes to GA), `car_apply_book_click` (method; `calendly_embed` = picked a time in the embedded calendar) + `car_apply_booked` (budget; embedded booking confirmed) + `generate_lead`
   (lead_type=car_finder).
 - **Email alert to Stalin (added 2026-11-03):** when someone qualifies, or is stopped after giving
   name + mobile, the page POSTs every answer (text/plain, no-cors) to `ALERT_URL`, a Google Apps Script
   web app (`tools/car-finder-alert.gs`, project "AutoDrive car finder alert" in **stalinsajie@gmail.com**'s
-  Apps Script, Execute as Me / Anyone). It emails stalinsajie@gmail.com: subject
+  Apps Script, Execute as Me / Anyone; deployed + tested 2026-11-03, URL set in `ALERT_URL`). It emails stalinsajie@gmail.com: subject
   "Find My Car: <name> | QUALIFIED/not qualified | <budget> | <location>", body with all answers + a wa.me
   link. `ALERT_TOKEN` must match `TOKEN` in the script; cap 30/day. Empty `ALERT_URL` = no email.
   Calendly's own host notifications still go to autodrive5109@gmail.com (not Stalin). Calendly trial ended
