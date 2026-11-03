@@ -472,6 +472,9 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   only, never name/mobile), `car_apply_disqualified` (reason), `car_apply_qualified`
   (location, budget, funds; no segment since 2026-11-01, the free text never goes to GA), `car_apply_book_click` (method) + `generate_lead`
   (lead_type=car_finder).
+- **'Who you are' question aimed at the ideal client (2026-11-03, owner):** sub line "This is for busy people who want
+  the whole thing done for them..." and example "I work long hours and don't have time to deal with sellers..."
+  (was a shift-work nurse). Goal: the wrong-fit people click away.
 - **Email alert to Stalin (added 2026-11-03):** when someone qualifies, or is stopped after giving
   name + mobile, the page POSTs every answer (text/plain, no-cors) to `ALERT_URL`, a Google Apps Script
   web app (`tools/car-finder-alert.gs`, project "AutoDrive car finder alert" in **stalinsajie@gmail.com**'s
