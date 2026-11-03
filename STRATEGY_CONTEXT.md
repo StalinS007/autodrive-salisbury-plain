@@ -75,6 +75,30 @@ state" and "Decision log" sections updated as things move.
 4. **Retention/repeat:** service reminders, post-sale discounted repairs as a hook,
    turning the 150+ repeat clients into reviewers and referrers.
 
+## GBP attribution without relying on Jitty (owner, 2026-11-03)
+Problem: calls from the Google profile ring Jitty's phone and he does not report back, so
+GBP optimisation cannot be proven. Rule: every channel must report to Stalin by itself.
+Measurement stack (all owner-controlled):
+1. GBP Performance (Stalin has access): calls, messages, website clicks, directions, views,
+   search queries. Use the last 3 months as the baseline; log weekly in a sheet; date every
+   change made to the profile so before/after is readable. Caveat: "calls" = call-button
+   taps, 2 to 3 day lag.
+2. Tracking number (the key piece): a cheap AU virtual number (~$10/month) that forwards to
+   0432 520 230, set as the profile's PRIMARY phone; real number as ADDITIONAL phone (keeps
+   name/address/phone consistent). Its dashboard logs every call: time, duration, caller,
+   answered/missed. Calls over 60s = real enquiries. Never use that number anywhere else.
+   Bonus: missed calls visible to Stalin for text-back. Same number reused later for Google
+   Ads call assets if preferred over Google's forwarding number.
+3. Website path: GBP website field already google/profile; add the GBP "Appointments" link
+   to the site booking page with utm_source=google&utm_medium=profile&utm_content=appointment
+   and read whatsapp_click / phone_click / generate_lead by source in GA4.
+4. WhatsApp: GBP chat via WhatsApp only works on the listed business number (reported, not
+   verified for AU); messages land in Jitty's WhatsApp, readable by Stalin if linked on his
+   phone. Otherwise rely on 3.
+Jobs/revenue still need Jitty: ask for ONE number a month (cars booked) or read access to
+his booking calendar; everything up to the enquiry is measurable without him.
+Order: tracking number + sheet first, then make profile changes in dated batches.
+
 ## Google Search ads engine (owner decision 2026-10-31: go aggressively, methodical)
 Trigger: Network Digital case study (Alpen Plumbing & Gas, Adelaide; agency in Brisbane).
 Mechanics only, all claims unaudited: Google Search ads only, no social, no offers, no new
