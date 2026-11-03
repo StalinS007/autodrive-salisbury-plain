@@ -60,7 +60,7 @@ function adB64u(o) {
       { label: "General car service", base: "Hi Jitty, I would like to book my car in for a service.", ctx: "service" },
       { label: "Issues with my car", base: "Hi Jitty, my car is having some issues and I would like to get it checked.", ctx: "problem" },
       { label: "Car detailing", base: "Hi Jitty, I would like to book my car in for car detailing.", ctx: "detail" },
-      { label: "Used car enquiry", base: "Hi Jitty, I am interested in looking at your used cars.", ctx: "cars" },
+      { label: "Quality car enquiry", base: "Hi Jitty, I am interested in looking at your quality cars.", ctx: "cars" },
       { label: "Paint &amp; panel repair", base: "Hi Jitty, I would like to book my car in for paint and panel repair.", ctx: "paint" }
     ];
     var today = new Date(); today.setHours(0, 0, 0, 0);
@@ -293,8 +293,8 @@ function adB64u(o) {
       if (forced && CTX[forced]) {
         mode = "date"; curCtx = CTX[forced];
       } else {
-        mode = /detailing|used cars|\$129|for a service|paint and panel/i.test(txt) ? "date" : "service";
-        curCtx = /used cars/i.test(txt) ? CTX.cars : (/detailing/i.test(txt) ? CTX.detail : (/paint and panel/i.test(txt) ? CTX.paint : CTX.service));
+        mode = /detailing|used cars|quality cars|\$129|for a service|paint and panel/i.test(txt) ? "date" : "service";
+        curCtx = /used cars|quality cars/i.test(txt) ? CTX.cars : (/detailing/i.test(txt) ? CTX.detail : (/paint and panel/i.test(txt) ? CTX.paint : CTX.service));
       }
       if (!modal) build();
       resetDate();
