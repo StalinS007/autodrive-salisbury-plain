@@ -47,7 +47,7 @@
   .brand{border-left:4px solid var(--red); padding:4px 0 4px 12px; margin:16px 0 0; font-size:14px; line-height:1.4;}
   .brand b{display:block; font-size:15px;}
   .brand span{display:block; color:var(--grey);}
-  .cal{min-width:280px; height:700px; margin:14px -8px 0; border-radius:12px; overflow:hidden; background:#fafafa;}
+  .cal{min-width:280px; height:700px; margin:14px -8px 0; border-radius:12px; overflow:hidden; background:#fff;}
   .hint a{color:var(--ink);}
   .err{font-size:14px; color:#8a1f1f; margin:8px 0 0;}
   .note{border-radius:10px; padding:13px 15px; margin-top:14px; font-size:15px; background:#eef4fb; border:1px solid #d3e2f3; color:#1f3d5c;}
@@ -291,14 +291,14 @@
   // Inline Calendly: picking a time counts as the book click, a confirmed booking as the lead.
   var calSeen = {};
   function loadCalendly(link){
-    // Name + answers go in as prefill: in the URL the widget double-encodes them ("Test+Person").
+    // Name + answers are appended with %20 spaces: the widget re-encodes a "+" literally ("Test+Person").
     var u = new URL(link), a1 = u.searchParams.get("a1") || "";
     u.searchParams.delete("name"); u.searchParams.delete("a1");
     u.searchParams.set("hide_event_type_details", "1");
     u.searchParams.set("hide_gdpr_banner", "1");
     u.searchParams.set("primary_color", "c0392b");
-    var go = function(){ window.Calendly.initInlineWidget({ url: u.toString(), parentElement: $("cal"),
-      prefill: { name: answers.name, customAnswers: { a1: a1 } } }); };
+    var url = u.toString() + "&name=" + encodeURIComponent(answers.name) + "&a1=" + encodeURIComponent(a1);
+    var go = function(){ window.Calendly.initInlineWidget({ url: url, parentElement: $("cal") }); };
     if (window.Calendly) return go();
     var sc = document.createElement("script");
     sc.src = "https://assets.calendly.com/assets/external/widget.js";
