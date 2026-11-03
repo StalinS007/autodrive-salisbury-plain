@@ -76,13 +76,11 @@
       <li>We negotiate the price for you</li>
       <li>Full service and detail before handover</li>
       <li>Delivery included</li>
-      <li>Moving to Australia? We can start before you land</li>
     </ul>
     <span class="tag">Limited spots each month</span>
-    <h2 style="margin-top:20px">Check your eligibility: are you in Australia, or moving here soon?</h2>
+    <h2 style="margin-top:20px">Check your eligibility: are you based in Australia?</h2>
     <div class="opts">
       <button class="opt" id="ausYes" type="button">Yes, I'm in Australia</button>
-      <button class="opt" id="ausSoon" type="button">Moving to Australia soon</button>
       <button class="opt" id="ausNo" type="button">No</button>
     </div>
     <p class="hint">Takes under a minute. Most answers are one tap.</p>
@@ -119,13 +117,11 @@
   var ALERT_URL = "https://script.google.com/macros/s/AKfycbyi59OWP3JmG8kkcP8NTnY43CtMJU1BXX1RMByJ3f_vbACxki3rBnOmqRBhyBZzihjvHA/exec";
   var ALERT_TOKEN = "ad-find-2026";
 
-  // People moving here get the "when do you land" question first and skip the buy-timing gate.
-  var ARRIVAL = { id:"arrival", q:"When do you land in Australia?", opts:["Within a month","1 to 3 months","3 to 6 months","Not sure yet"] };
-  var BASE_STEPS = [
+  var STEPS = [
     { id:"location", q:"Where in Australia?", opts:["Adelaide","Elsewhere in Australia"] },
     { id:"about", q:"Tell us who you are and what you need the car for", type:"textarea",
       sub:"Built for skilled professionals and families who want a reliable, safety-first car without the hassle. We find, inspect, negotiate and deliver.",
-      placeholder:"e.g. Engineer, moving from Dubai with my family. Need a safe, reliable SUV and want it all handled for us.", autocomplete:"off" },
+      placeholder:"e.g. Engineer, moved here from Dubai with my family. Need a safe, reliable SUV and want it all handled for us.", autocomplete:"off" },
     { id:"name", q:"Your full name", type:"text", placeholder:"First and last name", autocomplete:"name" },
     { id:"mobile", q:"Your mobile number", sub:"We'll contact you on this number.", type:"tel", placeholder:"04xx xxx xxx", autocomplete:"tel" },
     { id:"budget", q:"Total budget for everything", sub:"This service starts from $12k.", disclaimer:true,
@@ -145,7 +141,6 @@
 
   var answers = {};
   var i = 0;
-  var STEPS = BASE_STEPS;
   var $ = function(id){ return document.getElementById(id); };
 
   // Lead source: the page's own UTM tags (e.g. the Instagram bio link) travel with the application.
@@ -246,7 +241,6 @@
     alerted[outcome + reason] = true;
     var d = { token: ALERT_TOKEN, outcome: outcome, reason: reason || "", source: sourceText };
     ["name","mobile","location","about","budget","funds","timing","priority"].forEach(function(k){ if (answers[k]) d[k] = answers[k]; });
-    if (answers.arrival) d.location = (answers.location || "") + " (moving to Australia, landing: " + answers.arrival + ")";
     try {
       fetch(ALERT_URL, { method: "POST", mode: "no-cors", keepalive: true,
         headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(d) });
@@ -269,12 +263,10 @@
 
   function summary(){
     return [
-      "About: " + answers.about.replace(/\s+/g, " "), answers.location,
-      answers.arrival ? "Moving to Australia, landing: " + answers.arrival : "",
-      "Budget " + answers.budget, answers.funds,
-      answers.timing ? "Buying in next couple of months: " + answers.timing : "",
+      "About: " + answers.about.replace(/\s+/g, " "), answers.location, "Budget " + answers.budget, answers.funds,
+      "Buying in next couple of months: " + answers.timing,
       "Matters most: " + answers.priority, "Source: " + sourceText
-    ].filter(Boolean).join(" | ");
+    ].join(" | ");
   }
 
   function intlMobile(m){
@@ -324,14 +316,7 @@
   }
 
   $("ausYes").addEventListener("click", function(){
-    answers.australia = "Yes"; delete answers.arrival;
-    STEPS = BASE_STEPS;
-    track("car_apply_start", { lead_source: sourceText });
-    i = 0; show("quiz"); render();
-  });
-  $("ausSoon").addEventListener("click", function(){
-    answers.australia = "Moving soon"; delete answers.timing;
-    STEPS = [ARRIVAL].concat(BASE_STEPS.filter(function(s){ return s.id !== "timing"; }));
+    answers.australia = "Yes";
     track("car_apply_start", { lead_source: sourceText });
     i = 0; show("quiz"); render();
   });
