@@ -122,7 +122,7 @@
     { id:"name", q:"Your full name", type:"text", placeholder:"First and last name", autocomplete:"name" },
     { id:"mobile", q:"Your mobile number", sub:"We'll contact you on this number.", type:"tel", placeholder:"04xx xxx xxx", autocomplete:"tel" },
     { id:"budget", q:"Total budget for everything", sub:"This service starts from $12k.",
-      opts:["$12k to $20k","$20k to $30k","$30k to $50k","$50k+","Under $12k"], stop:{ "Under $12k":"budget" } },
+      opts:["$12k to $20k","$20k to $30k","$30k to $50k","$50k+"] },
     { id:"funds", q:"Do you have the funds ready to buy within 30 days?", note:"Note: proof of funds may be necessary.",
       opts:["Yes, cash/savings ready","Yes, finance approved","Not yet"], stop:{ "Not yet":"funds" } },
     { id:"timing", q:"I'm looking to buy within the next couple of months", opts:["Yes","Not yet"], stop:{ "Not yet":"timing" } },
@@ -131,7 +131,6 @@
 
   var ENDINGS = {
     outside: { h:"Sorry, we can't help this time", p:"We can only help buyers who are based in Australia." },
-    budget:  { h:"Thanks for checking", p:"This service starts from $12k, so it isn't the right fit right now. Have a look at the quality cars we have in stock.", link:{ href:"used-cars.html", text:"See our quality cars" } },
     funds:   { h:"Thanks for checking", p:"Please get in touch with us when you do have the funds and are ready for a purchase." },
     timing:  { h:"Thanks for checking", p:"Please get in touch with us when you're ready to buy." }
   };
