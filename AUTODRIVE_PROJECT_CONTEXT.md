@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-11-02**.
+touching the site. Last verified against the live code: **2026-11-03**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -430,10 +430,12 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   (newest first = last listing in used-cars.html first).
 - Tapping a car opens a detail sheet: swipeable full gallery (plus the Civic video), price and price note, specs,
   trust ticks, description, Enquire + Call. Each car has a shareable deep link: `/cars#car-<slug>` (e.g. `#car-c200`).
-- Bottom panel "Can't see the one you want?" links to `find-my-car` (utm_medium=cars_page) and WhatsApp.
+- Bottom panel "Can't see the one you want?" links to a plain `find-my-car` (no UTM tags: tagged internal links restart the visit and lose the real source) and WhatsApp.
 - Self-contained: inline CSS with the locked tokens, own GA4 tag; does NOT load main.js (so the booking/date modal never
-  intercepts Enquire). Events: `whatsapp_click` (link_url, car, source=cars_page), `phone_click`, `view_item`
-  (item_id, item_name, price) when a car's detail opens.
+  intercepts Enquire). Events: `whatsapp_click` (link_url, car, placement=cars_page), `phone_click`, `view_item`
+  (item_id, item_name, price) when a car's detail opens. Never name an event param `source`/`medium`/`campaign`:
+  GA4 treats them as traffic source and overwrites the visit's real source (fixed 2026-11-03; before that /cars visits
+  showed as `cars_page / (not set)`).
 - Not in the main nav and not linked from other pages; it's the link for Jitty's Instagram. Indexable, canonical `/cars`.
 
 ## 7f. Car-finding programme application — `find-my-car.html` (added 2026-10-16, LIVE on main 2026-10-16; free-text 'who you are' question LIVE 2026-11-02)
@@ -466,7 +468,7 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   Salisbury Plain", Stalin's calendar connected, Zoom location (notetaker off), Zoom display
   name "AutoDrive Salisbury Plain". A Google Calendar booking page link also works but opens
   without the answers.
-- GA4 events: `car_apply_start` (source), `car_apply_step` (step, answer; one-tap answers
+- GA4 events: `car_apply_start` (lead_source; was `source` until 2026-11-03), `car_apply_step` (step, answer; one-tap answers
   only, never name/mobile), `car_apply_disqualified` (reason), `car_apply_qualified`
   (location, budget, funds; no segment since 2026-11-01, the free text never goes to GA), `car_apply_book_click` (method) + `generate_lead`
   (lead_type=car_finder).
