@@ -455,9 +455,10 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   what you need the car for" (required free-text box, sent as "About: <text>"; replaced the
   Student / Family / Other and main-use questions on 2026-11-01 when the Instagram offer
   stopped targeting students and families); name; mobile; total budget; funds ready within
-  2 weeks; buying in next couple of months; what matters most.
-- Budget options (minimum $12k, owner 2026-11-03): $12k to $20k / $20k to $30k / $30k to $50k / $50k+ / Under $12k. Q5 carries a big red-bordered disclaimer at the bottom: "We cannot
-  proceed with any purchase until a deposit or proof of funds is obtained."
+  30 days (was 2 weeks until 2026-11-03); buying in next couple of months; what matters most.
+- Budget options (minimum $12k, owner 2026-11-03): $12k to $20k / $20k to $30k / $30k to $50k / $50k+ / Under $12k. The funds question
+  carries a small grey note "Note: proof of funds may be necessary." (owner 2026-11-03; replaced the big red
+  "Important" disclaimer that sat on the budget question).
 - Stops (own message, no booking): Not in Australia; Under $12k (links to the quality cars page); funds
   "Not yet" ("Please get in touch with us when you do have the funds and are ready for a
   purchase."); timing "Not yet". "Elsewhere in Australia" qualifies with an interstate
