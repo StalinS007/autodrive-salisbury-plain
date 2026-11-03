@@ -448,7 +448,7 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
 - **Audience (ICP, owner 2026-11-03):** skilled migrants (incl. arriving from overseas, e.g. UAE), settled migrant
   professionals and families wanting a reliable, safety-first car done for them. Not bargain hunters, small-budget
   students or Uber buyers. Customer copy says "skilled professionals and families" (owner: "skilled", never the
-  word "migrant" on the page); intro sub + the "who you are" sub/example carry it.
+  word "migrant" on the page); intro sub + the "who you are" sub line carry it. The answer box has NO example text (owner, 2026-11-03).
 - First page (the intro card itself) asks "Are you based in Australia?" Yes / No; No ends it. A "Moving to Australia
   soon" path was built and pulled on 2026-11-03 (owner: not yet; no "we can start before you land" wording either).
   Then one question per screen: Adelaide or elsewhere in Australia; "Tell us who you are and
