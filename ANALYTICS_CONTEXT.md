@@ -79,6 +79,10 @@ channel gets its own clean row in Traffic acquisition:
   lands on that car, e.g. `/used-cars.html?utm_source=instagram&utm_medium=story&utm_campaign=polo-2021#car-polo`.
   Slugs in use: civic-2009, polo-2021, corolla-2008, rio-2018, mgzs-2023, polo-2018, golf-2017,
   tiguan-2015, rio-2013, i20-2015, xv-2012, dualis-2013. Shows in GA as `instagram / story`.
+- Meta auto reply (Business Suite Inbox > Automations > "Auto reply", ON for Messenger AND Instagram since 2026-11-03;
+  Meta allows only ONE auto reply, so both apps share one message). Links: `/cars?utm_source=meta&utm_medium=dm` and
+  `/?utm_source=meta&utm_medium=dm`. Shows in GA as `meta / dm` = someone tapped a link in the first-message auto reply
+  (no Facebook vs Instagram split possible). Sent only on a person's FIRST message to the Page/account.
 - WhatsApp/SMS shares by Jitty (OPTIONAL, lowest priority — only useful if Jitty saves it
   as a canned message; makes word-of-mouth forwards visible instead of landing in Direct):
   `https://autodrivesalisburyplain.com.au/?utm_source=whatsapp&utm_medium=share`
