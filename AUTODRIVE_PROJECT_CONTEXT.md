@@ -447,7 +447,8 @@ the programme is tested. Reached from the **first Instagram bio link** ("Find my
 Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
 - **Audience (ICP, owner 2026-11-03):** skilled migrants (incl. arriving from overseas, e.g. UAE), settled migrant
   professionals and families wanting a reliable, safety-first car done for them. Not bargain hunters, small-budget
-  students or Uber buyers. Intro sub + the "who you are" sub/example say this.
+  students or Uber buyers. Customer copy says "skilled professionals and families" (owner: "skilled", never the
+  word "migrant" on the page); intro sub + the "who you are" sub/example carry it.
 - First page (the intro card itself) asks "are you in Australia, or moving here soon?" Yes / Moving to Australia soon / No;
   No ends it. "Moving soon" adds Q1 "When do you land in Australia?" (Within a month / 1 to 3 / 3 to 6 months / Not sure
   yet) and skips the buy-timing gate; the landing answer goes into the Calendly notes and the email alert.
