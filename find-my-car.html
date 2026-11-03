@@ -44,9 +44,12 @@
   .btn--ghost{background:#fff; color:var(--ink); border-color:#cfcfcf;}
   .back{background:none; border:0; font:inherit; font-size:14px; color:var(--grey); cursor:pointer; padding:10px 0 0; text-decoration:underline;}
   .hint{font-size:13px; color:var(--grey); margin:10px 0 0;}
-  .brand{border-left:4px solid var(--red); padding:4px 0 4px 12px; margin:16px 0 0; font-size:14px; line-height:1.4;}
+  .brand{background:var(--ink); color:#fff; border-radius:14px; padding:16px; margin:16px 0 0; font-size:14px; line-height:1.4;}
+  .brand .row{display:flex; align-items:center; gap:14px; margin:0 0 12px;}
+  .brand .face{width:76px; height:76px; border-radius:50%; object-fit:cover; border:3px solid var(--red); flex:none;}
+  .brand .logo{width:140px; max-width:45%; height:auto;}
   .brand b{display:block; font-size:15px;}
-  .brand span{display:block; color:var(--grey);}
+  .brand span{display:block; color:#c9c9c9;}
   .cal{min-width:280px; height:700px; margin:14px -8px 0; border-radius:12px; overflow:hidden; background:#fff;}
   .hint a{color:var(--ink);}
   .err{font-size:14px; color:#8a1f1f; margin:8px 0 0;}
@@ -320,8 +323,10 @@
     var link = bookingLink();
     var btn, embed = link && link.indexOf("calendly.com") >= 0;
     if (embed){
-      // Calendly sits inside our page (AutoDrive name + address above it); the plain link is the fallback.
-      btn = "<div class=\"brand\"><b>AutoDrive Salisbury Plain</b><span>6 Lolands Rd, Salisbury Plain SA 5109</span><span>Licensed dealer and mechanic</span></div>" +
+      // Calendly sits inside our page (dark AutoDrive panel above it: Jitty photo, logo, address); the plain link is the fallback.
+      btn = "<div class=\"brand\"><div class=\"row\"><img class=\"face\" src=\"images/jitty-headshot.jpg\" alt=\"Jitty, AutoDrive's licensed dealer and mechanic\">" +
+            "<img class=\"logo\" src=\"images/logo-white-trim.png\" alt=\"AutoDrive Salisbury Plain\"></div>" +
+            "<b>AutoDrive Salisbury Plain</b><span>6 Lolands Rd, Salisbury Plain SA 5109</span><span>Jitty, licensed dealer and mechanic</span></div>" +
             "<div class=\"cal\" id=\"cal\"></div>" +
             "<p class=\"hint\">It's a quick 15 minute Zoom call, and the link comes in your confirmation email. Calendar not showing? " +
             "<a id=\"bookBtn\" href=\"" + esc(link) + "\" target=\"_blank\" rel=\"noopener\">Open the booking page</a></p>";

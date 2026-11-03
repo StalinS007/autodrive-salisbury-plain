@@ -479,8 +479,9 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   name "AutoDrive Salisbury Plain". A Google Calendar booking page link also works but opens
   without the answers.
 - **Calendly embedded (preview 2026-11-03, owner wanted AutoDrive branding):** when `BOOKING_URL` is Calendly, the
-  qualified screen shows "AutoDrive Salisbury Plain / 6 Lolands Rd... / Licensed dealer and mechanic" (red left bar, NO
-  photo: owner rejected the workshop photo) and the Calendly calendar inline (`widget.js`, `hide_event_type_details`,
+  qualified screen shows a dark panel: round Jitty headshot (`images/jitty-headshot.jpg`, 320px crop of `Uncle .jpeg`)
+  + white logo (`images/logo-white-trim.png`, trimmed `logo-transparent.png`), then "AutoDrive Salisbury Plain /
+  6 Lolands Rd... / Jitty, licensed dealer and mechanic" (owner rejected the `workshop-hoist.jpg` photo here) and the Calendly calendar inline (`widget.js`, `hide_event_type_details`,
   `hide_gdpr_banner`, `primary_color=c0392b`). Name + answers are appended to the embed URL with %20 encoding (a "+"
   gets re-encoded by the widget). Fallback link "Open the booking page" under it.
 - GA4 events: `car_apply_start` (lead_source; was `source` until 2026-11-03), `car_apply_step` (step, answer; one-tap answers
