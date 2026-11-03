@@ -472,6 +472,14 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   only, never name/mobile), `car_apply_disqualified` (reason), `car_apply_qualified`
   (location, budget, funds; no segment since 2026-11-01, the free text never goes to GA), `car_apply_book_click` (method) + `generate_lead`
   (lead_type=car_finder).
+- **Email alert to Stalin (added 2026-11-03):** when someone qualifies, or is stopped after giving
+  name + mobile, the page POSTs every answer (text/plain, no-cors) to `ALERT_URL`, a Google Apps Script
+  web app (`tools/car-finder-alert.gs`, project "AutoDrive car finder alert" in **stalinsajie@gmail.com**'s
+  Apps Script, Execute as Me / Anyone). It emails stalinsajie@gmail.com: subject
+  "Find My Car: <name> | QUALIFIED/not qualified | <budget> | <location>", body with all answers + a wa.me
+  link. `ALERT_TOKEN` must match `TOKEN` in the script; cap 30/day. Empty `ALERT_URL` = no email.
+  Calendly's own host notifications still go to autodrive5109@gmail.com (not Stalin). Calendly trial ended
+  2026-11-03 → free plan; the booking page and prefilled notes question still work (checked signed out).
 - Still open: Jitty's 3 answers (on board 30 to 60 days; Australia-wide delivery or Adelaide
   only; "keys in 60 days" promise). The interstate delivery note assumes Australia-wide.
 
@@ -483,6 +491,9 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   `data-endpoint="...formspree..."` attribute on the form that the JS ignores — safe to delete;
   do NOT wire up Formspree.
 - **Prices on the site:** the **service tiers** (Basic $149 / Standard $229 / Logbook Servicing $329, see §7) and **used-car listings**. Everything else (detailing, individual mechanical services) is enquire-for-a-quote (the old $129/$299/$699 detailing tiers were removed).
+- **Naming (2026-11-03, owner):** customer-facing copy says **"Quality Cars" / "quality cars for sale"**, never
+  "used cars" (nav, footers, headings, meta, schema, WhatsApp prefills, contact option "Quality Car Enquiry").
+  The URL stays `/used-cars` (bio links + Google index); main.js matches `used cars|quality cars` for the cars context.
 - **Used-cars listings** (`used-cars.html`, `#stock` section, added 2026-07-22): a real
   mobile-first listing grid. Each car = an `<article class="car">` with photo/placeholder,
   status badge, price, spec chips, green trust chips, and a **prefilled WhatsApp "Enquire"

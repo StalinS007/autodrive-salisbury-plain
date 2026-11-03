@@ -112,6 +112,10 @@
   // get a WhatsApp button with their answers instead.
   var BOOKING_URL = "https://calendly.com/autodrive5109/30min";
   var WHATSAPP = "61432520230";
+  // Email alert to Stalin when someone finishes (tools/car-finder-alert.gs, Apps Script /exec URL).
+  // Empty = no email. ALERT_TOKEN must match TOKEN in the script.
+  var ALERT_URL = "";
+  var ALERT_TOKEN = "ad-find-2026";
 
   var STEPS = [
     { id:"location", q:"Where in Australia?", opts:["Adelaide","Elsewhere in Australia"] },
@@ -129,7 +133,7 @@
 
   var ENDINGS = {
     outside: { h:"Sorry, we can't help this time", p:"We can only help buyers who are based in Australia." },
-    budget:  { h:"Thanks for checking", p:"Our cars start from $7k drive-away, so this programme isn't the right fit right now.", link:{ href:"used-cars.html", text:"See our used cars" } },
+    budget:  { h:"Thanks for checking", p:"Our cars start from $7k drive-away, so this programme isn't the right fit right now.", link:{ href:"used-cars.html", text:"See our quality cars" } },
     funds:   { h:"Thanks for checking", p:"Please get in touch with us when you do have the funds and are ready for a purchase." },
     timing:  { h:"Thanks for checking", p:"Please get in touch with us when you're ready to buy." }
   };
@@ -229,9 +233,23 @@
     window.scrollTo(0, 0);
   }
 
+  // One email per outcome; only once they've left a name and mobile.
+  var alerted = {};
+  function alertStalin(outcome, reason){
+    if (!ALERT_URL || !answers.name || !answers.mobile || alerted[outcome + reason]) return;
+    alerted[outcome + reason] = true;
+    var d = { token: ALERT_TOKEN, outcome: outcome, reason: reason || "", source: sourceText };
+    ["name","mobile","location","about","budget","funds","timing","priority"].forEach(function(k){ if (answers[k]) d[k] = answers[k]; });
+    try {
+      fetch(ALERT_URL, { method: "POST", mode: "no-cors", keepalive: true,
+        headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(d) });
+    } catch (err) {}
+  }
+
   function stop(reason){
     var e = ENDINGS[reason];
     track("car_apply_disqualified", { reason: reason });
+    alertStalin("stopped", reason);
     $("endBody").innerHTML = "<h1>" + esc(e.h) + "</h1><p class=\"sub\">" + esc(e.p) + "</p>" +
       (e.link ? "<a class=\"btn btn--ghost\" href=\"" + e.link.href + "\">" + esc(e.link.text) + "</a>" : "") +
       "<button class=\"back\" type=\"button\" id=\"endBack\">Back</button>";
@@ -271,6 +289,7 @@
   function qualified(){
     $("bar").style.width = "100%";
     track("car_apply_qualified", { location: answers.location, budget: answers.budget, funds: answers.funds });
+    alertStalin("qualified");
     var interstate = answers.location === "Elsewhere in Australia"
       ? "<div class=\"note\">Good news, we can deliver to you anywhere in Australia. Interstate delivery comes with a few extra things to consider, and we'll go through them on your call.</div>"
       : "";
