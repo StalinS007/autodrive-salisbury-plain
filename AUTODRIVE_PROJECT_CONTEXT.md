@@ -446,7 +446,7 @@ the programme is tested. Reached from the **first Instagram bio link** ("Find my
 `https://autodrivesalisburyplain.com.au/find-my-car?utm_source=instagram&utm_medium=bio&utm_campaign=car-finder`.
 Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
 - **Intro (owner 2026-11-03, preview):** H1 "Exactly the car you want, in 30 days or less", sub "For skilled
-  professionals looking to save time and hassle." The feature tick list was removed (owner: sell the outcome, not
+  professionals and families looking to save time and hassle." The feature tick list was removed (owner: sell the outcome, not
   features). "30 days or less" is the owner's own promise; Jitty must be able to keep it.
 - **Audience (ICP, owner 2026-11-03):** skilled migrants (incl. arriving from overseas, e.g. UAE), settled migrant
   professionals and families wanting a reliable, safety-first car done for them. Not bargain hunters, small-budget
