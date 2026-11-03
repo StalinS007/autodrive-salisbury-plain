@@ -455,7 +455,8 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   what you need the car for" (required free-text box, sent as "About: <text>"; replaced the
   Student / Family / Other and main-use questions on 2026-11-01 when the Instagram offer
   stopped targeting students and families); name; mobile; total budget; funds ready within
-  30 days (was 2 weeks until 2026-11-03); buying in next couple of months; what matters most.
+  30 days (was 2 weeks until 2026-11-03); buying in next couple of months; what matters most (Reliability / Low running costs /
+  Safety / Size (SUV, sedan, hatch, etc.) / Other; "Size" replaced "Space" 2026-11-03).
 - Budget options (minimum $12k, owner 2026-11-03): $12k to $20k / $20k to $30k / $30k to $50k / $50k+ / Under $12k. The funds question
   carries a small grey note "Note: proof of funds may be necessary." (owner 2026-11-03; replaced the big red
   "Important" disclaimer that sat on the budget question).
