@@ -475,9 +475,14 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   Salisbury Plain", Stalin's calendar connected, Zoom location (notetaker off), Zoom display
   name "AutoDrive Salisbury Plain". A Google Calendar booking page link also works but opens
   without the answers.
+- **Calendly embedded (preview 2026-11-03, owner wanted AutoDrive branding):** when `BOOKING_URL` is Calendly, the
+  qualified screen shows "AutoDrive Salisbury Plain / 6 Lolands Rd... / Licensed dealer and mechanic" (red left bar, NO
+  photo: owner rejected the workshop photo) and the Calendly calendar inline (`widget.js`, `hide_event_type_details`,
+  `hide_gdpr_banner`, `primary_color=c0392b`). Name + answers are appended to the embed URL with %20 encoding (a "+"
+  gets re-encoded by the widget). Fallback link "Open the booking page" under it.
 - GA4 events: `car_apply_start` (lead_source; was `source` until 2026-11-03), `car_apply_step` (step, answer; one-tap answers
   only, never name/mobile), `car_apply_disqualified` (reason), `car_apply_qualified`
-  (location, budget, funds; no segment since 2026-11-01, the free text never goes to GA), `car_apply_book_click` (method) + `generate_lead`
+  (location, budget, funds; no segment since 2026-11-01, the free text never goes to GA), `car_apply_book_click` (method; `calendly_embed` = picked a time in the embedded calendar) + `car_apply_booked` (budget; embedded booking confirmed) + `generate_lead`
   (lead_type=car_finder).
 - **'Who you are' question aimed at the ideal client (2026-11-03, owner):** sub line "This is for busy people who want
   the whole thing done for them..." and example "I work long hours and don't have time to deal with sellers..."
