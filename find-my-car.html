@@ -44,6 +44,13 @@
   .btn--ghost{background:#fff; color:var(--ink); border-color:#cfcfcf;}
   .back{background:none; border:0; font:inherit; font-size:14px; color:var(--grey); cursor:pointer; padding:10px 0 0; text-decoration:underline;}
   .hint{font-size:13px; color:var(--grey); margin:10px 0 0;}
+  .brand{display:flex; gap:12px; align-items:center; border:1px solid var(--line); border-radius:12px; overflow:hidden; margin:16px 0 0;}
+  .brand img{width:42%; max-width:180px; aspect-ratio:16/10; object-fit:cover; display:block;}
+  .brand div{padding:8px 10px 8px 0; font-size:14px; line-height:1.35;}
+  .brand b{display:block; font-size:15px;}
+  .brand span{display:block; color:var(--grey);}
+  .cal{min-width:280px; height:700px; margin:14px -8px 0; border-radius:12px; overflow:hidden; background:#fafafa;}
+  .hint a{color:var(--ink);}
   .err{font-size:14px; color:#8a1f1f; margin:8px 0 0;}
   .note{border-radius:10px; padding:13px 15px; margin-top:14px; font-size:15px; background:#eef4fb; border:1px solid #d3e2f3; color:#1f3d5c;}
   .foot{text-align:center; font-size:12.5px; color:#999; margin-top:22px;}
@@ -283,6 +290,32 @@
     return u.toString();
   }
 
+  // Inline Calendly: picking a time counts as the book click, a confirmed booking as the lead.
+  var calSeen = {};
+  function loadCalendly(link){
+    var u = new URL(link);
+    u.searchParams.set("hide_event_type_details", "1");
+    u.searchParams.set("hide_gdpr_banner", "1");
+    u.searchParams.set("primary_color", "c0392b");
+    var go = function(){ window.Calendly.initInlineWidget({ url: u.toString(), parentElement: $("cal") }); };
+    if (window.Calendly) return go();
+    var sc = document.createElement("script");
+    sc.src = "https://assets.calendly.com/assets/external/widget.js";
+    sc.async = true; sc.onload = go;
+    document.head.appendChild(sc);
+    window.addEventListener("message", function(e){
+      if (e.origin !== "https://calendly.com" || !e.data || typeof e.data.event !== "string" || calSeen[e.data.event]) return;
+      if (e.data.event === "calendly.date_and_time_selected"){
+        calSeen[e.data.event] = true;
+        track("car_apply_book_click", { method: "calendly_embed" });
+      } else if (e.data.event === "calendly.event_scheduled"){
+        calSeen[e.data.event] = true;
+        track("car_apply_booked", { budget: answers.budget });
+        track("generate_lead", { lead_type: "car_finder", budget: answers.budget });
+      }
+    });
+  }
+
   function qualified(){
     $("bar").style.width = "100%";
     track("car_apply_qualified", { location: answers.location, budget: answers.budget, funds: answers.funds });
@@ -291,8 +324,15 @@
       ? "<div class=\"note\">Good news, we can deliver to you anywhere in Australia. Interstate delivery comes with a few extra things to consider, and we'll go through them on your call.</div>"
       : "";
     var link = bookingLink();
-    var btn;
-    if (link){
+    var btn, embed = link && link.indexOf("calendly.com") >= 0;
+    if (embed){
+      // Calendly sits inside our page (AutoDrive photo + address around it); the plain link is the fallback.
+      btn = "<div class=\"brand\"><img src=\"images/workshop-hoist.jpg\" alt=\"Jitty working on a car in the AutoDrive workshop\" loading=\"lazy\">" +
+            "<div><b>AutoDrive Salisbury Plain</b><span>6 Lolands Rd, Salisbury Plain SA 5109</span><span>Licensed dealer and mechanic</span></div></div>" +
+            "<div class=\"cal\" id=\"cal\"></div>" +
+            "<p class=\"hint\">It's a quick 15 minute Zoom call, and the link comes in your confirmation email. Calendar not showing? " +
+            "<a id=\"bookBtn\" href=\"" + esc(link) + "\" target=\"_blank\" rel=\"noopener\">Open the booking page</a></p>";
+    } else if (link){
       btn = "<a class=\"btn btn--red\" id=\"bookBtn\" href=\"" + esc(link) + "\" target=\"_blank\" rel=\"noopener\">Book my eligibility call</a>" +
             "<p class=\"hint\">Pick a time that suits you. It's a quick 15 minute Zoom call, and the link comes in your confirmation email.</p>";
     } else {
@@ -302,13 +342,15 @@
             "<p class=\"hint\">Your answers are already in the message. Just press send and we'll lock in a time.</p>";
     }
     $("endBody").innerHTML = "<h1>You may <span>qualify</span></h1>" +
-      "<p class=\"sub\">Thanks " + esc(answers.name.split(" ")[0]) + ". The next step is a quick eligibility call to talk through the car you want.</p>" +
+      "<p class=\"sub\">Thanks " + esc(answers.name.split(" ")[0]) + ". " +
+      (embed ? "Pick a time below for a quick eligibility call to talk through the car you want." : "The next step is a quick eligibility call to talk through the car you want.") + "</p>" +
       interstate + btn;
     $("bookBtn").addEventListener("click", function(){
       track("car_apply_book_click", { method: link ? "booking_page" : "whatsapp" });
       track("generate_lead", { lead_type: "car_finder", budget: answers.budget });
     });
     show("end");
+    if (embed) loadCalendly(link);
   }
 
   $("ausYes").addEventListener("click", function(){
