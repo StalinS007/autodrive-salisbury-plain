@@ -491,8 +491,10 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   (location, budget, funds; no segment since 2026-11-01, the free text never goes to GA), `car_apply_book_click` (method; `calendly_embed` = picked a time in the embedded calendar) + `car_apply_booked` (budget; embedded booking confirmed) + `generate_lead`
   (lead_type=car_finder).
 - **Email alert to Stalin (added 2026-11-03):** since the 2026-11-07 reorder it fires the moment name + mobile
-  are entered (outcome `contact`, subject "NEW LEAD") and again on reaching the booking step (`qualified`); the
-  updated `tools/car-finder-alert.gs` is deployed as **Version 2 (2026-11-07, same /exec URL; tested, "NEW LEAD"
+  are entered (outcome `contact`, subject "NEW LEAD"), again on reaching the booking step (`qualified`), and a third
+  time when the embedded Calendly fires `calendly.event_scheduled` (outcome `booked`, subject "BOOKED"; added
+  2026-11-07, page change PREVIEW until approved; the email has no call time, that is in Calendly's own email to
+  autodrive5109@gmail.com). The script is deployed as **Version 3 (2026-11-07, same /exec URL; test "BOOKED"
   email arrived)**. To change the script again: paste, Save, Manage deployments → pencil → New version. The page POSTs every answer (text/plain, no-cors) to `ALERT_URL`, a Google Apps Script
   web app (`tools/car-finder-alert.gs`, project "AutoDrive car finder alert" in **stalinsajie@gmail.com**'s
   Apps Script, Execute as Me / Anyone; deployed + tested 2026-11-03, URL set in `ALERT_URL`). It emails stalinsajie@gmail.com: subject
