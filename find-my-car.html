@@ -260,7 +260,8 @@
   }
 
   // One email per outcome, only once they've left a name and mobile: "contact" the moment they
-  // give their details (even if they never finish), then "qualified" when they reach the booking step.
+  // give their details (even if they never finish), "qualified" when they reach the booking step,
+  // then "booked" when they confirm a time in the embedded Calendly.
   var alerted = {};
   function alertStalin(outcome, reason){
     if (!ALERT_URL || !answers.name || !answers.mobile || alerted[outcome + reason]) return;
@@ -338,6 +339,7 @@
         calSeen[e.data.event] = true;
         track("car_apply_booked", { budget: answers.budget });
         track("generate_lead", { lead_type: "car_finder", budget: answers.budget });
+        alertStalin("booked");
       }
     });
   }
