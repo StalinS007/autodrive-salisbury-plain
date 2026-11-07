@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-11-03**.
+touching the site. Last verified against the live code: **2026-11-07**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -454,12 +454,14 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   word "migrant" on the page); intro sub + the "who you are" sub line carry it. The answer box has NO example text (owner, 2026-11-03).
 - First page (the intro card itself) asks "Are you based in Australia?" Yes / No; No ends it. A "Moving to Australia
   soon" path was built and pulled on 2026-11-03 (owner: not yet; no "we can start before you land" wording either).
-  Then one question per screen: Adelaide or elsewhere in Australia; "Tell us who you are and
-  what you need the car for" (required free-text box, sent as "About: <text>"; replaced the
-  Student / Family / Other and main-use questions on 2026-11-01 when the Instagram offer
-  stopped targeting students and families); name; mobile; total budget; funds ready within
-  30 days (was 2 weeks until 2026-11-03); buying in next couple of months; what matters most (Reliability / Low running costs /
-  Safety / Size (SUV, sedan, hatch, etc.) / Other; "Size" replaced "Space" 2026-11-03).
+  Then one question per screen, **taps first, typing last (owner 2026-11-07, PREVIEW only until approved;
+  live still asks about/name/mobile right after location)**: Adelaide or elsewhere in Australia; total budget;
+  funds ready within 30 days (was 2 weeks until 2026-11-03); buying in next couple of months; what matters most
+  (Reliability / Low running costs / Safety / Size (SUV, sedan, hatch, etc.) / Other; "Size" replaced "Space"
+  2026-11-03); then **"Good news, you look like a fit" with name + mobile on ONE screen** (step id `contact`);
+  then last "Last one: tell us who you are and what you need the car for" (REQUIRED free-text box, owner said
+  not optional; sent as "About: <text>"; replaced the Student / Family / Other and main-use questions on
+  2026-11-01). Why: GA showed ~79% of starters leaving at the early typing screens.
 - Budget options (minimum $12k, owner 2026-11-03): $12k to $20k / $20k to $30k / $30k to $50k / $50k+ (no "Under" option since 2026-11-03; the
   question sub says "This service starts from $12k."). The funds question
   carries a small grey note "Note: proof of funds may be necessary." (owner 2026-11-03; replaced the big red
@@ -484,12 +486,15 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   6 Lolands Rd... / Jitty, licensed dealer and mechanic" (owner rejected the `workshop-hoist.jpg` photo here) and the Calendly calendar inline (`widget.js`, `hide_event_type_details`,
   `hide_gdpr_banner`, `primary_color=c0392b`). Name + answers are appended to the embed URL with %20 encoding (a "+"
   gets re-encoded by the widget). Fallback link "Open the booking page" under it.
-- GA4 events: `car_apply_start` (lead_source; was `source` until 2026-11-03), `car_apply_step` (step, answer; one-tap answers
-  only, never name/mobile), `car_apply_disqualified` (reason), `car_apply_qualified`
+- GA4 events: `car_apply_start` (lead_source; was `source` until 2026-11-03), `car_apply_step` (step, answer for one-tap
+  answers; since the 2026-11-07 reorder the typed screens fire it too as `{step:"contact"}` / `{step:"about"}` with NO
+  answer, so names, numbers and free text never reach GA), `car_apply_disqualified` (reason), `car_apply_qualified`
   (location, budget, funds; no segment since 2026-11-01, the free text never goes to GA), `car_apply_book_click` (method; `calendly_embed` = picked a time in the embedded calendar) + `car_apply_booked` (budget; embedded booking confirmed) + `generate_lead`
   (lead_type=car_finder).
-- **Email alert to Stalin (added 2026-11-03):** when someone qualifies, or is stopped after giving
-  name + mobile, the page POSTs every answer (text/plain, no-cors) to `ALERT_URL`, a Google Apps Script
+- **Email alert to Stalin (added 2026-11-03):** since the 2026-11-07 reorder it fires the moment name + mobile
+  are entered (outcome `contact`, subject "NEW LEAD") and again on reaching the booking step (`qualified`); the
+  updated `tools/car-finder-alert.gs` must be redeployed (Manage deployments → New version, same URL) or the
+  first email is labelled "not qualified (left details, still finishing the form)". The page POSTs every answer (text/plain, no-cors) to `ALERT_URL`, a Google Apps Script
   web app (`tools/car-finder-alert.gs`, project "AutoDrive car finder alert" in **stalinsajie@gmail.com**'s
   Apps Script, Execute as Me / Anyone; deployed + tested 2026-11-03, URL set in `ALERT_URL`). It emails stalinsajie@gmail.com: subject
   "Find My Car: <name> | QUALIFIED/not qualified | <budget> | <location>", body with all answers + a wa.me
