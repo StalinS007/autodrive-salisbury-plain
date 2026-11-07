@@ -75,6 +75,32 @@ state" and "Decision log" sections updated as things move.
 4. **Retention/repeat:** service reminders, post-sale discounted repairs as a hook,
    turning the 150+ repeat clients into reviewers and referrers.
 
+## Constant Google pipeline: what others did, Adelaide benchmarks (research 2026-11-07)
+Patterns from AU trade/mechanic case studies (all agency self-reported, directional only):
+GBP cleanup alone (fields, consistent details, service area) roughly tripled a Melbourne
+tradie's leads; Adelaide air-con client: GBP calls +62%, website clicks +54% in 6 months;
+Brisbane fencing: suburb-by-suburb site + GBP + Bing + Apple + 50 citations = 30+ organic
+enquiries/month after 9 months; a local service business went from ~18 to ~61 GBP actions a
+month in 6 months; mobile auto repair: 35 new reviews in 90 days, 3 to 4 calls/day.
+Common thread: reviews volume + recency, complete GBP, a few strong service/suburb pages,
+consistent citations, fast answer. Timeline to a steady pipeline: 6 to 9 months, first
+movement months 2 to 3.
+Northern Adelaide competitors (AutoGuru/WOM listings, Nov 2026): ABS Auto Salisbury 4.5 from
+328 reviews (AutoGuru 2026 finalist, 9 bays, drop-off service); B&R Automotive Salisbury
+South 4.9 from 265; Salisbury Mechanical Services 4.7 from 93; Jai's Auto Garage Salisbury
+Plain 4.6 from 39; Tyreright Salisbury 4.5 from 12. AutoDrive: 5.0 from 20. The gap is review
+VOLUME, not rating: the map pack for "mechanic Salisbury" is reviews + proximity + category.
+Pipeline model for AutoDrive (targets, review monthly from the tracking sheet):
+1 Reviews engine: 8 to 10 new Google reviews a month (ask every job, QR + WhatsApp link,
+  reply to all); 100 reviews within 9 months puts AutoDrive in the top 3 locally.
+2 GBP complete and alive: weekly post + photo, services with prices, Q&A seeded.
+3 Website: 6 service pages upgraded, pre-purchase inspection page, 3 to 5 suburb pages.
+4 Citations: Bing, Apple, Yelp AU, TrueLocal, Yellow Pages, Localsearch, AutoGuru listing
+  (marketplace that ranks for "mechanic <suburb>" and sends bookings; check its fee first).
+5 Speed: every call answered or texted back in 5 min; WhatsApp under 5 min.
+Expected shape: GBP calls and website clicks up 50 to 100% by month 6 if 1 and 2 are done;
+pages and citations compound after that. Google Ads sits on top once the base works.
+
 ## GBP attribution without relying on Jitty (owner, 2026-11-03)
 Problem: calls from the Google profile ring Jitty's phone and he does not report back, so
 GBP optimisation cannot be proven. Rule: every channel must report to Stalin by itself.
