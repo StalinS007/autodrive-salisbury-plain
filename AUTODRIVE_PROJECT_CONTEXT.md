@@ -493,8 +493,8 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   (lead_type=car_finder).
 - **Email alert to Stalin (added 2026-11-03):** since the 2026-11-07 reorder it fires the moment name + mobile
   are entered (outcome `contact`, subject "NEW LEAD") and again on reaching the booking step (`qualified`); the
-  updated `tools/car-finder-alert.gs` must be redeployed (Manage deployments → New version, same URL) or the
-  first email is labelled "not qualified (left details, still finishing the form)". The page POSTs every answer (text/plain, no-cors) to `ALERT_URL`, a Google Apps Script
+  updated `tools/car-finder-alert.gs` is deployed as **Version 2 (2026-11-07, same /exec URL; tested, "NEW LEAD"
+  email arrived)**. To change the script again: paste, Save, Manage deployments → pencil → New version. The page POSTs every answer (text/plain, no-cors) to `ALERT_URL`, a Google Apps Script
   web app (`tools/car-finder-alert.gs`, project "AutoDrive car finder alert" in **stalinsajie@gmail.com**'s
   Apps Script, Execute as Me / Anyone; deployed + tested 2026-11-03, URL set in `ALERT_URL`). It emails stalinsajie@gmail.com: subject
   "Find My Car: <name> | QUALIFIED/not qualified | <budget> | <location>", body with all answers + a wa.me
