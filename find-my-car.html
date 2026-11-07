@@ -115,19 +115,20 @@
   var ALERT_URL = "https://script.google.com/macros/s/AKfycbyi59OWP3JmG8kkcP8NTnY43CtMJU1BXX1RMByJ3f_vbACxki3rBnOmqRBhyBZzihjvHA/exec";
   var ALERT_TOKEN = "ad-find-2026";
 
+  // One-tap questions first (anyone who doesn't fit finds out before typing anything),
+  // then name + mobile on one screen, then the "about you" box last.
   var STEPS = [
     { id:"location", q:"Where in Australia?", opts:["Adelaide","Elsewhere in Australia"] },
-    { id:"about", q:"Tell us who you are and what you need the car for", type:"textarea",
-      sub:"Built for skilled professionals and families who want a reliable, safety-first car without the hassle. We find, inspect, negotiate and deliver.",
-      placeholder:"", autocomplete:"off" },
-    { id:"name", q:"Your full name", type:"text", placeholder:"First and last name", autocomplete:"name" },
-    { id:"mobile", q:"Your mobile number", sub:"We'll contact you on this number.", type:"tel", placeholder:"04xx xxx xxx", autocomplete:"tel" },
     { id:"budget", q:"Total budget for everything", sub:"This service starts from $12k.",
       opts:["$12k to $20k","$20k to $30k","$30k to $50k","$50k+"] },
     { id:"funds", q:"Do you have the funds ready to buy within 30 days?", note:"Note: proof of funds may be necessary.",
       opts:["Yes, cash/savings ready","Yes, finance approved","Not yet"], stop:{ "Not yet":"funds" } },
     { id:"timing", q:"I'm looking to buy within the next couple of months", opts:["Yes","Not yet"], stop:{ "Not yet":"timing" } },
-    { id:"priority", q:"What matters most in your next car?", opts:["Reliability","Low running costs","Safety","Size (SUV, sedan, hatch, etc.)","Other"], other:"Other", otherLabel:"Tell us what matters most" }
+    { id:"priority", q:"What matters most in your next car?", opts:["Reliability","Low running costs","Safety","Size (SUV, sedan, hatch, etc.)","Other"], other:"Other", otherLabel:"Tell us what matters most" },
+    { id:"contact", q:"Good news, you look like a fit", sub:"Where can we reach you about your car?", type:"contact" },
+    { id:"about", q:"Last one: tell us who you are and what you need the car for", type:"textarea",
+      sub:"Built for skilled professionals and families who want a reliable, safety-first car without the hassle. We find, inspect, negotiate and deliver.",
+      placeholder:"", autocomplete:"off" }
   ];
 
   var ENDINGS = {
@@ -169,6 +170,13 @@
                 "<p class=\"err\" id=\"otherErr\" hidden>Please tell us a little about yourself.</p>" +
                 "<button class=\"btn btn--red\" id=\"otherNext\" type=\"button\">Next</button></div>";
       }
+    } else if (s.type === "contact"){
+      html += "<label for=\"nameIn\">Your full name</label>" +
+              "<input type=\"text\" id=\"nameIn\" placeholder=\"First and last name\" autocomplete=\"name\" value=\"" + esc(answers.name || "") + "\" />" +
+              "<label for=\"mobileIn\">Your mobile number</label>" +
+              "<input type=\"tel\" id=\"mobileIn\" inputmode=\"tel\" placeholder=\"04xx xxx xxx\" autocomplete=\"tel\" value=\"" + esc(answers.mobile || "") + "\" />" +
+              "<p class=\"err\" id=\"err\" hidden></p>" +
+              "<button class=\"btn btn--red\" id=\"textNext\" type=\"button\">Next</button>";
     } else {
       html += (s.type === "textarea"
                 ? "<textarea id=\"textIn\" rows=\"4\" maxlength=\"400\" aria-label=\"" + esc(s.q) + "\" placeholder=\"" + esc(s.placeholder) + "\">" + esc(answers[s.id] || "") + "</textarea>"
@@ -198,6 +206,25 @@
           pick(s, v ? "Other: " + v : "Other");
         });
       }
+    } else if (s.type === "contact"){
+      var nameIn = $("nameIn"), mobileIn = $("mobileIn");
+      nameIn.focus();
+      var send = function(){
+        var n = nameIn.value.trim(), m = mobileIn.value.trim();
+        if (n.length < 2){ $("err").textContent = "Please enter your name."; $("err").hidden = false; nameIn.focus(); return; }
+        if (m.replace(/\D/g, "").length < 9){ $("err").textContent = "Please enter a valid mobile number."; $("err").hidden = false; mobileIn.focus(); return; }
+        answers.name = n; answers.mobile = m;
+        alertStalin("contact", "left details, still finishing the form");
+        pick(s, "given");
+      };
+      $("textNext").addEventListener("click", send);
+      [nameIn, mobileIn].forEach(function(el){
+        el.addEventListener("keydown", function(e){
+          if (e.key !== "Enter") return;
+          e.preventDefault();
+          if (el === nameIn) mobileIn.focus(); else send();
+        });
+      });
     } else {
       var inp = $("textIn");
       inp.focus();
@@ -217,8 +244,9 @@
   }
 
   function pick(s, v){
-    answers[s.id] = v;
-    if (s.opts) track("car_apply_step", { step: s.id, answer: v });
+    if (s.type !== "contact") answers[s.id] = v;
+    // Typed screens are tracked as "done" only: names, numbers and free text never go to Analytics.
+    track("car_apply_step", s.opts ? { step: s.id, answer: v } : { step: s.id });
     if (s.stop && s.stop[v]) return stop(s.stop[v]);
     i++;
     if (i < STEPS.length) render(); else qualified();
@@ -231,7 +259,8 @@
     window.scrollTo(0, 0);
   }
 
-  // One email per outcome; only once they've left a name and mobile.
+  // One email per outcome, only once they've left a name and mobile: "contact" the moment they
+  // give their details (even if they never finish), then "qualified" when they reach the booking step.
   var alerted = {};
   function alertStalin(outcome, reason){
     if (!ALERT_URL || !answers.name || !answers.mobile || alerted[outcome + reason]) return;
