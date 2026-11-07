@@ -75,6 +75,22 @@ state" and "Decision log" sections updated as things move.
 4. **Retention/repeat:** service reminders, post-sale discounted repairs as a hook,
    turning the 150+ repeat clients into reviewers and referrers.
 
+## Stalin's commercial arrangement with Jitty (owner, 2026-11-07)
+Goal: reliably lift output AND prove Stalin caused it, so he gets paid. Design rule: only
+count channels Stalin built and can read without Jitty: tracking number (calls >60s),
+website WhatsApp/call/form by source (GA4), Calendly eligibility calls, car-finder
+applications, GBP actions. Baseline = last 3 months, agreed in writing before work starts.
+Output levers (one-man workshop, so revenue per slot matters as much as volume): fill
+empty slots (reminders, reactivation), higher-value jobs (logbook $329, inspections,
+car-finder fee), fewer no-shows (confirmations), reviews (ranking), speed of reply.
+Pay model recommended: small flat monthly retainer + bonus per tracked qualified enquiry
+(call >60s or WhatsApp/booking via tracked links) above baseline, plus a share of the
+car-finder fee on deals Stalin closes. Avoid pure revenue share (needs Jitty's books).
+Monthly one-page report: baseline vs this month per channel, what changed, next month.
+Agreement in writing (one page): scope, metrics, baseline, rates, who owns what (Jitty
+owns the business, profile, domain and ad accounts; Stalin's access can be revoked but
+the numbers were agreed).
+
 ## Constant Google pipeline: what others did, Adelaide benchmarks (research 2026-11-07)
 Patterns from AU trade/mechanic case studies (all agency self-reported, directional only):
 GBP cleanup alone (fields, consistent details, service area) roughly tripled a Melbourne
