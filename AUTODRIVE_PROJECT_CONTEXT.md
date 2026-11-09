@@ -581,7 +581,10 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
     cut of Jitty's dealer terms (WhatsApp 2026-11-08 23:45): prices generally firm, rego/stamp duty/transfer extra unless
     the listing says otherwise, pre-owned condition, 3-month/5,000 km statutory warranty under 15 yrs and 200,000 km,
     extended 1/3/5 yr, finance via broker, trade-ins no swaps, hours 9 to 5 Mon to Fri. Never on the homepage swiper or
-    the car cards. Keep the copy on both pages identical. **Open with Jitty:** the "3 months free rego" tick contradicts his "rego extra" line, and his 9 to 5
+    the car cards. Keep the copy on both pages identical. On cars.html each PPSR car's detail
+    sheet lifts the bold "This car is PPSR listed..." sentence out of the description and shows it as a quiet grey
+    `.sheet__note` underneath ("PPSR listed" in red, passed the government inspection, independent inspection
+    welcome, "message us and we'll talk you through it"); used-cars.html keeps its own bold wording (LIVE 2026-11-09). **Open with Jitty:** the "3 months free rego" tick contradicts his "rego extra" line, and his 9 to 5
     hours differ from Google's 9:30 open; resolve both before go-live.
   - **Dealer licence:** `.stock-licence` line under the deck — "Licensed motor vehicle dealer —
     MVD 343921". SA requires the licence number on vehicle advertising; keep it on any page that
