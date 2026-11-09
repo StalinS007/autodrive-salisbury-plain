@@ -6,10 +6,13 @@
 <title>Cars for Sale | AutoDrive Salisbury Plain, Adelaide</title>
 <meta name="description" content="Browse every quality car in stock at AutoDrive Salisbury Plain. Workshop-inspected by our own mechanics. Tap Enquire to message us about any car." />
 <link rel="canonical" href="https://autodrivesalisburyplain.com.au/cars" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://autodrivesalisburyplain.com.au/cars" />
 <meta property="og:title" content="Cars for Sale | AutoDrive Salisbury Plain" />
 <meta property="og:description" content="Every quality car in stock, workshop-inspected by our own mechanics in Salisbury Plain, Adelaide." />
 <meta property="og:image" content="https://autodrivesalisburyplain.com.au/images/c200/c200-01.jpg" />
-<link rel="icon" type="image/png" href="images/logo-autodrive.png" />
+<meta name="twitter:card" content="summary_large_image" />
+<link rel="icon" type="image/png" href="/images/logo-autodrive.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
@@ -17,7 +20,12 @@
   CARS FOR SALE — marketplace-style landing page (all stock in a grid, Enquire under each car).
   The stock is NOT typed in here: the page reads every <article class="car"> from used-cars.html
   and builds the grid from it. Add, edit or remove a car in used-cars.html and this page follows.
+
+  EACH CAR ALSO HAS ITS OWN PAGE at /cars/<slug> (the link we forward to customers). It is this same file:
+  functions/cars/[slug].js serves it with that car's title and link-preview image, and the script below
+  lays the one car out as a page when the address is /cars/<slug>. So every path in here starts with "/".
 -->
+<script>if (/^\/cars\/[a-z0-9-]+/.test(location.pathname)) document.documentElement.className += " solo";</script>
 <style>
   :root{
     --red:#C01418; --red-dk:#930E12; --ink:#0E0E0E; --charcoal:#1C1C1E;
@@ -157,9 +165,52 @@
   .ticks li{display:flex; gap:8px; font-size:14.5px; font-weight:600;}
   .ticks svg{width:17px; height:17px; color:var(--wa); flex:none; margin-top:2px;}
   .sheet__desc{font-size:15px; color:var(--g700); margin:0 0 16px;}
-  .sheet__note{font-size:13.5px; line-height:1.5; color:var(--g500); background:var(--g100); border-radius:10px; padding:10px 12px; margin:-6px 0 16px;}
-  .sheet__note .hl{color:var(--red); font-weight:700;}
+  .sheet__hist{font-size:13.5px; line-height:1.5; color:var(--g700); background:var(--g100); border-radius:10px; padding:10px 12px; margin:-6px 0 16px;}
+  .sheet__hist strong{color:var(--ink);}
+  .sheet__hist .hl{color:var(--red); font-weight:700;}
   .sheet__cta{display:grid; grid-template-columns:1fr; gap:10px; position:sticky; bottom:0; background:#fff; padding:10px 0 0;}
+  .sheet__head{display:flex; align-items:flex-start; justify-content:space-between; gap:12px;}
+  .share{display:inline-flex; align-items:center; gap:6px; flex:none; background:#fff; border:1px solid var(--g300); border-radius:999px; padding:7px 12px; font-size:13.5px; font-weight:700; color:var(--ink); cursor:pointer;}
+  .share:hover{border-color:var(--ink);}
+  .share svg{width:15px; height:15px;}
+
+  /* "Please read before enquiring" (Jitty, 9 Nov 2026): sits under every car's description */
+  .read{border-top:1px solid var(--g100); margin:0 0 14px; padding-top:16px; font-size:13.5px; line-height:1.5; color:var(--g700);}
+  .read__h{font-family:Anton,Impact,sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:.3px; font-size:20px; line-height:1.1; color:var(--ink); margin:0 0 10px;}
+  .read h4{margin:14px 0 4px; font-size:12.5px; font-weight:800; text-transform:uppercase; letter-spacing:.5px; color:var(--ink);}
+  .read h4:first-of-type{margin-top:0;}
+  .read p{margin:0 0 6px;}
+  .read ul{margin:0; padding-left:18px;}
+  .read li{margin:0 0 3px;}
+  .read__biz{background:var(--g100); border-radius:10px; padding:12px 14px; margin-top:14px;}
+  .read__biz strong{display:block; color:var(--ink); font-size:14.5px; margin-bottom:2px;}
+  .read__biz span{display:block;}
+  .read__biz a{color:var(--ink); font-weight:700;}
+
+  /* A car's own page (/cars/<slug>): the same listing, laid out in the page instead of a pop-up */
+  .solo-only{display:none;}
+  html.solo .solo-only{display:block;}
+  html.solo a.solo-only{display:inline-flex;}
+  html.solo .intro, html.solo .bar{display:none;}
+  html.solo:not(.is-ready) #grid, html.solo:not(.is-ready) .more, html.solo:not(.is-ready) .solo__h{display:none;}
+  html.solo.is-ready .solo__sk{display:none;}
+  .solo__back{align-items:center; gap:4px; margin:12px 0 10px; font-size:14.5px; font-weight:700; color:var(--g700); text-decoration:none;}
+  .solo__back:hover{color:var(--red);}
+  .solo__back svg{width:16px; height:16px;}
+  .solo__sk{aspect-ratio:4/5; max-height:70vh; border-radius:12px; margin:0 0 20px;}
+  .solo__gone{background:#fff; border-radius:12px; padding:16px 18px; margin:0 0 4px; box-shadow:0 1px 2px rgba(0,0,0,.06); color:var(--g700);}
+  .solo__gone strong{display:block; color:var(--ink); font-size:17px; margin-bottom:2px;}
+  .solo__h{font-family:Anton,Impact,sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:.3px; font-size:26px; line-height:1.05; margin:26px 0 14px;}
+  html.solo .sheet{position:static; display:block; background:none; opacity:1; margin:0 -16px;}
+  html.solo .sheet__panel{max-width:none; max-height:none; overflow:visible; transform:none; transition:none; border-radius:0;}
+  html.solo .sheet__x{display:none;}
+  @media (min-width:860px){
+    html.solo .sheet{margin:0; padding:0;}
+    html.solo .sheet__panel{border-radius:16px; align-items:start; box-shadow:0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);}
+    html.solo .gal{position:sticky; top:76px; border-radius:16px 0 0 16px; overflow:hidden;}
+    html.solo .gal__track{height:calc(100vh - 100px); max-height:820px;}
+    html.solo .sheet__body{overflow:visible;}
+  }
   .sheet__cta .enq{font-size:16px; padding:14px;}
   body.no-scroll{overflow:hidden;}
 </style>
@@ -176,8 +227,9 @@
 
 <header class="top">
   <div class="wrap">
-    <a class="top__logo" href="/"><img src="images/logo-dark.png" alt="AutoDrive Salisbury Plain" width="46" height="46" onerror="this.src='images/logo-autodrive.png'"></a>
+    <a class="top__logo" href="/"><img src="/images/logo-dark.png" alt="AutoDrive Salisbury Plain" width="46" height="46" onerror="this.onerror=null;this.src='/images/logo-autodrive.png'"></a>
     <nav class="top__links">
+      <a class="top__site solo-only" href="/cars">All cars</a>
       <a class="top__site" href="/">Main site</a>
     </nav>
   </div>
@@ -239,6 +291,14 @@
 </script>
 
 <main class="wrap">
+  <!-- Only shown on a car's own page (/cars/<slug>). The script moves the listing into #soloSlot. -->
+  <div class="solo-only" id="solo">
+    <a class="solo__back solo-only" href="/cars"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 6l-6 6 6 6"/></svg>All cars for sale</a>
+    <div class="solo__gone" id="gone" hidden><strong>Sorry, that car is no longer listed.</strong>It may have sold. Here is every car we have in stock right now.</div>
+    <div id="soloSlot"><div class="solo__sk sk"></div></div>
+    <h2 class="solo__h" id="soloH">More cars in stock</h2>
+  </div>
+
   <div class="bar">
     <div class="bar__filters">
       <label class="sel"><span hidden>Body type</span><select id="fBody" aria-label="Body type"><option value="">All body types</option></select></label>
@@ -263,7 +323,7 @@
     <div class="tile tile--sk"><div class="tile__ph sk"></div><div class="tile__info"><div class="sk" style="width:50%"></div><div class="sk"></div><div class="sk" style="width:70%"></div></div></div>
   </div>
   <div class="state" id="empty" hidden>No cars match those filters. <a href="#" id="reset">Show all cars</a></div>
-  <noscript><div class="state">See all our cars on the <a href="used-cars.html">quality cars page</a>.</div></noscript>
+  <noscript><div class="state">See all our cars on the <a href="/used-cars">quality cars page</a>.</div></noscript>
 
   <section class="more">
     <div>
@@ -271,7 +331,7 @@
       <p>Tell us your budget and what you need. We'll find it, inspect it in our workshop and get it ready for you.</p>
     </div>
     <div class="more__btns">
-      <a class="btn btn--red" href="find-my-car">Find my car</a>
+      <a class="btn btn--red" href="/find-my-car">Find my car</a>
       <a class="btn btn--ghost" href="https://wa.me/61432520230?text=Hi%20Jitty%2C%20I%27m%20looking%20for%20a%20car.%20Can%20you%20help%3F"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>Message us</a>
     </div>
   </section>
@@ -296,14 +356,64 @@
       <span class="gal__count" id="gCount"></span>
     </div>
     <div class="sheet__body">
-      <div class="sheet__price" id="sPrice"></div>
-      <div class="sheet__note" id="sNote"></div>
+      <div class="sheet__head">
+        <div>
+          <div class="sheet__price" id="sPrice"></div>
+          <div class="sheet__note" id="sNote"></div>
+        </div>
+        <button class="share" type="button" id="sShare" aria-label="Share this car"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M8 7l4-4 4 4"/><path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7"/></svg><span>Share</span></button>
+      </div>
       <h2 class="sheet__title" id="sTitle"></h2>
       <p class="sheet__loc">Salisbury Plain, Adelaide SA</p>
       <ul class="chips" id="sSpecs"></ul>
       <ul class="ticks" id="sTrust"></ul>
       <p class="sheet__desc" id="sDesc"></p>
-      <p class="sheet__note" id="sPpsr" hidden></p>
+      <p class="sheet__hist" id="sPpsr" hidden></p>
+
+      <!-- Jitty's "add this in each vehicle" terms (WhatsApp 9 Nov 2026). Same block under every car. -->
+      <section class="read" aria-labelledby="readH">
+        <h3 class="read__h" id="readH">Please read before enquiring</h3>
+        <h4>Why buy from AutoDrive?</h4>
+        <p>With over 14 years of automotive experience, we are a professional automotive workshop and licensed motor vehicle dealer, not backyard sellers. All our vehicles are carefully inspected, mechanically checked, serviced where required and professionally detailed before sale. We focus on quality, reliability and customer satisfaction, not simply offering the cheapest cars.</p>
+        <h4>Pricing and vehicle condition</h4>
+        <ul>
+          <li>Our vehicles are competitively priced, so prices are generally firm.</li>
+          <li>Stamp duty, registration and transfer fees are additional unless stated otherwise.</li>
+          <li>All vehicles are pre-owned and may have normal wear and tear consistent with their age and kilometres.</li>
+          <li>Vehicle history, including any PPSR listing, will be disclosed.</li>
+          <li>Independent pre-purchase inspections are welcome.</li>
+          <li>Test drives and inspections are available by appointment.</li>
+        </ul>
+        <h4>Warranty and registration</h4>
+        <ul>
+          <li>Applicable statutory warranties are provided in accordance with South Australian law.</li>
+          <li>Eligible vehicles may qualify for a 3-month/5,000 km statutory warranty, whichever comes first.</li>
+          <li>Additional warranty options may be available upon request.</li>
+          <li>Registration and transfer arrangements can be assisted with at the time of sale, where applicable.</li>
+        </ul>
+        <h4>Finance and trade-ins</h4>
+        <ul>
+          <li>Finance options may be available through a third-party broker, subject to approval.</li>
+          <li>Trade-ins are welcome, but no direct swaps.</li>
+          <li>Please advise us beforehand if you require finance or have a trade-in.</li>
+        </ul>
+        <h4>Important information</h4>
+        <ul>
+          <li>Please read the full vehicle description and confirm availability before enquiring.</li>
+          <li>Serious enquiries are welcome, and respectful communication is appreciated.</li>
+          <li>We aim to provide honest information, professional service and peace of mind with every purchase.</li>
+        </ul>
+        <div class="read__biz">
+          <strong>AutoDrive Salisbury Plain</strong>
+          <span>6 Lolands Road, Salisbury Plain SA 5109</span>
+          <span>WhatsApp <a href="https://wa.me/61432520230" target="_blank" rel="noopener">0432 520 230</a></span>
+          <span>Licensed Motor Vehicle Dealer, MVD 343921</span>
+          <span>Monday to Saturday: 9:00 am to 5:30 pm</span>
+          <span>Vehicle inspections by appointment preferred.</span>
+          <span>Buy with confidence from an established automotive business.</span>
+        </div>
+      </section>
+
       <div class="sheet__cta">
         <a class="enq" id="sEnq" href="#"></a>
       </div>
@@ -321,13 +431,24 @@
   var BODIES = /^(Sedan|SUV|Hatch(back)?|Wagon|Ute|Van|Coupe|Convertible|People mover)$/i;
   var cars = [];
 
+  /* ---- Each car's own page: /cars/<slug> ---- */
+  // SOLO = the slug when this is a car's own page, "" on the grid page.
+  var SOLO = (location.pathname.match(/^\/cars\/([a-z0-9-]+?)(?:\.html)?\/?$/) || [])[1] || "";
+  function carUrl(id){ return "/cars/" + id; }
+  // Old links looked like /cars#car-<slug>. Send them to the car's own page.
+  var legacy = location.hash.match(/^#car-([a-z0-9-]+)$/);
+  if (!SOLO && legacy && location.pathname === "/cars"){ location.replace(carUrl(legacy[1])); return; }
+  // Paths must work from /cars and from /cars/<slug>, so make every one start at the site root.
+  function abs(u){ return !u || /^([a-z]+:)?\/\//i.test(u) || u.charAt(0) === "/" ? u : "/" + u; }
+
   /* ---- /cars-only changes (used-cars.html and the live listings are NOT touched) ---- */
   // Listings Jitty asked to take off this page (2 Nov 2026). They stay on used-cars.html.
+  // (functions/cars/[slug].js reads HIDE and PHOTOS from this file, so keep their shape.)
   var HIDE = ["forester", "xtrail", "xv", "polo18", "rio", "polo", "civic"];
   // Replacement photos for this page only
   var PHOTOS = {
-    corolla: { dir: "images/corolla-cars/corolla-cars-", n: 11, alt: "2008 Toyota Corolla Ascent" },
-    golf: { dir: "images/golf-cars/golf-cars-", n: 18, alt: "2017 Volkswagen Golf R-Line Wagon", v: 2 }
+    corolla: { dir: "/images/corolla-cars/corolla-cars-", n: 11, alt: "2008 Toyota Corolla Ascent" },
+    golf: { dir: "/images/golf-cars/golf-cars-", n: 18, alt: "2017 Volkswagen Golf R-Line Wagon", v: 2 }
   };
   function numbered(dir, n, alt, v){
     return Array.apply(null, Array(n)).map(function(_, i){
@@ -349,6 +470,7 @@
   function track(name, p){ if (typeof gtag === "function") gtag("event", name, p || {}); }
   function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
   function txt(el){ return el ? el.textContent.replace(/\s+/g, " ").trim() : ""; }
+  function find(id){ return cars.filter(function(x){ return x.id === id; })[0]; }
 
   // Read one <article class="car"> from used-cars.html into a plain object
   function readCar(a, i){
@@ -373,24 +495,26 @@
       specs: specs,
       trust: [].map.call(a.querySelectorAll(".car__trust li"), txt),
       desc: a.querySelector(".car__desc") ? a.querySelector(".car__desc").innerHTML : "",
-      photos: [].map.call(a.querySelectorAll(".car__slide img"), function(img){ return { src: img.getAttribute("src"), alt: img.getAttribute("alt") || title }; }),
-      video: (a.querySelector(".car__slide video") || {}).getAttribute ? a.querySelector(".car__slide video").getAttribute("src") : "",
+      photos: [].map.call(a.querySelectorAll(".car__slide img"), function(img){ return { src: abs(img.getAttribute("src")), alt: img.getAttribute("alt") || title }; }),
+      video: (a.querySelector(".car__slide video") || {}).getAttribute ? abs(a.querySelector(".car__slide video").getAttribute("src")) : "",
       wa: enq ? enq.getAttribute("href") : "https://wa.me/61432520230?text=" + encodeURIComponent("Hi Jitty, I'm interested in the " + title + ". Is it still available?")
     };
   }
 
+  // Each tile is a real link to the car's own page. On the grid page a tap opens the pop-up instead
+  // (and puts that link in the address bar); long-press or right-click still copies the link.
   function tileHTML(c){
     var n = c.photos.length + (c.video ? 1 : 0);
     var hero = c.photos[0];
     var meta = [c.km, c.trans].filter(Boolean).join(" · ");
     return '<article class="tile" data-id="' + esc(c.id) + '">' +
-      '<button class="tile__open" type="button" data-open="' + esc(c.id) + '" aria-label="See photos and details: ' + esc(c.title) + '">' +
+      '<a class="tile__open" href="' + esc(carUrl(c.id)) + '" data-open="' + esc(c.id) + '" aria-label="See photos and details: ' + esc(c.title) + '">' +
         '<div class="tile__ph">' + (hero ? '<img src="' + esc(hero.src) + '" alt="' + esc(hero.alt) + '" loading="lazy">' : '') +
           (n > 1 ? '<span class="tile__n">' + CAM_ICON + n + '</span>' : '') + '</div>' +
         '<div class="tile__info"><div class="tile__price">' + esc(c.priceText) + '</div>' +
           '<div class="tile__title">' + esc(c.title) + '</div>' +
           '<div class="tile__meta">' + esc(meta) + '<br>Salisbury Plain, SA</div></div>' +
-      '</button>' +
+      '</a>' +
       '<div class="tile__cta"><a class="enq" href="' + esc(c.wa) + '" data-car="' + esc(c.id) + '" target="_blank" rel="noopener">' + WA_ICON + 'Enquire</a></div>' +
     '</article>';
   }
@@ -400,7 +524,7 @@
     var lo = 0, hi = Infinity;
     if (price){ lo = +price.split("-")[0]; hi = +price.split("-")[1]; }
     var list = cars.filter(function(c){
-      return (!body || c.body === body) && (!price || (c.price >= lo && c.price < hi));
+      return c.id !== SOLO && (!body || c.body === body) && (!price || (c.price >= lo && c.price < hi));
     });
     list.sort(function(a, b){
       if (sort === "low") return (a.price || Infinity) - (b.price || Infinity);
@@ -408,14 +532,13 @@
       return b.order - a.order; // newest listing first (used-cars.html adds new cars at the end)
     });
     $("grid").innerHTML = list.map(tileHTML).join("");
-    $("empty").hidden = list.length > 0;
+    $("empty").hidden = list.length > 0 || !!SOLO;
+    if (SOLO) $("soloH").hidden = !list.length;
   }
 
-  /* ---- Detail sheet ---- */
-  var current = null, pushed = false;
-  function openCar(id, fromHash){
-    var c = cars.filter(function(x){ return x.id === id; })[0];
-    if (!c) return;
+  /* ---- One car's listing (the pop-up on the grid page, the whole page on /cars/<slug>) ---- */
+  var current = null, pushed = false, closeTimer = 0;
+  function fillCar(c){
     current = c;
     var slides = c.photos.map(function(p, i){
       return '<div class="gal__slide"><img src="' + esc(p.src) + '" alt="' + esc(p.alt) + '"' + (i > 1 ? ' loading="lazy"' : '') + '></div>';
@@ -429,46 +552,75 @@
     $("sTitle").textContent = c.title;
     $("sSpecs").innerHTML = c.specs.map(function(s){ return "<li>" + esc(s) + "</li>"; }).join("");
     $("sTrust").innerHTML = c.trust.map(function(s){ return "<li>" + TICK + esc(s) + "</li>"; }).join("");
-    // PPSR cars (owner 2026-11-09): take the bold PPSR sentence out of the description and show it as a
-    // quiet note underneath, in plain words, inviting questions. used-cars.html keeps its own wording.
-    var desc = c.desc, ppsrNote = "";
+    // Repairable write-off cars (the ones marked "PPSR listed" in used-cars.html). Jitty's wording,
+    // 10 Nov 2026: the description on this page carries his exact line, then the plain-words note
+    // inviting questions. used-cars.html keeps its own wording.
+    var desc = c.desc, hist = "";
     var m = desc.match(/\s*<strong>((?:(?!<\/strong>)[\s\S])*PPSR[\s\S]*?)<\/strong>[^.]*before you buy\.?/i);
     if (m){
       desc = desc.replace(m[0], "");
-      var repaired = /repair/i.test(m[1]);
-      ppsrNote = 'This car is <span class="hl">PPSR listed</span>' + (repaired ? ' and has been professionally repaired' : '') +
-        '. It passed the required government inspection before it could be registered again, and an RAA or any independent inspection is welcome. ' +
-        'If you have any questions about its history, just message us and we\u2019ll talk you through it.';
+      hist = '<strong>This vehicle has been recorded as a <span class="hl">repairable write-off</span> and professionally repaired.</strong> ' +
+        'It is <span class="hl">PPSR listed</span>, it passed the required government inspection before it could be registered again, ' +
+        'and an RAA or any independent inspection is welcome. ' +
+        'If you have any questions about its history, just message us and we’ll talk you through it.';
     }
     $("sDesc").innerHTML = desc; // our own markup from used-cars.html
-    $("sPpsr").innerHTML = ppsrNote;
-    $("sPpsr").hidden = !ppsrNote;
+    $("sPpsr").innerHTML = hist;
+    $("sPpsr").hidden = !hist;
     $("sEnq").href = c.wa;
     $("sEnq").setAttribute("data-car", c.id);
     $("sEnq").setAttribute("target", "_blank");
     $("sEnq").setAttribute("rel", "noopener");
     $("sEnq").innerHTML = WA_ICON + "Enquire about this car";
+    $("sShare").querySelector("span").textContent = "Share";
     updateCount();
+  }
+  // Grid page: open the car in the pop-up and put its own link in the address bar
+  function openCar(id, fromNav){
+    var c = find(id);
+    if (!c) return;
+    clearTimeout(closeTimer);
+    fillCar(c);
     var s = $("sheet");
     s.hidden = false;
     document.body.classList.add("no-scroll");
     requestAnimationFrame(function(){ s.classList.add("is-open"); });
     $("sClose").focus({ preventScroll: true });
-    if (!fromHash){ history.pushState({ car: id }, "", "#car-" + id); pushed = true; }
+    if (!fromNav){ history.pushState({ car: id }, "", carUrl(id)); pushed = true; }
     track("view_item", { item_id: c.id, item_name: c.title, price: c.price, currency: "AUD", placement: "cars_page" });
+  }
+  // A car's own page: the same listing, placed in the page
+  function showSolo(){
+    var c = find(SOLO), s = $("sheet");
+    if (c){
+      fillCar(c);
+      ["role", "aria-modal", "aria-labelledby"].forEach(function(a){ s.removeAttribute(a); });
+      $("sTitle").setAttribute("role", "heading");
+      $("sTitle").setAttribute("aria-level", "1");
+      $("soloSlot").appendChild(s);
+      s.hidden = false;
+      document.title = c.title + " · " + c.priceText + " | AutoDrive Salisbury Plain";
+      track("view_item", { item_id: c.id, item_name: c.title, price: c.price, currency: "AUD", placement: "car_page" });
+    } else {
+      $("gone").hidden = false;
+      $("soloH").textContent = "Cars in stock right now";
+    }
+    document.documentElement.classList.add("is-ready");
+    updateCount();
   }
   function closeSheet(){
     var s = $("sheet");
-    if (s.hidden) return;
+    if (s.hidden || SOLO) return;
     s.classList.remove("is-open");
     document.body.classList.remove("no-scroll");
     s.querySelectorAll("video").forEach(function(v){ v.pause(); });
-    setTimeout(function(){ s.hidden = true; $("gTrack").innerHTML = ""; }, 200);
+    closeTimer = setTimeout(function(){ s.hidden = true; $("gTrack").innerHTML = ""; }, 200);
     current = null;
   }
   function requestClose(){
+    if (SOLO) return;
     if (pushed){ pushed = false; history.back(); }   // popstate closes it
-    else { closeSheet(); history.replaceState(null, "", location.pathname + location.search); }
+    else { closeSheet(); history.replaceState(null, "", "/cars"); }
   }
   function updateCount(){
     var t = $("gTrack"), n = t.children.length;
@@ -478,6 +630,27 @@
     $("gNext").hidden = i >= n;
   }
   function step(d){ var t = $("gTrack"); t.scrollBy({ left: d * t.clientWidth, behavior: "smooth" }); }
+
+  // Share: the phone's own share sheet where there is one, otherwise copy the car's link
+  function copyText(s){
+    if (navigator.clipboard && navigator.clipboard.writeText) return navigator.clipboard.writeText(s);
+    return new Promise(function(ok, fail){
+      var t = document.createElement("textarea");
+      t.value = s; t.setAttribute("readonly", ""); t.style.cssText = "position:fixed;top:0;left:0;opacity:0;";
+      document.body.appendChild(t); t.select();
+      try { document.execCommand("copy") ? ok() : fail(); } catch (e){ fail(e); }
+      document.body.removeChild(t);
+    });
+  }
+  $("sShare").addEventListener("click", function(){
+    if (!current) return;
+    var url = location.origin + carUrl(current.id), label = this.querySelector("span");
+    var name = current.title + " · " + current.priceText;
+    track("share", { method: navigator.share ? "share_sheet" : "copy_link", content_type: "car", item_id: current.id });
+    if (navigator.share){ navigator.share({ title: name, text: name + " at AutoDrive Salisbury Plain", url: url }).catch(function(){}); return; }
+    copyText(url).then(function(){ label.textContent = "Link copied"; }, function(){ label.textContent = "Copy from the address bar"; })
+      .then(function(){ setTimeout(function(){ label.textContent = "Share"; }, 2200); });
+  });
 
   $("gTrack").addEventListener("scroll", function(){ window.requestAnimationFrame(updateCount); }, { passive: true });
   $("gPrev").addEventListener("click", function(){ step(-1); });
@@ -491,24 +664,32 @@
     else if (e.key === "ArrowLeft") step(-1);
   });
   window.addEventListener("popstate", function(){
-    var m = location.hash.match(/^#car-(.+)$/);
+    if (SOLO) return;
+    var m = location.pathname.match(/^\/cars\/([a-z0-9-]+)\/?$/);
     if (m) openCar(m[1], true); else { pushed = false; closeSheet(); }
   });
 
   document.addEventListener("click", function(e){
     var o = e.target.closest("[data-open]");
-    if (o){ openCar(o.getAttribute("data-open")); return; }
+    if (o){
+      // On a car's own page, or for open-in-new-tab clicks, just follow the link to that car's page
+      if (SOLO || e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button) return;
+      e.preventDefault();
+      openCar(o.getAttribute("data-open"));
+      return;
+    }
     var a = e.target.closest("a");
     if (!a) return;
     var href = a.getAttribute("href") || "";
-    if (/wa\.me/.test(href)) track("whatsapp_click", { link_url: href, car: a.getAttribute("data-car") || "", placement: "cars_page" });
-    else if (href.indexOf("tel:") === 0) track("phone_click", { link_url: href, placement: "cars_page" });
+    var place = SOLO ? "car_page" : "cars_page";
+    if (/wa\.me/.test(href)) track("whatsapp_click", { link_url: href, car: a.getAttribute("data-car") || (a.closest(".read") && current ? current.id : ""), placement: place });
+    else if (href.indexOf("tel:") === 0) track("phone_click", { link_url: href, placement: place });
   });
   ["fBody", "fPrice", "fSort"].forEach(function(id){ $(id).addEventListener("change", render); });
   $("reset").addEventListener("click", function(e){ e.preventDefault(); $("fBody").value = ""; $("fPrice").value = ""; render(); });
 
   /* ---- Load the stock from used-cars.html ---- */
-  fetch("used-cars.html", { cache: "no-cache" })
+  fetch("/used-cars.html", { cache: "no-cache" })
     .then(function(r){ if (!r.ok) throw new Error(r.status); return r.text(); })
     .then(function(html){
       var doc = new DOMParser().parseFromString(html, "text/html");
@@ -520,13 +701,14 @@
       var bodies = cars.map(function(c){ return c.body; }).filter(function(b, i, all){ return b && all.indexOf(b) === i; }).sort();
       $("fBody").insertAdjacentHTML("beforeend", bodies.map(function(b){ return '<option value="' + esc(b) + '">' + esc(b) + "</option>"; }).join(""));
       render();
-      var m = location.hash.match(/^#car-(.+)$/);
-      if (m) openCar(m[1], true);
+      if (SOLO) showSolo();
     })
     .catch(function(){
+      document.documentElement.classList.add("is-ready");
+      if (SOLO) $("soloH").hidden = true;
       $("grid").innerHTML = "";
       $("empty").hidden = false;
-      $("empty").innerHTML = 'We couldn’t load the cars just now. See them on our <a href="used-cars.html">quality cars page</a> or <a href="https://wa.me/61432520230">message us on WhatsApp</a>.';
+      $("empty").innerHTML = 'We couldn’t load the cars just now. See them on our <a href="/used-cars">quality cars page</a> or <a href="https://wa.me/61432520230">message us on WhatsApp</a>.';
     });
 })();
 </script>

@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-11-09**.
+touching the site. Last verified against the live code: **2026-11-10**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -145,6 +145,8 @@ autodrive-salisbury-plain/
 ├── contact.html               # Contact + booking form + Google Map
 ├── find-my-car.html           # Car-finding programme application (Instagram bio link, unlisted, noindex)
 ├── cars.html                  # Cars for sale: marketplace-style stock grid, Enquire under each car (LIVE, §7g)
+├── functions/cars/[slug].js   # Cloudflare Pages Function: each car's own page at /cars/<slug> (§7g)
+├── _routes.json               # runs that function for /cars/* only; everything else stays plain static
 ├── assets/
 │   ├── css/styles.css
 │   └── js/main.js             # mobile nav, scroll reveal, form handler, video labels
@@ -429,11 +431,40 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   prefilled message (same link as its used-cars listing). Filters: body type (built from the specs), price band, sort
   (newest first = last listing in used-cars.html first).
 - Tapping a car opens a detail sheet: swipeable full gallery (plus the Civic video), price and price note, specs,
-  trust ticks, description, Enquire only (the Call button was removed 2026-11-03, owner: no call options on /cars). Each car has a shareable deep link: `/cars#car-<slug>` (e.g. `#car-c200`).
+  trust ticks, description, Enquire only (the Call button was removed 2026-11-03, owner: no call options on /cars).
+- **Each car has its own page and link: `/cars/<slug>`** (e.g. `/cars/c200`; slug = the `car-<slug>` id in
+  used-cars.html). Built 2026-11-10, owner: "a separate listing and a separate link for each of the cars that we can
+  forward to customers". **PREVIEW ONLY until the owner approves.** How it works:
+  - `functions/cars/[slug].js` (Cloudflare Pages Function, the site's only server code; `_routes.json` limits it to
+    `/cars/*`) serves `cars.html` with the `<title>`, description, canonical and `og:` tags swapped for that car, so a
+    forwarded link shows the car's photo, name and price in WhatsApp/Instagram. It reads the car live from
+    `used-cars.html` and reads `HIDE` + `PHOTOS` out of the cars.html script by regex (keep their shape). A hidden, sold
+    or unknown slug returns the page with status 404 + noindex. Nothing to regenerate when stock changes.
+  - `cars.html` sees the `/cars/<slug>` address (`SOLO` in the script, class `solo` on `<html>`) and lays the same
+    listing out as a full page: back link "All cars for sale", gallery, price, **Share** button (phone share sheet, or
+    copies the link), specs, description, Jitty's terms, sticky Enquire, then "More cars in stock" (the grid without
+    this car). A car that is gone shows "Sorry, that car is no longer listed" above the full grid.
+  - On `/cars` each tile is a real `<a href="/cars/<slug>">`; a tap still opens the pop-up but now puts `/cars/<slug>`
+    in the address bar (pushState). Old `/cars#car-<slug>` links redirect to the new address.
+  - Because the same file is served at two depths, **every path in cars.html starts with `/`** (and image paths read
+    from used-cars.html are made root-absolute by `abs()`). Keep it that way.
+  - Not in sitemap.xml (stock changes weekly); each page is self-canonical and indexable.
+  - The function cannot run on the local python server; test per-car pages on the Cloudflare preview URL.
+- **"Please read before enquiring" block (Jitty, WhatsApp 2026-11-09 "add this in each vehicle").** Static `.read`
+  section inside the listing, under the description of every car (pop-up and own page): why buy from AutoDrive
+  ("over 14 years"), pricing and condition, warranty and registration, finance and trade-ins, important information,
+  then the business card (address, WhatsApp 0432 520 230 as a wa.me link, "Licensed Motor Vehicle Dealer, MVD 343921",
+  "Monday to Saturday: 9:00 am to 5:30 pm", inspections by appointment). His wording, minus emojis, dashes and the
+  sign-off. The phone number is a WhatsApp link, not a call link (no call options on /cars).
+- **Repairable write-off line (Jitty 2026-11-10).** Any car whose used-cars description has the bold "PPSR listed"
+  sentence gets, on Cars for Sale only, the grey `.sheet__hist` note under its description leading with his exact line:
+  "This vehicle has been recorded as a repairable write-off and professionally repaired." then PPSR listed, passed the
+  government inspection, independent inspection welcome, "message us and we'll talk you through it".
 - Bottom panel "Can't see the one you want?" links to a plain `find-my-car` (no UTM tags: tagged internal links restart the visit and lose the real source) and WhatsApp.
 - Self-contained: inline CSS with the locked tokens, own GA4 tag; does NOT load main.js (so the booking/date modal never
-  intercepts Enquire). Events: `whatsapp_click` (link_url, car, placement=cars_page), `phone_click`, `view_item`
-  (item_id, item_name, price) when a car's detail opens. Never name an event param `source`/`medium`/`campaign`:
+  intercepts Enquire). Events: `whatsapp_click` (link_url, car, placement=cars_page, or car_page on a
+  car's own page), `phone_click`, `view_item` (item_id, item_name, price, placement) when a car's detail opens or its
+  own page loads, `share` (method share_sheet|copy_link, content_type car, item_id). Never name an event param `source`/`medium`/`campaign`:
   GA4 treats them as traffic source and overwrites the visit's real source (fixed 2026-11-03; before that /cars visits
   showed as `cars_page / (not set)`).
 - Not in the main nav and not linked from other pages; it's the link for Jitty's Instagram. Indexable, canonical `/cars`.
@@ -582,10 +613,14 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
     the listing says otherwise, pre-owned condition, 3-month/5,000 km statutory warranty under 15 yrs and 200,000 km,
     extended 1/3/5 yr, finance via broker, trade-ins no swaps, hours 9 to 5 Mon to Fri. Never on the homepage swiper or
     the car cards. Keep the copy on both pages identical. On cars.html each PPSR car's detail
-    sheet lifts the bold "This car is PPSR listed..." sentence out of the description and shows it as a quiet grey
-    `.sheet__note` underneath ("PPSR listed" in red, passed the government inspection, independent inspection
-    welcome, "message us and we'll talk you through it"); used-cars.html keeps its own bold wording (LIVE 2026-11-09). **Open with Jitty:** the "3 months free rego" tick contradicts his "rego extra" line, and his 9 to 5
-    hours differ from Google's 9:30 open; resolve both before go-live.
+    sheet lifts the bold "This car is PPSR listed..." sentence out of the description and shows a quiet grey note
+    underneath instead (see "Repairable write-off line" in §7g for the current wording); used-cars.html keeps its own
+    bold wording with "PPSR listed" in a red `.hl` span (LIVE 2026-11-09). In the two links only the words "PPSR listed"
+    and "enquire" are red (in quotes); on preview since 2026-11-09 they are also underlined with a slow 2.6 s pulse
+    (styles v77, **not live yet, awaiting owner approval**). **Open with Jitty:** the "3 months free rego" tick
+    contradicts his "rego extra" line. **Hours now appear four ways:** this panel says 9 to 5 Mon to Fri, Jitty's
+    9 Nov block on each car says Mon to Sat 9:00 to 5:30, the footers and §2 say Mon to Fri 8:30 to 5:30 + Sat 8:30 to
+    4:00, and Google opens 9:30. Get one answer from Jitty and make them all match.
   - **Dealer licence:** `.stock-licence` line under the deck — "Licensed motor vehicle dealer —
     MVD 343921". SA requires the licence number on vehicle advertising; keep it on any page that
     advertises cars.
