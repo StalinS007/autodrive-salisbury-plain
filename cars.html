@@ -429,7 +429,7 @@
     // PPSR cars (owner 2026-11-09): take the bold PPSR sentence out of the description and show it as a
     // quiet note underneath, in plain words, inviting questions. used-cars.html keeps its own wording.
     var desc = c.desc, ppsrNote = "";
-    var m = desc.match(/\s*<strong>([^<]*PPSR[^<]*)<\/strong>[^.]*before you buy\.?/i);
+    var m = desc.match(/\s*<strong>((?:(?!<\/strong>)[\s\S])*PPSR[\s\S]*?)<\/strong>[^.]*before you buy\.?/i);
     if (m){
       desc = desc.replace(m[0], "");
       var repaired = /repair/i.test(m[1]);
