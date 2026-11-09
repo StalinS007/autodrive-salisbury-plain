@@ -505,30 +505,6 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
 - Still open: Jitty's 3 answers (on board 30 to 60 days; Australia-wide delivery or Adelaide
   only; "keys in 60 days" promise). The interstate delivery note assumes Australia-wide.
 
-## 7e. Used-car pipeline — WhatsApp → iCloud → listing + stories (built 2026-10-14, Mac install pending)
-
-`tools/cars/` turns a car Jitty sends on WhatsApp into a website listing, two Instagram story PNGs
-and the tracked links, from one share action. **Read `tools/cars/README.md` first** — it is the manual.
-- **Stalin's only manual step:** WhatsApp → select photos → Save to Files → iCloud `AutoDrive/Cars/_inbox/<new folder>`
-  + a screenshot of Jitty's message (or `details.txt`). The free WhatsApp Business app has no API, so this
-  hand-off cannot be zero-touch without moving the number to the Business Platform (rejected — kills the app).
-- **Mac side (launchd → `process-inbox.sh`):** waits for iCloud quiet → `claude -p` + `extract-prompt.md`
-  reads the message and captions/roles every photo → `car.json` (or `NEEDS-INFO.txt`) → `sips` resizes to
-  `images/<slug>/<slug>-NN.jpg` → `make-listing.mjs --insert` → `stories/render.mjs` (Chrome screenshot of
-  `hero.html` + `collage.html`, 1080×1920, sticker band y≈1420–1680 left clear) → commit + push to
-  **`reviews-preview` only** → files to `Cars/<slug>/{photos,web,stories,car.json}` → macOS notification.
-- **Verified in the cloud session:** `make-listing.mjs` output is byte-identical to the hand-written Golf block;
-  `--insert`/`--mark-sold`/`--remove` round-trip cleanly; both story frames render correctly with the real
-  Golf photos (Anton loads). **Not yet verified on the Mac:** `process-inbox.sh`, `sips`, `claude -p`
-  non-interactive, the launchd plist. 🖥️ **TODO Mac session:** follow README "Install", then run
-  `DRY_RUN=1 QUIET_SECONDS=0 tools/cars/process-inbox.sh` on a test folder and fix anything that breaks.
-- Schema: `tools/cars/car.schema.json`. Worked example: `tools/cars/example/car.json` (= the live Golf).
-- Story links use the `instagram / story` + `utm_campaign=<slug>-<year>` convention from `ANALYTICS_CONTEXT.md`;
-  `links.txt` also carries the `fbgroup / post` link for the community groups.
-- Maintenance commands (sold / price change / remove) are in the README under "Day-to-day".
-
----
-
 ## 8. Known constraints & pending items
 
 - **Contact form sends by SMS (not Formspree):** `#booking-form` composes a pre-filled text
@@ -552,7 +528,7 @@ and the tracked links, from one share action. **Read `tools/cars/README.md` firs
     `<img>` (there's an HTML comment in the file showing exactly how).
   - Cars live in a **carousel** (`.stock-carousel__track`); the "Car N of M" red bar and the
     arrows count the `<article class="car">` blocks automatically, so adding one needs no other
-    change. Currently **twenty listings, live and preview** (twelve below + C200, X-Trail, Forester added 2026-10-21 + five added 2026-11-02, see end of this list): 2009 Honda Civic VTi $9,600 (with a **promo video**,
+    change. Currently **twenty listings** (twelve below + C200, X-Trail, Forester, 2026-10-21 + five added 2026-11-02, see end of this list): 2009 Honda Civic VTi $9,600 (with a **promo video**,
     `images/promohondacivic.mp4` — keep that slide LAST), 2021 VW Polo Comfortline $17,400,
     2008 Toyota Corolla Ascent $8,900, and **2018 Kia Rio $11,900** (added 2026-09-20), and **2023 MG ZS Excite $14,600 FIRM, 13,330 km**
     (added 2026-09-24; also FIRST in the homepage `.hstock` swiper as newest stock; photo originals in
@@ -569,22 +545,18 @@ and the tracked links, from one share action. **Read `tools/cars/README.md` firs
     blurred copy of itself. **Homepage swiper order (owner, 1 Oct): Subaru XV FIRST (the featured car of the Instagram story campaign;
     its story Link sticker lands on `/used-cars#car-xv`), then Golf R-Line, then the flyer order, then MG / 2021 Polo /
     Corolla / Civic** (these four are NOT on Jitty's 28 Sep flyer: sold status unconfirmed).
-    **Added 2026-10-21 from Jitty's WhatsApp (photos in iCloud `Autodrive/Cars /<car>/`). C200, X-Trail and Forester are all LIVE on main
-    (owner approved 21 Oct, promoted alone; Forester price $16,900 still to confirm with Jitty): 2020 Mercedes-Benz C200 Luxury
-    Sedan $39,600 (26,504 km, PPSR listed + professionally repaired per Jitty's own listing), 2017 Subaru Forester 2.5i AWD
-    $16,900 (87,219 km, PPSR listed per his listing; price from his 12 Oct flyer, his 10 Oct listing said $17,900, CONFIRM),
-    2015 Nissan X-Trail ST-L 7 Seater $12,900 (127,107 km from the odometer photo; price from the flyer only; flyer says PPSR
-    but NOT claimed until confirmed).** Slugs `c200`, `forester`, `xtrail`; built with `tools/cars/make-listing.mjs`; photos 607×1080,
-    hero = whole car on a blurred fill. Not on the homepage swiper yet.
+    **LIVE 2026-10-21 (owner approved, promoted alone from reviews-preview): 2020 Mercedes-Benz C200 Luxury Sedan $39,600
+    (26,504 km, PPSR listed + professionally repaired per Jitty's listing) and 2015 Nissan X-Trail ST-L 7 Seater $12,900
+    (127,107 km; price from Jitty's 12 Oct flyer; PPSR NOT claimed).** Slugs `c200`, `xtrail` (CAR 13/14 on main). Story links:
+    `/used-cars.html?utm_source=instagram&utm_medium=story&utm_campaign=c200-2020#car-c200` and `...campaign=xtrail-2015#car-xtrail`.
+    **2017 Subaru Forester 2.5i AWD $16,900 also LIVE 2026-10-21** (87,219 km, PPSR listed per Jitty's listing; price from his
+    12 Oct flyer, his 10 Oct listing said $17,900: CONFIRM with Jitty). Slug `forester`, story link campaign `forester-2017`.
     **Added 2026-11-02 (owner: new cars go on the main site too), appended at the END of the track so `/cars` shows them first:**
     grey Toyota Corolla Sedan $11,900 (62,719 km, no year), 2019 Hyundai Venue $14,900 (47,548 km), 2015 Audi S3 Quattro
     $26,500 + government charges (82,117 km), 2016 Subaru WRX $24,900 (98,000 km), 2022 Mitsubishi Outlander LS 7-Seater
     $25,700 + government charges (48,605 km, ZM MY22 2WD). Slugs `corolla-grey`, `venue`, `audi-s3`, `wrx`, `outlander`;
     photos `images/<slug>/<slug>-NN.jpg`. Venue and grey Corolla were unplated in Jitty's photos; owner said keep them up.
     PPSR status of these five is unknown, so not claimed. Not on the homepage swiper.
-    Jitty's 12 Oct flyer disagrees with the site on several cars (Tiguan $13,700/96,639 km vs site $13,600/76,639; 2013 Rio
-    $8,400; Dualis listed as 2012 ST+2 7 seater 162,000 km) and omits XV, MG, 2018 Polo, 2018 Rio, 2021 Polo, Civic (possibly
-    sold), and shows cars with no photos yet (2014 i20 auto $6,900, 2016 HiAce $20,900, 2008 Corolla hatch $9,900). Await owner.
     Plus a "Looking for something specific?" enquiry card. The Civic video is a web-compressed
     720×1280 / ~7.5 MB version of the owner's original 4K clip (compress every video before
     committing — Cloudflare Pages rejects files over 25 MB and GitHub rejects over 100 MB).
@@ -601,7 +573,7 @@ and the tracked links, from one share action. **Read `tools/cars/README.md` firs
     flyer badge without confirming). No PPSR statement either way on the 2021 Polo, Corolla, Civic. Listed cars say so in their descriptions,
     the reason "accident-free" was removed from every page on 2026-09-24 (replaced with "road-ready" /
     "workshop-tested"). Keep every repaired car's disclosure in its own description.
-  - **Stock disclaimers (owner 2026-11-09, PREVIEW on reviews-preview, not yet live).** `.stock-notes` block under the four
+  - **Stock disclaimers (owner 2026-11-09, LIVE 2026-11-09).** `.stock-notes` block under the four
     ticks at the top of "Cars Available This Week" on used-cars.html, and the same block (`.notes`, inline CSS/JS) under
     the ticks in the dark intro of cars.html (Cars for Sale, the Instagram page): two quiet grey text links, "What does
     'PPSR listed' mean?" and "Before you enquire: pricing, warranty and conditions", each opening a panel in place
@@ -692,24 +664,8 @@ Three files, no server, no database — the booking details travel inside the li
 - **`tools/booking-webhook.gs`** — the Google Apps Script. Deploy from Jitty's Google account as a
   Web app (Execute as Me / Anyone), paste the `/exec` URL into `booking.html` → `ENDPOINT`. Has a daily
   cap (40) and sanity checks. Deployment steps are in the file header.
-- **No re-asking (added 2026-10-08):** the WhatsApp booking modal ("Tell us about your car") now has a required
-  **Email** field, and its message to Jitty ends with a "Booking ref (for Jitty)" `/confirm?p=` link carrying
-  email, car, service, chosen date, odometer and issue. Likewise the contact-page SMS to Jitty now includes the customer's email and a
-  `Confirm: /confirm?p=<base64url JSON>` link that opens the confirm tool with name, phone, email, car,
-  service, preferred date and note already filled in. The booking link carries the email (`e`) so `/booking`
-  shows "We'll send the invite to x@y" instead of asking for it (with a "Not your email?" fallback). When
-  `ENDPOINT` is set, `/confirm` also gets a "Send calendar invite to their email" button that creates the
-  event + invite directly, so the customer has nothing to do. `ENDPOINT` lives in BOTH `confirm.html` and
-  `booking.html` (paste the same `/exec` URL into each).
 - All times are computed as Adelaide wall time → UTC in the browser (verified across ACST/ACDT).
-- **Status (checked 2026-10-08):** `confirm.html` + `booking.html` are **live on `main`** —
-  autodrivesalisburyplain.com.au/confirm and /booking both work today. The Apps Script is still
-  **NOT deployed**: `booking.html` → `ENDPOINT` is still `""`, so the emailed Google invite path is off
-  and `/booking` silently falls back to "Just add it to my calendar" + the `.ics` download. Deploying
-  `tools/booking-webhook.gs` as a Web app and pasting the `/exec` URL into `ENDPOINT` is ~10 min and is
-  the last step. Since 8 Oct the script creates events on the AutoDrive calendar by id (`CALENDAR_ID =
-  autodrive5109@gmail.com`), so it can be deployed from **Stalin's own** Google account (he has edit rights
-  on that calendar) as well as Jitty's. Until then bookings do not land on the AutoDrive calendar.
+- **Status:** built and on `reviews-preview`; Apps Script not yet deployed (needs Jitty's login).
 
 ---
 
