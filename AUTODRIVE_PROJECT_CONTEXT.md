@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-11-07**.
+touching the site. Last verified against the live code: **2026-11-09**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -573,6 +573,15 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
     flyer badge without confirming). No PPSR statement either way on the 2021 Polo, Corolla, Civic. Listed cars say so in their descriptions,
     the reason "accident-free" was removed from every page on 2026-09-24 (replaced with "road-ready" /
     "workshop-tested"). Keep every repaired car's disclosure in its own description.
+  - **Stock disclaimers (owner 2026-11-09, PREVIEW on reviews-preview, not yet live).** `.stock-notes` block under the four
+    ticks at the top of "Cars Available This Week" on used-cars.html ONLY: two quiet grey text links, "What does
+    'PPSR listed' mean?" and "Before you enquire: pricing, warranty and conditions", each opening a panel in place
+    (inline script on the page, GA4 event `stock_note_open` {note: ppsr|terms}). PPSR text is ours; the terms panel is a
+    cut of Jitty's dealer terms (WhatsApp 2026-11-08 23:45): prices generally firm, rego/stamp duty/transfer extra unless
+    the listing says otherwise, pre-owned condition, 3-month/5,000 km statutory warranty under 15 yrs and 200,000 km,
+    extended 1/3/5 yr, finance via broker, trade-ins no swaps, hours 9 to 5 Mon to Fri. Never on the homepage swiper or
+    the car cards. **Open with Jitty:** the "3 months free rego" tick contradicts his "rego extra" line, and his 9 to 5
+    hours differ from Google's 9:30 open; resolve both before go-live.
   - **Dealer licence:** `.stock-licence` line under the deck — "Licensed motor vehicle dealer —
     MVD 343921". SA requires the licence number on vehicle advertising; keep it on any page that
     advertises cars.
