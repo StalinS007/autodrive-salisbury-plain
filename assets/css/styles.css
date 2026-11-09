@@ -689,6 +689,20 @@ section { padding: clamp(3.5rem, 7vw, 6rem) 0; }
 .stock-intro span { display:inline-flex; align-items:center; gap:.35rem; font-size:.82rem; font-weight:700; color:var(--grey-700); }
 .stock-intro span svg { width:16px; height:16px; color:var(--brand-red); }
 
+/* Low-key disclaimers under the stock ticks (used-cars.html) */
+.stock-notes { max-width:720px; margin:.9rem auto 0; text-align:center; }
+.stock-notes__links { display:flex; flex-wrap:wrap; justify-content:center; align-items:center; gap:.3rem .6rem; margin:0; font-size:.78rem; color:var(--grey-500); }
+.stock-notes__links svg { width:14px; height:14px; flex:none; }
+.stock-notes__links a { color:var(--grey-500); text-decoration:underline; text-decoration-color:transparent; text-underline-offset:3px; transition:color .15s, text-decoration-color .15s; }
+.stock-notes__links a:hover, .stock-notes__links a.is-open { color:var(--ink-black); text-decoration-color:currentColor; }
+.stock-notes__panel { position:relative; text-align:left; background:#fff; border:1px solid var(--grey-100); border-radius:var(--radius-sm); padding:1.1rem 2.6rem 1rem 1.2rem; margin-top:.8rem; font-size:.88rem; color:var(--grey-700); }
+.stock-notes__panel h3 { margin:0 0 .5rem; font-size:1rem; color:var(--ink-black); }
+.stock-notes__panel p { margin:0 0 .55rem; line-height:1.55; }
+.stock-notes__panel p:last-child { margin-bottom:0; }
+.stock-notes__panel strong { color:var(--ink-black); }
+.stock-notes__close { position:absolute; top:.5rem; right:.6rem; width:30px; height:30px; border:0; background:transparent; color:var(--grey-500); font-size:1.4rem; line-height:1; cursor:pointer; border-radius:50%; }
+.stock-notes__close:hover { background:var(--grey-100); color:var(--ink-black); }
+
 .stock-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1.5rem; margin-top:2.2rem; }
 @media (max-width:760px){ .stock-grid { grid-template-columns:1fr; gap:1.3rem; } }
 
