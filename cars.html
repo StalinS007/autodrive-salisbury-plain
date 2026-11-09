@@ -154,6 +154,8 @@
   .ticks li{display:flex; gap:8px; font-size:14.5px; font-weight:600;}
   .ticks svg{width:17px; height:17px; color:var(--wa); flex:none; margin-top:2px;}
   .sheet__desc{font-size:15px; color:var(--g700); margin:0 0 16px;}
+  .sheet__note{font-size:13.5px; line-height:1.5; color:var(--g500); background:var(--g100); border-radius:10px; padding:10px 12px; margin:-6px 0 16px;}
+  .sheet__note .hl{color:var(--red); font-weight:700;}
   .sheet__cta{display:grid; grid-template-columns:1fr; gap:10px; position:sticky; bottom:0; background:#fff; padding:10px 0 0;}
   .sheet__cta .enq{font-size:16px; padding:14px;}
   body.no-scroll{overflow:hidden;}
@@ -298,6 +300,7 @@
       <ul class="chips" id="sSpecs"></ul>
       <ul class="ticks" id="sTrust"></ul>
       <p class="sheet__desc" id="sDesc"></p>
+      <p class="sheet__note" id="sPpsr" hidden></p>
       <div class="sheet__cta">
         <a class="enq" id="sEnq" href="#"></a>
       </div>
@@ -423,7 +426,20 @@
     $("sTitle").textContent = c.title;
     $("sSpecs").innerHTML = c.specs.map(function(s){ return "<li>" + esc(s) + "</li>"; }).join("");
     $("sTrust").innerHTML = c.trust.map(function(s){ return "<li>" + TICK + esc(s) + "</li>"; }).join("");
-    $("sDesc").innerHTML = c.desc; // our own markup from used-cars.html
+    // PPSR cars (owner 2026-11-09): take the bold PPSR sentence out of the description and show it as a
+    // quiet note underneath, in plain words, inviting questions. used-cars.html keeps its own wording.
+    var desc = c.desc, ppsrNote = "";
+    var m = desc.match(/\s*<strong>([^<]*PPSR[^<]*)<\/strong>[^.]*before you buy\.?/i);
+    if (m){
+      desc = desc.replace(m[0], "");
+      var repaired = /repair/i.test(m[1]);
+      ppsrNote = 'This car is <span class="hl">PPSR listed</span>' + (repaired ? ' and has been professionally repaired' : '') +
+        '. It passed the required government inspection before it could be registered again, and an RAA or any independent inspection is welcome. ' +
+        'If you have any questions about its history, just message us and we\u2019ll talk you through it.';
+    }
+    $("sDesc").innerHTML = desc; // our own markup from used-cars.html
+    $("sPpsr").innerHTML = ppsrNote;
+    $("sPpsr").hidden = !ppsrNote;
     $("sEnq").href = c.wa;
     $("sEnq").setAttribute("data-car", c.id);
     $("sEnq").setAttribute("target", "_blank");
