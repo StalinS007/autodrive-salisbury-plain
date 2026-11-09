@@ -602,13 +602,14 @@ and the tracked links, from one share action. **Read `tools/cars/README.md` firs
     the reason "accident-free" was removed from every page on 2026-09-24 (replaced with "road-ready" /
     "workshop-tested"). Keep every repaired car's disclosure in its own description.
   - **Stock disclaimers (owner 2026-11-09, PREVIEW on reviews-preview, not yet live).** `.stock-notes` block under the four
-    ticks at the top of "Cars Available This Week" on used-cars.html ONLY: two quiet grey text links, "What does
+    ticks at the top of "Cars Available This Week" on used-cars.html, and the same block (`.notes`, inline CSS/JS) under
+    the ticks in the dark intro of cars.html (Cars for Sale, the Instagram page): two quiet grey text links, "What does
     'PPSR listed' mean?" and "Before you enquire: pricing, warranty and conditions", each opening a panel in place
     (inline script on the page, GA4 event `stock_note_open` {note: ppsr|terms}). PPSR text is ours; the terms panel is a
     cut of Jitty's dealer terms (WhatsApp 2026-11-08 23:45): prices generally firm, rego/stamp duty/transfer extra unless
     the listing says otherwise, pre-owned condition, 3-month/5,000 km statutory warranty under 15 yrs and 200,000 km,
     extended 1/3/5 yr, finance via broker, trade-ins no swaps, hours 9 to 5 Mon to Fri. Never on the homepage swiper or
-    the car cards. **Open with Jitty:** the "3 months free rego" tick contradicts his "rego extra" line, and his 9 to 5
+    the car cards. Keep the copy on both pages identical. **Open with Jitty:** the "3 months free rego" tick contradicts his "rego extra" line, and his 9 to 5
     hours differ from Google's 9:30 open; resolve both before go-live.
   - **Dealer licence:** `.stock-licence` line under the deck — "Licensed motor vehicle dealer —
     MVD 343921". SA requires the licence number on vehicle advertising; keep it on any page that

@@ -48,6 +48,19 @@
   .intro__trust{list-style:none; padding:0; margin:18px 0 0; display:flex; flex-wrap:wrap; gap:8px 18px; font-size:14px; font-weight:600; color:#fff;}
   .intro__trust li{display:flex; align-items:center; gap:7px;}
   .intro__trust svg{width:16px; height:16px; color:var(--red); flex:none;}
+  /* Low-key disclaimers under the ticks */
+  .notes{margin-top:12px; max-width:720px;}
+  .notes__links{display:flex; flex-wrap:wrap; align-items:center; gap:4px 10px; margin:0; font-size:13px; color:#a1a1aa;}
+  .notes__links svg{width:14px; height:14px; flex:none;}
+  .notes__links a{color:#a1a1aa; text-decoration:underline; text-decoration-color:transparent; text-underline-offset:3px; transition:color .15s, text-decoration-color .15s;}
+  .notes__links a:hover, .notes__links a.is-open{color:#fff; text-decoration-color:currentColor;}
+  .notes__panel{position:relative; background:#fff; color:var(--g700); border-radius:12px; padding:16px 42px 14px 18px; margin-top:12px; font-size:14.5px; line-height:1.55;}
+  .notes__panel h3{margin:0 0 8px; font-size:16px; color:var(--ink);}
+  .notes__panel p{margin:0 0 8px;}
+  .notes__panel p:last-child{margin-bottom:0;}
+  .notes__panel strong{color:var(--ink);}
+  .notes__close{position:absolute; top:8px; right:10px; width:30px; height:30px; border:0; background:transparent; color:var(--g500); font-size:22px; line-height:1; cursor:pointer; border-radius:50%;}
+  .notes__close:hover{background:var(--g100); color:var(--ink);}
 
   /* Toolbar */
   .bar{display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:10px; padding:16px 0 14px;}
@@ -172,8 +185,51 @@
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Mechanic-owned</li>
       <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg>Independent inspections welcome</li>
     </ul>
+
+    <!-- Low-key disclaimers (owner 2026-11-09): same two panels as used-cars.html. Keep the copy in sync. -->
+    <div class="notes" data-stock-notes>
+      <p class="notes__links">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5M12 8h.01"/></svg>
+        <a href="#note-ppsr" data-note="ppsr">What does &ldquo;PPSR listed&rdquo; mean?</a>
+        <span aria-hidden="true">&middot;</span>
+        <a href="#note-terms" data-note="terms">Before you enquire: pricing, warranty and conditions</a>
+      </p>
+      <div class="notes__panel" id="note-ppsr" hidden>
+        <button type="button" class="notes__close" aria-label="Close">&times;</button>
+        <h3>What &ldquo;PPSR listed&rdquo; means</h3>
+        <p>Some of our cars are PPSR listed. That means the car was once assessed as a repairable write-off, has since been professionally repaired, and has passed the required government inspection before it could be registered again. We say so on every car it applies to, in that car&rsquo;s description. It&rsquo;s why the price is lower than a car with no history.</p>
+        <p>You&rsquo;re welcome to bring an RAA or any independent inspector before you buy, and we&rsquo;ll show you the PPSR report on request.</p>
+      </div>
+      <div class="notes__panel" id="note-terms" hidden>
+        <button type="button" class="notes__close" aria-label="Close">&times;</button>
+        <h3>Before you enquire</h3>
+        <p><strong>Pricing.</strong> Our prices are set after comparing the market, so they&rsquo;re generally firm. Rego, stamp duty, government charges and transfer fees are extra unless the listing says otherwise. Registration and warranty are done on site at sale, so you can drive away the same day.</p>
+        <p><strong>Condition.</strong> Every car is pre-owned and workshop-maintained to a high standard. Some cosmetic wear consistent with age may be present. Pre-purchase inspections are welcome on site.</p>
+        <p><strong>Warranty.</strong> Cars under 15 years old and under 200,000 km come with a 3-month or 5,000 km statutory warranty, whichever comes first. Extended 1, 3 or 5 year warranties are available.</p>
+        <p><strong>Finance and trade-ins.</strong> Finance is available for eligible applicants through our broker. Tell us before you inspect. Trade-ins welcome, no swaps.</p>
+        <p><strong>Hours.</strong> 9 to 5 Monday to Friday, weekends by appointment.</p>
+        <p>Please research the make and model before enquiring, and be respectful to our staff.</p>
+      </div>
+    </div>
   </div>
 </section>
+<script>
+  (function(){
+    var root = document.querySelector("[data-stock-notes]"); if (!root) return;
+    var panels = root.querySelectorAll(".notes__panel"), links = root.querySelectorAll("[data-note]");
+    function closeAll(){ panels.forEach(function(p){ p.hidden = true; }); links.forEach(function(a){ a.classList.remove("is-open"); }); }
+    links.forEach(function(a){
+      a.addEventListener("click", function(e){
+        e.preventDefault();
+        var panel = document.getElementById(a.getAttribute("href").slice(1)), wasOpen = !panel.hidden;
+        closeAll();
+        if (!wasOpen){ panel.hidden = false; a.classList.add("is-open");
+          if (typeof gtag === "function") gtag("event", "stock_note_open", { note: a.getAttribute("data-note") }); }
+      });
+    });
+    root.querySelectorAll(".notes__close").forEach(function(b){ b.addEventListener("click", closeAll); });
+  })();
+</script>
 
 <main class="wrap">
   <div class="bar">
