@@ -573,7 +573,7 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
     flyer badge without confirming). No PPSR statement either way on the 2021 Polo, Corolla, Civic. Listed cars say so in their descriptions,
     the reason "accident-free" was removed from every page on 2026-09-24 (replaced with "road-ready" /
     "workshop-tested"). Keep every repaired car's disclosure in its own description.
-  - **Stock disclaimers (owner 2026-11-09, PREVIEW on reviews-preview, not yet live).** `.stock-notes` block under the four
+  - **Stock disclaimers (owner 2026-11-09, LIVE 2026-11-09).** `.stock-notes` block under the four
     ticks at the top of "Cars Available This Week" on used-cars.html, and the same block (`.notes`, inline CSS/JS) under
     the ticks in the dark intro of cars.html (Cars for Sale, the Instagram page): two quiet grey text links, "What does
     'PPSR listed' mean?" and "Before you enquire: pricing, warranty and conditions", each opening a panel in place
