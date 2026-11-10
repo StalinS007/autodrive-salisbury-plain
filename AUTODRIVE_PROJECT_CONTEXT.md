@@ -488,7 +488,7 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   2026-11-10. `corolla-grey` is his "2013 Toyota Corolla Ascent Sport" (title fixed; grey Corolla and Venue prices now
   carry "+ government charges" as in his ads).
   2008 Corolla set to $7,900 + government charges and 200,500 km (owner 2026-11-11, matching Jitty's 31 Oct post).
-  **Added 2026-11-11 (owner, PREVIEW ONLY until approved):** 2012 Mazda 2 ($11,600 + government charges, 59,848 km,
+  **Added 2026-11-11 (owner, LIVE 2026-11-11 on both car pages):** 2012 Mazda 2 ($11,600 + government charges, 59,848 km,
   PPSR listed, professionally repaired; slug `mazda2`, 14 photos) and 2025 Mazda CX-3 ($25,500 + government charges,
   21,902 km, repairable write-off; slug `cx3`, 19 photos), appended at the end of the used-cars.html track so `/cars`
   shows them first. Text and photos come from Jitty's Facebook posts (2 Nov and 10 Nov). **Getting photos from a
