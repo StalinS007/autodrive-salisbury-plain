@@ -480,9 +480,17 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   "Engine: 2.0L turbo petrol. Gearbox: automatic. Drive: ... Outside: ... Inside: ... Tech: ... Safety: ...
   Condition: ...". Write new cars that way. A description with no labelled sentences still works (intro + paragraph).
   Quality Cars shows the same text as a plain paragraph. Keep the bold PPSR sentence last, unchanged in shape.
-- **Grey Corolla (`corolla-grey`) is the 2013 Ascent Sport from Jitty's listing (same 62,719 km and $11,900), which he
-  describes as a recorded repairable write-off.** PPSR line added on preview 2026-11-10; owner to confirm it is the
-  same car.
+- **Jitty's own ads are the source for each car's description and PPSR status (checked 2026-11-10).** His full listing
+  text is on the Facebook page posts: Meta Business Suite, Insights, Content (the caption of each "Multi media" post).
+  WhatsApp only has some of them, and photo captions sent before 2 Nov were never stored. From those posts:
+  **Outlander, Audi S3 and the grey Corolla are repairable write-offs; the WRX and Venue are PPSR listed; the 2008
+  Corolla is "Clear PPSR, no write-off history".** All five PPSR lines and the missing features were added on preview
+  2026-11-10. `corolla-grey` is his "2013 Toyota Corolla Ascent Sport" (title fixed; grey Corolla and Venue prices now
+  carry "+ government charges" as in his ads).
+  **Open with the owner:** 2008 Corolla is $8,900 / 197,148 km on the site but $7,900 + government charges / 200,500 km
+  in Jitty's 31 Oct post; two cars he has posted are not on the site (2012 Mazda 2 $11,600 + govt, 59,848 km, PPSR
+  listed; 2025 Mazda CX-3 $25,500 + govt, 21,902 km, repairable write-off, posted 10 Nov); his posts say 11, 14 and 18
+  years of experience in three places.
 - **Search box (owner 2026-11-10, PREVIEW ONLY until approved).** Above the filter pills on the grid page: "Search make,
   model or year". Filters as you type; every word typed must start a word in the car's title, specs, ticks or
   description (so "rio" does not match "interior"); nicknames vw/merc/benz/subie/auto are expanded. Shows "N cars for
@@ -615,7 +623,7 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
     $26,500 + government charges (82,117 km), 2016 Subaru WRX $24,900 (98,000 km), 2022 Mitsubishi Outlander LS 7-Seater
     $25,700 + government charges (48,605 km, ZM MY22 2WD). Slugs `corolla-grey`, `venue`, `audi-s3`, `wrx`, `outlander`;
     photos `images/<slug>/<slug>-NN.jpg`. Venue and grey Corolla were unplated in Jitty's photos; owner said keep them up.
-    PPSR status of these five is unknown, so not claimed. Not on the homepage swiper.
+    PPSR status of these five: see "Jitty's own ads are the source" in §7g (all five are PPSR listed). Not on the homepage swiper.
     Plus a "Looking for something specific?" enquiry card. The Civic video is a web-compressed
     720×1280 / ~7.5 MB version of the owner's original 4K clip (compress every video before
     committing — Cloudflare Pages rejects files over 25 MB and GitHub rejects over 100 MB).
