@@ -460,6 +460,11 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   sentence gets, on Cars for Sale only, the grey `.sheet__hist` note under its description leading with his exact line:
   "This vehicle has been recorded as a repairable write-off and professionally repaired." then PPSR listed, passed the
   government inspection, independent inspection welcome, "message us and we'll talk you through it".
+- **Search box (owner 2026-11-10, PREVIEW ONLY until approved).** Above the filter pills on the grid page: "Search make,
+  model or year". Filters as you type; every word typed must start a word in the car's title, specs, ticks or
+  description (so "rio" does not match "interior"); nicknames vw/merc/benz/subie/auto are expanded. Shows "N cars for
+  ..." and a "No cars match ..." state with Show all cars. GA4 `search` event (search_term, results, placement),
+  one per settled term. Hidden on a car's own page.
 - Bottom panel "Can't see the one you want?" links to a plain `find-my-car` (no UTM tags: tagged internal links restart the visit and lose the real source) and WhatsApp.
 - Self-contained: inline CSS with the locked tokens, own GA4 tag; does NOT load main.js (so the booking/date modal never
   intercepts Enquire). Events: `whatsapp_click` (link_url, car, placement=cars_page, or car_page on a
