@@ -5,7 +5,9 @@
  * so Google emails the customer a real invitation (Accept / Decline) and the
  * acceptance shows back on Jitty's event. Both sides get reminders.
  *
- * DEPLOY (5 minutes, must be done while signed in as Jitty's Google account):
+ * DEPLOY (5 minutes). Sign in as EITHER Jitty's AutoDrive Google account OR any account that has
+ * "Make changes to events" access to the AutoDrive calendar (Stalin's personal account has this since
+ * 8 Oct 2026). CALENDAR_ID below picks the AutoDrive calendar, so the events land there either way.
  *   1. Go to https://script.google.com  →  New project
  *   2. Delete the sample code, paste this whole file, and click Save (name it "AutoDrive bookings")
  *   3. Deploy  →  New deployment  →  type: Web app
@@ -20,6 +22,7 @@
  */
 
 var TOKEN       = "ad-book-2026";
+var CALENDAR_ID = "autodrive5109@gmail.com";   // the AutoDrive calendar (shared to Stalin with edit rights)
 var MAX_PER_DAY = 40;
 var LOC         = "AutoDrive, 6 Lolands Rd, Salisbury Plain SA 5109";
 
@@ -53,7 +56,8 @@ function doPost(e) {
       "Booked via autodrivesalisburyplain.com.au"
     ].filter(Boolean).join("\n");
 
-    var ev = CalendarApp.getDefaultCalendar().createEvent(title, start, end, {
+    var cal = CalendarApp.getCalendarById(CALENDAR_ID) || CalendarApp.getDefaultCalendar();
+    var ev = cal.createEvent(title, start, end, {
       location: LOC,
       description: desc,
       guests: d.email,

@@ -52,7 +52,8 @@
   </div>
 
   <div class="card" id="emailCard">
-    <label for="email">Your email — we'll send a calendar invite so you get a reminder</label>
+    <label for="email" id="emailLabel">Your email — we'll send a calendar invite so you get a reminder</label>
+    <p id="knownEmail" hidden>We'll send the calendar invite to <b id="knownEmailAddr"></b>. <a href="#" id="changeEmail">Not your email?</a></p>
     <form id="form" novalidate>
       <input type="email" id="email" placeholder="you@gmail.com" inputmode="email" autocomplete="email" required />
       <button class="btn btn--red" id="sendBtn" type="submit">Send my calendar invite</button>
@@ -130,6 +131,17 @@
     "BEGIN:VALARM","TRIGGER:-PT2H","ACTION:DISPLAY","DESCRIPTION:AutoDrive booking reminder","END:VALARM",
     "END:VEVENT","END:VCALENDAR"].join("\r\n");
   $("icsBtn").href = "data:text/calendar;charset=utf-8," + encodeURIComponent(ics);
+
+  // Email already given on the website booking form? Then don't ask for it again.
+  if(b.e && /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(b.e)){
+    $("email").value = b.e;
+    $("email").hidden = true; $("emailLabel").hidden = true;
+    $("knownEmail").hidden = false; $("knownEmailAddr").textContent = b.e;
+    $("changeEmail").addEventListener("click", function(ev){
+      ev.preventDefault(); $("knownEmail").hidden = true; $("emailLabel").hidden = false;
+      $("email").hidden = false; $("email").value = ""; $("email").focus();
+    });
+  }
 
   // ---- the real thing: email -> invite from Jitty's calendar ----
   $("form").addEventListener("submit", function(ev){
