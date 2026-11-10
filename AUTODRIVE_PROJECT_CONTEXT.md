@@ -464,6 +464,12 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   on top, details underneath, scroll for the rest. On desktop the pop-up is a 660 px centred panel (close button fixed)
   and a car's own page is a 720 px centred card. The old desktop photo-left, details-right split is gone; do not bring
   it back.
+- **Photos (owner 2026-11-10, PREVIEW ONLY until approved).** Car photos are tall portrait (mostly 607x1080). The
+  gallery box has a fixed height (74dvh phone, 70vh desktop pop-up) and each photo is fitted WHOLE inside it
+  (`object-fit:contain`, blurred copy of the photo fills the sides). Never crop them and never let the photo scroll
+  up and down inside the box (the old 4:5 box did that). Tapping a photo, or the "Full photo" button, opens a
+  full-screen viewer (`.lb`): next / previous buttons, swipe, arrow keys, counter, swipe down or X to close; the
+  phone's back button closes the viewer first. GA4 `photo_fullscreen` (item_id, placement).
 - **Search box (owner 2026-11-10, PREVIEW ONLY until approved).** Above the filter pills on the grid page: "Search make,
   model or year". Filters as you type; every word typed must start a word in the car's title, specs, ticks or
   description (so "rio" does not match "interior"); nicknames vw/merc/benz/subie/auto are expanded. Shows "N cars for
