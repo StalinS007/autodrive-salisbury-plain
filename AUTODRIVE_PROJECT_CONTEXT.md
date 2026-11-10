@@ -434,7 +434,7 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   trust ticks, description, Enquire only (the Call button was removed 2026-11-03, owner: no call options on /cars).
 - **Each car has its own page and link: `/cars/<slug>`** (e.g. `/cars/c200`; slug = the `car-<slug>` id in
   used-cars.html). Built 2026-11-10, owner: "a separate listing and a separate link for each of the cars that we can
-  forward to customers". **PREVIEW ONLY until the owner approves.** How it works:
+  forward to customers". **LIVE 2026-11-10.** How it works:
   - `functions/cars/[slug].js` (Cloudflare Pages Function, the site's only server code; `_routes.json` limits it to
     `/cars/*`) serves `cars.html` with the `<title>`, description, canonical and `og:` tags swapped for that car, so a
     forwarded link shows the car's photo, name and price in WhatsApp/Instagram. It reads the car live from
@@ -463,18 +463,18 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   sentence. Under it "What does 'PPSR listed' mean?" with PPSR listed red, underlined and pulsing; tapping it opens
   the explanation, copied at run time from the `#note-ppsr` panel so the wording stays identical. Owner: this line
   is very important on every car known to be PPSR listed. GA4 `stock_note_open` (note ppsr, placement, car).
-- **Listing layout (owner 2026-11-10, PREVIEW ONLY until approved).** One centred column at every width: photo gallery
+- **Listing layout (owner 2026-11-10, LIVE 2026-11-10).** One centred column at every width: photo gallery
   on top, details underneath, scroll for the rest. On desktop the pop-up is a 660 px centred panel (close button fixed)
   and a car's own page is a 720 px centred card. The old desktop photo-left, details-right split is gone; do not bring
   it back.
-- **Photos (owner 2026-11-10, PREVIEW ONLY until approved).** Car photos are tall portrait (mostly 607x1080). The
+- **Photos (owner 2026-11-10, LIVE 2026-11-10).** Car photos are tall portrait (mostly 607x1080). The
   gallery box has a fixed height (74dvh phone, 70vh desktop pop-up) and each photo is fitted WHOLE inside it
   (`object-fit:contain`, blurred copy of the photo fills the sides). Never crop them and never let the photo scroll
   up and down inside the box (the old 4:5 box did that). Tapping a photo, or the "Full photo" button, opens a
   full-screen viewer (`.lb`): a sideways scroll-snap strip (native swipe; a hand-rolled swipe fails on iPhone because
   Safari takes sideways swipes for back/forward), next / previous buttons, arrow keys, counter, X to close; the
   phone's back button closes the viewer first. GA4 `photo_fullscreen` (item_id, placement).
-- **Description layout (owner 2026-11-10, PREVIEW ONLY until approved).** On Cars for Sale a description shows as a
+- **Description layout (owner 2026-11-10, LIVE 2026-11-10).** On Cars for Sale a description shows as a
   short intro line, then a labelled spec list, then a closing line (`neatDesc` in cars.html). The list is built from
   sentences in the car's `car__desc` in used-cars.html that start with a one or two word label and a colon, e.g.
   "Engine: 2.0L turbo petrol. Gearbox: automatic. Drive: ... Outside: ... Inside: ... Tech: ... Safety: ...
@@ -491,7 +491,7 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   in Jitty's 31 Oct post; two cars he has posted are not on the site (2012 Mazda 2 $11,600 + govt, 59,848 km, PPSR
   listed; 2025 Mazda CX-3 $25,500 + govt, 21,902 km, repairable write-off, posted 10 Nov); his posts say 11, 14 and 18
   years of experience in three places.
-- **Search box (owner 2026-11-10, PREVIEW ONLY until approved).** Above the filter pills on the grid page: "Search make,
+- **Search box (owner 2026-11-10, LIVE 2026-11-10).** Above the filter pills on the grid page: "Search make,
   model or year". Filters as you type; every word typed must start a word in the car's title, specs, ticks or
   description (so "rio" does not match "interior"); nicknames vw/merc/benz/subie/auto are expanded. Shows "N cars for
   ..." and a "No cars match ..." state with Show all cars. GA4 `search` event (search_term, results, placement),
@@ -652,8 +652,9 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
     sheet lifts the bold "This car is PPSR listed..." sentence out of the description and shows a quiet grey note
     underneath instead (see "Repairable write-off line" in §7g for the current wording); used-cars.html keeps its own
     bold wording with "PPSR listed" in a red `.hl` span (LIVE 2026-11-09). In the two links only the words "PPSR listed"
-    and "enquire" are red (in quotes); on preview since 2026-11-09 they are also underlined with a slow 2.6 s pulse
-    (styles v77, **not live yet, awaiting owner approval**). **Open with Jitty:** the "3 months free rego" tick
+    and "enquire" are red (in quotes); they are also underlined with a slow 2.6 s pulse: LIVE on cars.html since 2026-11-10 (owner: "worry about
+    Instagram's Cars for Sale only"); on used-cars.html it is still preview only (styles v77, **not live yet,
+    awaiting owner approval**; main is on styles v76). **Open with Jitty:** the "3 months free rego" tick
     contradicts his "rego extra" line. **Hours now appear four ways:** this panel says 9 to 5 Mon to Fri, Jitty's
     9 Nov block on each car says Mon to Sat 9:00 to 5:30, the footers and §2 say Mon to Fri 8:30 to 5:30 + Sat 8:30 to
     4:00, and Google opens 9:30. Get one answer from Jitty and make them all match.

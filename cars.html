@@ -62,7 +62,10 @@
   .notes__links svg{width:14px; height:14px; flex:none;}
   .notes__links a{color:#a1a1aa; text-decoration:underline; text-decoration-color:transparent; text-underline-offset:3px; transition:color .15s, text-decoration-color .15s;}
   .notes__links a:hover, .notes__links a.is-open{color:#fff; text-decoration-color:currentColor;}
-  .notes__links .hl{color:var(--red); font-weight:700;}
+  .notes__links .hl{color:var(--red); font-weight:700; text-decoration:underline; text-decoration-color:var(--red); text-decoration-thickness:1.5px; text-underline-offset:3px; animation:hlPulse 2.6s ease-in-out infinite;}
+  .notes__links a:hover .hl, .notes__links a.is-open .hl{animation:none; opacity:1;}
+  @keyframes hlPulse{0%,100%{opacity:1} 50%{opacity:.45}}
+  @media (prefers-reduced-motion: reduce){ .notes__links .hl{animation:none;} }
   .notes__panel{position:relative; background:#fff; color:var(--g700); border-radius:12px; padding:16px 42px 14px 18px; margin-top:12px; font-size:14.5px; line-height:1.55;}
   .notes__panel h3{margin:0 0 8px; font-size:16px; color:var(--ink);}
   .intro .notes__panel p{margin:0 0 8px; color:var(--g700); max-width:none; font-size:14.5px;}
