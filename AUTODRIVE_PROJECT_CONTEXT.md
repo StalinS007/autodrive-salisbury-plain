@@ -456,10 +456,13 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   then the business card (address, WhatsApp 0432 520 230 as a wa.me link, "Licensed Motor Vehicle Dealer, MVD 343921",
   "Monday to Saturday: 9:00 am to 5:30 pm", inspections by appointment). His wording, minus emojis, dashes and the
   sign-off. The phone number is a WhatsApp link, not a call link (no call options on /cars).
-- **Repairable write-off line (Jitty 2026-11-10).** Any car whose used-cars description has the bold "PPSR listed"
-  sentence gets, on Cars for Sale only, the grey `.sheet__hist` note under its description leading with his exact line:
-  "This vehicle has been recorded as a repairable write-off and professionally repaired." then PPSR listed, passed the
-  government inspection, independent inspection welcome, "message us and we'll talk you through it".
+- **Repairable write-off line (Jitty 2026-11-10, his WhatsApp listing of that morning).** Any car whose used-cars
+  description has the bold "PPSR listed" sentence gets, on Cars for Sale, his exact line standing alone in a
+  red-edged box straight before "Why buy from AutoDrive?" (under the "Please read before enquiring" heading):
+  "This vehicle has been recorded as a repairable write-off and professionally repaired." Nothing is added to that
+  sentence. Under it "What does 'PPSR listed' mean?" with PPSR listed red, underlined and pulsing; tapping it opens
+  the explanation, copied at run time from the `#note-ppsr` panel so the wording stays identical. Owner: this line
+  is very important on every car known to be PPSR listed. GA4 `stock_note_open` (note ppsr, placement, car).
 - **Listing layout (owner 2026-11-10, PREVIEW ONLY until approved).** One centred column at every width: photo gallery
   on top, details underneath, scroll for the rest. On desktop the pop-up is a 660 px centred panel (close button fixed)
   and a car's own page is a 720 px centred card. The old desktop photo-left, details-right split is gone; do not bring
