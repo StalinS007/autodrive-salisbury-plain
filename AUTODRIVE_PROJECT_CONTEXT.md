@@ -460,6 +460,10 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   sentence gets, on Cars for Sale only, the grey `.sheet__hist` note under its description leading with his exact line:
   "This vehicle has been recorded as a repairable write-off and professionally repaired." then PPSR listed, passed the
   government inspection, independent inspection welcome, "message us and we'll talk you through it".
+- **Listing layout (owner 2026-11-10, PREVIEW ONLY until approved).** One centred column at every width: photo gallery
+  on top, details underneath, scroll for the rest. On desktop the pop-up is a 660 px centred panel (close button fixed)
+  and a car's own page is a 720 px centred card. The old desktop photo-left, details-right split is gone; do not bring
+  it back.
 - **Search box (owner 2026-11-10, PREVIEW ONLY until approved).** Above the filter pills on the grid page: "Search make,
   model or year". Filters as you type; every word typed must start a word in the car's title, specs, ticks or
   description (so "rio" does not match "interior"); nicknames vw/merc/benz/subie/auto are expanded. Shows "N cars for
