@@ -415,8 +415,8 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   used-cars.html (§ used cars) and `EXTRA` is empty; use `EXTRA` only for a car that must be on `/cars` alone. `price: 0`
   shows "Ask for price". The Golf uses his new photos (`images/golf-cars/`).
   Outlander video (batch_1404 mp4) not used yet. **Jitty puts the listing
-  text in the photo captions**; the WhatsApp bridge only stores captions since the 2 Nov patch (see memory). **Mazda 2: do NOT advertise** (being inspected, Jitty
-  will say when). Source photos: `~/Downloads/Autodrive downloads/Jitty 2 Nov 2026 cars/`.
+  text in the photo captions**; the WhatsApp bridge only stores captions since the 2 Nov patch (see memory). The Mazda 2 hold (2 Nov, "being inspected") ended 2026-11-11:
+  Jitty posted it himself on 2 Nov and the owner asked for it on the site. Source photos: `~/Downloads/Autodrive downloads/Jitty 2 Nov 2026 cars/`.
   **Photo resizing: keep each photo's own shape (fit inside 1080 px), never force 607×1080.** Jitty's Golf photos are 3:4
   and came out stretched on 2 Nov until redone; when a photo file is replaced in place, add `?v=N` to its URL
   (the `v` field in `PHOTOS`, or the src in used-cars.html) because images cache for 4 hours.
@@ -488,9 +488,14 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   2026-11-10. `corolla-grey` is his "2013 Toyota Corolla Ascent Sport" (title fixed; grey Corolla and Venue prices now
   carry "+ government charges" as in his ads).
   2008 Corolla set to $7,900 + government charges and 200,500 km (owner 2026-11-11, matching Jitty's 31 Oct post).
-  **Open with the owner:** two cars he has posted are not on the site (2012 Mazda 2 $11,600 + govt, 59,848 km, PPSR
-  listed; 2025 Mazda CX-3 $25,500 + govt, 21,902 km, repairable write-off, posted 10 Nov); his posts say 11, 14 and 18
-  years of experience in three places.
+  **Added 2026-11-11 (owner, PREVIEW ONLY until approved):** 2012 Mazda 2 ($11,600 + government charges, 59,848 km,
+  PPSR listed, professionally repaired; slug `mazda2`, 14 photos) and 2025 Mazda CX-3 ($25,500 + government charges,
+  21,902 km, repairable write-off; slug `cx3`, 19 photos), appended at the end of the used-cars.html track so `/cars`
+  shows them first. Text and photos come from Jitty's Facebook posts (2 Nov and 10 Nov). **Getting photos from a
+  Facebook post:** open the post from Meta Business Suite, open its photo viewer, step through with "Next photo" and
+  save each full-size image (1152x2048); originals go to Google Drive `AutoDrive/Car pictures/<date> <car>/`, site
+  copies are fitted inside 1080 px. Not on the homepage swiper.
+  **Open with the owner:** his posts say 11, 14 and 18 years of experience in three places.
 - **Search box (owner 2026-11-10, LIVE 2026-11-10).** Above the filter pills on the grid page: "Search make,
   model or year". Filters as you type; every word typed must start a word in the car's title, specs, ticks or
   description (so "rio" does not match "interior"); nicknames vw/merc/benz/subie/auto are expanded. Shows "N cars for
@@ -595,7 +600,7 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
     `<img>` (there's an HTML comment in the file showing exactly how).
   - Cars live in a **carousel** (`.stock-carousel__track`); the "Car N of M" red bar and the
     arrows count the `<article class="car">` blocks automatically, so adding one needs no other
-    change. Currently **twenty listings** (twelve below + C200, X-Trail, Forester, 2026-10-21 + five added 2026-11-02, see end of this list): 2009 Honda Civic VTi $9,600 (with a **promo video**,
+    change. Currently **twenty-two listings** (twelve below + C200, X-Trail, Forester, 2026-10-21 + five added 2026-11-02 + Mazda 2 and Mazda CX-3 added 2026-11-11, see end of this list and §7g): 2009 Honda Civic VTi $9,600 (with a **promo video**,
     `images/promohondacivic.mp4` — keep that slide LAST), 2021 VW Polo Comfortline $17,400,
     2008 Toyota Corolla Ascent $7,900 + government charges (was $8,900 drive-away until 2026-11-11), and **2018 Kia Rio $11,900** (added 2026-09-20), and **2023 MG ZS Excite $14,600 FIRM, 13,330 km**
     (added 2026-09-24; also FIRST in the homepage `.hstock` swiper as newest stock; photo originals in
