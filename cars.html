@@ -177,7 +177,16 @@
   .ticks{list-style:none; padding:0; margin:0 0 12px; display:grid; gap:4px;}
   .ticks li{display:flex; gap:8px; font-size:14.5px; font-weight:600;}
   .ticks svg{width:17px; height:17px; color:var(--wa); flex:none; margin-top:2px;}
+  /* Description (owner 2026-11-10): a short intro, then a labelled spec list, then a closing line.
+     The list comes from sentences written "Engine: ..." in used-cars.html (see neatDesc in the script). */
   .sheet__desc{font-size:15px; color:var(--g700); margin:0 0 16px;}
+  .sheet__desc p{margin:0;}
+  .desc__lead{color:var(--ink); font-weight:600; font-size:15.5px; line-height:1.45;}
+  .desc__lead + p, .desc__rows + p{margin-top:10px;}
+  .desc__rows{margin:12px 0 0; border-top:1px solid var(--g100);}
+  .desc__rows > div{display:grid; grid-template-columns:92px minmax(0,1fr); gap:12px; padding:8px 0; border-bottom:1px solid var(--g100);}
+  .desc__rows dt{font-weight:700; color:var(--ink); font-size:13.5px; line-height:1.55;}
+  .desc__rows dd{margin:0; font-size:14.5px; line-height:1.45;}
   .sheet__hist{font-size:13.5px; line-height:1.5; color:var(--g700); background:var(--g100); border-radius:10px; padding:10px 12px; margin:-6px 0 16px;}
   .sheet__hist strong{color:var(--ink);}
   .sheet__hist .hl{color:var(--red); font-weight:700;}
@@ -420,7 +429,7 @@
       <p class="sheet__loc">Salisbury Plain, Adelaide SA</p>
       <ul class="chips" id="sSpecs"></ul>
       <ul class="ticks" id="sTrust"></ul>
-      <p class="sheet__desc" id="sDesc"></p>
+      <div class="sheet__desc" id="sDesc"></div>
       <p class="sheet__hist" id="sPpsr" hidden></p>
 
       <!-- Jitty's "add this in each vehicle" terms (WhatsApp 9 Nov 2026). Same block under every car. -->
@@ -622,6 +631,27 @@
     if (SOLO) $("soloH").hidden = !list.length;
   }
 
+  // Lay a description out neatly. Sentences written "Engine: ..." (a one or two word label, then a colon)
+  // become rows of a spec list. Sentences before the first row are the intro, the rest is the closing line.
+  // A description with no labelled sentences is shown as an intro line plus a paragraph.
+  function neatDesc(html){
+    var parts = String(html || "").replace(/\s+/g, " ").trim()
+      .replace(/([.!?])\s+(?=[A-Z0-9<&])/g, "$1\n").split("\n");   // no lookbehind: old iPhones choke on it
+    var lead = [], rows = [], rest = [];
+    parts.forEach(function(t, i){
+      var m = t.match(/^([A-Z][a-z]+(?: [a-z]+)?):\s+(.+)$/);
+      if (m) rows.push([m[1], m[2].replace(/\.$/, "")]);
+      else if (rows.length || (i > 0 && !parts.slice(i).some(function(x){ return /^[A-Z][a-z]+(?: [a-z]+)?:\s/.test(x); }))) rest.push(t);
+      else lead.push(t);
+    });
+    var out = lead.length ? '<p class="desc__lead">' + lead.join(" ") + "</p>" : "";
+    if (rows.length) out += '<dl class="desc__rows">' + rows.map(function(r){
+      return "<div><dt>" + r[0] + "</dt><dd>" + r[1].charAt(0).toUpperCase() + r[1].slice(1) + "</dd></div>";
+    }).join("") + "</dl>";
+    if (rest.length) out += "<p>" + rest.join(" ") + "</p>";
+    return out;
+  }
+
   /* ---- One car's listing (the pop-up on the grid page, the whole page on /cars/<slug>) ---- */
   var current = null, pushed = false, closeTimer = 0;
   function fillCar(c){
@@ -650,7 +680,7 @@
         'and an RAA or any independent inspection is welcome. ' +
         'If you have any questions about its history, just message us and we’ll talk you through it.';
     }
-    $("sDesc").innerHTML = desc; // our own markup from used-cars.html
+    $("sDesc").innerHTML = neatDesc(desc); // our own markup from used-cars.html
     $("sPpsr").innerHTML = hist;
     $("sPpsr").hidden = !hist;
     $("sEnq").href = c.wa;

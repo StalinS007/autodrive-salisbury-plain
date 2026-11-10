@@ -471,6 +471,15 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   full-screen viewer (`.lb`): a sideways scroll-snap strip (native swipe; a hand-rolled swipe fails on iPhone because
   Safari takes sideways swipes for back/forward), next / previous buttons, arrow keys, counter, X to close; the
   phone's back button closes the viewer first. GA4 `photo_fullscreen` (item_id, placement).
+- **Description layout (owner 2026-11-10, PREVIEW ONLY until approved).** On Cars for Sale a description shows as a
+  short intro line, then a labelled spec list, then a closing line (`neatDesc` in cars.html). The list is built from
+  sentences in the car's `car__desc` in used-cars.html that start with a one or two word label and a colon, e.g.
+  "Engine: 2.0L turbo petrol. Gearbox: automatic. Drive: ... Outside: ... Inside: ... Tech: ... Safety: ...
+  Condition: ...". Write new cars that way. A description with no labelled sentences still works (intro + paragraph).
+  Quality Cars shows the same text as a plain paragraph. Keep the bold PPSR sentence last, unchanged in shape.
+- **Grey Corolla (`corolla-grey`) is the 2013 Ascent Sport from Jitty's listing (same 62,719 km and $11,900), which he
+  describes as a recorded repairable write-off.** PPSR line added on preview 2026-11-10; owner to confirm it is the
+  same car.
 - **Search box (owner 2026-11-10, PREVIEW ONLY until approved).** Above the filter pills on the grid page: "Search make,
   model or year". Filters as you type; every word typed must start a word in the car's title, specs, ticks or
   description (so "rio" does not match "interior"); nicknames vw/merc/benz/subie/auto are expanded. Shows "N cars for
