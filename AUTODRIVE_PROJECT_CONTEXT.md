@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-11-10**.
+touching the site. Last verified against the live code: **2026-11-11**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -487,8 +487,8 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   Corolla is "Clear PPSR, no write-off history".** All five PPSR lines and the missing features were added on preview
   2026-11-10. `corolla-grey` is his "2013 Toyota Corolla Ascent Sport" (title fixed; grey Corolla and Venue prices now
   carry "+ government charges" as in his ads).
-  **Open with the owner:** 2008 Corolla is $8,900 / 197,148 km on the site but $7,900 + government charges / 200,500 km
-  in Jitty's 31 Oct post; two cars he has posted are not on the site (2012 Mazda 2 $11,600 + govt, 59,848 km, PPSR
+  2008 Corolla set to $7,900 + government charges and 200,500 km (owner 2026-11-11, matching Jitty's 31 Oct post).
+  **Open with the owner:** two cars he has posted are not on the site (2012 Mazda 2 $11,600 + govt, 59,848 km, PPSR
   listed; 2025 Mazda CX-3 $25,500 + govt, 21,902 km, repairable write-off, posted 10 Nov); his posts say 11, 14 and 18
   years of experience in three places.
 - **Search box (owner 2026-11-10, LIVE 2026-11-10).** Above the filter pills on the grid page: "Search make,
@@ -597,7 +597,7 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
     arrows count the `<article class="car">` blocks automatically, so adding one needs no other
     change. Currently **twenty listings** (twelve below + C200, X-Trail, Forester, 2026-10-21 + five added 2026-11-02, see end of this list): 2009 Honda Civic VTi $9,600 (with a **promo video**,
     `images/promohondacivic.mp4` — keep that slide LAST), 2021 VW Polo Comfortline $17,400,
-    2008 Toyota Corolla Ascent $8,900, and **2018 Kia Rio $11,900** (added 2026-09-20), and **2023 MG ZS Excite $14,600 FIRM, 13,330 km**
+    2008 Toyota Corolla Ascent $7,900 + government charges (was $8,900 drive-away until 2026-11-11), and **2018 Kia Rio $11,900** (added 2026-09-20), and **2023 MG ZS Excite $14,600 FIRM, 13,330 km**
     (added 2026-09-24; also FIRST in the homepage `.hstock` swiper as newest stock; photo originals in
     iCloud Drive `Downloads/Autodrive/MG /`, build-plate/VIN photo deliberately left out), and **2018 VW Polo 70TSI Trendline $12,900 FIRM, 57,109 km**
     (added 2026-09-24, slug `polo18` so it never clashes with the 2021 `polo`; now FIRST in the homepage swiper;
