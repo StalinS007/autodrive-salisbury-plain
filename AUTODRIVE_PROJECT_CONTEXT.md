@@ -468,7 +468,8 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   gallery box has a fixed height (74dvh phone, 70vh desktop pop-up) and each photo is fitted WHOLE inside it
   (`object-fit:contain`, blurred copy of the photo fills the sides). Never crop them and never let the photo scroll
   up and down inside the box (the old 4:5 box did that). Tapping a photo, or the "Full photo" button, opens a
-  full-screen viewer (`.lb`): next / previous buttons, swipe, arrow keys, counter, swipe down or X to close; the
+  full-screen viewer (`.lb`): a sideways scroll-snap strip (native swipe; a hand-rolled swipe fails on iPhone because
+  Safari takes sideways swipes for back/forward), next / previous buttons, arrow keys, counter, X to close; the
   phone's back button closes the viewer first. GA4 `photo_fullscreen` (item_id, placement).
 - **Search box (owner 2026-11-10, PREVIEW ONLY until approved).** Above the filter pills on the grid page: "Search make,
   model or year". Filters as you type; every word typed must start a word in the car's title, specs, ticks or
