@@ -142,18 +142,13 @@
   /* Car detail sheet */
   .sheet{position:fixed; inset:0; z-index:50; display:flex; align-items:flex-end; justify-content:center; background:rgba(0,0,0,.6); opacity:0; transition:opacity .2s ease;}
   .sheet.is-open{opacity:1;}
-  .sheet__panel{background:#fff; width:100%; max-width:980px; max-height:94vh; max-height:94dvh; border-radius:16px 16px 0 0; overflow:auto; transform:translateY(24px); transition:transform .22s ease; overscroll-behavior:contain;}
+  .sheet__panel{background:#fff; width:100%; max-width:660px; max-height:94vh; max-height:94dvh; border-radius:16px 16px 0 0; overflow:auto; transform:translateY(24px); transition:transform .22s ease; overscroll-behavior:contain;}
   .sheet.is-open .sheet__panel{transform:none;}
-  @media (min-width:860px){
-    .sheet{align-items:center; padding:24px;}
-    .sheet__panel{border-radius:16px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); overflow:hidden; max-height:90vh;}
-    .sheet__body{overflow:auto;}
-  }
   .sheet__x{position:absolute; top:10px; right:10px; z-index:3; width:40px; height:40px; border-radius:50%; border:0; background:rgba(14,14,14,.75); color:#fff; display:grid; place-items:center; cursor:pointer;}
   .sheet__x svg{width:20px; height:20px;}
   .gal{position:relative; background:#111;}
   .gal__track{display:flex; overflow-x:auto; scroll-snap-type:x mandatory; scrollbar-width:none; aspect-ratio:4/5; max-height:70vh; max-height:70dvh; margin:0 auto;}
-  @media (min-width:860px){ .gal__track{height:90vh; max-height:90vh; aspect-ratio:auto;} }
+  @media (min-width:860px){ .gal__track{max-height:68vh;} }
   .gal__track::-webkit-scrollbar{display:none;}
   .gal__slide{flex:0 0 100%; scroll-snap-align:center; display:grid; place-items:center;}
   .gal__slide img, .gal__slide video{width:100%; height:100%; object-fit:contain; background:#111;}
@@ -196,6 +191,15 @@
   .read__biz a{color:var(--ink); font-weight:700;}
 
   /* A car's own page (/cars/<slug>): the same listing, laid out in the page instead of a pop-up */
+  /* Desktop (owner 2026-11-10): one centred column. Photo on top, scroll down for the details.
+     The close button stays put while the panel scrolls. */
+  @media (min-width:860px){
+    .sheet{align-items:flex-start; padding:4vh 24px;}
+    .sheet__panel{border-radius:16px; max-height:92vh; transform:none; transition:none;}
+    .sheet__x{position:fixed; top:calc(4vh + 12px); right:calc(50% - 330px + 12px);}
+    .sheet__body{padding:22px 28px 26px;}
+    .sheet__cta{margin:0 -28px -26px; padding:12px 28px 16px; border-top:1px solid var(--g100);}
+  }
   .solo-only{display:none;}
   html.solo .solo-only{display:block;}
   html.solo a.solo-only{display:inline-flex;}
@@ -214,10 +218,11 @@
   html.solo .sheet__x{display:none;}
   @media (min-width:860px){
     html.solo .sheet{margin:0; padding:0;}
-    html.solo .sheet__panel{border-radius:16px; align-items:start; box-shadow:0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);}
-    html.solo .gal{position:sticky; top:76px; border-radius:16px 0 0 16px; overflow:hidden;}
-    html.solo .gal__track{height:calc(100vh - 100px); max-height:820px;}
-    html.solo .sheet__body{overflow:visible;}
+    html.solo .sheet__panel{max-width:720px; margin:0 auto; border-radius:16px; box-shadow:0 1px 2px rgba(0,0,0,.06), 0 4px 14px rgba(0,0,0,.05);}
+    html.solo .gal{border-radius:16px 16px 0 0; overflow:hidden;}
+    html.solo .gal__track{max-height:72vh;}
+    html.solo .sheet__cta{border-radius:0 0 16px 16px;}
+    html.solo a.solo__back{display:flex; max-width:720px; margin-left:auto; margin-right:auto;}
   }
   .sheet__cta .enq{font-size:16px; padding:14px;}
   body.no-scroll{overflow:hidden;}
@@ -623,6 +628,7 @@
     var s = $("sheet");
     s.hidden = false;
     document.body.classList.add("no-scroll");
+    s.querySelector(".sheet__panel").scrollTop = 0;
     requestAnimationFrame(function(){ s.classList.add("is-open"); });
     $("sClose").focus({ preventScroll: true });
     if (!fromNav){ history.pushState({ car: id }, "", carUrl(id)); pushed = true; }
