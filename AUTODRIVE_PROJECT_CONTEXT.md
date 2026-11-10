@@ -652,9 +652,8 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
     sheet lifts the bold "This car is PPSR listed..." sentence out of the description and shows a quiet grey note
     underneath instead (see "Repairable write-off line" in §7g for the current wording); used-cars.html keeps its own
     bold wording with "PPSR listed" in a red `.hl` span (LIVE 2026-11-09). In the two links only the words "PPSR listed"
-    and "enquire" are red (in quotes); they are also underlined with a slow 2.6 s pulse: LIVE on cars.html since 2026-11-10 (owner: "worry about
-    Instagram's Cars for Sale only"); on used-cars.html it is still preview only (styles v77, **not live yet,
-    awaiting owner approval**; main is on styles v76). **Open with Jitty:** the "3 months free rego" tick
+    and "enquire" are red (in quotes); they are also underlined with a slow 2.6 s pulse: LIVE on cars.html since 2026-11-10 and on
+    used-cars.html since 2026-11-11 (owner approved, styles v78). **Open with Jitty:** the "3 months free rego" tick
     contradicts his "rego extra" line. **Hours now appear four ways:** this panel says 9 to 5 Mon to Fri, Jitty's
     9 Nov block on each car says Mon to Sat 9:00 to 5:30, the footers and §2 say Mon to Fri 8:30 to 5:30 + Sat 8:30 to
     4:00, and Google opens 9:30. Get one answer from Jitty and make them all match.
@@ -678,7 +677,7 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   (the original live site pointed at wrong coordinates — keep this corrected one).
 - **Single location now:** the site uses only 6 Lolands Rd, Salisbury Plain SA 5109. The old
   separate Valley View showroom address was removed on 2026-07-18 — don't reintroduce it.
-- **Paint & Panel page (`paint-panel.html`)** is on the **`reviews-preview`** branch awaiting the owner's approval to merge to `main` — **not live yet**. It's the 4th service, in the nav + a homepage teaser, wired into the booking flow.
+- **Paint & Panel page (`paint-panel.html`)** is LIVE on `main`. It's the 4th service, in the nav + a homepage teaser, wired into the booking flow.
 
 ---
 
@@ -740,7 +739,15 @@ Three files, no server, no database — the booking details travel inside the li
   Web app (Execute as Me / Anyone), paste the `/exec` URL into `booking.html` → `ENDPOINT`. Has a daily
   cap (40) and sanity checks. Deployment steps are in the file header.
 - All times are computed as Adelaide wall time → UTC in the browser (verified across ACST/ACDT).
-- **Status:** built and on `reviews-preview`; Apps Script not yet deployed (needs Jitty's login).
+- **Email asked once (LIVE 2026-11-11, owner approved, main.js v78).** The website booking pop-up (service,
+  detailing, paint & panel) has a required **Email** field, and the contact form passes its email too. The
+  WhatsApp/SMS message Jitty receives ends with a link to `/confirm?p=<base64url JSON>` (`adB64u()` in main.js)
+  that opens his tool pre-filled with name, phone, email, car, service and date. `/confirm` carries the email
+  into the `/booking` link (`e`), so `/booking` shows "We'll send the calendar invite to ..." instead of asking
+  again. `/confirm` also has a "Send calendar invite to their email" button, hidden until `ENDPOINT` is set.
+- **Status:** all three files are live; the Apps Script is not yet deployed, so `ENDPOINT` is empty in both
+  `booking.html` and `confirm.html` (can be deployed from Jitty's account or Stalin's, which has edit rights on the
+  AutoDrive calendar; `CALENDAR_ID` in the script picks that calendar).
 
 ---
 
