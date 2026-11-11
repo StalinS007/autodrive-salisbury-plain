@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-11-11**.
+touching the site. Last verified against the live code: **2026-11-12**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -529,7 +529,9 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   Then one question per screen, **taps first, typing last (owner 2026-11-07, LIVE 2026-11-07)**: Adelaide or elsewhere in Australia; total budget;
   funds ready within 30 days (was 2 weeks until 2026-11-03); buying in next couple of months; what matters most
   (Reliability / Low running costs / Safety / Size (SUV, sedan, hatch, etc.) / Other; "Size" replaced "Space"
-  2026-11-03); then **"Good news, you look like a fit" with name + mobile on ONE screen** (step id `contact`);
+  2026-11-03); then **"Good news, you look like a fit" with name + mobile on ONE screen** (step id `contact`; sub "Where should
+  Jitty text you 1 to 2 cars that match what you need?" + grey "No spam. We only contact you about your car." under
+  Next, owner 2026-11-12, PREVIEW only until approved; GA showed both people who reached this screen leaving);
   then last "Last one: tell us who you are and what you need the car for" (REQUIRED free-text box, owner said
   not optional; sent as "About: <text>"; replaced the Student / Family / Other and main-use questions on
   2026-11-01). Why: GA showed ~79% of starters leaving at the early typing screens.

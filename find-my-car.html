@@ -125,7 +125,8 @@
       opts:["Yes, cash/savings ready","Yes, finance approved","Not yet"], stop:{ "Not yet":"funds" } },
     { id:"timing", q:"I'm looking to buy within the next couple of months", opts:["Yes","Not yet"], stop:{ "Not yet":"timing" } },
     { id:"priority", q:"What matters most in your next car?", opts:["Reliability","Low running costs","Safety","Size (SUV, sedan, hatch, etc.)","Other"], other:"Other", otherLabel:"Tell us what matters most" },
-    { id:"contact", q:"Good news, you look like a fit", sub:"Where can we reach you about your car?", type:"contact" },
+    { id:"contact", q:"Good news, you look like a fit", sub:"Where should Jitty text you 1 to 2 cars that match what you need?", type:"contact",
+      note:"No spam. We only contact you about your car." },
     { id:"about", q:"Last one: tell us who you are and what you need the car for", type:"textarea",
       sub:"Built for skilled professionals and families who want a reliable, safety-first car without the hassle. We find, inspect, negotiate and deliver.",
       placeholder:"", autocomplete:"off" }
@@ -176,7 +177,8 @@
               "<label for=\"mobileIn\">Your mobile number</label>" +
               "<input type=\"tel\" id=\"mobileIn\" inputmode=\"tel\" placeholder=\"04xx xxx xxx\" autocomplete=\"tel\" value=\"" + esc(answers.mobile || "") + "\" />" +
               "<p class=\"err\" id=\"err\" hidden></p>" +
-              "<button class=\"btn btn--red\" id=\"textNext\" type=\"button\">Next</button>";
+              "<button class=\"btn btn--red\" id=\"textNext\" type=\"button\">Next</button>" +
+              (s.note ? "<p class=\"hint\">" + esc(s.note) + "</p>" : "");
     } else {
       html += (s.type === "textarea"
                 ? "<textarea id=\"textIn\" rows=\"4\" maxlength=\"400\" aria-label=\"" + esc(s.q) + "\" placeholder=\"" + esc(s.placeholder) + "\">" + esc(answers[s.id] || "") + "</textarea>"
