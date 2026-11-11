@@ -531,7 +531,7 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   (Reliability / Low running costs / Safety / Size (SUV, sedan, hatch, etc.) / Other; "Size" replaced "Space"
   2026-11-03); then **"Good news, you look like a fit" with name + mobile on ONE screen** (step id `contact`; sub "Where should
   Jitty text you 1 to 2 cars that match what you need?" + grey "No spam. We only contact you about your car." under
-  Next, owner 2026-11-12, PREVIEW only until approved; GA showed both people who reached this screen leaving);
+  Next, owner 2026-11-12, LIVE 2026-11-12; GA showed both people who reached this screen leaving);
   then last "Last one: tell us who you are and what you need the car for" (REQUIRED free-text box, owner said
   not optional; sent as "About: <text>"; replaced the Student / Family / Other and main-use questions on
   2026-11-01). Why: GA showed ~79% of starters leaving at the early typing screens.
