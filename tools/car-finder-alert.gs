@@ -26,9 +26,10 @@
 var TOKEN       = "ad-find-2026";
 var ALERT_TO    = "stalinsajie@gmail.com";
 var MAX_PER_DAY = 30;
+var GUIDE_URL   = "https://autodrivesalisburyplain.com.au/car-guide.pdf";
 
 var LABELS = {
-  name: "Name", mobile: "Mobile", location: "Location", about: "About them", budget: "Budget",
+  name: "Name", mobile: "Mobile", email: "Email", location: "Location", about: "About them", budget: "Budget",
   funds: "Funds", timing: "Buying in next couple of months", priority: "Matters most", source: "Lead source"
 };
 
@@ -49,7 +50,15 @@ function doPost(e) {
     var lines = ["Outcome: " + outcome, ""];
     Object.keys(LABELS).forEach(function (k) { if (d[k]) lines.push(LABELS[k] + ": " + clip(d[k])); });
     var mobile = clip(d.mobile).replace(/[^\d+]/g, "");
-    lines.push("", "WhatsApp them: https://wa.me/" + mobile.replace(/^\+/, "").replace(/^0/, "61"));
+    var wa = "https://wa.me/" + mobile.replace(/^\+/, "").replace(/^0/, "61");
+    lines.push("", "WhatsApp them: " + wa);
+    // The page promises the free strategy PDF by text: one tap opens WhatsApp with the message ready.
+    if (d.outcome === "contact" || d.outcome === "qualified") {
+      var first = clip(d.name).split(" ")[0];
+      lines.push("", "WhatsApp them the guide too (one tap, message ready): " + wa + "?text=" + encodeURIComponent(
+        "Hi " + first + ", it's Jitty from AutoDrive Salisbury Plain. Here's your free car buying guide (we emailed it too): " +
+        GUIDE_URL + " We'd love to help you find a car that suits you. When's a good time to talk?"));
+    }
     lines.push("", d.outcome === "booked"
       ? "They booked their call. The time and Zoom link are in the Calendly email to autodrive5109@gmail.com."
       : d.outcome === "qualified"
@@ -57,6 +66,13 @@ function doPost(e) {
       : d.outcome === "contact"
       ? "They passed every question and left their name and number. If no QUALIFIED email follows soon, they stopped at the last step: message them."
       : "They were stopped by the form, but left their details.");
+
+    // Lead magnet: the first time they leave their details, email them the free strategy PDF.
+    var email = clip(d.email).trim();
+    if (d.outcome === "contact" && /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
+      try { sendGuide(email, clip(d.name).split(" ")[0]); lines.push("", "Free strategy PDF emailed to " + email + "."); }
+      catch (gErr) { lines.push("", "Could NOT email them the strategy PDF (" + gErr + "). Send it by WhatsApp below."); }
+    }
 
     MailApp.sendEmail({
       to: ALERT_TO,
@@ -69,6 +85,23 @@ function doPost(e) {
   } catch (err) {
     return out({ ok: false, error: String(err) });
   }
+}
+
+function sendGuide(to, first) {
+  // Owner style rule: short, plain, direct words. No phone number.
+  var esc = function (v) { return String(v).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); };
+  var text = "Hi " + first + ",\n\nHere's your free car buying guide:\n" + GUIDE_URL +
+    "\n\nIt shows you 6 simple steps to buy a good car and not get ripped off.\n\n" +
+    "We'll get in touch soon to help you find a car that suits you.\n\nAutoDrive Salisbury Plain\n6 Lolands Rd, Salisbury Plain SA 5109";
+  var html = '<div style="font-family:Arial,Helvetica,sans-serif;font-size:16px;line-height:1.5;color:#222;max-width:520px">' +
+    "<p>Hi " + esc(first) + ",</p><p>Here's your free car buying guide:</p>" +
+    '<p><a href="' + GUIDE_URL + '" style="display:inline-block;background:#C01418;color:#fff;font-weight:bold;text-decoration:none;padding:12px 22px;border-radius:999px">' +
+    "Download the guide (PDF)</a></p>" +
+    "<p>It shows you 6 simple steps to buy a good car and not get ripped off.</p>" +
+    "<p>We'll get in touch soon to help you find a car that suits you.</p>" +
+    "<p>AutoDrive Salisbury Plain<br>6 Lolands Rd, Salisbury Plain SA 5109</p></div>";
+  MailApp.sendEmail({ to: to, subject: "Your free car buying guide", body: text, htmlBody: html,
+    name: "AutoDrive Salisbury Plain", replyTo: "autodrive5109@gmail.com" });
 }
 
 function underDailyCap() {

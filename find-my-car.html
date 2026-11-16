@@ -37,7 +37,7 @@
   .opt:focus-visible{outline:2px solid var(--red); outline-offset:2px;}
   .opt.is-picked{border-color:var(--red); background:#fff6f5;}
   label{display:block; font-weight:600; font-size:14px; margin:16px 0 6px;}
-  input[type=text], input[type=tel], textarea{ width:100%; font:inherit; font-size:17px; padding:14px; border:1px solid #cfcfcf; border-radius:10px; }
+  input[type=text], input[type=tel], input[type=email], textarea{ width:100%; font:inherit; font-size:17px; padding:14px; border:1px solid #cfcfcf; border-radius:10px; }
   input:focus{outline:2px solid var(--red); outline-offset:1px; border-color:var(--red);}
   .btn{ display:flex; align-items:center; justify-content:center; gap:8px; width:100%; font:inherit; font-size:16px; font-weight:700; cursor:pointer; padding:15px; border-radius:999px; border:2px solid transparent; text-decoration:none; margin-top:16px; }
   .btn--red{background:var(--red); color:#fff; border-color:var(--red);}
@@ -52,6 +52,17 @@
   .brand span{display:block; color:#c9c9c9;}
   .cal{min-width:280px; height:700px; margin:14px -8px 0; border-radius:12px; overflow:hidden; background:#fff;}
   .hint a{color:var(--ink);}
+  .intro{color:var(--grey); font-size:15px; margin:0 0 10px;}
+  .done{background:#e9f6ee; color:var(--ok); border-radius:10px; padding:10px 12px; font-weight:700; font-size:15px; margin:0 0 14px;}
+  .done::before{content:"\2713  ";}
+  #otherWrap:not([hidden]){animation:drop .2s ease-out;}
+  @keyframes drop{from{opacity:0; transform:translateY(-6px);}to{opacity:1; transform:none;}}
+  .gift{display:flex; align-items:center; gap:14px; background:#fff6f5; border:1.5px dashed var(--red); border-radius:12px; padding:12px 14px; margin:0 0 2px; font-size:14px; line-height:1.35;}
+  .gift b{display:block; font-size:15px; color:var(--ink);}
+  .gift span{display:block; color:var(--grey);}
+  .gift .gift-tag{display:inline-block; background:var(--red); color:#fff; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; border-radius:4px; padding:2px 7px; margin:0 0 4px;}
+  .gift-cover{flex:none; width:58px; height:80px; background:#000; color:#fff; border-radius:4px; padding:7px 6px; font-family:Anton,Impact,sans-serif; text-transform:uppercase; font-size:11px; line-height:1.05; box-shadow:0 3px 8px rgba(0,0,0,.25); border-top:3px solid var(--red);}
+  .gift-cover b{display:inline; font-size:inherit; color:var(--red); font-weight:400;}
   .err{font-size:14px; color:#8a1f1f; margin:8px 0 0;}
   .note{border-radius:10px; padding:13px 15px; margin-top:14px; font-size:15px; background:#eef4fb; border:1px solid #d3e2f3; color:#1f3d5c;}
   .foot{text-align:center; font-size:12.5px; color:#999; margin-top:22px;}
@@ -115,20 +126,28 @@
   var ALERT_URL = "https://script.google.com/macros/s/AKfycbyi59OWP3JmG8kkcP8NTnY43CtMJU1BXX1RMByJ3f_vbACxki3rBnOmqRBhyBZzihjvHA/exec";
   var ALERT_TOKEN = "ad-find-2026";
 
-  // One-tap questions first (anyone who doesn't fit finds out before typing anything),
-  // then name + mobile on one screen, then the "about you" box last.
+  // Qualifying taps first (anyone who doesn't fit finds out before typing anything), then what matters most,
+  // then name + mobile + email on one screen, then "about you" last (owner order 2026-11-16).
   var STEPS = [
     { id:"location", q:"Where in Australia?", opts:["Adelaide","Elsewhere in Australia"] },
-    { id:"budget", q:"Total budget for everything", sub:"This service starts from $12k.",
-      opts:["$12k to $20k","$20k to $30k","$30k to $50k","$50k+"] },
+    { id:"budget", q:"Total budget for everything", sub:"This service starts from $10k.",
+      opts:["$10k to $20k","$20k to $30k","$30k to $50k","$50k+"] },
     { id:"funds", q:"Do you have the funds ready to buy within 30 days?", note:"Note: proof of funds may be necessary.",
       opts:["Yes, cash/savings ready","Yes, finance approved","Not yet"], stop:{ "Not yet":"funds" } },
     { id:"timing", q:"I'm looking to buy within the next couple of months", opts:["Yes","Not yet"], stop:{ "Not yet":"timing" } },
-    { id:"priority", q:"What matters most in your next car?", opts:["Reliability","Low running costs","Safety","Size (SUV, sedan, hatch, etc.)","Other"], other:"Other", otherLabel:"Tell us what matters most" },
-    { id:"contact", q:"Good news, you look like a fit", sub:"Where should Jitty text you 1 to 2 cars that match what you need?", type:"contact",
+    { id:"priority", intro:"So we can select the right cars for you, please tell us the following.",
+      q:"What matters most in your next car?", opts:["Size (SUV, sedan, hatch, etc.)","Make or model","Other"],
+    // Each option opens an OPTIONAL box right under it (owner 2026-11-16). Typed words are saved as
+    // "<prefix>: <their words>"; left empty, just the option is saved. Typed words never go to GA.
+    ask:{ "Size (SUV, sedan, hatch, etc.)":{ label:"Which size? (optional)", placeholder:"e.g. SUV, 7-seater, small hatch", prefix:"Size" },
+          "Make or model":{ label:"Which make/model? (optional)", placeholder:"e.g. Toyota RAV4, Mazda CX-5, a European brand", prefix:"Make or model" },
+          "Other":{ label:"Please specify (optional)", placeholder:"e.g. low kms, good on fuel, towbar", prefix:"Other" } } },
+    { id:"contact", q:"Good news, you look like a fit", sub:"Buying a car is hard. Too many ads. Too many checks. Too much paperwork. So we made a free guide. We'll email it to you. Then we'll get in touch to help you find a car that suits you.", type:"contact", gift:true,
       note:"No spam. We only contact you about your car." },
-    { id:"about", q:"Last one: tell us who you are and what you need the car for", type:"textarea",
-      sub:"Built for skilled professionals and families who want a reliable, safety-first car without the hassle. We find, inspect, negotiate and deliver.",
+    // After the guide is "given", this screen frames finding the car as the next step. Optional (owner 2026-11-16).
+    { id:"about", done:"Done. Your free guide is on its way to your inbox.",
+      q:"Now let's find your car. Who is the car for, and what will you use it for?", type:"textarea", optional:true,
+      sub:"Optional, but it helps us pick the right cars.", button:"Find my car",
       placeholder:"", autocomplete:"off" }
   ];
 
@@ -155,27 +174,31 @@
     var s = STEPS[i];
     $("bar").style.width = Math.round(i / STEPS.length * 100) + "%";
     $("count").textContent = "Question " + (i + 1) + " of " + STEPS.length;
-    var html = "<h2>" + esc(s.q) + "</h2>" + (s.sub ? "<p class=\"sub\">" + esc(s.sub) + "</p>" : "");
+    var html = (s.done ? "<p class=\"done\">" + esc(s.done) + "</p>" : "") + (s.intro ? "<p class=\"intro\">" + esc(s.intro) + "</p>" : "") + "<h2>" + esc(s.q) + "</h2>" + (s.sub ? "<p class=\"sub\">" + esc(s.sub) + "</p>" : "");
     if (s.opts){
       html += "<div class=\"opts\">" + s.opts.map(function(o){
-        var picked = answers[s.id] === o || (s.other && o === s.other && answers[s.id] && s.opts.indexOf(answers[s.id]) < 0);
+        var picked = answers[s.id] === o || (s.ask && s.ask[o] && (answers[s.id] || "").indexOf(s.ask[o].prefix + ": ") === 0);
         return "<button type=\"button\" class=\"opt" + (picked ? " is-picked" : "") + "\" data-v=\"" + esc(o) + "\">" + esc(o) + "</button>";
       }).join("") + "</div>";
       if (s.note){
         html += "<p class=\"hint\">" + esc(s.note) + "</p>";
       }
-      if (s.other){
-        html += "<div id=\"otherWrap\" hidden><label for=\"otherIn\">" + esc(s.otherLabel) + "</label>" +
-                "<input type=\"text\" id=\"otherIn\" maxlength=\"80\" placeholder=\"" + esc(s.otherPlaceholder || "") + "\" value=\"" +
-                esc(/^Other: /.test(answers[s.id] || "") ? answers[s.id].slice(7) : "") + "\" />" +
-                "<p class=\"err\" id=\"otherErr\" hidden>Please tell us a little about yourself.</p>" +
+      if (s.ask){
+        html += "<div id=\"otherWrap\" hidden><label for=\"otherIn\" id=\"otherLabel\"></label>" +
+                "<input type=\"text\" id=\"otherIn\" maxlength=\"80\" />" +
+                "<p class=\"err\" id=\"otherErr\" hidden></p>" +
                 "<button class=\"btn btn--red\" id=\"otherNext\" type=\"button\">Next</button></div>";
       }
     } else if (s.type === "contact"){
+      // The lead magnet (/car-guide.pdf). Jitty texts the link once they leave their details.
+      if (s.gift) html += "<div class=\"gift\"><div class=\"gift-cover\" aria-hidden=\"true\">The smart <b>car buying</b> strategy</div>" +
+              "<div><span class=\"gift-tag\">Free PDF</span><b>The Smart Car Buying Strategy</b><span>6 simple steps to buy a good car</span></div></div>";
       html += "<label for=\"nameIn\">Your full name</label>" +
               "<input type=\"text\" id=\"nameIn\" placeholder=\"First and last name\" autocomplete=\"name\" value=\"" + esc(answers.name || "") + "\" />" +
               "<label for=\"mobileIn\">Your mobile number</label>" +
               "<input type=\"tel\" id=\"mobileIn\" inputmode=\"tel\" placeholder=\"04xx xxx xxx\" autocomplete=\"tel\" value=\"" + esc(answers.mobile || "") + "\" />" +
+              "<label for=\"emailIn\">Your email (we'll send the free guide here)</label>" +
+              "<input type=\"email\" id=\"emailIn\" inputmode=\"email\" placeholder=\"you@example.com\" autocomplete=\"email\" autocapitalize=\"off\" spellcheck=\"false\" value=\"" + esc(answers.email || "") + "\" />" +
               "<p class=\"err\" id=\"err\" hidden></p>" +
               "<button class=\"btn btn--red\" id=\"textNext\" type=\"button\">Next</button>" +
               (s.note ? "<p class=\"hint\">" + esc(s.note) + "</p>" : "");
@@ -185,7 +208,7 @@
                 : "<input type=\"" + s.type + "\" id=\"textIn\" aria-label=\"" + esc(s.q) + "\" placeholder=\"" + esc(s.placeholder) + "\" autocomplete=\"" + s.autocomplete + "\"" +
                   (s.type === "tel" ? " inputmode=\"tel\"" : "") + " value=\"" + esc(answers[s.id] || "") + "\" />") +
               "<p class=\"err\" id=\"err\" hidden></p>" +
-              "<button class=\"btn btn--red\" id=\"textNext\" type=\"button\">Next</button>";
+              "<button class=\"btn btn--red\" id=\"textNext\" type=\"button\">" + esc(s.button || "Next") + "</button>";
     }
     $("stepBody").innerHTML = html;
     $("backBtn").hidden = false;
@@ -194,37 +217,47 @@
       Array.prototype.forEach.call(document.querySelectorAll(".opt"), function(b){
         b.addEventListener("click", function(){
           var v = b.getAttribute("data-v");
-          if (s.other && v === s.other){
-            $("otherWrap").hidden = false; $("otherIn").focus();
+          var a = s.ask && s.ask[v];
+          if (a){
+            var prev = answers[s.id] || "";
+            Array.prototype.forEach.call(document.querySelectorAll(".opt"), function(x){ x.classList.toggle("is-picked", x === b); });
+            $("otherLabel").textContent = a.label;
+            $("otherIn").placeholder = a.placeholder;
+            $("otherIn").value = prev.indexOf(a.prefix + ": ") === 0 ? prev.slice(a.prefix.length + 2) : "";
+            $("otherErr").hidden = true;
+            b.parentNode.insertBefore($("otherWrap"), b.nextSibling);
+            $("otherWrap").hidden = false; $("otherWrap").setAttribute("data-opt", v); $("otherIn").focus();
             return;
           }
           pick(s, v);
         });
       });
-      if (s.other){
-        $("otherNext").addEventListener("click", function(){
-          var v = $("otherIn").value.trim();
-          if (!v && s.otherRequired){ $("otherErr").hidden = false; $("otherIn").focus(); return; }
-          pick(s, v ? "Other: " + v : "Other");
-        });
+      if (s.ask){
+        var askNext = function(){
+          var opt = $("otherWrap").getAttribute("data-opt"), a = s.ask[opt], v = $("otherIn").value.trim();
+          pick(s, v ? a.prefix + ": " + v : opt, opt);
+        };
+        $("otherNext").addEventListener("click", askNext);
+        $("otherIn").addEventListener("keydown", function(e){ if (e.key === "Enter"){ e.preventDefault(); askNext(); } });
       }
     } else if (s.type === "contact"){
-      var nameIn = $("nameIn"), mobileIn = $("mobileIn");
+      var nameIn = $("nameIn"), mobileIn = $("mobileIn"), emailIn = $("emailIn");
       nameIn.focus();
       var send = function(){
-        var n = nameIn.value.trim(), m = mobileIn.value.trim();
+        var n = nameIn.value.trim(), m = mobileIn.value.trim(), em = emailIn.value.trim();
         if (n.length < 2){ $("err").textContent = "Please enter your name."; $("err").hidden = false; nameIn.focus(); return; }
         if (m.replace(/\D/g, "").length < 9){ $("err").textContent = "Please enter a valid mobile number."; $("err").hidden = false; mobileIn.focus(); return; }
-        answers.name = n; answers.mobile = m;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){ $("err").textContent = "Please enter a valid email address."; $("err").hidden = false; emailIn.focus(); return; }
+        answers.name = n; answers.mobile = m; answers.email = em;
         alertStalin("contact", "left details, still finishing the form");
         pick(s, "given");
       };
       $("textNext").addEventListener("click", send);
-      [nameIn, mobileIn].forEach(function(el){
+      [nameIn, mobileIn, emailIn].forEach(function(el){
         el.addEventListener("keydown", function(e){
           if (e.key !== "Enter") return;
           e.preventDefault();
-          if (el === nameIn) mobileIn.focus(); else send();
+          if (el === nameIn) mobileIn.focus(); else if (el === mobileIn) emailIn.focus(); else send();
         });
       });
     } else {
@@ -232,7 +265,7 @@
       inp.focus();
       var go = function(){
         var v = inp.value.trim();
-        var bad = s.type === "tel" ? v.replace(/\D/g, "").length < 9 : v.length < (s.type === "textarea" ? 5 : 2);
+        var bad = (s.optional && !v) ? false : s.type === "tel" ? v.replace(/\D/g, "").length < 9 : v.length < (s.type === "textarea" ? 5 : 2);
         if (bad){
           $("err").textContent = s.type === "tel" ? "Please enter a valid mobile number." :
             s.type === "textarea" ? "Please tell us a little about yourself and what you need the car for." : "Please enter your name.";
@@ -245,10 +278,11 @@
     }
   }
 
-  function pick(s, v){
+  // gaAnswer: the button label when v holds typed words, so free text never reaches Analytics.
+  function pick(s, v, gaAnswer){
     if (s.type !== "contact") answers[s.id] = v;
     // Typed screens are tracked as "done" only: names, numbers and free text never go to Analytics.
-    track("car_apply_step", s.opts ? { step: s.id, answer: v } : { step: s.id });
+    track("car_apply_step", s.opts ? { step: s.id, answer: gaAnswer || v } : { step: s.id });
     if (s.stop && s.stop[v]) return stop(s.stop[v]);
     i++;
     if (i < STEPS.length) render(); else qualified();
@@ -269,7 +303,7 @@
     if (!ALERT_URL || !answers.name || !answers.mobile || alerted[outcome + reason]) return;
     alerted[outcome + reason] = true;
     var d = { token: ALERT_TOKEN, outcome: outcome, reason: reason || "", source: sourceText };
-    ["name","mobile","location","about","budget","funds","timing","priority"].forEach(function(k){ if (answers[k]) d[k] = answers[k]; });
+    ["name","mobile","email","location","about","budget","funds","timing","priority"].forEach(function(k){ if (answers[k]) d[k] = answers[k]; });
     try {
       fetch(ALERT_URL, { method: "POST", mode: "no-cors", keepalive: true,
         headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(d) });
@@ -292,7 +326,7 @@
 
   function summary(){
     return [
-      "About: " + answers.about.replace(/\s+/g, " "), answers.location, "Budget " + answers.budget, answers.funds,
+      "About: " + ((answers.about || "").replace(/\s+/g, " ") || "(left blank)"), answers.location, "Budget " + answers.budget, answers.funds,
       "Buying in next couple of months: " + answers.timing,
       "Matters most: " + answers.priority, "Source: " + sourceText
     ].join(" | ");
@@ -310,6 +344,7 @@
     if (BOOKING_URL.indexOf("calendly.com") < 0) return BOOKING_URL;
     var u = new URL(BOOKING_URL);
     u.searchParams.set("name", answers.name);
+    if (answers.email) u.searchParams.set("email", answers.email);
     // One Calendly question ("Your application", multiple lines) carries the mobile + every answer.
     u.searchParams.set("a1", "Mobile: " + intlMobile(answers.mobile) + "\n" + summary().split(" | ").join("\n"));
     ["utm_source","utm_medium","utm_campaign"].forEach(function(k, n){ if (src[n]) u.searchParams.set(k, src[n]); });
@@ -321,11 +356,12 @@
   function loadCalendly(link){
     // Name + answers are appended with %20 spaces: the widget re-encodes a "+" literally ("Test+Person").
     var u = new URL(link), a1 = u.searchParams.get("a1") || "";
-    u.searchParams.delete("name"); u.searchParams.delete("a1");
+    var em = u.searchParams.get("email") || "";
+    u.searchParams.delete("name"); u.searchParams.delete("a1"); u.searchParams.delete("email");
     u.searchParams.set("hide_event_type_details", "1");
     u.searchParams.set("hide_gdpr_banner", "1");
     u.searchParams.set("primary_color", "c0392b");
-    var url = u.toString() + "&name=" + encodeURIComponent(answers.name) + "&a1=" + encodeURIComponent(a1);
+    var url = u.toString() + "&name=" + encodeURIComponent(answers.name) + (em ? "&email=" + encodeURIComponent(em) : "") + "&a1=" + encodeURIComponent(a1);
     var go = function(){ window.Calendly.initInlineWidget({ url: url, parentElement: $("cal") }); };
     if (window.Calendly) return go();
     var sc = document.createElement("script");
@@ -368,7 +404,7 @@
             "<p class=\"hint\">Pick a time that suits you. It's a quick 15 minute Zoom call, and the link comes in your confirmation email.</p>";
     } else {
       var msg = "Hi AutoDrive, I've applied for the car programme. Please book my eligibility call.\n" +
-                "Name: " + answers.name + "\nMobile: " + answers.mobile + "\n" + summary().split(" | ").join("\n");
+                "Name: " + answers.name + "\nMobile: " + answers.mobile + "\nEmail: " + answers.email + "\n" + summary().split(" | ").join("\n");
       btn = "<a class=\"btn btn--red\" id=\"bookBtn\" href=\"https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg) + "\" target=\"_blank\" rel=\"noopener\">Book my call on WhatsApp</a>" +
             "<p class=\"hint\">Your answers are already in the message. Just press send and we'll lock in a time.</p>";
     }

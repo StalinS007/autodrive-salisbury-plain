@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en-AU">
+<head>
+<meta charset="utf-8">
+<title>The Smart Car Buying Strategy | AutoDrive Salisbury Plain</title>
+<!-- Source for /car-guide.pdf (the Find My Car lead magnet). Rebuild with tools/guide/build.sh
+     Owner style rule (2026-11-16): plain words, short sentences, very direct. WhatsApp prompts go to the BUSINESS number 0432 520 230, labelled AutoDrive, never "text or call Jitty" (owner 2026-11-16). Never "Jitty will text you". -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 0; }
+  :root{ --red:#C01418; --ink:#0E0E0E; --char:#1C1C1E; --g7:#3F3F46; --g5:#6B7280; --g3:#D4D4D8; --g1:#ECECEE; --off:#F7F7F8; }
+  *{ box-sizing:border-box; -webkit-print-color-adjust:exact; print-color-adjust:exact; }
+  html,body{ margin:0; padding:0; }
+  body{ font-family:Inter, Helvetica, Arial, sans-serif; color:var(--g7); font-size:11.5pt; line-height:1.5; }
+  .page{ width:210mm; height:297mm; position:relative; overflow:hidden; page-break-after:always; padding:20mm 18mm 22mm; background:#fff; }
+  .page:last-child{ page-break-after:auto; }
+  h1,h2,.display{ font-family:Anton, Impact, sans-serif; font-weight:400; text-transform:uppercase; color:var(--ink); letter-spacing:.2px; }
+  h2{ font-size:28pt; line-height:1.02; margin:0 0 4mm; }
+  h2 em{ font-style:normal; color:var(--red); }
+  h3{ font-size:12.5pt; color:var(--ink); margin:6mm 0 2mm; font-weight:800; }
+  p{ margin:0 0 3mm; }
+  .kicker{ font-size:8.5pt; font-weight:700; letter-spacing:.16em; text-transform:uppercase; color:var(--red); margin:0 0 3mm; }
+  .lead{ font-size:12pt; color:var(--char); }
+  .rule{ width:22mm; height:1.2mm; background:var(--red); margin:0 0 6mm; }
+  ul.ticks{ list-style:none; padding:0; margin:0 0 3mm; }
+  ul.ticks li{ position:relative; padding:1.6mm 0 1.6mm 7mm; border-top:1px solid var(--g1); }
+  ul.ticks li:last-child{ border-bottom:1px solid var(--g1); }
+  ul.ticks li::before{ content:""; position:absolute; left:0; top:3.1mm; width:3.2mm; height:3.2mm; border-radius:50%; background:var(--red); }
+  ul.ticks li b{ color:var(--ink); }
+  ul.flags li::before{ border-radius:0; transform:rotate(45deg); width:2.6mm; height:2.6mm; top:3.4mm; left:.4mm; }
+  .box{ background:var(--off); border-left:1.2mm solid var(--red); padding:4mm 5mm; margin:4mm 0; border-radius:0 2mm 2mm 0; }
+  .box b{ color:var(--ink); }
+  .box.good{ border-left-color:#0a7a33; background:#eef7f1; }
+  .step{ display:flex; gap:5mm; align-items:flex-start; margin:0 0 3mm; }
+  .num{ font-family:Anton, Impact, sans-serif; font-size:40pt; line-height:.9; color:var(--red); min-width:15mm; }
+  .step h2{ margin-top:1mm; }
+  table{ width:100%; border-collapse:collapse; margin:3mm 0 4mm; font-size:11pt; }
+  td{ padding:2.2mm 3mm; border-bottom:1px solid var(--g1); vertical-align:top; }
+  td:first-child{ font-weight:700; color:var(--ink); width:32%; }
+  tr.total td{ border-bottom:0; border-top:2px solid var(--ink); font-weight:800; color:var(--ink); }
+  .cols{ display:grid; grid-template-columns:1fr 1fr; gap:6mm; }
+  .foot{ position:absolute; left:18mm; right:18mm; bottom:9mm; display:flex; justify-content:space-between; font-size:8pt; color:var(--g5); border-top:1px solid var(--g1); padding-top:3mm; }
+  .foot b{ color:var(--red); }
+
+  /* Cover */
+  .cover{ background:#000; color:#fff; padding:0; }
+  .cover .logo{ width:96mm; display:block; margin:16mm auto 0; }
+  .cover .inner{ padding:0 18mm; }
+  .cover .tag{ display:inline-block; background:var(--red); color:#fff; font-weight:800; font-size:9pt; letter-spacing:.16em; text-transform:uppercase; padding:2mm 4mm; border-radius:1mm; margin:4mm 0 6mm; }
+  .cover h1{ color:#fff; font-size:54pt; line-height:.95; margin:0 0 6mm; }
+  .cover h1 em{ font-style:normal; color:var(--red); }
+  .cover .lead{ color:#d6d6d9; font-size:13.5pt; max-width:150mm; }
+  .cover .steps6{ margin:10mm 0 0; display:grid; grid-template-columns:1fr 1fr 1fr; gap:3mm; }
+  .cover .steps6 div{ border:1px solid #2b2b2e; border-radius:2mm; padding:3mm; font-size:9.5pt; color:#e6e6e8; font-weight:600; }
+  .cover .steps6 span{ display:block; font-family:Anton, Impact, sans-serif; color:var(--red); font-size:15pt; line-height:1; margin-bottom:1mm; }
+  .cover .by{ position:absolute; left:18mm; right:18mm; bottom:14mm; display:flex; align-items:center; gap:5mm; border-top:1px solid #2b2b2e; padding-top:6mm; font-size:10pt; color:#c9c9cc; }
+  .cover .by img{ width:18mm; height:18mm; border-radius:50%; border:.8mm solid var(--red); object-fit:cover; }
+  .cover .by b{ color:#fff; display:block; font-size:11pt; }
+
+  /* Done-for-you page */
+  .dfy{ background:var(--ink); color:#e6e6e8; }
+  .dfy h2{ color:#fff; font-size:34pt; }
+  .dfy .lead{ color:#e6e6e8; }
+  .dfy ul.ticks li{ border-color:#2b2b2e; color:#e6e6e8; }
+  .dfy ul.ticks li b{ color:#fff; }
+  .dfy .jitty{ display:flex; gap:6mm; align-items:center; margin:8mm 0; }
+  .dfy .jitty img{ width:34mm; height:34mm; border-radius:50%; border:1mm solid var(--red); object-fit:cover; }
+  .dfy .jitty b{ color:#fff; font-size:14pt; display:block; }
+  .dfy .cta{ background:var(--red); color:#fff; border-radius:3mm; padding:6mm; margin-top:8mm; }
+  .dfy .cta .display{ color:#fff; font-size:20pt; margin:0 0 2mm; }
+  .dfy .cta p{ margin:0 0 1.5mm; font-size:11pt; }
+  .dfy .cta a{ color:#fff; font-weight:800; }
+  .wa{ display:inline-flex; align-items:center; gap:3mm; background:#25D366; color:#fff !important; font-weight:800; font-size:13pt; text-decoration:none; padding:3.5mm 7mm; border-radius:20mm; margin-top:4mm; }
+  .wa svg{ width:6mm; height:6mm; fill:#fff; }
+  .foot a{ color:var(--g5); text-decoration:none; }
+  .foot a b{ color:#1a9e4b; }
+  .dfy .foot a b{ color:#25D366; }
+  .dfy .foot{ border-color:#2b2b2e; color:#9a9aa0; }
+</style>
+</head>
+<body>
+
+<!-- 1. Cover -->
+<section class="page cover">
+  <img class="logo" src="../../images/logo-transparent.png" alt="AutoDrive Salisbury Plain">
+  <div class="inner">
+    <span class="tag">Free guide</span>
+    <h1>The smart <em>car buying</em> strategy</h1>
+    <p class="lead">6 simple steps to buy a good used car in Adelaide. Pay a fair price. Don't get a lemon.</p>
+    <div class="steps6">
+      <div><span>01</span>Know your budget</div>
+      <div><span>02</span>Know what car you need</div>
+      <div><span>03</span>Spot the bad ads</div>
+      <div><span>04</span>Check the car's past</div>
+      <div><span>05</span>Look and drive</div>
+      <div><span>06</span>Pay and sign</div>
+    </div>
+  </div>
+  <div class="by">
+    <img src="../../images/jitty-headshot.jpg" alt="Jitty">
+    <div><b>From Jitty at AutoDrive Salisbury Plain</b>Licensed dealer and mechanic, 6 Lolands Rd, Salisbury Plain SA</div>
+  </div>
+</section>
+
+<!-- 2. The problem + budget -->
+<section class="page">
+  <p class="kicker">The problem</p>
+  <h2>Buying a car is <em>hard</em></h2>
+  <div class="rule"></div>
+  <p class="lead">Too many ads. Sellers who don't reply. Checks, test drives and forms. And the fear of paying too much for a bad car.</p>
+  <p>Most people look at ads first. That's the mistake. Do these 6 steps in order. You'll save time and money.</p>
+
+  <div class="step" style="margin-top:8mm">
+    <div class="num">01</div>
+    <div>
+      <h2>Know your <em>budget</em></h2>
+      <p>The price on the ad is not the full cost. Add these up first.</p>
+    </div>
+  </div>
+  <table>
+    <tr><td>The car</td><td>The price you pay the seller.</td></tr>
+    <tr><td>Stamp duty</td><td>A government fee when the car goes into your name. In SA it's about 4% of the price.</td></tr>
+    <tr><td>Rego</td><td>How many months are left? If it runs out soon, you pay to renew it.</td></tr>
+    <tr><td>Insurance</td><td>Get a quote before you buy. Some cars cost a lot more to insure.</td></tr>
+    <tr><td>Mechanic check</td><td>Pay a mechanic to check the car before you buy.</td></tr>
+    <tr><td>Spare money</td><td>Keep 5 to 10% aside. You may need a service, tyres or brakes soon.</td></tr>
+    <tr class="total"><td>Your real budget</td><td>Your total money, minus all of the above. That's what you can spend on the car.</td></tr>
+  </table>
+  <div class="box"><b>Have your money ready before you look.</b> Good cars sell fast. If your money isn't ready, someone else gets the car.</div>
+  <div class="foot"><a href="https://wa.me/61432520230?text=Hi%20AutoDrive%2C%20I%20read%20your%20car%20buying%20guide.%20Can%20you%20help%20me%20find%20a%20car%3F">Questions? <b>Message us on WhatsApp</b></a><span><b>AutoDrive</b> Salisbury Plain</span></div>
+</section>
+
+<!-- 3. Pick the car + bad ads -->
+<section class="page">
+  <div class="step">
+    <div class="num">02</div>
+    <div>
+      <h2>Know what car <em>you need</em></h2>
+      <p>Decide this before you look at any ads.</p>
+    </div>
+  </div>
+  <ul class="ticks">
+    <li><b>Who's in the car?</b> Just you? Kids? Parents? That tells you hatch, sedan, SUV or 7-seater.</li>
+    <li><b>How far do you drive?</b> Long drives every day? Get a car that uses little fuel. Mostly city? Get a small car that's easy to park.</li>
+    <li><b>Is it safe?</b> Look up the car's ANCAP star rating. 5 stars is best.</li>
+    <li><b>Is it cheap to run?</b> Fuel, services, tyres and parts cost more on some cars.</li>
+    <li><b>Does it break down?</b> Pick a model known for lasting. A full service history is a must.</li>
+  </ul>
+  <div class="box">Write down <b>2 or 3 car models</b>, the <b>most kilometres</b> you'll accept and the <b>oldest year</b> you'll accept. Only look at ads that match.</div>
+
+  <div class="step" style="margin-top:8mm">
+    <div class="num">03</div>
+    <div>
+      <h2>Spot the <em>bad ads</em></h2>
+      <p>Look at the same car in a few ads so you know the normal price. Walk away if:</p>
+    </div>
+  </div>
+  <ul class="ticks flags">
+    <li><b>The price is way lower</b> than the rest. There's a reason.</li>
+    <li><b>The seller won't give you the VIN</b> or rego number.</li>
+    <li><b>They want to meet in a car park,</b> not at their home or shop.</li>
+    <li><b>There's no service book,</b> or their story keeps changing.</li>
+    <li><b>They want a deposit</b> before you see the car, or say "someone else is coming tonight".</li>
+    <li><b>The name on the rego papers</b> is not the seller's name.</li>
+  </ul>
+  <div class="foot"><a href="https://wa.me/61432520230?text=Hi%20AutoDrive%2C%20I%20read%20your%20car%20buying%20guide.%20Can%20you%20help%20me%20find%20a%20car%3F">Questions? <b>Message us on WhatsApp</b></a><span><b>AutoDrive</b> Salisbury Plain</span></div>
+</section>
+
+<!-- 4. History + inspect -->
+<section class="page">
+  <div class="step">
+    <div class="num">04</div>
+    <div>
+      <h2>Check the <em>car's past</em></h2>
+      <p>Do this before you go and see the car. It takes 10 minutes.</p>
+    </div>
+  </div>
+  <ul class="ticks">
+    <li><b>Do a PPSR check</b> at ppsr.gov.au using the VIN. It costs about $2. It tells you if money is owed on the car, if it was written off, or if it's stolen. If money is owed, you could lose the car.</li>
+    <li><b>Look at the service book.</b> It should have regular stamps. The kilometres should go up each time.</li>
+    <li><b>Match the VIN.</b> The VIN on the car must match the rego papers and the PPSR check.</li>
+    <li><b>Check for recalls.</b> Search the car on the government recalls website.</li>
+  </ul>
+  <div class="box good"><b>A PPSR listing is not always bad.</b> Some cars were damaged, then fixed properly. These can be great value, often much cheaper. The key is to buy it through a mechanic you trust, who checked the repair. <a href="https://wa.me/61432520230?text=Hi%20AutoDrive%2C%20I%20read%20your%20car%20buying%20guide.%20Can%20you%20help%20me%20find%20a%20car%3F" style="color:#1a9e4b;font-weight:700">Ask us about one on WhatsApp.</a></div>
+
+  <div class="step" style="margin-top:5mm">
+    <div class="num">05</div>
+    <div>
+      <h2>Look and <em>drive</em></h2>
+      <p>Ask the seller not to start the car before you get there. A cold engine shows problems.</p>
+    </div>
+  </div>
+  <div class="cols">
+    <ul class="ticks">
+      <li>Starts easily, no knocking sounds</li>
+      <li>No warning lights stay on</li>
+      <li>No blue or thick white smoke</li>
+      <li>Gears change smoothly</li>
+      <li>Brakes stop straight, no shaking</li>
+    </ul>
+    <ul class="ticks">
+      <li>Car drives straight, doesn't pull</li>
+      <li>Air con is cold, all windows work</li>
+      <li>Tyres have good tread, worn evenly</li>
+      <li>Paint colour matches on every panel</li>
+      <li>No wet carpet, bad smell or oil leaks</li>
+    </ul>
+  </div>
+  <div class="box">In SA, most private sellers don't need a roadworthy certificate. So <b>get a mechanic to check the car before you pay.</b> It costs less than one surprise repair.</div>
+  <div class="foot"><a href="https://wa.me/61432520230?text=Hi%20AutoDrive%2C%20I%20read%20your%20car%20buying%20guide.%20Can%20you%20help%20me%20find%20a%20car%3F">Questions? <b>Message us on WhatsApp</b></a><span><b>AutoDrive</b> Salisbury Plain</span></div>
+</section>
+
+<!-- 5. Pay and sign -->
+<section class="page">
+  <div class="step">
+    <div class="num">06</div>
+    <div>
+      <h2>Pay and <em>sign</em></h2>
+      <p>Pay a fair price. Make sure the car is really yours.</p>
+    </div>
+  </div>
+  <h3>Get a fair price</h3>
+  <ul class="ticks">
+    <li>Use what you found. Other ads with lower prices. Tyres or brakes that need doing. A service that's late.</li>
+    <li>Make one fair offer. Be ready to walk away. There's always another car.</li>
+    <li>Don't let anyone rush you.</li>
+  </ul>
+  <h3>Pay safely</h3>
+  <ul class="ticks">
+    <li>Only pay when all the checks are done and you're taking the car.</li>
+    <li>Pay by bank transfer. Don't carry lots of cash.</li>
+    <li>Get a signed receipt. It needs the date, price, VIN, rego number and both names.</li>
+  </ul>
+  <h3>Put the car in your name</h3>
+  <ul class="ticks">
+    <li>You and the seller fill in the transfer form. Lodge it with Service SA, online or in person, and pay the stamp duty.</li>
+    <li>Do it straight away. If you're late, you pay a fine.</li>
+    <li>Get insurance before you drive the car home.</li>
+  </ul>
+  <div class="box"><b>Private seller or dealer?</b> A private seller can be cheaper, but if something goes wrong, it's on you. A licensed dealer in SA usually has to give you a warranty, depending on the car's age and kilometres.</div>
+  <div class="foot"><a href="https://wa.me/61432520230?text=Hi%20AutoDrive%2C%20I%20read%20your%20car%20buying%20guide.%20Can%20you%20help%20me%20find%20a%20car%3F">Questions? <b>Message us on WhatsApp</b></a><span><b>AutoDrive</b> Salisbury Plain</span></div>
+</section>
+
+<!-- 6. Done for you -->
+<section class="page dfy">
+  <p class="kicker">No time for all this?</p>
+  <h2>We'll find <span style="color:var(--red)">the right car</span> for you</h2>
+  <div class="rule"></div>
+  <p class="lead">All of this takes a lot of time. We can do it for you.</p>
+  <div class="jitty">
+    <img src="../../images/jitty-headshot.jpg" alt="Jitty">
+    <div><b>Jitty, licensed dealer and mechanic</b>AutoDrive Salisbury Plain, 6 Lolands Rd, Salisbury Plain SA 5109</div>
+  </div>
+  <ul class="ticks">
+    <li><b>You tell us</b> your budget and what you need.</li>
+    <li><b>We find</b> the right cars for you.</li>
+    <li><b>We check them</b> like mechanics do.</li>
+    <li><b>We do the paperwork.</b> You pick up the keys.</li>
+  </ul>
+  <div class="cta">
+    <p class="display">Exactly the car you want, in 30 days or less</p>
+    <p>See if you're a fit: <a href="https://autodrivesalisburyplain.com.au/find-my-car?utm_source=guide&amp;utm_medium=pdf&amp;utm_campaign=car-finder">autodrivesalisburyplain.com.au/find-my-car</a></p>
+  </div>
+  <p class="lead" style="margin-top:8mm">Got a question? Found a car and want us to check it? Message us.</p>
+  <a class="wa" href="https://wa.me/61432520230?text=Hi%20AutoDrive%2C%20I%20read%20your%20car%20buying%20guide.%20Can%20you%20help%20me%20find%20a%20car%3F"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2zm0 18.2a8.2 8.2 0 0 1-4.2-1.1l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8s-.4-.1-.6.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.6-1.3a.5.5 0 0 0 0-.5l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.9 11.9 0 0 0 4.6 4c1.7.7 2.4.8 3.2.7a2.8 2.8 0 0 0 1.8-1.3 2.3 2.3 0 0 0 .2-1.3c-.1-.1-.3-.2-.5-.3z"/></svg>Message us on WhatsApp</a>
+  <p style="margin-top:3mm;color:#c9c9cc">AutoDrive Salisbury Plain WhatsApp: <b style="color:#fff">0432 520 230</b></p>
+  <div class="foot"><span>General guide only. Check fees and rules with Service SA.</span><span><b>AutoDrive</b> Salisbury Plain</span></div>
+</section>
+
+</body>
+</html>

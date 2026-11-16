@@ -6,3 +6,6 @@
 
 /assets/js/*
   Cache-Control: no-cache
+
+/car-guide.pdf
+  X-Robots-Tag: noindex
