@@ -544,7 +544,7 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   main-use questions on 2026-11-01). The NEW LEAD email therefore has budget, funds and timing but not "what matters
   most"; the QUALIFIED email has everything. Why: GA showed ~79% of starters leaving at the early typing screens.
 - **Lead magnet PDF (added 2026-11-16, PREVIEW):** `/car-guide.pdf` ("The Smart Car Buying Strategy", 6 A4 pages:
-  real budget, pick the car not the ad, red flags, PPSR/history, inspection + test drive checklist, negotiate + Service SA
+  real budget, pick the car not the ad, red flags, PPSR/history (with a green note: a PPSR listing is not always bad, repaired cars bought through a trusted mechanic are great value; owner 2026-11-16, since AutoDrive stocks them), inspection + test drive checklist, negotiate + Service SA
   transfer, then a done-for-you page with Jitty + the find-my-car link tagged `utm_source=guide`). Source
   `tools/guide/car-buying-strategy.html`, rebuild with `tools/guide/build.sh` (headless Chrome). `noindex` via `_headers`.
   **Emailed automatically:** on outcome `contact` the alert script also emails the lead ("Your free car buying guide",
