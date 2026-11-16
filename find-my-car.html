@@ -124,8 +124,8 @@
   var ALERT_URL = "https://script.google.com/macros/s/AKfycbyi59OWP3JmG8kkcP8NTnY43CtMJU1BXX1RMByJ3f_vbACxki3rBnOmqRBhyBZzihjvHA/exec";
   var ALERT_TOKEN = "ad-find-2026";
 
-  // Qualifying taps first (anyone who doesn't fit finds out before typing anything), then name + mobile
-  // on one screen, then the two "which car" questions (what matters most, about you) after the details.
+  // Qualifying taps first (anyone who doesn't fit finds out before typing anything), then what matters most,
+  // then name + mobile + email on one screen, then "about you" last (owner order 2026-11-16).
   var STEPS = [
     { id:"location", q:"Where in Australia?", opts:["Adelaide","Elsewhere in Australia"] },
     { id:"budget", q:"Total budget for everything", sub:"This service starts from $10k.",
@@ -133,13 +133,15 @@
     { id:"funds", q:"Do you have the funds ready to buy within 30 days?", note:"Note: proof of funds may be necessary.",
       opts:["Yes, cash/savings ready","Yes, finance approved","Not yet"], stop:{ "Not yet":"funds" } },
     { id:"timing", q:"I'm looking to buy within the next couple of months", opts:["Yes","Not yet"], stop:{ "Not yet":"timing" } },
-    { id:"contact", q:"Good news, you look like a fit", sub:"Buying a car is hard. Too many ads. Too many checks. Too much paperwork. So we made a free guide. We'll email it to you. Then we'll get in touch to help you find a car that suits you.", type:"contact", gift:true,
-      note:"No spam. We only contact you about your car." },
     { id:"priority", intro:"So we can select the right cars for you, please tell us the following.",
       q:"What matters most in your next car?", opts:["Size (SUV, sedan, hatch, etc.)","Make or model","Other"],
-    // These two open a short required box; the answer is saved as "<prefix>: <their words>" (never sent to GA).
-    ask:{ "Make or model":{ label:"Which make/model?", placeholder:"e.g. Toyota RAV4, Mazda CX-5, a European brand", prefix:"Make or model" },
-          "Other":{ label:"Tell us what matters most", placeholder:"", prefix:"Other" } } },
+    // Each option opens an OPTIONAL box right under it (owner 2026-11-16). Typed words are saved as
+    // "<prefix>: <their words>"; left empty, just the option is saved. Typed words never go to GA.
+    ask:{ "Size (SUV, sedan, hatch, etc.)":{ label:"Which size? (optional)", placeholder:"e.g. SUV, 7-seater, small hatch", prefix:"Size" },
+          "Make or model":{ label:"Which make/model? (optional)", placeholder:"e.g. Toyota RAV4, Mazda CX-5, a European brand", prefix:"Make or model" },
+          "Other":{ label:"Tell us what matters most (optional)", placeholder:"", prefix:"Other" } } },
+    { id:"contact", q:"Good news, you look like a fit", sub:"Buying a car is hard. Too many ads. Too many checks. Too much paperwork. So we made a free guide. We'll email it to you. Then we'll get in touch to help you find a car that suits you.", type:"contact", gift:true,
+      note:"No spam. We only contact you about your car." },
     { id:"about", q:"Tell us who you are and what you need the car for", type:"textarea",
       sub:"Built for skilled professionals and families who want a reliable, safety-first car without the hassle. We find, inspect, negotiate and deliver.",
       placeholder:"", autocomplete:"off" }
@@ -180,7 +182,7 @@
       if (s.ask){
         html += "<div id=\"otherWrap\" hidden><label for=\"otherIn\" id=\"otherLabel\"></label>" +
                 "<input type=\"text\" id=\"otherIn\" maxlength=\"80\" />" +
-                "<p class=\"err\" id=\"otherErr\" hidden>Please fill this in so we can pick the right cars.</p>" +
+                "<p class=\"err\" id=\"otherErr\" hidden></p>" +
                 "<button class=\"btn btn--red\" id=\"otherNext\" type=\"button\">Next</button></div>";
       }
     } else if (s.type === "contact"){
@@ -219,6 +221,7 @@
             $("otherIn").placeholder = a.placeholder;
             $("otherIn").value = prev.indexOf(a.prefix + ": ") === 0 ? prev.slice(a.prefix.length + 2) : "";
             $("otherErr").hidden = true;
+            b.parentNode.insertBefore($("otherWrap"), b.nextSibling);
             $("otherWrap").hidden = false; $("otherWrap").setAttribute("data-opt", v); $("otherIn").focus();
             return;
           }
@@ -228,8 +231,7 @@
       if (s.ask){
         var askNext = function(){
           var opt = $("otherWrap").getAttribute("data-opt"), a = s.ask[opt], v = $("otherIn").value.trim();
-          if (v.length < 2){ $("otherErr").hidden = false; $("otherIn").focus(); return; }
-          pick(s, a.prefix + ": " + v, opt);
+          pick(s, v ? a.prefix + ": " + v : opt, opt);
         };
         $("otherNext").addEventListener("click", askNext);
         $("otherIn").addEventListener("keydown", function(e){ if (e.key === "Enter"){ e.preventDefault(); askNext(); } });

@@ -526,9 +526,9 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   word "migrant" on the page); intro sub + the "who you are" sub line carry it. The answer box has NO example text (owner, 2026-11-03).
 - First page (the intro card itself) asks "Are you based in Australia?" Yes / No; No ends it. A "Moving to Australia
   soon" path was built and pulled on 2026-11-03 (owner: not yet; no "we can start before you land" wording either).
-  Then one question per screen, **qualifying taps first, then details, then the "which car" questions (owner
-  2026-11-07, LIVE 2026-11-07; "what matters most" moved after the details 2026-11-16, PREVIEW only until approved;
-  live still asks it before name + mobile)**: Adelaide or elsewhere in Australia; total budget; funds ready within
+  Then one question per screen, **qualifying taps, then what matters most, then details, then "about you" (owner
+  2026-11-07, LIVE 2026-11-07; on 2026-11-16 it was briefly moved after the details, then the owner put it back BEFORE
+  name + mobile + email, so the order matches live)**: Adelaide or elsewhere in Australia; total budget; funds ready within
   30 days (was 2 weeks until 2026-11-03); buying in next couple of months; then **"Good news, you look like a fit"
   with name + mobile + email on ONE screen** (step id `contact`; email REQUIRED since 2026-11-16 PREVIEW; sub "Buying a car is hard.
   Too many ads. Too many checks. Too much paperwork. So we made a free guide. We'll email it to you. Then we'll get in
@@ -538,11 +538,11 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   showed both people who reached this screen leaving); then what matters most, with a grey intro line above it "So we
   can select the right cars for you, please tell us the following." (owner wording 2026-11-16: not casual or rushed)
   (PREVIEW 2026-11-16, owner: three options only: Size (SUV, sedan, hatch, etc.) / Make or model / Other;
-  "Make or model" ("Which make/model?") and "Other" slide open a REQUIRED short box, saved as "Make or model: <text>" / "Other: <text>", GA gets the
-  button label only. Live still has Reliability / Low running costs / Safety / Size / Other with an optional box); then last "Tell us who you are and what you need the car for" ("Last one:" prefix dropped 2026-11-16;
+  each one opens an OPTIONAL box right under the tapped option ("Which size?", "Which make/model?", "Tell us what matters
+  most", all marked optional); typed words are saved as "Size: <text>" / "Make or model: <text>" / "Other: <text>", an
+  empty box saves just the option; GA gets the button label only. Live still has Reliability / Low running costs / Safety / Size / Other with an optional box); then last "Tell us who you are and what you need the car for" ("Last one:" prefix dropped 2026-11-16;
   REQUIRED free-text box, owner said not optional; sent as "About: <text>"; replaced the Student / Family / Other and
-  main-use questions on 2026-11-01). The NEW LEAD email therefore has budget, funds and timing but not "what matters
-  most"; the QUALIFIED email has everything. Why: GA showed ~79% of starters leaving at the early typing screens.
+  main-use questions on 2026-11-01). The NEW LEAD email has every answer except "about you"; the QUALIFIED email has everything. Why: GA showed ~79% of starters leaving at the early typing screens.
 - **Lead magnet PDF (added 2026-11-16, PREVIEW):** `/car-guide.pdf` ("The Smart Car Buying Strategy", 6 A4 pages:
   real budget, pick the car not the ad, red flags, PPSR/history (with a green note: a PPSR listing is not always bad, repaired cars bought through a trusted mechanic are great value; owner 2026-11-16, since AutoDrive stocks them), inspection + test drive checklist, negotiate + Service SA
   transfer, then a done-for-you page with Jitty + the find-my-car link tagged `utm_source=guide`). WhatsApp prompts (owner 2026-11-16): green "Message us on WhatsApp" button + "AutoDrive Salisbury Plain WhatsApp: 0432 520 230" on the last page, a link in the PPSR note and in every page footer, all to the BUSINESS number wa.me/61432520230 with prefilled "Hi AutoDrive, I read your car buying guide. Can you help me find a car?" (owner removed "text or call Jitty"). Source
