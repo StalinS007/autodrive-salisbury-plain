@@ -53,6 +53,8 @@
   .cal{min-width:280px; height:700px; margin:14px -8px 0; border-radius:12px; overflow:hidden; background:#fff;}
   .hint a{color:var(--ink);}
   .intro{color:var(--grey); font-size:15px; margin:0 0 10px;}
+  .done{background:#e9f6ee; color:var(--ok); border-radius:10px; padding:10px 12px; font-weight:700; font-size:15px; margin:0 0 14px;}
+  .done::before{content:"\2713  ";}
   #otherWrap:not([hidden]){animation:drop .2s ease-out;}
   @keyframes drop{from{opacity:0; transform:translateY(-6px);}to{opacity:1; transform:none;}}
   .gift{display:flex; align-items:center; gap:14px; background:#fff6f5; border:1.5px dashed var(--red); border-radius:12px; padding:12px 14px; margin:0 0 2px; font-size:14px; line-height:1.35;}
@@ -142,9 +144,11 @@
           "Other":{ label:"Please specify (optional)", placeholder:"e.g. low kms, good on fuel, towbar", prefix:"Other" } } },
     { id:"contact", q:"Good news, you look like a fit", sub:"Buying a car is hard. Too many ads. Too many checks. Too much paperwork. So we made a free guide. We'll email it to you. Then we'll get in touch to help you find a car that suits you.", type:"contact", gift:true,
       note:"No spam. We only contact you about your car." },
-    { id:"about", q:"Tell us who you are and what you need the car for", type:"textarea",
-      sub:"Built for skilled professionals and families who want a reliable, safety-first car without the hassle. We find, inspect, negotiate and deliver.",
-      placeholder:"", autocomplete:"off" }
+    // After the guide is "given", this screen frames finding the car as the next step. Optional (owner 2026-11-16).
+    { id:"about", done:"Done. Your free guide is on its way to your inbox.",
+      q:"Now let's find your car. Who is the car for, and what will you use it for?", type:"textarea", optional:true,
+      sub:"Optional, but it helps us pick the right cars.", button:"Find my car",
+      placeholder:"e.g. Me and my 2 kids. School runs and weekend trips.", autocomplete:"off" }
   ];
 
   var ENDINGS = {
@@ -170,7 +174,7 @@
     var s = STEPS[i];
     $("bar").style.width = Math.round(i / STEPS.length * 100) + "%";
     $("count").textContent = "Question " + (i + 1) + " of " + STEPS.length;
-    var html = (s.intro ? "<p class=\"intro\">" + esc(s.intro) + "</p>" : "") + "<h2>" + esc(s.q) + "</h2>" + (s.sub ? "<p class=\"sub\">" + esc(s.sub) + "</p>" : "");
+    var html = (s.done ? "<p class=\"done\">" + esc(s.done) + "</p>" : "") + (s.intro ? "<p class=\"intro\">" + esc(s.intro) + "</p>" : "") + "<h2>" + esc(s.q) + "</h2>" + (s.sub ? "<p class=\"sub\">" + esc(s.sub) + "</p>" : "");
     if (s.opts){
       html += "<div class=\"opts\">" + s.opts.map(function(o){
         var picked = answers[s.id] === o || (s.ask && s.ask[o] && (answers[s.id] || "").indexOf(s.ask[o].prefix + ": ") === 0);
@@ -204,7 +208,7 @@
                 : "<input type=\"" + s.type + "\" id=\"textIn\" aria-label=\"" + esc(s.q) + "\" placeholder=\"" + esc(s.placeholder) + "\" autocomplete=\"" + s.autocomplete + "\"" +
                   (s.type === "tel" ? " inputmode=\"tel\"" : "") + " value=\"" + esc(answers[s.id] || "") + "\" />") +
               "<p class=\"err\" id=\"err\" hidden></p>" +
-              "<button class=\"btn btn--red\" id=\"textNext\" type=\"button\">Next</button>";
+              "<button class=\"btn btn--red\" id=\"textNext\" type=\"button\">" + esc(s.button || "Next") + "</button>";
     }
     $("stepBody").innerHTML = html;
     $("backBtn").hidden = false;
@@ -261,7 +265,7 @@
       inp.focus();
       var go = function(){
         var v = inp.value.trim();
-        var bad = s.type === "tel" ? v.replace(/\D/g, "").length < 9 : v.length < (s.type === "textarea" ? 5 : 2);
+        var bad = (s.optional && !v) ? false : s.type === "tel" ? v.replace(/\D/g, "").length < 9 : v.length < (s.type === "textarea" ? 5 : 2);
         if (bad){
           $("err").textContent = s.type === "tel" ? "Please enter a valid mobile number." :
             s.type === "textarea" ? "Please tell us a little about yourself and what you need the car for." : "Please enter your name.";
@@ -322,7 +326,7 @@
 
   function summary(){
     return [
-      "About: " + answers.about.replace(/\s+/g, " "), answers.location, "Budget " + answers.budget, answers.funds,
+      "About: " + ((answers.about || "").replace(/\s+/g, " ") || "(left blank)"), answers.location, "Budget " + answers.budget, answers.funds,
       "Buying in next couple of months: " + answers.timing,
       "Matters most: " + answers.priority, "Source: " + sourceText
     ].join(" | ");

@@ -540,8 +540,12 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   (PREVIEW 2026-11-16, owner: three options only: Size (SUV, sedan, hatch, etc.) / Make or model / Other;
   each one opens an OPTIONAL box right under the tapped option ("Which size?", "Which make/model?", "Please specify" for Other (was "Tell us what matters
   most"), all marked optional); typed words are saved as "Size: <text>" / "Make or model: <text>" / "Other: <text>", an
-  empty box saves just the option; GA gets the button label only. Live still has Reliability / Low running costs / Safety / Size / Other with an optional box); then last "Tell us who you are and what you need the car for" ("Last one:" prefix dropped 2026-11-16;
-  REQUIRED free-text box, owner said not optional; sent as "About: <text>"; replaced the Student / Family / Other and
+  empty box saves just the option; GA gets the button label only. Live still has Reliability / Low running costs / Safety / Size / Other with an optional box); then last, on a screen headed by a green "Done. Your free guide is on its way to your inbox." (owner 2026-11-16,
+  PREVIEW: Q7 felt awkward right after the giveaway) "Now let's find your car. Who is the car for, and what will you use
+  it for?" (OPTIONAL since 2026-11-16 PREVIEW, live still REQUIRED; sub "Optional, but it helps us pick the right
+  cars.", hint text "e.g. Me and my 2 kids. School runs and weekend trips." (owner-approved, replaces the old
+  no-example rule), button "Find my car"; the old "Built for skilled professionals..." sub was dropped here; sent as
+  "About: <text>" or "About: (left blank)"; replaced the Student / Family / Other and
   main-use questions on 2026-11-01). The NEW LEAD email has every answer except "about you"; the QUALIFIED email has everything. Why: GA showed ~79% of starters leaving at the early typing screens.
 - **Lead magnet PDF (added 2026-11-16, PREVIEW):** `/car-guide.pdf` ("The Smart Car Buying Strategy", 6 A4 pages:
   real budget, pick the car not the ad, red flags, PPSR/history (with a green note: a PPSR listing is not always bad, repaired cars bought through a trusted mechanic are great value; owner 2026-11-16, since AutoDrive stocks them), inspection + test drive checklist, negotiate + Service SA
