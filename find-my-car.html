@@ -52,6 +52,7 @@
   .brand span{display:block; color:#c9c9c9;}
   .cal{min-width:280px; height:700px; margin:14px -8px 0; border-radius:12px; overflow:hidden; background:#fff;}
   .hint a{color:var(--ink);}
+  .intro{color:var(--grey); font-size:15px; margin:0 0 10px;}
   .err{font-size:14px; color:#8a1f1f; margin:8px 0 0;}
   .note{border-radius:10px; padding:13px 15px; margin-top:14px; font-size:15px; background:#eef4fb; border:1px solid #d3e2f3; color:#1f3d5c;}
   .foot{text-align:center; font-size:12.5px; color:#999; margin-top:22px;}
@@ -115,8 +116,8 @@
   var ALERT_URL = "https://script.google.com/macros/s/AKfycbyi59OWP3JmG8kkcP8NTnY43CtMJU1BXX1RMByJ3f_vbACxki3rBnOmqRBhyBZzihjvHA/exec";
   var ALERT_TOKEN = "ad-find-2026";
 
-  // One-tap questions first (anyone who doesn't fit finds out before typing anything),
-  // then name + mobile on one screen, then the "about you" box last.
+  // Qualifying taps first (anyone who doesn't fit finds out before typing anything), then name + mobile
+  // on one screen, then the two "which car" questions (what matters most, about you) after the details.
   var STEPS = [
     { id:"location", q:"Where in Australia?", opts:["Adelaide","Elsewhere in Australia"] },
     { id:"budget", q:"Total budget for everything", sub:"This service starts from $12k.",
@@ -124,10 +125,11 @@
     { id:"funds", q:"Do you have the funds ready to buy within 30 days?", note:"Note: proof of funds may be necessary.",
       opts:["Yes, cash/savings ready","Yes, finance approved","Not yet"], stop:{ "Not yet":"funds" } },
     { id:"timing", q:"I'm looking to buy within the next couple of months", opts:["Yes","Not yet"], stop:{ "Not yet":"timing" } },
-    { id:"priority", q:"What matters most in your next car?", opts:["Reliability","Low running costs","Safety","Size (SUV, sedan, hatch, etc.)","Other"], other:"Other", otherLabel:"Tell us what matters most" },
     { id:"contact", q:"Good news, you look like a fit", sub:"Where should Jitty text you 1 to 2 cars that match what you need?", type:"contact",
       note:"No spam. We only contact you about your car." },
-    { id:"about", q:"Last one: tell us who you are and what you need the car for", type:"textarea",
+    { id:"priority", intro:"So we can select the right cars for you, please tell us the following.",
+      q:"What matters most in your next car?", opts:["Reliability","Low running costs","Safety","Size (SUV, sedan, hatch, etc.)","Other"], other:"Other", otherLabel:"Tell us what matters most" },
+    { id:"about", q:"Tell us who you are and what you need the car for", type:"textarea",
       sub:"Built for skilled professionals and families who want a reliable, safety-first car without the hassle. We find, inspect, negotiate and deliver.",
       placeholder:"", autocomplete:"off" }
   ];
@@ -155,7 +157,7 @@
     var s = STEPS[i];
     $("bar").style.width = Math.round(i / STEPS.length * 100) + "%";
     $("count").textContent = "Question " + (i + 1) + " of " + STEPS.length;
-    var html = "<h2>" + esc(s.q) + "</h2>" + (s.sub ? "<p class=\"sub\">" + esc(s.sub) + "</p>" : "");
+    var html = (s.intro ? "<p class=\"intro\">" + esc(s.intro) + "</p>" : "") + "<h2>" + esc(s.q) + "</h2>" + (s.sub ? "<p class=\"sub\">" + esc(s.sub) + "</p>" : "");
     if (s.opts){
       html += "<div class=\"opts\">" + s.opts.map(function(o){
         var picked = answers[s.id] === o || (s.other && o === s.other && answers[s.id] && s.opts.indexOf(answers[s.id]) < 0);

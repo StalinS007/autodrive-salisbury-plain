@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-11-12**.
+touching the site. Last verified against the live code: **2026-11-16**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -526,15 +526,19 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   word "migrant" on the page); intro sub + the "who you are" sub line carry it. The answer box has NO example text (owner, 2026-11-03).
 - First page (the intro card itself) asks "Are you based in Australia?" Yes / No; No ends it. A "Moving to Australia
   soon" path was built and pulled on 2026-11-03 (owner: not yet; no "we can start before you land" wording either).
-  Then one question per screen, **taps first, typing last (owner 2026-11-07, LIVE 2026-11-07)**: Adelaide or elsewhere in Australia; total budget;
-  funds ready within 30 days (was 2 weeks until 2026-11-03); buying in next couple of months; what matters most
+  Then one question per screen, **qualifying taps first, then details, then the "which car" questions (owner
+  2026-11-07, LIVE 2026-11-07; "what matters most" moved after the details 2026-11-16, PREVIEW only until approved;
+  live still asks it before name + mobile)**: Adelaide or elsewhere in Australia; total budget; funds ready within
+  30 days (was 2 weeks until 2026-11-03); buying in next couple of months; then **"Good news, you look like a fit"
+  with name + mobile on ONE screen** (step id `contact`; sub "Where should Jitty text you 1 to 2 cars that match what
+  you need?" + grey "No spam. We only contact you about your car." under Next, owner 2026-11-12, LIVE 2026-11-12; GA
+  showed both people who reached this screen leaving); then what matters most, with a grey intro line above it "So we
+  can select the right cars for you, please tell us the following." (owner wording 2026-11-16: not casual or rushed)
   (Reliability / Low running costs / Safety / Size (SUV, sedan, hatch, etc.) / Other; "Size" replaced "Space"
-  2026-11-03); then **"Good news, you look like a fit" with name + mobile on ONE screen** (step id `contact`; sub "Where should
-  Jitty text you 1 to 2 cars that match what you need?" + grey "No spam. We only contact you about your car." under
-  Next, owner 2026-11-12, LIVE 2026-11-12; GA showed both people who reached this screen leaving);
-  then last "Last one: tell us who you are and what you need the car for" (REQUIRED free-text box, owner said
-  not optional; sent as "About: <text>"; replaced the Student / Family / Other and main-use questions on
-  2026-11-01). Why: GA showed ~79% of starters leaving at the early typing screens.
+  2026-11-03); then last "Tell us who you are and what you need the car for" ("Last one:" prefix dropped 2026-11-16;
+  REQUIRED free-text box, owner said not optional; sent as "About: <text>"; replaced the Student / Family / Other and
+  main-use questions on 2026-11-01). The NEW LEAD email therefore has budget, funds and timing but not "what matters
+  most"; the QUALIFIED email has everything. Why: GA showed ~79% of starters leaving at the early typing screens.
 - Budget options (minimum $12k, owner 2026-11-03): $12k to $20k / $20k to $30k / $30k to $50k / $50k+ (no "Under" option since 2026-11-03; the
   question sub says "This service starts from $12k."). The funds question
   carries a small grey note "Note: proof of funds may be necessary." (owner 2026-11-03; replaced the big red
