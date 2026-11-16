@@ -526,37 +526,37 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   word "migrant" on the page); intro sub + the "who you are" sub line carry it. The answer box has NO example text (owner, 2026-11-03).
 - First page (the intro card itself) asks "Are you based in Australia?" Yes / No; No ends it. A "Moving to Australia
   soon" path was built and pulled on 2026-11-03 (owner: not yet; no "we can start before you land" wording either).
-  Then one question per screen, **qualifying taps, then what matters most, then details, then "about you" (owner
-  2026-11-07, LIVE 2026-11-07; on 2026-11-16 it was briefly moved after the details, then the owner put it back BEFORE
-  name + mobile + email, so the order matches live)**: Adelaide or elsewhere in Australia; total budget; funds ready within
-  30 days (was 2 weeks until 2026-11-03); buying in next couple of months; then **"Good news, you look like a fit"
-  with name + mobile + email on ONE screen** (step id `contact`; email REQUIRED since 2026-11-16 PREVIEW; sub "Buying a car is hard.
-  Too many ads. Too many checks. Too much paperwork. So we made a free guide. We'll email it to you. Then we'll get in
-  touch to help you find a car that suits you." + a "FREE PDF / The Smart Car Buying Strategy" card (lead magnet, owner
-  2026-11-16, PREVIEW. Owner copy rules: plain words a 6-year-old gets, very direct, no AI-sounding fluff; never say
-  "Jitty will text you"; no phone number in the guide or guide email; live still says "Where should Jitty text you 1 to 2 cars that match what you need?") + grey "No spam. We only contact you about your car." under Next, owner 2026-11-12, LIVE 2026-11-12; GA
-  showed both people who reached this screen leaving); then what matters most, with a grey intro line above it "So we
-  can select the right cars for you, please tell us the following." (owner wording 2026-11-16: not casual or rushed)
-  (PREVIEW 2026-11-16, owner: three options only: Size (SUV, sedan, hatch, etc.) / Make or model / Other;
-  each one opens an OPTIONAL box right under the tapped option ("Which size?", "Which make/model?", "Please specify" for Other (was "Tell us what matters
-  most"), all marked optional); typed words are saved as "Size: <text>" / "Make or model: <text>" / "Other: <text>", an
-  empty box saves just the option; GA gets the button label only. Live still has Reliability / Low running costs / Safety / Size / Other with an optional box); then last, on a screen headed by a green "Done. Your free guide is on its way to your inbox." (owner 2026-11-16,
-  PREVIEW: Q7 felt awkward right after the giveaway) "Now let's find your car. Who is the car for, and what will you use
-  it for?" (OPTIONAL since 2026-11-16 PREVIEW, live still REQUIRED; sub "Optional, but it helps us pick the right
-  cars.", answer box BLANK with no example text (owner, 2026-11-03 and again 2026-11-16), button "Find my car"; the old "Built for skilled professionals..." sub was dropped here; sent as
-  "About: <text>" or "About: (left blank)"; replaced the Student / Family / Other and
-  main-use questions on 2026-11-01). The NEW LEAD email has every answer except "about you"; the QUALIFIED email has everything. Why: GA showed ~79% of starters leaving at the early typing screens.
-- **Lead magnet PDF (added 2026-11-16, PREVIEW):** `/car-guide.pdf` ("The Smart Car Buying Strategy", 6 A4 pages:
-  real budget, pick the car not the ad, red flags, PPSR/history (with a green note: a PPSR listing is not always bad, repaired cars bought through a trusted mechanic are great value; owner 2026-11-16, since AutoDrive stocks them), inspection + test drive checklist, negotiate + Service SA
-  transfer, then a done-for-you page with Jitty + the find-my-car link tagged `utm_source=guide`). WhatsApp prompts (owner 2026-11-16): green "Message us on WhatsApp" button + "AutoDrive Salisbury Plain WhatsApp: 0432 520 230" on the last page, a link in the PPSR note and in every page footer, all to the BUSINESS number wa.me/61432520230 with prefilled "Hi AutoDrive, I read your car buying guide. Can you help me find a car?" (owner removed "text or call Jitty"). Source
-  `tools/guide/car-buying-strategy.html`, rebuild with `tools/guide/build.sh` (headless Chrome). `noindex` via `_headers`.
-  **Emailed automatically:** on outcome `contact` the alert script also emails the lead ("Your free car buying guide",
-  from name "AutoDrive Salisbury Plain" via stalinsajie@gmail.com's MailApp, reply-to autodrive5109@gmail.com, PDF as a
-  link not an attachment) and the NEW LEAD email says so. The NEW LEAD / QUALIFIED email also has a one-tap WhatsApp
-  link with the message + PDF link prefilled. Email is prefilled into Calendly too; it never goes to GA. `GUIDE_URL`
-  in `tools/car-finder-alert.gs` points at the live domain, so the script must be redeployed as a New version WHEN the
-  PDF goes live (not before).
-- Budget options (minimum $10k since 2026-11-16 PREVIEW, was $12k from 2026-11-03): $10k to $20k / $20k to $30k / $30k to $50k / $50k+ (no "Under" option since 2026-11-03; the
+  Then one question per screen (order LIVE 2026-11-16): Adelaide or elsewhere in Australia; total budget; funds ready
+  within 30 days (was 2 weeks until 2026-11-03); buying in next couple of months; **what matters most** (grey intro line
+  above it "So we can select the right cars for you, please tell us the following."; three options Size (SUV, sedan,
+  hatch, etc.) / Make or model / Other, each opening an OPTIONAL box right under the tapped option: "Which size?",
+  "Which make/model?", "Please specify"; saved as "Size: <text>" / "Make or model: <text>" / "Other: <text>", or just the
+  option if empty; GA gets the button label only); then **"Good news, you look like a fit" with name + mobile + email
+  (all REQUIRED) on ONE screen** (step id `contact`; sub "Buying a car is hard. Too many ads. Too many checks. Too much
+  paperwork. So we made a free guide. We'll email it to you. Then we'll get in touch to help you find a car that suits
+  you." + a "FREE PDF / The Smart Car Buying Strategy" card + grey "No spam. We only contact you about your car." under
+  Next); then last a screen headed by a green "Done. Your free guide is on its way to your inbox." with "Now let's find
+  your car. Who is the car for, and what will you use it for?" (OPTIONAL, sub "Optional, but it helps us pick the right
+  cars.", answer box BLANK with no example text (owner), button "Find my car"; sent as "About: <text>" or "About: (left
+  blank)"). The NEW LEAD email has every answer except "about you"; the QUALIFIED email has everything.
+  **Owner copy rules (2026-11-16):** plain words a 6-year-old gets, very direct, no AI-sounding fluff; never say "Jitty
+  will text you"; never "text or call Jitty". History: 2026-11-07 taps first / typing last (GA showed ~79% of starters
+  leaving at early typing screens); 2026-11-12 reason line + no-spam line (GA showed both people who reached the
+  contact screen leaving); 2026-11-16 the changes above.
+- **Lead magnet PDF (LIVE 2026-11-16):** `/car-guide.pdf` ("The Smart Car Buying Strategy", 6 A4 pages in plain words:
+  budget, what car you need, bad ads, check the car's past (with a green note: a PPSR listing is not always bad, repaired
+  cars bought through a trusted mechanic are great value; owner, since AutoDrive stocks them), look and drive, pay and
+  sign, then a done-for-you page with Jitty + the find-my-car link tagged `utm_source=guide`). WhatsApp prompts: green
+  "Message us on WhatsApp" button + "AutoDrive Salisbury Plain WhatsApp: 0432 520 230" on the last page, a link in the
+  PPSR note and in every page footer, all to the BUSINESS number with prefilled "Hi AutoDrive, I read your car buying
+  guide. Can you help me find a car?". Source `tools/guide/car-buying-strategy.html`, rebuild with
+  `tools/guide/build.sh` (headless Chrome). `noindex` via `_headers`.
+  **Emailed automatically** the moment they tap Next on the name + mobile + email screen (outcome `contact`), by the
+  alert script: subject "Your free car buying guide", from name "AutoDrive Salisbury Plain" but sent via
+  **stalinsajie@gmail.com**'s MailApp (owner may move it to autodrive5109@gmail.com later: needs the script set up in
+  that Google account), reply-to autodrive5109@gmail.com, PDF as a link. The NEW LEAD email says it was sent and has a
+  one-tap WhatsApp link with the message + PDF link prefilled. Email is prefilled into Calendly too; it never goes to GA.
+- Budget options (minimum $10k since 2026-11-16, was $12k from 2026-11-03): $10k to $20k / $20k to $30k / $30k to $50k / $50k+ (no "Under" option since 2026-11-03; the
   question sub says "This service starts from $10k."). The funds question
   carries a small grey note "Note: proof of funds may be necessary." (owner 2026-11-03; replaced the big red
   "Important" disclaimer that sat on the budget question).
