@@ -538,8 +538,8 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   showed both people who reached this screen leaving); then what matters most, with a grey intro line above it "So we
   can select the right cars for you, please tell us the following." (owner wording 2026-11-16: not casual or rushed)
   (PREVIEW 2026-11-16, owner: three options only: Size (SUV, sedan, hatch, etc.) / Make or model / Other;
-  each one opens an OPTIONAL box right under the tapped option ("Which size?", "Which make/model?", "Tell us what matters
-  most", all marked optional); typed words are saved as "Size: <text>" / "Make or model: <text>" / "Other: <text>", an
+  each one opens an OPTIONAL box right under the tapped option ("Which size?", "Which make/model?", "Please specify" for Other (was "Tell us what matters
+  most"), all marked optional); typed words are saved as "Size: <text>" / "Make or model: <text>" / "Other: <text>", an
   empty box saves just the option; GA gets the button label only. Live still has Reliability / Low running costs / Safety / Size / Other with an optional box); then last "Tell us who you are and what you need the car for" ("Last one:" prefix dropped 2026-11-16;
   REQUIRED free-text box, owner said not optional; sent as "About: <text>"; replaced the Student / Family / Other and
   main-use questions on 2026-11-01). The NEW LEAD email has every answer except "about you"; the QUALIFIED email has everything. Why: GA showed ~79% of starters leaving at the early typing screens.
