@@ -530,8 +530,9 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   2026-11-07, LIVE 2026-11-07; "what matters most" moved after the details 2026-11-16, PREVIEW only until approved;
   live still asks it before name + mobile)**: Adelaide or elsewhere in Australia; total budget; funds ready within
   30 days (was 2 weeks until 2026-11-03); buying in next couple of months; then **"Good news, you look like a fit"
-  with name + mobile on ONE screen** (step id `contact`; sub "Where should Jitty text you 1 to 2 cars that match what
-  you need?" + grey "No spam. We only contact you about your car." under Next, owner 2026-11-12, LIVE 2026-11-12; GA
+  with name + mobile on ONE screen** (step id `contact`; sub "Tired of endless listings and sellers you can't trust? Jitty
+  will text you 1 to 2 cars that match what you need." (pain first, owner 2026-11-16, PREVIEW; live still says "Where
+  should Jitty text you 1 to 2 cars that match what you need?") + grey "No spam. We only contact you about your car." under Next, owner 2026-11-12, LIVE 2026-11-12; GA
   showed both people who reached this screen leaving); then what matters most, with a grey intro line above it "So we
   can select the right cars for you, please tell us the following." (owner wording 2026-11-16: not casual or rushed)
   (Reliability / Low running costs / Safety / Size (SUV, sedan, hatch, etc.) / Other; "Size" replaced "Space"
