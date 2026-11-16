@@ -543,8 +543,7 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   empty box saves just the option; GA gets the button label only. Live still has Reliability / Low running costs / Safety / Size / Other with an optional box); then last, on a screen headed by a green "Done. Your free guide is on its way to your inbox." (owner 2026-11-16,
   PREVIEW: Q7 felt awkward right after the giveaway) "Now let's find your car. Who is the car for, and what will you use
   it for?" (OPTIONAL since 2026-11-16 PREVIEW, live still REQUIRED; sub "Optional, but it helps us pick the right
-  cars.", hint text "e.g. Me and my 2 kids. School runs and weekend trips." (owner-approved, replaces the old
-  no-example rule), button "Find my car"; the old "Built for skilled professionals..." sub was dropped here; sent as
+  cars.", answer box BLANK with no example text (owner, 2026-11-03 and again 2026-11-16), button "Find my car"; the old "Built for skilled professionals..." sub was dropped here; sent as
   "About: <text>" or "About: (left blank)"; replaced the Student / Family / Other and
   main-use questions on 2026-11-01). The NEW LEAD email has every answer except "about you"; the QUALIFIED email has everything. Why: GA showed ~79% of starters leaving at the early typing screens.
 - **Lead magnet PDF (added 2026-11-16, PREVIEW):** `/car-guide.pdf` ("The Smart Car Buying Strategy", 6 A4 pages:
