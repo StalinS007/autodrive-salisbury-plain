@@ -37,7 +37,7 @@
   .opt:focus-visible{outline:2px solid var(--red); outline-offset:2px;}
   .opt.is-picked{border-color:var(--red); background:#fff6f5;}
   label{display:block; font-weight:600; font-size:14px; margin:16px 0 6px;}
-  input[type=text], input[type=tel], textarea{ width:100%; font:inherit; font-size:17px; padding:14px; border:1px solid #cfcfcf; border-radius:10px; }
+  input[type=text], input[type=tel], input[type=email], textarea{ width:100%; font:inherit; font-size:17px; padding:14px; border:1px solid #cfcfcf; border-radius:10px; }
   input:focus{outline:2px solid var(--red); outline-offset:1px; border-color:var(--red);}
   .btn{ display:flex; align-items:center; justify-content:center; gap:8px; width:100%; font:inherit; font-size:16px; font-weight:700; cursor:pointer; padding:15px; border-radius:999px; border:2px solid transparent; text-decoration:none; margin-top:16px; }
   .btn--red{background:var(--red); color:#fff; border-color:var(--red);}
@@ -133,7 +133,7 @@
     { id:"funds", q:"Do you have the funds ready to buy within 30 days?", note:"Note: proof of funds may be necessary.",
       opts:["Yes, cash/savings ready","Yes, finance approved","Not yet"], stop:{ "Not yet":"funds" } },
     { id:"timing", q:"I'm looking to buy within the next couple of months", opts:["Yes","Not yet"], stop:{ "Not yet":"timing" } },
-    { id:"contact", q:"Good news, you look like a fit", sub:"Buying a car means endless listings, history checks, inspections and paperwork. So we've put together a free strategy to make it simple. Jitty will text it to you, plus 1 to 2 cars that match what you need.", type:"contact", gift:true,
+    { id:"contact", q:"Good news, you look like a fit", sub:"Buying a car is hard. Too many ads. Too many checks. Too much paperwork. So we made a free guide. We'll email it to you. Then we'll get in touch to help you find a car that suits you.", type:"contact", gift:true,
       note:"No spam. We only contact you about your car." },
     { id:"priority", intro:"So we can select the right cars for you, please tell us the following.",
       q:"What matters most in your next car?", opts:["Size (SUV, sedan, hatch, etc.)","Make or model","Other"],
@@ -186,11 +186,13 @@
     } else if (s.type === "contact"){
       // The lead magnet (/car-guide.pdf). Jitty texts the link once they leave their details.
       if (s.gift) html += "<div class=\"gift\"><div class=\"gift-cover\" aria-hidden=\"true\">The smart <b>car buying</b> strategy</div>" +
-              "<div><span class=\"gift-tag\">Free PDF</span><b>The Smart Car Buying Strategy</b><span>6 steps to the right car, without the stress</span></div></div>";
+              "<div><span class=\"gift-tag\">Free PDF</span><b>The Smart Car Buying Strategy</b><span>6 simple steps to buy a good car</span></div></div>";
       html += "<label for=\"nameIn\">Your full name</label>" +
               "<input type=\"text\" id=\"nameIn\" placeholder=\"First and last name\" autocomplete=\"name\" value=\"" + esc(answers.name || "") + "\" />" +
               "<label for=\"mobileIn\">Your mobile number</label>" +
               "<input type=\"tel\" id=\"mobileIn\" inputmode=\"tel\" placeholder=\"04xx xxx xxx\" autocomplete=\"tel\" value=\"" + esc(answers.mobile || "") + "\" />" +
+              "<label for=\"emailIn\">Your email (we'll send the free guide here)</label>" +
+              "<input type=\"email\" id=\"emailIn\" inputmode=\"email\" placeholder=\"you@example.com\" autocomplete=\"email\" autocapitalize=\"off\" spellcheck=\"false\" value=\"" + esc(answers.email || "") + "\" />" +
               "<p class=\"err\" id=\"err\" hidden></p>" +
               "<button class=\"btn btn--red\" id=\"textNext\" type=\"button\">Next</button>" +
               (s.note ? "<p class=\"hint\">" + esc(s.note) + "</p>" : "");
@@ -233,22 +235,23 @@
         $("otherIn").addEventListener("keydown", function(e){ if (e.key === "Enter"){ e.preventDefault(); askNext(); } });
       }
     } else if (s.type === "contact"){
-      var nameIn = $("nameIn"), mobileIn = $("mobileIn");
+      var nameIn = $("nameIn"), mobileIn = $("mobileIn"), emailIn = $("emailIn");
       nameIn.focus();
       var send = function(){
-        var n = nameIn.value.trim(), m = mobileIn.value.trim();
+        var n = nameIn.value.trim(), m = mobileIn.value.trim(), em = emailIn.value.trim();
         if (n.length < 2){ $("err").textContent = "Please enter your name."; $("err").hidden = false; nameIn.focus(); return; }
         if (m.replace(/\D/g, "").length < 9){ $("err").textContent = "Please enter a valid mobile number."; $("err").hidden = false; mobileIn.focus(); return; }
-        answers.name = n; answers.mobile = m;
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)){ $("err").textContent = "Please enter a valid email address."; $("err").hidden = false; emailIn.focus(); return; }
+        answers.name = n; answers.mobile = m; answers.email = em;
         alertStalin("contact", "left details, still finishing the form");
         pick(s, "given");
       };
       $("textNext").addEventListener("click", send);
-      [nameIn, mobileIn].forEach(function(el){
+      [nameIn, mobileIn, emailIn].forEach(function(el){
         el.addEventListener("keydown", function(e){
           if (e.key !== "Enter") return;
           e.preventDefault();
-          if (el === nameIn) mobileIn.focus(); else send();
+          if (el === nameIn) mobileIn.focus(); else if (el === mobileIn) emailIn.focus(); else send();
         });
       });
     } else {
@@ -294,7 +297,7 @@
     if (!ALERT_URL || !answers.name || !answers.mobile || alerted[outcome + reason]) return;
     alerted[outcome + reason] = true;
     var d = { token: ALERT_TOKEN, outcome: outcome, reason: reason || "", source: sourceText };
-    ["name","mobile","location","about","budget","funds","timing","priority"].forEach(function(k){ if (answers[k]) d[k] = answers[k]; });
+    ["name","mobile","email","location","about","budget","funds","timing","priority"].forEach(function(k){ if (answers[k]) d[k] = answers[k]; });
     try {
       fetch(ALERT_URL, { method: "POST", mode: "no-cors", keepalive: true,
         headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(d) });
@@ -335,6 +338,7 @@
     if (BOOKING_URL.indexOf("calendly.com") < 0) return BOOKING_URL;
     var u = new URL(BOOKING_URL);
     u.searchParams.set("name", answers.name);
+    if (answers.email) u.searchParams.set("email", answers.email);
     // One Calendly question ("Your application", multiple lines) carries the mobile + every answer.
     u.searchParams.set("a1", "Mobile: " + intlMobile(answers.mobile) + "\n" + summary().split(" | ").join("\n"));
     ["utm_source","utm_medium","utm_campaign"].forEach(function(k, n){ if (src[n]) u.searchParams.set(k, src[n]); });
@@ -346,11 +350,12 @@
   function loadCalendly(link){
     // Name + answers are appended with %20 spaces: the widget re-encodes a "+" literally ("Test+Person").
     var u = new URL(link), a1 = u.searchParams.get("a1") || "";
-    u.searchParams.delete("name"); u.searchParams.delete("a1");
+    var em = u.searchParams.get("email") || "";
+    u.searchParams.delete("name"); u.searchParams.delete("a1"); u.searchParams.delete("email");
     u.searchParams.set("hide_event_type_details", "1");
     u.searchParams.set("hide_gdpr_banner", "1");
     u.searchParams.set("primary_color", "c0392b");
-    var url = u.toString() + "&name=" + encodeURIComponent(answers.name) + "&a1=" + encodeURIComponent(a1);
+    var url = u.toString() + "&name=" + encodeURIComponent(answers.name) + (em ? "&email=" + encodeURIComponent(em) : "") + "&a1=" + encodeURIComponent(a1);
     var go = function(){ window.Calendly.initInlineWidget({ url: url, parentElement: $("cal") }); };
     if (window.Calendly) return go();
     var sc = document.createElement("script");
@@ -393,7 +398,7 @@
             "<p class=\"hint\">Pick a time that suits you. It's a quick 15 minute Zoom call, and the link comes in your confirmation email.</p>";
     } else {
       var msg = "Hi AutoDrive, I've applied for the car programme. Please book my eligibility call.\n" +
-                "Name: " + answers.name + "\nMobile: " + answers.mobile + "\n" + summary().split(" | ").join("\n");
+                "Name: " + answers.name + "\nMobile: " + answers.mobile + "\nEmail: " + answers.email + "\n" + summary().split(" | ").join("\n");
       btn = "<a class=\"btn btn--red\" id=\"bookBtn\" href=\"https://wa.me/" + WHATSAPP + "?text=" + encodeURIComponent(msg) + "\" target=\"_blank\" rel=\"noopener\">Book my call on WhatsApp</a>" +
             "<p class=\"hint\">Your answers are already in the message. Just press send and we'll lock in a time.</p>";
     }

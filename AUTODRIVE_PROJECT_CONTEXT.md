@@ -530,10 +530,11 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   2026-11-07, LIVE 2026-11-07; "what matters most" moved after the details 2026-11-16, PREVIEW only until approved;
   live still asks it before name + mobile)**: Adelaide or elsewhere in Australia; total budget; funds ready within
   30 days (was 2 weeks until 2026-11-03); buying in next couple of months; then **"Good news, you look like a fit"
-  with name + mobile on ONE screen** (step id `contact`; sub "Buying a car means endless listings, history checks,
-  inspections and paperwork. So we've put together a free strategy to make it simple. Jitty will text it to you, plus 1
-  to 2 cars that match what you need." + a "FREE PDF / The Smart Car Buying Strategy" card (lead magnet, owner
-  2026-11-16, PREVIEW; live still says "Where should Jitty text you 1 to 2 cars that match what you need?") + grey "No spam. We only contact you about your car." under Next, owner 2026-11-12, LIVE 2026-11-12; GA
+  with name + mobile + email on ONE screen** (step id `contact`; email REQUIRED since 2026-11-16 PREVIEW; sub "Buying a car is hard.
+  Too many ads. Too many checks. Too much paperwork. So we made a free guide. We'll email it to you. Then we'll get in
+  touch to help you find a car that suits you." + a "FREE PDF / The Smart Car Buying Strategy" card (lead magnet, owner
+  2026-11-16, PREVIEW. Owner copy rules: plain words a 6-year-old gets, very direct, no AI-sounding fluff; never say
+  "Jitty will text you"; no phone number in the guide or guide email; live still says "Where should Jitty text you 1 to 2 cars that match what you need?") + grey "No spam. We only contact you about your car." under Next, owner 2026-11-12, LIVE 2026-11-12; GA
   showed both people who reached this screen leaving); then what matters most, with a grey intro line above it "So we
   can select the right cars for you, please tell us the following." (owner wording 2026-11-16: not casual or rushed)
   (PREVIEW 2026-11-16, owner: three options only: Size (SUV, sedan, hatch, etc.) / Make or model / Other;
@@ -546,9 +547,12 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   real budget, pick the car not the ad, red flags, PPSR/history, inspection + test drive checklist, negotiate + Service SA
   transfer, then a done-for-you page with Jitty + the find-my-car link tagged `utm_source=guide`). Source
   `tools/guide/car-buying-strategy.html`, rebuild with `tools/guide/build.sh` (headless Chrome). `noindex` via `_headers`.
-  It is NOT sent automatically (no SMS service): the NEW LEAD / QUALIFIED email carries a one-tap WhatsApp link with the
-  message and PDF link prefilled (`GUIDE_URL` in `tools/car-finder-alert.gs`; that script change must be redeployed as a
-  New version when the PDF goes live, since the link points at the live domain).
+  **Emailed automatically:** on outcome `contact` the alert script also emails the lead ("Your free car buying guide",
+  from name "AutoDrive Salisbury Plain" via stalinsajie@gmail.com's MailApp, reply-to autodrive5109@gmail.com, PDF as a
+  link not an attachment) and the NEW LEAD email says so. The NEW LEAD / QUALIFIED email also has a one-tap WhatsApp
+  link with the message + PDF link prefilled. Email is prefilled into Calendly too; it never goes to GA. `GUIDE_URL`
+  in `tools/car-finder-alert.gs` points at the live domain, so the script must be redeployed as a New version WHEN the
+  PDF goes live (not before).
 - Budget options (minimum $12k, owner 2026-11-03): $12k to $20k / $20k to $30k / $30k to $50k / $50k+ (no "Under" option since 2026-11-03; the
   question sub says "This service starts from $12k."). The funds question
   carries a small grey note "Note: proof of funds may be necessary." (owner 2026-11-03; replaced the big red
