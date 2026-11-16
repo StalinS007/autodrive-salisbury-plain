@@ -134,7 +134,10 @@
     { id:"contact", q:"Good news, you look like a fit", sub:"Buying a car means endless listings, history checks, inspections and paperwork. So we've put together a free strategy to make it simple. Jitty will text it to you, plus 1 to 2 cars that match what you need.", type:"contact", gift:true,
       note:"No spam. We only contact you about your car." },
     { id:"priority", intro:"So we can select the right cars for you, please tell us the following.",
-      q:"What matters most in your next car?", opts:["Reliability","Low running costs","Safety","Size (SUV, sedan, hatch, etc.)","Other"], other:"Other", otherLabel:"Tell us what matters most" },
+      q:"What matters most in your next car?", opts:["Size (SUV, sedan, hatch, etc.)","A particular make or model","Other"],
+    // These two open a short required box; the answer is saved as "<prefix>: <their words>" (never sent to GA).
+    ask:{ "A particular make or model":{ label:"Which make or model?", placeholder:"e.g. Toyota RAV4, Mazda CX-5, a European brand", prefix:"Make or model" },
+          "Other":{ label:"Tell us what matters most", placeholder:"", prefix:"Other" } } },
     { id:"about", q:"Tell us who you are and what you need the car for", type:"textarea",
       sub:"Built for skilled professionals and families who want a reliable, safety-first car without the hassle. We find, inspect, negotiate and deliver.",
       placeholder:"", autocomplete:"off" }
@@ -166,17 +169,16 @@
     var html = (s.intro ? "<p class=\"intro\">" + esc(s.intro) + "</p>" : "") + "<h2>" + esc(s.q) + "</h2>" + (s.sub ? "<p class=\"sub\">" + esc(s.sub) + "</p>" : "");
     if (s.opts){
       html += "<div class=\"opts\">" + s.opts.map(function(o){
-        var picked = answers[s.id] === o || (s.other && o === s.other && answers[s.id] && s.opts.indexOf(answers[s.id]) < 0);
+        var picked = answers[s.id] === o || (s.ask && s.ask[o] && (answers[s.id] || "").indexOf(s.ask[o].prefix + ": ") === 0);
         return "<button type=\"button\" class=\"opt" + (picked ? " is-picked" : "") + "\" data-v=\"" + esc(o) + "\">" + esc(o) + "</button>";
       }).join("") + "</div>";
       if (s.note){
         html += "<p class=\"hint\">" + esc(s.note) + "</p>";
       }
-      if (s.other){
-        html += "<div id=\"otherWrap\" hidden><label for=\"otherIn\">" + esc(s.otherLabel) + "</label>" +
-                "<input type=\"text\" id=\"otherIn\" maxlength=\"80\" placeholder=\"" + esc(s.otherPlaceholder || "") + "\" value=\"" +
-                esc(/^Other: /.test(answers[s.id] || "") ? answers[s.id].slice(7) : "") + "\" />" +
-                "<p class=\"err\" id=\"otherErr\" hidden>Please tell us a little about yourself.</p>" +
+      if (s.ask){
+        html += "<div id=\"otherWrap\" hidden><label for=\"otherIn\" id=\"otherLabel\"></label>" +
+                "<input type=\"text\" id=\"otherIn\" maxlength=\"80\" />" +
+                "<p class=\"err\" id=\"otherErr\" hidden>Please fill this in so we can pick the right cars.</p>" +
                 "<button class=\"btn btn--red\" id=\"otherNext\" type=\"button\">Next</button></div>";
       }
     } else if (s.type === "contact"){
@@ -205,19 +207,28 @@
       Array.prototype.forEach.call(document.querySelectorAll(".opt"), function(b){
         b.addEventListener("click", function(){
           var v = b.getAttribute("data-v");
-          if (s.other && v === s.other){
-            $("otherWrap").hidden = false; $("otherIn").focus();
+          var a = s.ask && s.ask[v];
+          if (a){
+            var prev = answers[s.id] || "";
+            Array.prototype.forEach.call(document.querySelectorAll(".opt"), function(x){ x.classList.toggle("is-picked", x === b); });
+            $("otherLabel").textContent = a.label;
+            $("otherIn").placeholder = a.placeholder;
+            $("otherIn").value = prev.indexOf(a.prefix + ": ") === 0 ? prev.slice(a.prefix.length + 2) : "";
+            $("otherErr").hidden = true;
+            $("otherWrap").hidden = false; $("otherWrap").setAttribute("data-opt", v); $("otherIn").focus();
             return;
           }
           pick(s, v);
         });
       });
-      if (s.other){
-        $("otherNext").addEventListener("click", function(){
-          var v = $("otherIn").value.trim();
-          if (!v && s.otherRequired){ $("otherErr").hidden = false; $("otherIn").focus(); return; }
-          pick(s, v ? "Other: " + v : "Other");
-        });
+      if (s.ask){
+        var askNext = function(){
+          var opt = $("otherWrap").getAttribute("data-opt"), a = s.ask[opt], v = $("otherIn").value.trim();
+          if (v.length < 2){ $("otherErr").hidden = false; $("otherIn").focus(); return; }
+          pick(s, a.prefix + ": " + v, opt);
+        };
+        $("otherNext").addEventListener("click", askNext);
+        $("otherIn").addEventListener("keydown", function(e){ if (e.key === "Enter"){ e.preventDefault(); askNext(); } });
       }
     } else if (s.type === "contact"){
       var nameIn = $("nameIn"), mobileIn = $("mobileIn");
@@ -256,10 +267,11 @@
     }
   }
 
-  function pick(s, v){
+  // gaAnswer: the button label when v holds typed words, so free text never reaches Analytics.
+  function pick(s, v, gaAnswer){
     if (s.type !== "contact") answers[s.id] = v;
     // Typed screens are tracked as "done" only: names, numbers and free text never go to Analytics.
-    track("car_apply_step", s.opts ? { step: s.id, answer: v } : { step: s.id });
+    track("car_apply_step", s.opts ? { step: s.id, answer: gaAnswer || v } : { step: s.id });
     if (s.stop && s.stop[v]) return stop(s.stop[v]);
     i++;
     if (i < STEPS.length) render(); else qualified();

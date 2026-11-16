@@ -536,8 +536,9 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   2026-11-16, PREVIEW; live still says "Where should Jitty text you 1 to 2 cars that match what you need?") + grey "No spam. We only contact you about your car." under Next, owner 2026-11-12, LIVE 2026-11-12; GA
   showed both people who reached this screen leaving); then what matters most, with a grey intro line above it "So we
   can select the right cars for you, please tell us the following." (owner wording 2026-11-16: not casual or rushed)
-  (Reliability / Low running costs / Safety / Size (SUV, sedan, hatch, etc.) / Other; "Size" replaced "Space"
-  2026-11-03); then last "Tell us who you are and what you need the car for" ("Last one:" prefix dropped 2026-11-16;
+  (PREVIEW 2026-11-16, owner: three options only: Size (SUV, sedan, hatch, etc.) / A particular make or model / Other;
+  "make or model" and "Other" open a REQUIRED short box, saved as "Make or model: <text>" / "Other: <text>", GA gets the
+  button label only. Live still has Reliability / Low running costs / Safety / Size / Other with an optional box); then last "Tell us who you are and what you need the car for" ("Last one:" prefix dropped 2026-11-16;
   REQUIRED free-text box, owner said not optional; sent as "About: <text>"; replaced the Student / Family / Other and
   main-use questions on 2026-11-01). The NEW LEAD email therefore has budget, funds and timing but not "what matters
   most"; the QUALIFIED email has everything. Why: GA showed ~79% of starters leaving at the early typing screens.
