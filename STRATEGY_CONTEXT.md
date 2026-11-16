@@ -75,6 +75,20 @@ state" and "Decision log" sections updated as things move.
 4. **Retention/repeat:** service reminders, post-sale discounted repairs as a hook,
    turning the 150+ repeat clients into reviewers and referrers.
 
+## Facebook Marketplace car demand, Adelaide (research 2026-11-16)
+No published Adelaide or Marketplace-only figures exist (Meta now reports listings, not
+users). Hard data: SA used car sales ~14,000/month (AADA/AutoGrab mid-2025), private share
+51 to 58% nationally; SA listings ~21,000 to 22,000; Meta July 2026: 44M vehicle listings a
+month globally, ~10% of all Marketplace items; vehicles named by Meta as a top category.
+Unverified: Marketplace 8.1M monthly AU users (Roy Morgan 2024, second-hand) or 15M
+(unsourced); Marketplace 9% of private car sales (Carsales 2023, second-hand, likely higher
+now). Own estimate: Greater Adelaide ~10,800 used car sales/month, ~5,500 to 6,300 private,
+of which very roughly 500 to 2,000 start on Marketplace; ~400k+ Adelaide people open
+Marketplace monthly (all categories). Pattern: Marketplace wins under ~$15k (students,
+first cars); Carsales for $15k+. Real numbers come from our own listings: track views,
+saves, messages per car in Marketplace insights. Check SA dealer ad rules (dealer status /
+licence number in ads) with CBS before listing stock.
+
 ## Stalin's commercial arrangement with Jitty (owner, 2026-11-07)
 Goal: reliably lift output AND prove Stalin caused it, so he gets paid. Design rule: only
 count channels Stalin built and can read without Jitty: tracking number (calls >60s),
