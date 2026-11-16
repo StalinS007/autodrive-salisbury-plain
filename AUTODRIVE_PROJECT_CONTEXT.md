@@ -589,8 +589,8 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   are entered (outcome `contact`, subject "NEW LEAD"), again on reaching the booking step (`qualified`), and a third
   time when the embedded Calendly fires `calendly.event_scheduled` (outcome `booked`, subject "BOOKED"; added
   2026-11-07, LIVE 2026-11-07; the email has no call time, that is in Calendly's own email to
-  autodrive5109@gmail.com). The script is deployed as **Version 3 (2026-11-07, same /exec URL; test "BOOKED"
-  email arrived)**. To change the script again: paste, Save, Manage deployments → pencil → New version. The page POSTs every answer (text/plain, no-cors) to `ALERT_URL`, a Google Apps Script
+  autodrive5109@gmail.com). The script is deployed as **Version 4 (2026-11-16, same /exec URL; adds the guide email to the lead + email field;
+  test lead emails both arrived)**. To change the script again: paste, Save, Manage deployments → pencil → New version. The page POSTs every answer (text/plain, no-cors) to `ALERT_URL`, a Google Apps Script
   web app (`tools/car-finder-alert.gs`, project "AutoDrive car finder alert" in **stalinsajie@gmail.com**'s
   Apps Script, Execute as Me / Anyone; deployed + tested 2026-11-03, URL set in `ALERT_URL`). It emails stalinsajie@gmail.com: subject
   "Find My Car: <name> | QUALIFIED/not qualified | <budget> | <location>", body with all answers + a wa.me
