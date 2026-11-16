@@ -53,6 +53,12 @@
   .cal{min-width:280px; height:700px; margin:14px -8px 0; border-radius:12px; overflow:hidden; background:#fff;}
   .hint a{color:var(--ink);}
   .intro{color:var(--grey); font-size:15px; margin:0 0 10px;}
+  .gift{display:flex; align-items:center; gap:14px; background:#fff6f5; border:1.5px dashed var(--red); border-radius:12px; padding:12px 14px; margin:0 0 2px; font-size:14px; line-height:1.35;}
+  .gift b{display:block; font-size:15px; color:var(--ink);}
+  .gift span{display:block; color:var(--grey);}
+  .gift .gift-tag{display:inline-block; background:var(--red); color:#fff; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; border-radius:4px; padding:2px 7px; margin:0 0 4px;}
+  .gift-cover{flex:none; width:58px; height:80px; background:#000; color:#fff; border-radius:4px; padding:7px 6px; font-family:Anton,Impact,sans-serif; text-transform:uppercase; font-size:11px; line-height:1.05; box-shadow:0 3px 8px rgba(0,0,0,.25); border-top:3px solid var(--red);}
+  .gift-cover b{display:inline; font-size:inherit; color:var(--red); font-weight:400;}
   .err{font-size:14px; color:#8a1f1f; margin:8px 0 0;}
   .note{border-radius:10px; padding:13px 15px; margin-top:14px; font-size:15px; background:#eef4fb; border:1px solid #d3e2f3; color:#1f3d5c;}
   .foot{text-align:center; font-size:12.5px; color:#999; margin-top:22px;}
@@ -125,7 +131,7 @@
     { id:"funds", q:"Do you have the funds ready to buy within 30 days?", note:"Note: proof of funds may be necessary.",
       opts:["Yes, cash/savings ready","Yes, finance approved","Not yet"], stop:{ "Not yet":"funds" } },
     { id:"timing", q:"I'm looking to buy within the next couple of months", opts:["Yes","Not yet"], stop:{ "Not yet":"timing" } },
-    { id:"contact", q:"Good news, you look like a fit", sub:"Tired of endless listings and sellers you can't trust? Jitty will text you 1 to 2 cars that match what you need.", type:"contact",
+    { id:"contact", q:"Good news, you look like a fit", sub:"Buying a car means endless listings, history checks, inspections and paperwork. So we've put together a free strategy to make it simple. Jitty will text it to you, plus 1 to 2 cars that match what you need.", type:"contact", gift:true,
       note:"No spam. We only contact you about your car." },
     { id:"priority", intro:"So we can select the right cars for you, please tell us the following.",
       q:"What matters most in your next car?", opts:["Reliability","Low running costs","Safety","Size (SUV, sedan, hatch, etc.)","Other"], other:"Other", otherLabel:"Tell us what matters most" },
@@ -174,6 +180,9 @@
                 "<button class=\"btn btn--red\" id=\"otherNext\" type=\"button\">Next</button></div>";
       }
     } else if (s.type === "contact"){
+      // The lead magnet (/car-guide.pdf). Jitty texts the link once they leave their details.
+      if (s.gift) html += "<div class=\"gift\"><div class=\"gift-cover\" aria-hidden=\"true\">The smart <b>car buying</b> strategy</div>" +
+              "<div><span class=\"gift-tag\">Free PDF</span><b>The Smart Car Buying Strategy</b><span>6 steps to the right car, without the stress</span></div></div>";
       html += "<label for=\"nameIn\">Your full name</label>" +
               "<input type=\"text\" id=\"nameIn\" placeholder=\"First and last name\" autocomplete=\"name\" value=\"" + esc(answers.name || "") + "\" />" +
               "<label for=\"mobileIn\">Your mobile number</label>" +

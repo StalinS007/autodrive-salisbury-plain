@@ -26,6 +26,7 @@
 var TOKEN       = "ad-find-2026";
 var ALERT_TO    = "stalinsajie@gmail.com";
 var MAX_PER_DAY = 30;
+var GUIDE_URL   = "https://autodrivesalisburyplain.com.au/car-guide.pdf";
 
 var LABELS = {
   name: "Name", mobile: "Mobile", location: "Location", about: "About them", budget: "Budget",
@@ -49,7 +50,15 @@ function doPost(e) {
     var lines = ["Outcome: " + outcome, ""];
     Object.keys(LABELS).forEach(function (k) { if (d[k]) lines.push(LABELS[k] + ": " + clip(d[k])); });
     var mobile = clip(d.mobile).replace(/[^\d+]/g, "");
-    lines.push("", "WhatsApp them: https://wa.me/" + mobile.replace(/^\+/, "").replace(/^0/, "61"));
+    var wa = "https://wa.me/" + mobile.replace(/^\+/, "").replace(/^0/, "61");
+    lines.push("", "WhatsApp them: " + wa);
+    // The page promises the free strategy PDF by text: one tap opens WhatsApp with the message ready.
+    if (d.outcome === "contact" || d.outcome === "qualified") {
+      var first = clip(d.name).split(" ")[0];
+      lines.push("", "Send them the free strategy (one tap, message ready): " + wa + "?text=" + encodeURIComponent(
+        "Hi " + first + ", it's Jitty from AutoDrive Salisbury Plain. Here's your free Smart Car Buying Strategy: " +
+        GUIDE_URL + " I'll be in touch soon with 1 to 2 cars that match what you need."));
+    }
     lines.push("", d.outcome === "booked"
       ? "They booked their call. The time and Zoom link are in the Calendly email to autodrive5109@gmail.com."
       : d.outcome === "qualified"

@@ -530,9 +530,10 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   2026-11-07, LIVE 2026-11-07; "what matters most" moved after the details 2026-11-16, PREVIEW only until approved;
   live still asks it before name + mobile)**: Adelaide or elsewhere in Australia; total budget; funds ready within
   30 days (was 2 weeks until 2026-11-03); buying in next couple of months; then **"Good news, you look like a fit"
-  with name + mobile on ONE screen** (step id `contact`; sub "Tired of endless listings and sellers you can't trust? Jitty
-  will text you 1 to 2 cars that match what you need." (pain first, owner 2026-11-16, PREVIEW; live still says "Where
-  should Jitty text you 1 to 2 cars that match what you need?") + grey "No spam. We only contact you about your car." under Next, owner 2026-11-12, LIVE 2026-11-12; GA
+  with name + mobile on ONE screen** (step id `contact`; sub "Buying a car means endless listings, history checks,
+  inspections and paperwork. So we've put together a free strategy to make it simple. Jitty will text it to you, plus 1
+  to 2 cars that match what you need." + a "FREE PDF / The Smart Car Buying Strategy" card (lead magnet, owner
+  2026-11-16, PREVIEW; live still says "Where should Jitty text you 1 to 2 cars that match what you need?") + grey "No spam. We only contact you about your car." under Next, owner 2026-11-12, LIVE 2026-11-12; GA
   showed both people who reached this screen leaving); then what matters most, with a grey intro line above it "So we
   can select the right cars for you, please tell us the following." (owner wording 2026-11-16: not casual or rushed)
   (Reliability / Low running costs / Safety / Size (SUV, sedan, hatch, etc.) / Other; "Size" replaced "Space"
@@ -540,6 +541,13 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   REQUIRED free-text box, owner said not optional; sent as "About: <text>"; replaced the Student / Family / Other and
   main-use questions on 2026-11-01). The NEW LEAD email therefore has budget, funds and timing but not "what matters
   most"; the QUALIFIED email has everything. Why: GA showed ~79% of starters leaving at the early typing screens.
+- **Lead magnet PDF (added 2026-11-16, PREVIEW):** `/car-guide.pdf` ("The Smart Car Buying Strategy", 6 A4 pages:
+  real budget, pick the car not the ad, red flags, PPSR/history, inspection + test drive checklist, negotiate + Service SA
+  transfer, then a done-for-you page with Jitty + the find-my-car link tagged `utm_source=guide`). Source
+  `tools/guide/car-buying-strategy.html`, rebuild with `tools/guide/build.sh` (headless Chrome). `noindex` via `_headers`.
+  It is NOT sent automatically (no SMS service): the NEW LEAD / QUALIFIED email carries a one-tap WhatsApp link with the
+  message and PDF link prefilled (`GUIDE_URL` in `tools/car-finder-alert.gs`; that script change must be redeployed as a
+  New version when the PDF goes live, since the link points at the live domain).
 - Budget options (minimum $12k, owner 2026-11-03): $12k to $20k / $20k to $30k / $30k to $50k / $50k+ (no "Under" option since 2026-11-03; the
   question sub says "This service starts from $12k."). The funds question
   carries a small grey note "Note: proof of funds may be necessary." (owner 2026-11-03; replaced the big red
