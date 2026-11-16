@@ -53,6 +53,8 @@
   .cal{min-width:280px; height:700px; margin:14px -8px 0; border-radius:12px; overflow:hidden; background:#fff;}
   .hint a{color:var(--ink);}
   .intro{color:var(--grey); font-size:15px; margin:0 0 10px;}
+  #otherWrap:not([hidden]){animation:drop .2s ease-out;}
+  @keyframes drop{from{opacity:0; transform:translateY(-6px);}to{opacity:1; transform:none;}}
   .gift{display:flex; align-items:center; gap:14px; background:#fff6f5; border:1.5px dashed var(--red); border-radius:12px; padding:12px 14px; margin:0 0 2px; font-size:14px; line-height:1.35;}
   .gift b{display:block; font-size:15px; color:var(--ink);}
   .gift span{display:block; color:var(--grey);}
@@ -134,9 +136,9 @@
     { id:"contact", q:"Good news, you look like a fit", sub:"Buying a car means endless listings, history checks, inspections and paperwork. So we've put together a free strategy to make it simple. Jitty will text it to you, plus 1 to 2 cars that match what you need.", type:"contact", gift:true,
       note:"No spam. We only contact you about your car." },
     { id:"priority", intro:"So we can select the right cars for you, please tell us the following.",
-      q:"What matters most in your next car?", opts:["Size (SUV, sedan, hatch, etc.)","A particular make or model","Other"],
+      q:"What matters most in your next car?", opts:["Size (SUV, sedan, hatch, etc.)","Make or model","Other"],
     // These two open a short required box; the answer is saved as "<prefix>: <their words>" (never sent to GA).
-    ask:{ "A particular make or model":{ label:"Which make or model?", placeholder:"e.g. Toyota RAV4, Mazda CX-5, a European brand", prefix:"Make or model" },
+    ask:{ "Make or model":{ label:"Which make/model?", placeholder:"e.g. Toyota RAV4, Mazda CX-5, a European brand", prefix:"Make or model" },
           "Other":{ label:"Tell us what matters most", placeholder:"", prefix:"Other" } } },
     { id:"about", q:"Tell us who you are and what you need the car for", type:"textarea",
       sub:"Built for skilled professionals and families who want a reliable, safety-first car without the hassle. We find, inspect, negotiate and deliver.",
