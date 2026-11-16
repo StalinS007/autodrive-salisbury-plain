@@ -128,8 +128,8 @@
   // on one screen, then the two "which car" questions (what matters most, about you) after the details.
   var STEPS = [
     { id:"location", q:"Where in Australia?", opts:["Adelaide","Elsewhere in Australia"] },
-    { id:"budget", q:"Total budget for everything", sub:"This service starts from $12k.",
-      opts:["$12k to $20k","$20k to $30k","$30k to $50k","$50k+"] },
+    { id:"budget", q:"Total budget for everything", sub:"This service starts from $10k.",
+      opts:["$10k to $20k","$20k to $30k","$30k to $50k","$50k+"] },
     { id:"funds", q:"Do you have the funds ready to buy within 30 days?", note:"Note: proof of funds may be necessary.",
       opts:["Yes, cash/savings ready","Yes, finance approved","Not yet"], stop:{ "Not yet":"funds" } },
     { id:"timing", q:"I'm looking to buy within the next couple of months", opts:["Yes","Not yet"], stop:{ "Not yet":"timing" } },

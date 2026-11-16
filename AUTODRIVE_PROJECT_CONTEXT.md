@@ -553,8 +553,8 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   link with the message + PDF link prefilled. Email is prefilled into Calendly too; it never goes to GA. `GUIDE_URL`
   in `tools/car-finder-alert.gs` points at the live domain, so the script must be redeployed as a New version WHEN the
   PDF goes live (not before).
-- Budget options (minimum $12k, owner 2026-11-03): $12k to $20k / $20k to $30k / $30k to $50k / $50k+ (no "Under" option since 2026-11-03; the
-  question sub says "This service starts from $12k."). The funds question
+- Budget options (minimum $10k since 2026-11-16 PREVIEW, was $12k from 2026-11-03): $10k to $20k / $20k to $30k / $30k to $50k / $50k+ (no "Under" option since 2026-11-03; the
+  question sub says "This service starts from $10k."). The funds question
   carries a small grey note "Note: proof of funds may be necessary." (owner 2026-11-03; replaced the big red
   "Important" disclaimer that sat on the budget question).
 - Stops (own message, no booking): Not in Australia; funds
