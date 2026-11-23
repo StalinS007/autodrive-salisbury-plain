@@ -1,7 +1,3 @@
-// base64url-encoded JSON: used to hand the customer's details to Jitty's /confirm tool in a link.
-function adB64u(o) {
-  return btoa(unescape(encodeURIComponent(JSON.stringify(o)))).replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
-}
 /* AutoDrive Salisbury Plain — interactions */
 (function () {
   "use strict";
@@ -255,15 +251,6 @@ function adB64u(o) {
         var issueText = tidy(vehicle.issue);
         if (issueText) extra += " Issue: " + issueText;
         if (vehicle.email) extra += " Email: " + vehicle.email + ".";
-        // Link that opens Jitty's /confirm tool with these details already filled in,
-        // so nothing the customer typed here has to be asked for again.
-        try {
-          // (the issue stays in the chat only: Jitty's note field is customer-facing)
-          var pre = { e: vehicle.email || "", c: [[vehicle.year, car].filter(Boolean).join(" "), vehicle.km ? vehicle.km + " km" : ""].filter(Boolean).join(", "),
-                      s: svc ? svc.label.replace("&amp;", "&") : (curCtx === CTX.detail ? "Car detailing" : (curCtx === CTX.paint ? "Paint & panel" : "Service")),
-                      d: selISO || "" };
-          extra += "\n\nBooking ref (for Jitty): https://autodrivesalisburyplain.com.au/confirm?p=" + adB64u(pre);
-        } catch (err) {}
         if (typeof window.gtag === "function") window.gtag("event", "vehicle_info_submitted", { make: vehicle.make, model: vehicle.model, year: vehicle.year, km: vehicle.km, has_issue: issueText ? "yes" : "no" });
       }
       if (mode === "service") {
@@ -398,13 +385,6 @@ function adB64u(o) {
       if (val("service")) lines.push("Service: " + val("service"));
       if (val("preferred_date")) lines.push("Preferred date: " + val("preferred_date"));
       if (val("message")) lines.push("Notes: " + val("message"));
-      // One-tap link that opens Jitty's /confirm tool with all of this already filled in,
-      // so nothing the customer typed has to be typed again (or asked for again).
-      try {
-        var pre = { n: val("name"), p: val("phone"), e: val("email"), c: val("vehicle"),
-                    s: val("service"), d: val("preferred_date"), note: val("message") };
-        lines.push("Confirm: https://autodrivesalisburyplain.com.au/confirm?p=" + adB64u(pre));
-      } catch (e) {}
       return lines.join("\n");
     }
     form.addEventListener("submit", function (ev) {
