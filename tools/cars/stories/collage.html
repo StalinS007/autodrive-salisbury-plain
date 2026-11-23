@@ -1,0 +1,45 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Story · collage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@600;700&display=block">
+<style>
+  /* 1080×1920. Six photos, 2×3, each 488×310 — the biggest that fits between the header and the
+     empty band where the "See more photos" link sticker goes (y ≈ 1400–1680). */
+  :root { --red:#C01418; --ink:#141112; }
+  html,body { margin:0; width:1080px; height:1920px; overflow:hidden; background:var(--ink); }
+  body { position:relative; font-family:Inter, "Helvetica Neue", Arial, sans-serif; color:#fff; }
+  .head { position:absolute; left:60px; right:60px; top:296px; text-align:center; font-family:Anton, Impact, sans-serif;
+    font-weight:400; font-size:46px; line-height:1.1; text-transform:uppercase; letter-spacing:.01em; white-space:nowrap; }
+  .head b { color:#ff2d33; font-weight:400; }
+  .grid { position:absolute; left:40px; top:400px; width:1000px; display:grid; grid-template-columns:488px 488px;
+    grid-auto-rows:310px; gap:24px; }
+  .grid img { width:488px; height:310px; object-fit:cover; border-radius:18px; background:#222; display:block; }
+  .foot { position:absolute; left:60px; right:60px; top:1720px; text-align:center; font-size:30px; font-weight:600; opacity:.55; }
+  .sold { position:absolute; right:60px; top:290px; background:#fff; color:var(--ink); font-size:30px; font-weight:800;
+    letter-spacing:.1em; text-transform:uppercase; padding:12px 26px; border-radius:999px; }
+</style>
+<body>
+  <div class="head" id="head"></div>
+  <div class="grid" id="grid"></div>
+  <div class="foot">autodrivesalisburyplain.com.au</div>
+  <script>
+    const CAR = /*CAR_JSON*/null;
+    const money = (n) => "$" + Number(n).toLocaleString("en-AU");
+    document.getElementById("head").innerHTML =
+      `${CAR.year} ${CAR.make_short || CAR.make} ${CAR.model}`.replace(/-/g, "‑") + ` · <b>${money(CAR.price)}</b>`;
+    // Order of the collage, per the story spec: the shots a buyer asks about, odometer included.
+    const WANT = ["rear34", "side", "front", "dash", "odometer", "engine", "rear_seats", "boot", "detail"];
+    const byRole = (r) => CAR.photos.filter(p => p.role === r);
+    const used = new Set();
+    const pick = [];
+    for (const r of WANT) for (const p of byRole(r)) if (pick.length < 6 && !used.has(p.src)) { pick.push(p); used.add(p.src); }
+    for (const p of CAR.photos) if (pick.length < 6 && p.role !== "hero" && !used.has(p.src)) { pick.push(p); used.add(p.src); }
+    for (const p of CAR.photos) if (pick.length < 6 && !used.has(p.src)) { pick.push(p); used.add(p.src); }
+    document.getElementById("grid").innerHTML = pick.map(p => `<img src="${p.src}" alt="">`).join("");
+    if (CAR.status === "sold") document.body.insertAdjacentHTML("beforeend", '<div class="sold">Sold</div>');
+    // Shrink the header if the model name is long.
+    const h = document.getElementById("head"); let fs = 46;
+    while (h.scrollWidth > 960 && fs > 30) { fs -= 2; h.style.fontSize = fs + "px"; }
+  </script>
+</body>

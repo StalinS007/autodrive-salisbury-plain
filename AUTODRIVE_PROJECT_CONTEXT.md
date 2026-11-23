@@ -766,12 +766,15 @@ Three files, no server, no database — the booking details travel inside the li
   Web app (Execute as Me / Anyone), paste the `/exec` URL into `booking.html` → `ENDPOINT`. Has a daily
   cap (40) and sanity checks. Deployment steps are in the file header.
 - All times are computed as Adelaide wall time → UTC in the browser (verified across ACST/ACDT).
-- **Email asked once (LIVE 2026-11-11, owner approved, main.js v78).** The website booking pop-up (service,
-  detailing, paint & panel) has a required **Email** field, and the contact form passes its email too. The
-  WhatsApp/SMS message Jitty receives ends with a link to `/confirm?p=<base64url JSON>` (`adB64u()` in main.js)
-  that opens his tool pre-filled with name, phone, email, car, service and date. `/confirm` carries the email
-  into the `/booking` link (`e`), so `/booking` shows "We'll send the calendar invite to ..." instead of asking
-  again. `/confirm` also has a "Send calendar invite to their email" button, hidden until `ENDPOINT` is set.
+- **Email asked once (LIVE 2026-11-11, owner approved).** The website booking pop-up (service, detailing, paint &
+  panel) has a required **Email** field, and the contact form passes its email too. The WhatsApp/SMS message Jitty
+  receives carries it as a plain "Email: ..." line.
+- **No reference link in customer messages (owner, 2026-11-23; LIVE 2026-11-24, styles and main.js v79).** The messages used to end with
+  "Booking ref (for Jitty): /confirm?p=..." (pop-up) and "Confirm: /confirm?p=..." (contact form). The owner did not
+  want that long link in the chat, so both were removed along with the `adB64u()` helper. Do not add any reference
+  link or code to website-generated messages. `/confirm` still reads a `?p=` link if one is opened, but nothing
+  creates them now, so Jitty types the details into `/confirm` himself. `/confirm` still carries the email into the
+  `/booking` link (`e`) and has the "Send calendar invite to their email" button, hidden until `ENDPOINT` is set.
 - **Status:** all three files are live; the Apps Script is not yet deployed, so `ENDPOINT` is empty in both
   `booking.html` and `confirm.html` (can be deployed from Jitty's account or Stalin's, which has edit rights on the
   AutoDrive calendar; `CALENDAR_ID` in the script picks that calendar).
