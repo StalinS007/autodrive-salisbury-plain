@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-11-16**.
+touching the site. Last verified against the live code: **2026-11-24**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -526,19 +526,18 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   word "migrant" on the page); intro sub + the "who you are" sub line carry it. The answer box has NO example text (owner, 2026-11-03).
 - First page (the intro card itself) asks "Are you based in Australia?" Yes / No; No ends it. A "Moving to Australia
   soon" path was built and pulled on 2026-11-03 (owner: not yet; no "we can start before you land" wording either).
-  Then one question per screen (order LIVE 2026-11-16): Adelaide or elsewhere in Australia; total budget; funds ready
-  within 30 days (was 2 weeks until 2026-11-03); buying in next couple of months; **what matters most** (grey intro line
-  above it "So we can select the right cars for you, please tell us the following."; three options Size (SUV, sedan,
-  hatch, etc.) / Make or model / Other, each opening an OPTIONAL box right under the tapped option: "Which size?",
-  "Which make/model?", "Please specify"; saved as "Size: <text>" / "Make or model: <text>" / "Other: <text>", or just the
-  option if empty; GA gets the button label only); then **"Good news, you look like a fit" with name + mobile + email
+  Then one question per screen (6 questions, LIVE 2026-11-24): Adelaide or elsewhere in Australia; total budget; funds
+  ready within 30 days (was 2 weeks until 2026-11-03); buying in next couple of months; then **"Good news, you look like a fit" with name + mobile + email
   (all REQUIRED) on ONE screen** (step id `contact`; sub "Buying a car is hard. Too many ads. Too many checks. Too much
   paperwork. So we made a free guide. We'll email it to you. Then we'll get in touch to help you find a car that suits
   you." + a "FREE PDF / The Smart Car Buying Strategy" card + grey "No spam. We only contact you about your car." under
   Next); then last a screen headed by a green "Done. Your free guide is on its way to your inbox." with "Now let's find
-  your car. Who is the car for, and what will you use it for?" (OPTIONAL, sub "Optional, but it helps us pick the right
+  your car. What car are you after, who is it for, and what will you use it for?" (OPTIONAL, sub "Optional, but it helps us pick the right
   cars.", answer box BLANK with no example text (owner), button "Find my car"; sent as "About: <text>" or "About: (left
   blank)"). The NEW LEAD email has every answer except "about you"; the QUALIFIED email has everything.
+  **"What matters most" REMOVED 2026-11-24 (owner):** it sat between the qualifying taps and the details screen
+  (Size / Make or model / Other with optional boxes) and both real starters since 16 Nov left there; the car they want
+  is now asked in the last, optional question instead. GA step "priority" no longer fires.
   **Owner copy rules (2026-11-16):** plain words a 6-year-old gets, very direct, no AI-sounding fluff; never say "Jitty
   will text you"; never "text or call Jitty". History: 2026-11-07 taps first / typing last (GA showed ~79% of starters
   leaving at early typing screens); 2026-11-12 reason line + no-spam line (GA showed both people who reached the
