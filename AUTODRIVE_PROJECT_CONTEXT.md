@@ -769,7 +769,7 @@ Three files, no server, no database — the booking details travel inside the li
 - **Email asked once (LIVE 2026-11-11, owner approved).** The website booking pop-up (service, detailing, paint &
   panel) has a required **Email** field, and the contact form passes its email too. The WhatsApp/SMS message Jitty
   receives carries it as a plain "Email: ..." line.
-- **No reference link in customer messages (owner, 2026-11-23, main.js v79).** The messages used to end with
+- **No reference link in customer messages (owner, 2026-11-23; LIVE 2026-11-24, styles and main.js v79).** The messages used to end with
   "Booking ref (for Jitty): /confirm?p=..." (pop-up) and "Confirm: /confirm?p=..." (contact form). The owner did not
   want that long link in the chat, so both were removed along with the `adB64u()` helper. Do not add any reference
   link or code to website-generated messages. `/confirm` still reads a `?p=` link if one is opened, but nothing
