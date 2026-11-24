@@ -501,6 +501,20 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   description (so "rio" does not match "interior"); nicknames vw/merc/benz/subie/auto are expanded. Shows "N cars for
   ..." and a "No cars match ..." state with Show all cars. GA4 `search` event (search_term, results, placement),
   one per settled term. Hidden on a car's own page.
+- **Book a test drive (PREVIEW ONLY since 2026-11-24, not on main; owner wants more enquiries from qualified buyers
+  who come to see the car, for Google Ads and for Jitty's Marketplace replies).** Each listing's sticky bar now has two
+  buttons: red **Book a test drive** (`#sTd`) and a white **Enquire** (`#sEnq`, the old WhatsApp link, label shortened
+  from "Enquire about this car"). Book a test drive opens a short form (`#td`, inline in cars.html): 1 how will you pay
+  (Cash / Finance / Not sure yet), 2 trade-in (No / Yes + optional year, make, model), 3 when are you looking to buy,
+  4 a day (next six open days, no Sundays) and Morning / Midday / Afternoon, 5 name. On cars with the repairable
+  write-off line it also needs a tick: "I have read that this vehicle has been recorded as a repairable write-off and
+  professionally repaired." (Jitty's exact line; shown whenever `#sPpsr` is shown). Send builds a WhatsApp message to
+  Jitty with those answers; no link or code in the message (§7c rule). It never promises a slot: "Test drives are by
+  appointment. Jitty will confirm your time on WhatsApp." A link that opens the form straight away:
+  `/cars/<slug>#test-drive`. GA4: `test_drive_open` (item_id, placement), `generate_lead` (lead_type test_drive,
+  item_id, item_name, payment, trade_in, timeframe, placement) and the usual `whatsapp_click`; typed text (name,
+  trade-in car) never goes to GA. No call options, as everywhere on /cars. **Waiting on:** owner's look at the preview
+  and Jitty's check of the five questions before it goes to main.
 - Bottom panel "Can't see the one you want?" links to a plain `find-my-car` (no UTM tags: tagged internal links restart the visit and lose the real source) and WhatsApp.
 - Self-contained: inline CSS with the locked tokens, own GA4 tag; does NOT load main.js (so the booking/date modal never
   intercepts Enquire). Events: `whatsapp_click` (link_url, car, placement=cars_page, or car_page on a

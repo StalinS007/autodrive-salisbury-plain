@@ -188,7 +188,7 @@
   .desc__rows dt{font-weight:700; color:var(--ink); font-size:13.5px; line-height:1.55;}
   .desc__rows dd{margin:0; font-size:14.5px; line-height:1.45;}
   /* White strip right to the bottom edge, so nothing shows under the button while it is stuck */
-  .sheet__cta{display:grid; grid-template-columns:1fr; gap:10px; position:sticky; bottom:0; background:#fff; margin:0 -18px calc(-22px - env(safe-area-inset-bottom)); padding:10px 18px calc(12px + env(safe-area-inset-bottom));}
+  .sheet__cta{display:grid; grid-template-columns:1.3fr 1fr; gap:10px; position:sticky; bottom:0; background:#fff; margin:0 -18px calc(-22px - env(safe-area-inset-bottom)); padding:10px 18px calc(12px + env(safe-area-inset-bottom));}
   .sheet__head{display:flex; align-items:flex-start; justify-content:space-between; gap:12px;}
   .share{display:inline-flex; align-items:center; gap:6px; flex:none; background:#fff; border:1px solid var(--g300); border-radius:999px; padding:7px 12px; font-size:13.5px; font-weight:700; color:var(--ink); cursor:pointer;}
   .share:hover{border-color:var(--ink);}
@@ -275,7 +275,39 @@
     html.solo .sheet__cta{border-radius:0 0 16px 16px;}
     html.solo a.solo__back{display:flex; max-width:720px; margin-left:auto; margin-right:auto;}
   }
-  .sheet__cta .enq{font-size:16px; padding:14px;}
+  .sheet__cta .enq{font-size:15.5px; padding:14px 8px;}
+  /* Second button beside "Book a test drive": plain white, WhatsApp green icon */
+  button.enq{font-family:inherit;}
+  .enq--ghost{background:#fff; color:var(--ink); box-shadow:inset 0 0 0 2px var(--g300);}
+  .enq--ghost:hover{background:#fff; box-shadow:inset 0 0 0 2px var(--ink);}
+  .enq--ghost svg{color:var(--wa);}
+  /* Book a test drive: five quick questions that end in a ready-written WhatsApp message to Jitty */
+  .td{position:fixed; inset:0; z-index:70; display:flex; align-items:flex-end; justify-content:center; background:rgba(0,0,0,.6);}
+  .td__panel{position:relative; background:#fff; width:100%; max-width:520px; max-height:94vh; max-height:94dvh; overflow:auto; border-radius:16px 16px 0 0; padding:20px 18px calc(16px + env(safe-area-inset-bottom)); margin:0; overscroll-behavior:contain;}
+  @media (min-width:720px){ .td{align-items:center;} .td__panel{border-radius:16px; max-height:90vh;} }
+  .td__x{position:absolute; top:10px; right:10px; width:40px; height:40px; border-radius:50%; border:0; background:var(--g100); color:var(--ink); display:grid; place-items:center; cursor:pointer;}
+  .td__x svg{width:18px; height:18px;}
+  .td__h{font-family:Anton,Impact,sans-serif; font-weight:400; text-transform:uppercase; letter-spacing:.3px; font-size:26px; line-height:1.05; margin:0 48px 6px 0;}
+  .td__car{margin:0 0 4px; font-weight:700; font-size:15.5px;}
+  .td__sub{margin:0 0 16px; color:var(--g700); font-size:14.5px;}
+  .td fieldset{border:0; padding:0; margin:0 0 16px; min-width:0;}
+  .td legend, .td__label{display:block; padding:0; margin:0 0 8px; font-weight:800; font-size:14.5px; color:var(--ink);}
+  .td__opts{display:flex; flex-wrap:wrap; gap:8px;}
+  .td__opts + .td__opts{margin-top:8px;}
+  .opt{position:relative; cursor:pointer;}
+  .opt input{position:absolute; inset:0; width:100%; height:100%; margin:0; opacity:0; cursor:pointer;}
+  .opt span{display:block; padding:10px 14px; border-radius:999px; border:1.5px solid var(--g300); background:#fff; font-weight:600; font-size:14.5px; line-height:1.2;}
+  .opt input:checked + span{background:var(--ink); border-color:var(--ink); color:#fff;}
+  .opt input:focus-visible + span{outline:2px solid var(--red); outline-offset:2px;}
+  .td__in{width:100%; font:inherit; font-size:16px; color:var(--ink); background:#fff; border:1.5px solid var(--g300); border-radius:10px; padding:11px 13px; margin-top:8px;}
+  .td__in:focus{outline:2px solid var(--red); outline-offset:1px; border-color:transparent;}
+  .td__ack{display:flex; gap:10px; align-items:flex-start; background:var(--g100); border-left:4px solid var(--red); border-radius:0 10px 10px 0; padding:12px 14px; margin:0 0 16px; font-size:14.5px; line-height:1.4; font-weight:600; cursor:pointer;}
+  .td__ack input{width:20px; height:20px; margin:1px 0 0; flex:none; accent-color:var(--red);}
+  .td__err{margin:0 0 10px; color:var(--red); font-weight:700; font-size:14.5px;}
+  .td__send{font-size:16px; padding:14px;}
+  .td__fine{margin:10px 0 0; color:var(--g500); font-size:13px; text-align:center;}
+  .td__done h3{font-size:18px; margin:6px 0 6px;}
+  .td__done p{margin:0 0 16px; color:var(--g700);}
   body.no-scroll{overflow:hidden;}
 </style>
 <!-- Google Analytics 4 (same property as the rest of the site) -->
@@ -491,10 +523,70 @@
       </section>
 
       <div class="sheet__cta">
-        <a class="enq" id="sEnq" href="#"></a>
+        <button class="enq" id="sTd" type="button">Book a test drive</button>
+        <a class="enq enq--ghost" id="sEnq" href="#"></a>
       </div>
     </div>
   </div>
+</div>
+
+<!-- Book a test drive: short questionnaire, ends in a ready-written WhatsApp message to Jitty (preview, 24 Nov 2026) -->
+<div class="td" id="td" role="dialog" aria-modal="true" aria-labelledby="tdH" hidden>
+  <form class="td__panel" id="tdForm" novalidate>
+    <button class="td__x" type="button" id="tdClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    <h2 class="td__h" id="tdH">Book a test drive</h2>
+    <p class="td__car" id="tdCar"></p>
+    <div id="tdBody">
+      <p class="td__sub">Five quick questions so Jitty can have the car ready for you. It takes under a minute.</p>
+      <fieldset>
+        <legend>1. How will you pay?</legend>
+        <div class="td__opts">
+          <label class="opt"><input type="radio" name="pay" value="Cash"><span>Cash</span></label>
+          <label class="opt"><input type="radio" name="pay" value="Finance"><span>Finance</span></label>
+          <label class="opt"><input type="radio" name="pay" value="Not sure yet"><span>Not sure yet</span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>2. Do you have a car to trade in?</legend>
+        <div class="td__opts">
+          <label class="opt"><input type="radio" name="trade" value="No"><span>No</span></label>
+          <label class="opt"><input type="radio" name="trade" value="Yes"><span>Yes</span></label>
+        </div>
+        <div id="tdTradeWrap" hidden>
+          <input class="td__in" id="tdTrade" type="text" maxlength="80" autocomplete="off" placeholder="Your car: year, make and model" aria-label="Your trade-in: year, make and model">
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>3. When are you looking to buy?</legend>
+        <div class="td__opts">
+          <label class="opt"><input type="radio" name="when" value="This week"><span>This week</span></label>
+          <label class="opt"><input type="radio" name="when" value="In the next 2 weeks"><span>In the next 2 weeks</span></label>
+          <label class="opt"><input type="radio" name="when" value="Within a month"><span>Within a month</span></label>
+          <label class="opt"><input type="radio" name="when" value="Just looking for now"><span>Just looking for now</span></label>
+        </div>
+      </fieldset>
+      <fieldset>
+        <legend>4. When would you like to come in?</legend>
+        <div class="td__opts" id="tdDays"></div>
+        <div class="td__opts">
+          <label class="opt"><input type="radio" name="slot" value="Morning"><span>Morning</span></label>
+          <label class="opt"><input type="radio" name="slot" value="Midday"><span>Midday</span></label>
+          <label class="opt"><input type="radio" name="slot" value="Afternoon"><span>Afternoon</span></label>
+        </div>
+      </fieldset>
+      <label class="td__label" for="tdName">5. Your name</label>
+      <input class="td__in" id="tdName" type="text" maxlength="60" autocomplete="name" style="margin:0 0 16px">
+      <label class="td__ack" id="tdAck" hidden><input type="checkbox" id="tdAckBox"><span>I have read that this vehicle has been recorded as a repairable write-off and professionally repaired.</span></label>
+      <p class="td__err" id="tdErr" role="alert" hidden></p>
+      <a class="enq td__send" id="tdSend" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>Send to Jitty on WhatsApp</a>
+      <p class="td__fine">Test drives are by appointment. Jitty will confirm your time on WhatsApp.</p>
+    </div>
+    <div class="td__done" id="tdDone" hidden>
+      <h3>One more step</h3>
+      <p>WhatsApp has opened with your message ready. Press send there so Jitty gets it. He will confirm your time on WhatsApp.</p>
+      <button type="button" class="enq enq--ghost" id="tdDoneClose">Back to the car</button>
+    </div>
+  </form>
 </div>
 
 <!-- Full-screen photo viewer: opens when a photo in a car's gallery is tapped -->
@@ -696,7 +788,7 @@
     $("sEnq").setAttribute("data-car", c.id);
     $("sEnq").setAttribute("target", "_blank");
     $("sEnq").setAttribute("rel", "noopener");
-    $("sEnq").innerHTML = WA_ICON + "Enquire about this car";
+    $("sEnq").innerHTML = WA_ICON + "Enquire";
     $("sShare").querySelector("span").textContent = "Share";
     updateCount();
   }
@@ -727,6 +819,7 @@
       s.hidden = false;
       document.title = c.title + " · " + c.priceText + " | AutoDrive Salisbury Plain";
       track("view_item", { item_id: c.id, item_name: c.title, price: c.price, currency: "AUD", placement: "car_page" });
+      if (location.hash === "#test-drive") openTd();   // a link Jitty can send: /cars/<slug>#test-drive
     } else {
       $("gone").hidden = false;
       $("soloH").textContent = "Cars in stock right now";
@@ -860,6 +953,87 @@
       if (dy > 110 && dy > Math.abs(dx) * 1.6) closeLb();
     }, { passive: true });
   })();
+  /* ---- Book a test drive: five quick questions, then a ready-written WhatsApp message to Jitty ---- */
+  var tdOn = false, tdLock = false, tdCar = null;
+  function tdDays(){
+    // The next six open days (closed Sundays), starting tomorrow
+    var out = [], d = new Date(), dn = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"], mn = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+    while (out.length < 6){ d.setDate(d.getDate() + 1); if (d.getDay() !== 0) out.push(dn[d.getDay()] + " " + d.getDate() + " " + mn[d.getMonth()]); }
+    return out;
+  }
+  function tdVal(name){ var el = $("tdForm").querySelector('input[name="' + name + '"]:checked'); return el ? el.value : ""; }
+  function openTd(){
+    var c = current;
+    if (!c) return;
+    tdCar = c;
+    $("tdForm").reset();
+    $("tdBody").hidden = false;
+    $("tdDone").hidden = true;
+    $("tdCar").textContent = c.title + (c.trans ? " " + c.trans : "") + (c.price ? " · " + c.priceText : "");
+    $("tdDays").innerHTML = tdDays().map(function(t){ return '<label class="opt"><input type="radio" name="day" value="' + t + '"><span>' + t + "</span></label>"; }).join("");
+    $("tdTradeWrap").hidden = true;
+    $("tdAck").hidden = $("sPpsr").hidden;   // only on cars with the repairable write-off line
+    $("tdErr").hidden = true;
+    $("tdSend").setAttribute("href", "#");
+    tdLock = !document.body.classList.contains("no-scroll");
+    document.body.classList.add("no-scroll");
+    $("td").hidden = false;
+    tdOn = true;
+    $("tdForm").scrollTop = 0;
+    $("tdClose").focus({ preventScroll: true });
+    track("test_drive_open", { item_id: c.id, placement: SOLO ? "car_page" : "cars_page" });
+  }
+  function closeTd(){
+    if (!tdOn) return;
+    $("td").hidden = true;
+    tdOn = false;
+    if (tdLock) document.body.classList.remove("no-scroll");
+    if (!$("sheet").hidden) $("sTd").focus({ preventScroll: true });
+  }
+  $("sTd").addEventListener("click", openTd);
+  $("tdClose").addEventListener("click", closeTd);
+  $("tdDoneClose").addEventListener("click", closeTd);
+  $("td").addEventListener("click", function(e){ if (e.target === this) closeTd(); });
+  $("tdForm").addEventListener("change", function(e){
+    if (e.target.name === "trade") $("tdTradeWrap").hidden = tdVal("trade") !== "Yes";
+    $("tdErr").hidden = true;
+  });
+  $("tdForm").addEventListener("submit", function(e){ e.preventDefault(); $("tdSend").click(); });
+  $("tdSend").addEventListener("click", function(e){
+    var c = tdCar;
+    var clean = function(v, n){ return v.replace(/\s+/g, " ").trim().slice(0, n); };
+    var name = clean($("tdName").value, 60), tradeCar = clean($("tdTrade").value, 80);
+    var pay = tdVal("pay"), trade = tdVal("trade"), when = tdVal("when"), day = tdVal("day"), slot = tdVal("slot");
+    var needAck = !$("tdAck").hidden;
+    var miss = !pay ? "Please choose how you will pay." :
+      !trade ? "Please tell us if you have a car to trade in." :
+      !when ? "Please choose when you are looking to buy." :
+      (!day || !slot) ? "Please pick a day and a time to come in." :
+      !name ? "Please add your name." :
+      (needAck && !$("tdAckBox").checked) ? "Please tick the box about this car's history." : "";
+    if (!c || miss){
+      e.preventDefault();
+      this.setAttribute("href", "#");
+      $("tdErr").textContent = miss || "Please close this and open the car again.";
+      $("tdErr").hidden = false;
+      return;
+    }
+    var lines = ["Hi Jitty, I'd like to book a test drive.", "",
+      "Car: " + c.title + (c.trans ? " " + c.trans : "") + (c.price ? ", " + c.priceText : ""),
+      "Name: " + name,
+      "Paying: " + pay,
+      "Trade-in: " + (trade === "Yes" ? "Yes" + (tradeCar ? ", " + tradeCar : "") : "No"),
+      "Looking to buy: " + when,
+      "Preferred time: " + day + ", " + slot.toLowerCase()];
+    if (needAck) lines.push("", "I have read that this vehicle has been recorded as a repairable write-off and professionally repaired.");
+    // The link opens WhatsApp itself; the page-wide click handler below records whatsapp_click for it.
+    this.setAttribute("href", "https://wa.me/61432520230?text=" + encodeURIComponent(lines.join("\n")));
+    this.setAttribute("data-car", c.id);
+    // Typed text (name, trade-in car) never goes to GA, only the choices.
+    track("generate_lead", { lead_type: "test_drive", item_id: c.id, item_name: c.title, payment: pay, trade_in: trade, timeframe: when, placement: SOLO ? "car_page" : "cars_page" });
+    setTimeout(function(){ $("tdBody").hidden = true; $("tdDone").hidden = false; $("tdForm").scrollTop = 0; }, 500);
+  });
+
   $("sClose").addEventListener("click", requestClose);
   $("sheet").addEventListener("click", function(e){ if (e.target === this) requestClose(); });
   document.addEventListener("keydown", function(e){
@@ -869,6 +1043,7 @@
       else if (e.key === "ArrowLeft") lbGo(lbI - 1, true);
       return;
     }
+    if (tdOn){ if (e.key === "Escape") closeTd(); return; }
     if (!current) return;
     if (e.key === "Escape") requestClose();
     else if (e.key === "ArrowRight") step(1);
@@ -876,6 +1051,7 @@
   });
   window.addEventListener("popstate", function(){
     if (lbOn){ hideLb(); return; }
+    if (tdOn) closeTd();
     if (SOLO) return;
     var m = location.pathname.match(/^\/cars\/([a-z0-9-]+)\/?$/);
     if (m) openCar(m[1], true); else { pushed = false; closeSheet(); }
