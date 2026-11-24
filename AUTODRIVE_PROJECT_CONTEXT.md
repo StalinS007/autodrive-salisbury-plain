@@ -511,7 +511,9 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   rll9wh9lcjp.typeform.com/to/epGkkctg, his site cameronwhitters.com/apply). Built in cars.html, no Typeform account:
   - **Welcome screen** (`#wel`, dark band at the top of every `/cars/<slug>` page, the page's h1): specs as a small
     caps line, title, price + note, the description's first sentence, up to four ticks (the listing's trust ticks,
-    topped up from its Tech / Safety / Engine / Inside rows when it has fewer than three; three on phones), "Takes
+    topped up from its Tech / Safety / Engine / Inside rows when it has fewer than three; three on phones), a Jitty
+    card (owner asked 2026-11-25: round `images/jitty-headshot.jpg`, "Jitty · 14+ years experience", "Licensed Motor
+    Vehicle Dealer, MVD 343921", "6 Lolands Rd, Salisbury Plain SA 5109"), "Takes
     30 seconds. Jitty confirms your time on WhatsApp.", red **Apply for a test drive** (Enter also starts it), and
     "See all N photos and full details" (scrolls to the full listing below). Right side (top on phones): the first
     four photos in a 2x2 grid, "+N photos" on the fourth, each opens the full-screen viewer.
