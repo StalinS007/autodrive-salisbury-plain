@@ -507,8 +507,11 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   from "Enquire about this car"). Book a test drive opens a short form (`#td`, inline in cars.html): 1 how will you pay
   (Cash / Finance / Not sure yet), 2 trade-in (No / Yes + optional year, make, model), 3 when are you looking to buy,
   4 a day (next six open days, no Sundays) and Morning / Midday / Afternoon, 5 name. On cars with the repairable
-  write-off line it also needs a tick: "I have read that this vehicle has been recorded as a repairable write-off and
-  professionally repaired." (Jitty's exact line; shown whenever `#sPpsr` is shown). Send builds a WhatsApp message to
+  write-off line (shown whenever `#sPpsr` is shown) the form shows Jitty's exact line in bold, "This vehicle has been
+  recorded as a repairable write-off and professionally repaired.", and needs a tick on the owner's wording
+  (2026-11-24): "I acknowledge it was professionally repaired by a mechanic with over 14 years of experience and has
+  passed the required government inspection." **Check with Jitty before main:** that sentence says who repaired the
+  car, so it must be true for every listed write-off car (was each one repaired by him or his workshop?). Send builds a WhatsApp message to
   Jitty with those answers; no link or code in the message (§7c rule). It never promises a slot: "Test drives are by
   appointment. Jitty will confirm your time on WhatsApp." A link that opens the form straight away:
   `/cars/<slug>#test-drive`. GA4: `test_drive_open` (item_id, placement), `generate_lead` (lead_type test_drive,
