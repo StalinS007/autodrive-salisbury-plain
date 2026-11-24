@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-11-24**.
+touching the site. Last verified against the live code: **2026-11-25**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -501,26 +501,37 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   description (so "rio" does not match "interior"); nicknames vw/merc/benz/subie/auto are expanded. Shows "N cars for
   ..." and a "No cars match ..." state with Show all cars. GA4 `search` event (search_term, results, placement),
   one per settled term. Hidden on a car's own page.
-- **Book a test drive (PREVIEW ONLY since 2026-11-24, not on main).** Owner's brief: the buyers to win are people after
-  a good car at good value who will consider some kilometres and a PPSR history. **Do not lead with PPSR** (ads never
-  mention it, the first screen of a car page is photos, price and the button), but it is never hidden: the write-off
-  line stays on the page under "Please read before enquiring" and is asked as a normal question inside the form, so
-  nobody reaches Jitty without having seen it. Jitty does the convincing. Flow: ad, that car's page, Book a test
-  drive, questions, WhatsApp to the AutoDrive number.
-  Each listing's sticky bar has two buttons: red **Book a test drive** (`#sTd`) and a white **Enquire** (`#sEnq`, the
-  old WhatsApp link, label shortened from "Enquire about this car"). The form (`#td`, inline in cars.html; questions
-  are numbered by a CSS counter so the numbers follow what is shown): how will you pay (Cash / Finance / Not sure
-  yet); trade-in (No / Yes + optional year, make, model); when are you looking to buy; **on cars with the repairable
-  write-off line only (`#tdHist`, shown whenever `#sPpsr` is), "About this car's history"**: Jitty's exact line in
-  bold, then the owner's wording "It was repaired by a mechanic with over 14 years of experience and has passed the
-  required government inspection. That history is why it is priced lower than a car without one.", answered with
-  "I'm comfortable with that" or "I'd like Jitty to explain it" (both go through; the message tells Jitty which);
-  a day (next six open days, no Sundays) and Morning / Midday / Afternoon; name. Send builds a WhatsApp message to
-  Jitty with the answers; no link or code in the message (§7c rule). It never promises a slot: "Test drives are by
-  appointment. Jitty will confirm your time on WhatsApp." A link that opens the form straight away:
-  `/cars/<slug>#test-drive`. GA4: `test_drive_open` (item_id, placement), `generate_lead` (lead_type test_drive,
-  item_id, item_name, payment, trade_in, timeframe, history comfortable|explain|none, placement) and the usual
-  `whatsapp_click`; typed text (name, trade-in car) never goes to GA. No call options, as everywhere on /cars.
+- **Apply for a test drive (PREVIEW ONLY since 2026-11-24, not on main). Typeform format since 2026-11-25.** Owner's
+  brief: the buyers to win are people after a good car at good value who will consider some kilometres and a PPSR
+  history. **Do not lead with PPSR** (ads never mention it; the welcome screen shows photos, price, outline and the
+  button), but it is never hidden: the write-off line stays on the page under "Please read before enquiring" and is
+  asked as a normal question inside the form, so nobody reaches Jitty without having seen it. Jitty does the
+  convincing. Flow: ad, that car's page, Apply for a test drive, questions, WhatsApp to the AutoDrive number.
+  **Format = Cameron Whitters' Typeform** (owner 25 Nov: "the exact format"; his form is
+  rll9wh9lcjp.typeform.com/to/epGkkctg, his site cameronwhitters.com/apply). Built in cars.html, no Typeform account:
+  - **Welcome screen** (`#wel`, dark band at the top of every `/cars/<slug>` page, the page's h1): specs as a small
+    caps line, title, price + note, the description's first sentence, up to four ticks (the listing's trust ticks,
+    topped up from its Tech / Safety / Engine / Inside rows when it has fewer than three; three on phones), "Takes
+    30 seconds. Jitty confirms your time on WhatsApp.", red **Apply for a test drive** (Enter also starts it), and
+    "See all N photos and full details" (scrolls to the full listing below). Right side (top on phones): the first
+    four photos in a 2x2 grid, "+N photos" on the fourth, each opens the full-screen viewer.
+  - **Questions** (`#tf`, full-screen dark overlay): one per screen, slide-up transition, thin red progress line,
+    numbered "1 →", lettered answers (A, B, C; letter keys work), a single choice moves on by itself, text answers
+    have OK / press Enter, up and down arrows bottom right, close X, phone back button closes it. Order: pay (Cash /
+    Finance / Not sure yet); trade-in (No / Yes, then "What is your trade-in?" text only if Yes); when buying;
+    **write-off cars only** (whenever `#sPpsr` shows) "About this car's history": Jitty's exact line in bold plus
+    "It was repaired by a mechanic with over 14 years of experience and has passed the required government
+    inspection. That history is why it is priced lower than a car without one.", answered "I'm comfortable with
+    that" or "I'd like Jitty to explain it" (both go through); day (next six open days, no Sundays); Morning /
+    Midday / Afternoon; first name. End screen: "Thanks, <name>. One last step.", a summary, and a green **Send to
+    Jitty on WhatsApp** link with the message written out (no link or code in it, §7c rule). Never promises a slot.
+  - The grid pop-up and the full listing keep a red **Apply for a test drive** (`#sTd`, opens the questions
+    directly) beside the white **Enquire** (`#sEnq`). Direct link to the questions: `/cars/<slug>#apply` (old
+    `#test-drive` still works).
+  - GA4: `test_drive_open` (item_id, from welcome|listing|enter|link, placement), `test_drive_step` (step, question
+    key, item_id; the in-form funnel), `generate_lead` (lead_type test_drive, item_id, item_name, payment, trade_in,
+    timeframe, history comfortable|explain|none, placement) and the usual `whatsapp_click`; typed text (name,
+    trade-in car) never goes to GA. No call options, as everywhere on /cars.
   **Check with Jitty before main:** the "repaired by a mechanic with over 14 years" sentence says who repaired the
   car, so it must be true for every listed write-off car; and the questions themselves. **Waiting on:** owner's
   go-ahead for main.
