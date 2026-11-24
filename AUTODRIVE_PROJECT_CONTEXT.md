@@ -501,23 +501,29 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   description (so "rio" does not match "interior"); nicknames vw/merc/benz/subie/auto are expanded. Shows "N cars for
   ..." and a "No cars match ..." state with Show all cars. GA4 `search` event (search_term, results, placement),
   one per settled term. Hidden on a car's own page.
-- **Book a test drive (PREVIEW ONLY since 2026-11-24, not on main; owner wants more enquiries from qualified buyers
-  who come to see the car, for Google Ads and for Jitty's Marketplace replies).** Each listing's sticky bar now has two
-  buttons: red **Book a test drive** (`#sTd`) and a white **Enquire** (`#sEnq`, the old WhatsApp link, label shortened
-  from "Enquire about this car"). Book a test drive opens a short form (`#td`, inline in cars.html): 1 how will you pay
-  (Cash / Finance / Not sure yet), 2 trade-in (No / Yes + optional year, make, model), 3 when are you looking to buy,
-  4 a day (next six open days, no Sundays) and Morning / Midday / Afternoon, 5 name. On cars with the repairable
-  write-off line (shown whenever `#sPpsr` is shown) the form shows Jitty's exact line in bold, "This vehicle has been
-  recorded as a repairable write-off and professionally repaired.", and needs a tick on the owner's wording
-  (2026-11-24): "I acknowledge it was professionally repaired by a mechanic with over 14 years of experience and has
-  passed the required government inspection." **Check with Jitty before main:** that sentence says who repaired the
-  car, so it must be true for every listed write-off car (was each one repaired by him or his workshop?). Send builds a WhatsApp message to
-  Jitty with those answers; no link or code in the message (§7c rule). It never promises a slot: "Test drives are by
+- **Book a test drive (PREVIEW ONLY since 2026-11-24, not on main).** Owner's brief: the buyers to win are people after
+  a good car at good value who will consider some kilometres and a PPSR history. **Do not lead with PPSR** (ads never
+  mention it, the first screen of a car page is photos, price and the button), but it is never hidden: the write-off
+  line stays on the page under "Please read before enquiring" and is asked as a normal question inside the form, so
+  nobody reaches Jitty without having seen it. Jitty does the convincing. Flow: ad, that car's page, Book a test
+  drive, questions, WhatsApp to the AutoDrive number.
+  Each listing's sticky bar has two buttons: red **Book a test drive** (`#sTd`) and a white **Enquire** (`#sEnq`, the
+  old WhatsApp link, label shortened from "Enquire about this car"). The form (`#td`, inline in cars.html; questions
+  are numbered by a CSS counter so the numbers follow what is shown): how will you pay (Cash / Finance / Not sure
+  yet); trade-in (No / Yes + optional year, make, model); when are you looking to buy; **on cars with the repairable
+  write-off line only (`#tdHist`, shown whenever `#sPpsr` is), "About this car's history"**: Jitty's exact line in
+  bold, then the owner's wording "It was repaired by a mechanic with over 14 years of experience and has passed the
+  required government inspection. That history is why it is priced lower than a car without one.", answered with
+  "I'm comfortable with that" or "I'd like Jitty to explain it" (both go through; the message tells Jitty which);
+  a day (next six open days, no Sundays) and Morning / Midday / Afternoon; name. Send builds a WhatsApp message to
+  Jitty with the answers; no link or code in the message (§7c rule). It never promises a slot: "Test drives are by
   appointment. Jitty will confirm your time on WhatsApp." A link that opens the form straight away:
   `/cars/<slug>#test-drive`. GA4: `test_drive_open` (item_id, placement), `generate_lead` (lead_type test_drive,
-  item_id, item_name, payment, trade_in, timeframe, placement) and the usual `whatsapp_click`; typed text (name,
-  trade-in car) never goes to GA. No call options, as everywhere on /cars. **Waiting on:** owner's look at the preview
-  and Jitty's check of the five questions before it goes to main.
+  item_id, item_name, payment, trade_in, timeframe, history comfortable|explain|none, placement) and the usual
+  `whatsapp_click`; typed text (name, trade-in car) never goes to GA. No call options, as everywhere on /cars.
+  **Check with Jitty before main:** the "repaired by a mechanic with over 14 years" sentence says who repaired the
+  car, so it must be true for every listed write-off car; and the questions themselves. **Waiting on:** owner's
+  go-ahead for main.
 - Bottom panel "Can't see the one you want?" links to a plain `find-my-car` (no UTM tags: tagged internal links restart the visit and lose the real source) and WhatsApp.
 - Self-contained: inline CSS with the locked tokens, own GA4 tag; does NOT load main.js (so the booking/date modal never
   intercepts Enquire). Events: `whatsapp_click` (link_url, car, placement=cars_page, or car_page on a
