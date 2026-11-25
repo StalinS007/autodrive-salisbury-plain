@@ -18,9 +18,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <!--
   BOOK A SERVICE — the landing page for the Google Ads service campaign (owner, 25 Nov 2026: target Japanese cars,
-  three service tiers, same-day or next-day turnaround, a few questions, then straight to WhatsApp).
+  three service tiers, same-day or next-day turnaround, a few questions, then the booking is emailed).
   Same format as the car pages on /cars (Cameron Whitters' Typeform): a welcome screen, then one question per
-  screen with lettered answers, ending in a ready-written WhatsApp message to Jitty. Every answer is a decision
+  screen with lettered answers. Submitting emails the booking straight to AutoDrive (no WhatsApp hop). Every answer is a decision
   (no "not sure" options). Self-contained: no styles.css / main.js, so no ?v= bump needed when this file changes.
   Prices are the owner-set tiers from the home + services pages; change them in BOTH places.
 -->
@@ -202,8 +202,11 @@
   function $(id){ return document.getElementById(id); }
   function track(name, p){ if (typeof gtag === "function") gtag("event", name, p || {}); }
   function esc(s){ return String(s == null ? "" : s).replace(/[&<>"]/g, function(c){ return {"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c]; }); }
-  var WA = "61432520230";
-  var WA_ICON = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.5 15.3L2 22l4.8-1.5A10 10 0 1 0 12 2z"/></svg>';
+  // Bookings are emailed the moment they submit (owner 25 Nov 2026: no WhatsApp hop). Same Google Apps Script
+  // as the Find My Car alerts (tools/car-finder-alert.gs, v5+). TOKEN must match the script.
+  var ALERT_URL = "https://script.google.com/macros/s/AKfycbyi59OWP3JmG8kkcP8NTnY43CtMJU1BXX1RMByJ3f_vbACxki3rBnOmqRBhyBZzihjvHA/exec";
+  var ALERT_TOKEN = "ad-find-2026";
+  var sent = false;
   var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
   var TFTICK = '<svg class="tf__tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
   var KEYS = "ABCDEFGH";
@@ -260,31 +263,32 @@
     return h + "</div></div>";
   }
 
-  function msg(){
-    var lines = ["Hi Jitty, I'd like to book a service.", "",
-      "Service: " + A.tier,
-      "Car: " + make() + ", " + A.model,
-      "Km: " + A.km,
-      "Name: " + A.name,
-      "Phone: " + A.phone,
-      "Email: " + A.email,
-      "Drop-off: " + A.day + ", " + A.slot.toLowerCase()];
-    return "https://wa.me/" + WA + "?text=" + encodeURIComponent(lines.join("\n"));
+  function rows(){
+    return [["Service", A.tier], ["Car", make() + ", " + A.model], ["Km", A.km], ["Drop-off", A.day + ", " + A.slot.toLowerCase()],
+            ["Name", A.name], ["Phone", A.phone], ["Email", A.email]];
   }
-
+  function send(){
+    if (sent) return;
+    sent = true;
+    try {
+      fetch(ALERT_URL, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ token: ALERT_TOKEN, kind: "service", name: A.name, phone: A.phone, email: A.email,
+          what: A.tier.split(" (")[0] + ", " + make() + " " + A.model, when: A.day + ", " + A.slot.toLowerCase(), rows: rows(), page: location.href }) });
+    } catch (e) {}
+    track("generate_lead", { lead_type: "service", service_tier: A.tier.split(" (")[0], make: make(), km_band: A.km, placement: "book_service" });
+  }
   function show(i, back){
     var v = vis(), lastI = v.length - 1;
     I = Math.max(0, Math.min(i, lastI));
     var s = v[I], h;
     $("tfBar").style.width = Math.round(100 * I / lastI) + "%";
     if (s.end){
-      var sum = [["Service", A.tier], ["Car", make() + ", " + A.model], ["Km", A.km], ["Drop-off", A.day + ", " + A.slot.toLowerCase()],
-                 ["Name", A.name], ["Phone", A.phone], ["Email", A.email]];
-      h = '<h2 class="tf__h" id="tfH">Thanks, ' + esc(A.name.split(" ")[0]) + '. One last step.</h2>' +
-        '<p class="tf__help">Press send in WhatsApp so Jitty gets it.</p>' +
-        '<ul class="tf__sum">' + sum.map(function(r){ return "<li><b>" + r[0] + ":</b> " + esc(r[1]) + "</li>"; }).join("") + "</ul>" +
-        '<div class="tf__act"><a class="tf-btn tf__wa" id="tfSend" href="' + esc(msg()) + '" target="_blank" rel="noopener">' + WA_ICON + "Send to Jitty on WhatsApp</a></div>" +
-        '<p class="tf__after" id="tfAfter" hidden>WhatsApp should have opened with your message. Press send there. <button type="button" class="tf__link" id="tfBack">Back to the page</button></p>';
+      send();
+      $("tfBar").style.width = "100%";
+      h = '<h2 class="tf__h" id="tfH">Done, ' + esc(A.name.split(" ")[0]) + '. Your booking is in.</h2>' +
+        '<p class="tf__help">We\'ll confirm your drop-off time shortly.</p>' +
+        '<ul class="tf__sum">' + rows().map(function(r){ return "<li><b>" + r[0] + ":</b> " + esc(r[1]) + "</li>"; }).join("") + "</ul>" +
+        '<div class="tf__act"><button type="button" class="tf-btn" id="tfBack">Back to the page</button></div>';
     } else {
       h = '<h2 class="tf__h" id="tfH"><span class="tf__n">' + (I + 1) + ARROW + "</span>" + esc(s.q) + "</h2>";
       var ok = '<div class="tf__act"><button type="button" class="tf-btn" data-ok>OK</button><span class="tf-key">press <b>Enter &crarr;</b></span></div>';
@@ -309,7 +313,7 @@
     }
     $("tfStage").innerHTML = '<div class="tf__q' + (back ? " is-back" : "") + '">' + h + "</div>";
     $("tfStage").scrollTop = 0;
-    $("tfUp").disabled = I === 0;
+    $("tfUp").disabled = I === 0 || !!s.end;
     $("tfDown").disabled = !!s.end || !A[s.k];
     if ($("tfIn")) $("tfIn").focus({ preventScroll: true });
     if (!seen[s.k]){   // funnel inside the form: which step was reached. Typed text never goes to GA.
@@ -352,7 +356,7 @@
   }
   function open(from){
     if (on) return;
-    A = {}; seen = {}; busy = false;
+    A = {}; seen = {}; busy = false; sent = false;
     document.body.classList.add("no-scroll");
     $("tf").hidden = false;
     on = true;
@@ -380,12 +384,6 @@
     if (b && !b.disabled){ pick(b); return; }
     if (e.target.closest("[data-ok]")){ next(); return; }
     if (e.target.closest("#tfBack")){ close(); return; }
-    if (e.target.closest("#tfSend")){
-      track("generate_lead", { lead_type: "service", service_tier: A.tier.split(" (")[0], make: make(), km_band: A.km, placement: "book_service" });
-      track("whatsapp_click", { link_url: "wa.me/" + WA, placement: "book_service" });
-      $("tfBar").style.width = "100%";
-      setTimeout(function(){ if ($("tfAfter")) $("tfAfter").hidden = false; }, 400);
-    }
   });
   $("tfStage").addEventListener("input", function(){ var e = $("tfErr"); if (e) e.hidden = true; });
   document.addEventListener("keydown", function(e){

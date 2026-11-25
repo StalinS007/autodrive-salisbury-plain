@@ -6,6 +6,10 @@
  * again when they confirm a time in the embedded Calendly (outcome "booked").
  * This emails every answer to ALERT_TO, so leads who drop out or never book can still be followed up.
  *
+ * Version 5 (2026-11-25): also takes BOOKINGS from the website's two Typeform-style forms
+ * (kind "service" from /book-service, kind "test_drive" from /cars/<slug>). Those are emailed to
+ * BOOKING_TO the moment the customer submits, so nobody has to open WhatsApp.
+ *
  * UPDATING an existing deployment keeps the same /exec URL: paste the new code, Save, then
  * Deploy -> Manage deployments -> pencil (edit) -> Version: New version -> Deploy.
  *
@@ -25,6 +29,7 @@
 
 var TOKEN       = "ad-find-2026";
 var ALERT_TO    = "stalinsajie@gmail.com";
+var BOOKING_TO  = "autodrive5109@gmail.com, stalinsajie@gmail.com";   // service + test drive bookings
 var MAX_PER_DAY = 30;
 var GUIDE_URL   = "https://autodrivesalisburyplain.com.au/car-guide.pdf";
 
@@ -37,6 +42,7 @@ function doPost(e) {
   try {
     var d = JSON.parse((e && e.postData && e.postData.contents) || "{}");
     if (d.token !== TOKEN) return out({ ok: false, error: "bad token" });
+    if (d.kind === "service" || d.kind === "test_drive") return booking(d);
     if (!d.name || !d.mobile) return out({ ok: false, error: "missing contact" });
     if (!underDailyCap()) return out({ ok: false, error: "daily cap" });
 
@@ -85,6 +91,27 @@ function doPost(e) {
   } catch (err) {
     return out({ ok: false, error: String(err) });
   }
+}
+
+// A booking from /book-service or a car page: every answer in the email, subject says what and when.
+function booking(d) {
+  var clip = function (v, n) { return String(v || "").replace(/[\r\n]+/g, " ").slice(0, n || 200); };
+  if (!d.name || !d.phone) return out({ ok: false, error: "missing contact" });
+  if (!underDailyCap()) return out({ ok: false, error: "daily cap" });
+  var rows = Array.isArray(d.rows) ? d.rows.slice(0, 20) : [];
+  var lines = rows.map(function (r) { return clip(r && r[0], 40) + ": " + clip(r && r[1]); });
+  var phone = clip(d.phone, 30).replace(/[^\d+]/g, "");
+  lines.push("", "Call them: " + phone,
+             "WhatsApp them: https://wa.me/" + phone.replace(/^\+/, "").replace(/^0/, "61"));
+  if (d.page) lines.push("", "Sent from: " + clip(d.page, 300));
+  var subject = d.kind === "service"
+    ? "SERVICE BOOKING: " + clip(d.name, 60) + " | " + clip(d.what, 60) + " | " + clip(d.when, 60)
+    : "TEST DRIVE: " + clip(d.name, 60) + " | " + clip(d.what, 80) + " | " + clip(d.when, 60);
+  var mail = { to: BOOKING_TO, subject: subject, body: lines.join("\n"), name: "AutoDrive website" };
+  var email = clip(d.email, 120).trim();
+  if (/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) mail.replyTo = email;   // Reply goes straight to the customer
+  MailApp.sendEmail(mail);
+  return out({ ok: true });
 }
 
 function sendGuide(to, first) {
