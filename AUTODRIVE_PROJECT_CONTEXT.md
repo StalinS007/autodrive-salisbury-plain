@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-11-24**.
+touching the site. Last verified against the live code: **2026-11-25**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -501,6 +501,48 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   description (so "rio" does not match "interior"); nicknames vw/merc/benz/subie/auto are expanded. Shows "N cars for
   ..." and a "No cars match ..." state with Show all cars. GA4 `search` event (search_term, results, placement),
   one per settled term. Hidden on a car's own page.
+- **Apply for a test drive (LIVE on main 2026-11-25, owner approved; Typeform format).** Owner's
+  brief: the buyers to win are people after a good car at good value who will consider some kilometres and a PPSR
+  history. **Do not lead with PPSR** (ads never mention it; the welcome screen shows photos, price, outline and the
+  button), but it is never hidden: the write-off line stays on the page under "Please read before enquiring" and is
+  asked as a normal question inside the form, so nobody reaches Jitty without having seen it. Jitty does the
+  convincing. Flow: ad, that car's page, Apply for a test drive, questions, WhatsApp to the AutoDrive number.
+  **Format = Cameron Whitters' Typeform** (owner 25 Nov: "the exact format"; his form is
+  rll9wh9lcjp.typeform.com/to/epGkkctg, his site cameronwhitters.com/apply). Built in cars.html, no Typeform account:
+  - **Welcome screen** (`#wel`, dark band at the top of every `/cars/<slug>` page, the page's h1): specs as a small
+    caps line, title, price + note, the description's first sentence, up to four ticks (the listing's trust ticks,
+    topped up from its Tech / Safety / Engine / Inside rows when it has fewer than three; two on phones), a Jitty
+    card (owner asked 2026-11-25: round `images/jitty-headshot.jpg`, "Jitty · 14+ years experience", "Licensed dealer,
+    MVD 343921", "6 Lolands Rd, Salisbury Plain SA 5109"; phones show two ticks and drop the "Takes 30 seconds" line so
+    the button stays on the first screen), "Takes
+    30 seconds. Jitty confirms your time on WhatsApp.", red **Apply for a test drive** (Enter also starts it), and
+    "See all N photos and full details" (scrolls to the full listing below). Right side (top on phones): the first
+    four photos in a 2x2 grid, "+N photos" on the fourth, each opens the full-screen viewer.
+  - **Questions** (`#tf`, full-screen dark overlay): one per screen, slide-up transition, thin red progress line,
+    numbered "1 →", lettered answers (A, B, C; letter keys work), a single choice moves on by itself, text answers
+    have OK / press Enter, up and down arrows bottom right, close X, phone back button closes it. No helper or
+    explainer lines under the questions (owner 2026-11-25: "get rid of things like this"). **Every answer is a
+    commitment** (owner 2026-11-25): no "Not sure yet", "Just looking" or "talk to Jitty first" style options. Order:
+    pay (Cash / Finance); trade-in (No / Yes, then "What is your trade-in?" text only if Yes); when buying (This week / In the next 2 weeks / Within a month);
+    **write-off cars only** (whenever `#sPpsr` shows) "About this car's history": Jitty's exact line in bold, then the
+    fact (owner 2026-11-25) "Write-off cars often get overlooked, but many only had minor damage. This one was repaired
+    from minor damage and is as good as new[, with only N km]." (km part only under 70,000 km), then
+    "We'll give you a call to explain the process and discuss options if you are worried." (owner wording
+    2026-11-25, replaced the "repaired by a mechanic with over 14 years" sentence), answered "I'm comfortable
+    with that" or "Happy to have a chat" (owner 2026-11-25); day as a small calendar (owner 2026-11-25: Monday of this week to three weeks out, tomorrow to +21 days
+    pickable, Sundays and past days greyed, "Today" marked); Morning /
+    Midday / Afternoon; then one "Last one. Your details" screen with Full name, Phone number, Email in that order
+    (owner 2026-11-25; checked: two-word name, 8 to 12 digit phone, email shape; all three go in the WhatsApp message). End screen: "Thanks, <name>. One last step.", a summary, and a green **Send to
+    Jitty on WhatsApp** link with the message written out (no link or code in it, §7c rule). Never promises a slot.
+  - The grid pop-up and the full listing keep a red **Apply for a test drive** (`#sTd`, opens the questions
+    directly) beside the white **Enquire** (`#sEnq`). Direct link to the questions: `/cars/<slug>#apply` (old
+    `#test-drive` still works).
+  - GA4: `test_drive_open` (item_id, from welcome|listing|enter|link, placement), `test_drive_step` (step, question
+    key, item_id; the in-form funnel), `generate_lead` (lead_type test_drive, item_id, item_name, payment, trade_in,
+    timeframe, history comfortable|chat|none, placement) and the usual `whatsapp_click`; typed text (name, phone,
+    email, trade-in car) never goes to GA. No call options, as everywhere on /cars.
+  **Confirmed by Jitty (owner, 2026-11-25):** all 13 write-off cars on /cars had only minor damage, so the history box
+  is true for each. Any NEW write-off car added later needs the same check before it goes up (the box text is shared).
 - Bottom panel "Can't see the one you want?" links to a plain `find-my-car` (no UTM tags: tagged internal links restart the visit and lose the real source) and WhatsApp.
 - Self-contained: inline CSS with the locked tokens, own GA4 tag; does NOT load main.js (so the booking/date modal never
   intercepts Enquire). Events: `whatsapp_click` (link_url, car, placement=cars_page, or car_page on a

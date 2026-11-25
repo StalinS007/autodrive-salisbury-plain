@@ -188,7 +188,7 @@
   .desc__rows dt{font-weight:700; color:var(--ink); font-size:13.5px; line-height:1.55;}
   .desc__rows dd{margin:0; font-size:14.5px; line-height:1.45;}
   /* White strip right to the bottom edge, so nothing shows under the button while it is stuck */
-  .sheet__cta{display:grid; grid-template-columns:1fr; gap:10px; position:sticky; bottom:0; background:#fff; margin:0 -18px calc(-22px - env(safe-area-inset-bottom)); padding:10px 18px calc(12px + env(safe-area-inset-bottom));}
+  .sheet__cta{display:grid; grid-template-columns:1.5fr 1fr; gap:10px; position:sticky; bottom:0; background:#fff; margin:0 -18px calc(-22px - env(safe-area-inset-bottom)); padding:10px 18px calc(12px + env(safe-area-inset-bottom));}
   .sheet__head{display:flex; align-items:flex-start; justify-content:space-between; gap:12px;}
   .share{display:inline-flex; align-items:center; gap:6px; flex:none; background:#fff; border:1px solid var(--g300); border-radius:999px; padding:7px 12px; font-size:13.5px; font-weight:700; color:var(--ink); cursor:pointer;}
   .share:hover{border-color:var(--ink);}
@@ -275,7 +275,119 @@
     html.solo .sheet__cta{border-radius:0 0 16px 16px;}
     html.solo a.solo__back{display:flex; max-width:720px; margin-left:auto; margin-right:auto;}
   }
-  .sheet__cta .enq{font-size:16px; padding:14px;}
+  .sheet__cta .enq{font-size:15.5px; padding:14px 8px;}
+  /* Second button beside "Book a test drive": plain white, WhatsApp green icon */
+  button.enq{font-family:inherit;}
+  .enq--ghost{background:#fff; color:var(--ink); box-shadow:inset 0 0 0 2px var(--g300);}
+  .enq--ghost:hover{background:#fff; box-shadow:inset 0 0 0 2px var(--ink);}
+  .enq--ghost svg{color:var(--wa);}
+  /* Apply for a test drive (owner 25 Nov 2026: "the exact format" Cameron Whitters' Typeform uses).
+     .wel = the welcome screen at the top of a car's own page: outline on the left, photos on the right, one button.
+     .tf  = the questions, one per screen with lettered answers, ending in a ready-written WhatsApp message to Jitty. */
+  .wel{background:var(--ink); color:#fff;}
+  html.solo:not(.is-ready) .wel{min-height:62vh;}
+  .wel__in{max-width:1180px; margin:0 auto; display:grid; gap:18px; padding:14px 16px 26px;}
+  .wel__ph{display:grid; grid-template-columns:1fr 1fr; gap:6px;}
+  .wel__ph button{position:relative; display:block; padding:0; border:0; aspect-ratio:4/3; overflow:hidden; border-radius:6px; background:#26262a; cursor:zoom-in;}
+  .wel__ph img{width:100%; height:100%; object-fit:cover; transition:transform .35s ease;}
+  .wel__ph button:hover img{transform:scale(1.03);}
+  .wel__ph span{position:absolute; inset:0; display:grid; place-items:center; background:rgba(0,0,0,.52); color:#fff; font-weight:800; font-size:16px;}
+  .wel__eye{margin:0 0 10px; color:#a1a1aa; font-size:12.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;}
+  .wel h1{margin:0 0 6px; font-size:clamp(26px,3.6vw,40px); font-weight:800; line-height:1.12; letter-spacing:-.015em;}
+  .wel__price{margin:0 0 12px; font-size:19px; font-weight:700;}
+  .wel__price small{font-size:14px; font-weight:600; color:#a1a1aa; margin-left:8px;}
+  .wel__lead{margin:0 0 14px; font-size:17px; line-height:1.45; color:#e4e4e7;}
+  .wel__list{list-style:none; padding:0; margin:0 0 18px; display:grid; gap:7px;}
+  .wel__list li{display:flex; align-items:flex-start; gap:9px; font-size:15.5px; color:#e4e4e7; line-height:1.35;}
+  .wel__list svg{width:17px; height:17px; flex:none; color:var(--red); margin-top:1px;}
+  .wel__by{display:flex; align-items:center; gap:14px; margin:0 0 18px; padding:12px 14px; border:1px solid #34343a; border-radius:10px; background:#1c1c20; max-width:460px;}
+  .wel__by img{width:60px; height:60px; border-radius:50%; object-fit:cover; flex:none; border:2px solid var(--red);}
+  .wel__by p{margin:0; font-size:13.5px; line-height:1.4; color:#a1a1aa;}
+  .wel__by .wel__byN{font-size:16px; font-weight:800; color:#fff;}
+  .wel__by .wel__byN span{font-weight:600; color:#d4d4d8; font-size:14.5px;}
+  .wel__fine{margin:0 0 14px; font-size:14px; font-weight:700; color:#d4d4d8;}
+  .wel__go{display:flex; align-items:center; flex-wrap:wrap; gap:8px 14px;}
+  .wel__det{display:inline-block; margin-top:16px; padding:0; border:0; background:none; font:inherit; color:#a1a1aa; font-size:14px; text-decoration:underline; text-underline-offset:3px; cursor:pointer;}
+  .wel__det:hover{color:#fff;}
+  .tf-btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; background:var(--red); color:#fff; border:0; border-radius:6px; font:inherit; font-weight:700; font-size:18px; line-height:1.2; padding:13px 24px; cursor:pointer; text-decoration:none;}
+  .tf-btn:hover{background:var(--red-dk);}
+  .tf-btn:focus-visible{outline:2px solid #fff; outline-offset:3px;}
+  .tf-btn svg{width:18px; height:18px; flex:none;}
+  .tf-key{font-size:13px; color:#a1a1aa;}
+  .tf-key b{font-weight:700; color:#d4d4d8;}
+  @media (hover:none){ .tf-key{display:none;} }
+  @media (max-width:899px){ .wel .tf-btn{width:100%;} .wel__lead{font-size:16px;} .wel__list{margin-bottom:14px;} .wel__list li:nth-child(n+3){display:none;} .wel__lead{margin-bottom:10px;} .wel__by{padding:9px 12px; gap:12px; margin-bottom:14px;} .wel__by img{width:50px; height:50px;} .wel__fine{display:none;} .wel__ph button{aspect-ratio:16/10;} .wel__in{gap:14px;} }
+  @media (min-width:900px){
+    .wel__in{grid-template-columns:1fr 1.08fr; align-items:center; gap:56px; padding:44px 24px 52px; min-height:calc(100vh - 64px);}
+    .wel__txt{order:-1;}
+    .wel__ph button{aspect-ratio:5/4;}
+  }
+  .tf{position:fixed; inset:0; z-index:70; background:var(--ink); color:#fff; display:flex; flex-direction:column;}
+  .tf__bar{height:4px; background:#2a2a2e; flex:none;}
+  .tf__bar i{display:block; height:100%; width:0; background:var(--red); transition:width .35s ease;}
+  .tf__top{display:flex; align-items:center; justify-content:space-between; gap:12px; padding:8px 10px 0 18px; flex:none;}
+  .tf__brand{font-size:12.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; color:#a1a1aa; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;}
+  .tf__x{flex:none; width:42px; height:42px; border-radius:50%; border:0; background:transparent; color:#d4d4d8; display:grid; place-items:center; cursor:pointer;}
+  .tf__x:hover{background:#26262a; color:#fff;}
+  .tf__x svg{width:22px; height:22px;}
+  .tf__stage{flex:1; overflow-y:auto; display:flex; overscroll-behavior:contain;}
+  .tf__q{margin:auto; width:100%; max-width:720px; padding:20px 22px 90px; animation:tfIn .4s ease both;}
+  .tf__q.is-back{animation-name:tfBack;}
+  @keyframes tfIn{from{opacity:0; transform:translateY(40px)} to{opacity:1; transform:none}}
+  @keyframes tfBack{from{opacity:0; transform:translateY(-40px)} to{opacity:1; transform:none}}
+  @media (prefers-reduced-motion:reduce){ .tf__q{animation:none;} }
+  .tf__h{margin:0 0 10px; font-size:clamp(21px,3vw,28px); font-weight:600; line-height:1.3;}
+  .tf__n{display:inline-flex; align-items:center; gap:3px; margin-right:9px; color:var(--red); font-size:15px; font-weight:700; vertical-align:3px;}
+  .tf__n svg{width:13px; height:13px;}
+  .tf__help{margin:0 0 22px; font-size:17px; color:#a1a1aa; line-height:1.45;}
+  .tf__box{margin:0 0 22px; padding:14px 16px; border-left:3px solid var(--red); background:#1c1c1f; border-radius:4px;}
+  .tf__box b{display:block; font-size:17px; line-height:1.4; margin-bottom:6px;}
+  .tf__box p{margin:0; color:#d4d4d8; font-size:15.5px; line-height:1.45;}
+  .tf__box p + p{margin-top:8px; color:#a1a1aa;}
+  .tf__ch{display:grid; gap:9px; width:100%; max-width:460px;}
+  .tf__c{display:flex; align-items:center; gap:12px; width:100%; text-align:left; background:rgba(255,255,255,.06); color:#fff; border:1px solid rgba(255,255,255,.24); border-radius:6px; padding:10px 12px; font:inherit; font-size:18px; line-height:1.3; cursor:pointer; transition:background .15s, border-color .15s;}
+  .tf__c:hover{background:rgba(255,255,255,.12);}
+  .tf__c:focus-visible{outline:2px solid #fff; outline-offset:2px;}
+  .tf__c kbd{flex:none; display:grid; place-items:center; width:26px; height:26px; border:1px solid rgba(255,255,255,.45); border-radius:4px; font:inherit; font-size:13px; font-weight:700; background:var(--ink);}
+  .tf__c .tf__tick{margin-left:auto; width:20px; height:20px; flex:none; opacity:0;}
+  .tf__c.is-on{border-color:var(--red); background:rgba(192,20,24,.24);}
+  .tf__c.is-on kbd{background:var(--red); border-color:var(--red);}
+  .tf__c.is-on .tf__tick{opacity:1;}
+  .tf__cal{width:100%; max-width:460px;}
+  .tf__cal-m{margin:0 0 10px; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#a1a1aa;}
+  .tf__cal-g{display:grid; grid-template-columns:repeat(7, 1fr); gap:6px;}
+  .tf__cal-g > span{text-align:center; font-size:12px; font-weight:700; color:#a1a1aa; padding-bottom:2px;}
+  .tf__d{display:flex; flex-direction:column; align-items:center; justify-content:center; aspect-ratio:1/1; padding:0; background:rgba(255,255,255,.06); color:#fff; border:1px solid rgba(255,255,255,.24); border-radius:6px; font:inherit; font-size:17px; font-weight:600; line-height:1.1; cursor:pointer; transition:background .15s, border-color .15s;}
+  .tf__d small{font-size:9.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#a1a1aa;}
+  .tf__d:hover:not(:disabled){background:rgba(255,255,255,.14);}
+  .tf__d:focus-visible{outline:2px solid #fff; outline-offset:2px;}
+  .tf__d:disabled{background:none; border-color:transparent; color:#4b4b52; cursor:default;}
+  .tf__d:disabled small{color:#4b4b52;}
+  .tf__d.is-on{background:var(--red); border-color:var(--red);}
+  .tf__d.is-on small{color:#fff;}
+  .tf__d.is-blink{animation:tfBlink .32s steps(2) 1;}
+  .tf__c.is-blink{animation:tfBlink .32s steps(2) 1;}
+  @keyframes tfBlink{50%{background:rgba(255,255,255,.02); border-color:rgba(255,255,255,.24);}}
+  .tf__in{display:block; width:100%; background:transparent; border:0; border-bottom:2px solid rgba(255,255,255,.3); border-radius:0; color:#fff; font:inherit; font-size:clamp(21px,2.6vw,28px); padding:6px 0 8px; outline:0;}
+  .tf__in:focus{border-bottom-color:#fff;}
+  .tf__in::placeholder{color:#5f5f66;}
+  .tf__fs{width:100%; max-width:520px; display:grid; gap:18px; margin-bottom:6px;}
+  .tf__fs label{display:block; margin:0 0 2px; font-size:14px; font-weight:700; color:#a1a1aa;}
+  .tf__fs .tf__in{font-size:clamp(19px,2.2vw,24px);}
+  .tf__act{display:flex; align-items:center; flex-wrap:wrap; gap:8px 14px; margin-top:24px;}
+  .tf__err{display:inline-block; margin:16px 0 0; background:#3a1214; color:#fca5a5; font-size:14.5px; font-weight:600; padding:6px 10px; border-radius:4px;}
+  .tf__sum{list-style:none; padding:0; margin:0 0 6px; display:grid; gap:6px; font-size:15.5px; color:#d4d4d8;}
+  .tf__sum b{color:#fff; font-weight:700;}
+  .tf__wa{background:var(--wa);}
+  .tf__wa:hover{background:#178a45;}
+  .tf__after{margin:16px 0 0; font-size:15px; color:#d4d4d8; line-height:1.45;}
+  .tf__link{padding:0; border:0; background:none; font:inherit; color:#fff; text-decoration:underline; text-underline-offset:3px; cursor:pointer;}
+  .tf__nav{position:absolute; right:14px; bottom:calc(14px + env(safe-area-inset-bottom)); display:flex; gap:2px;}
+  .tf__nav button{width:42px; height:38px; border:0; background:var(--red); color:#fff; display:grid; place-items:center; cursor:pointer;}
+  .tf__nav button:first-child{border-radius:6px 0 0 6px;}
+  .tf__nav button:last-child{border-radius:0 6px 6px 0;}
+  .tf__nav button:disabled{opacity:.35; cursor:default;}
+  .tf__nav svg{width:20px; height:20px;}
   body.no-scroll{overflow:hidden;}
 </style>
 <!-- Google Analytics 4 (same property as the rest of the site) -->
@@ -353,6 +465,31 @@
     root.querySelectorAll(".notes__close").forEach(function(b){ b.addEventListener("click", closeAll); });
   })();
 </script>
+
+<!-- Welcome screen on a car's own page (Typeform style, owner 25 Nov 2026). Filled by the script from the listing. -->
+<section class="wel solo-only" id="wel" aria-labelledby="welH">
+  <div class="wel__in">
+    <div class="wel__ph" id="welPh"></div>
+    <div class="wel__txt">
+      <p class="wel__eye" id="welEye"></p>
+      <h1 id="welH"></h1>
+      <p class="wel__price" id="welPrice"></p>
+      <p class="wel__lead" id="welLead"></p>
+      <ul class="wel__list" id="welList"></ul>
+      <div class="wel__by">
+        <img src="/images/jitty-headshot.jpg" alt="Jitty, owner of AutoDrive" width="60" height="60" loading="eager">
+        <div>
+          <p class="wel__byN">Jitty <span>&middot; 14+ years experience</span></p>
+          <p>Licensed dealer, MVD 343921</p>
+          <p>6 Lolands Rd, Salisbury Plain SA 5109</p>
+        </div>
+      </div>
+      <p class="wel__fine">Takes 30 seconds. Jitty confirms your time on WhatsApp.</p>
+      <div class="wel__go"><button class="tf-btn" id="welGo" type="button">Apply for a test drive</button><span class="tf-key">press <b>Enter &crarr;</b></span></div>
+      <button class="wel__det" id="welDet" type="button">See all photos and full details</button>
+    </div>
+  </div>
+</section>
 
 <main class="wrap">
   <!-- Only shown on a car's own page (/cars/<slug>). The script moves the listing into #soloSlot. -->
@@ -491,9 +628,24 @@
       </section>
 
       <div class="sheet__cta">
-        <a class="enq" id="sEnq" href="#"></a>
+        <button class="enq" id="sTd" type="button">Apply for a test drive</button>
+        <a class="enq enq--ghost" id="sEnq" href="#"></a>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- Apply for a test drive: one question per screen (Typeform style), ends in a ready-written WhatsApp message to Jitty -->
+<div class="tf" id="tf" role="dialog" aria-modal="true" aria-label="Apply for a test drive" hidden>
+  <div class="tf__bar"><i id="tfBar"></i></div>
+  <div class="tf__top">
+    <span class="tf__brand" id="tfBrand"></span>
+    <button class="tf__x" type="button" id="tfClose" aria-label="Close"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+  </div>
+  <div class="tf__stage" id="tfStage"></div>
+  <div class="tf__nav">
+    <button type="button" id="tfUp" aria-label="Previous question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15l6-6 6 6"/></svg></button>
+    <button type="button" id="tfDown" aria-label="Next question"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"/></svg></button>
   </div>
 </div>
 
@@ -696,7 +848,7 @@
     $("sEnq").setAttribute("data-car", c.id);
     $("sEnq").setAttribute("target", "_blank");
     $("sEnq").setAttribute("rel", "noopener");
-    $("sEnq").innerHTML = WA_ICON + "Enquire about this car";
+    $("sEnq").innerHTML = WA_ICON + "Enquire";
     $("sShare").querySelector("span").textContent = "Share";
     updateCount();
   }
@@ -727,8 +879,13 @@
       s.hidden = false;
       document.title = c.title + " · " + c.priceText + " | AutoDrive Salisbury Plain";
       track("view_item", { item_id: c.id, item_name: c.title, price: c.price, currency: "AUD", placement: "car_page" });
+      fillWel(c);
+      $("sTitle").removeAttribute("aria-level");
+      $("sTitle").setAttribute("aria-level", "2");   // the welcome screen holds the page's h1
+      if (location.hash === "#test-drive" || location.hash === "#apply") openTf("link");   // a link Jitty or an ad can use: /cars/<slug>#apply
     } else {
       $("gone").hidden = false;
+      $("wel").hidden = true;
       $("soloH").textContent = "Cars in stock right now";
     }
     document.documentElement.classList.add("is-ready");
@@ -860,6 +1017,258 @@
       if (dy > 110 && dy > Math.abs(dx) * 1.6) closeLb();
     }, { passive: true });
   })();
+  /* ---- Apply for a test drive: one question per screen (Typeform style), then a ready-written WhatsApp message ---- */
+  var ARROW = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>';
+  var TFTICK = '<svg class="tf__tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
+  var HIST_LINE = "This vehicle has been recorded as a repairable write-off and professionally repaired.";   // Jitty's exact line
+  var HIST_MORE = "We'll give you a call to explain the process and discuss options if you are worried.";
+  // The fact the buyer needs (owner, 25 Nov 2026). "only N km" is added only when the car really is low km (under 70,000).
+  function histFact(c){
+    var n = parseInt(String(c.km || "").replace(/[^\d]/g, ""), 10);
+    return "Write-off cars often get overlooked, but many only had minor damage. This one was repaired from minor damage and is as good as new" +
+      (n && n < 70000 ? ", with only " + c.km : "") + ".";
+  }
+  var tfOn = false, tfLock = false, tfPushed = false, tfBusy = false, tfCar = null, tfI = 0, tfA = {}, tfSteps = [], tfSeen = {};
+  // Calendar for the day question (owner 25 Nov 2026): this week to three weeks out, from tomorrow, closed Sundays
+  var DN = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"], MN = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+      MFULL = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  function tfCal(sel){
+    var t = new Date(); t.setHours(0, 0, 0, 0);
+    var first = new Date(t), last = new Date(t);
+    first.setDate(t.getDate() - ((t.getDay() + 6) % 7));    // Monday of this week
+    last.setDate(t.getDate() + 21);
+    last.setDate(last.getDate() + (7 - last.getDay()) % 7);  // through that week's Sunday
+    var m1 = first.getMonth(), m2 = last.getMonth();
+    var head = MFULL[m1] + (m1 !== m2 ? " / " + MFULL[m2] : "") + " " + last.getFullYear();
+    var h = '<div class="tf__cal"><p class="tf__cal-m">' + head + '</p><div class="tf__cal-g" role="radiogroup" aria-labelledby="tfH">' +
+      ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(function(d){ return "<span>" + d + "</span>"; }).join("");
+    for (var d = new Date(first); d <= last; d.setDate(d.getDate() + 1)){
+      var diff = Math.round((d - t) / 864e5), open = diff >= 1 && diff <= 21 && d.getDay() !== 0;
+      var v = DN[d.getDay()] + " " + d.getDate() + " " + MN[d.getMonth()], on = open && sel === v;
+      var lab = diff === 0 ? "Today" : (d.getDate() === 1 ? MN[d.getMonth()] : "");
+      h += '<button type="button" class="tf__d' + (on ? " is-on" : "") + '"' + (open ? ' data-v="' + v + '" role="radio" aria-checked="' + on + '" aria-label="' + v + '"' : " disabled") + ">" +
+        d.getDate() + (lab ? "<small>" + lab + "</small>" : "") + "</button>";
+    }
+    return h + "</div></div>";
+  }
+  var TF_FIELDS = [
+    { k: "name", id: "tfIn", l: "Full name", t: "text", im: "text", ac: "name", ph: "First and last name", max: 70 },
+    { k: "phone", id: "tfPhone", l: "Phone number", t: "tel", im: "tel", ac: "tel", ph: "04XX XXX XXX", max: 20 },
+    { k: "email", id: "tfEmail", l: "Email", t: "email", im: "email", ac: "email", ph: "name@example.com", max: 90 }
+  ];
+  function tfContact(){   // reads, checks and stores the three fields; returns an error or ""
+    var v = {};
+    TF_FIELDS.forEach(function(f){ v[f.k] = $(f.id).value.replace(/\s+/g, " ").trim().slice(0, f.max); });
+    var digits = v.phone.replace(/[^\d]/g, "");
+    if (v.name.split(" ").filter(Boolean).length < 2) return [ "tfIn", "Please add your first and last name." ];
+    if (digits.length < 8 || digits.length > 12) return [ "tfPhone", "Please add a phone number we can reach you on." ];
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email)) return [ "tfEmail", "Please check your email address." ];
+    tfA.name = v.name; tfA.phone = v.phone; tfA.email = v.email; tfA.contact = "1";
+    return "";
+  }
+  function tfBuild(hist){
+    var s = [
+      { k: "pay", q: "How will you pay for the car?", ch: ["Cash", "Finance"] },
+      { k: "trade", q: "Do you have a car to trade in?", ch: ["No", "Yes"] },
+      { k: "tradeCar", q: "What is your trade-in?", text: true, ph: "e.g. 2012 Toyota Camry", max: 80, when: function(){ return tfA.trade === "Yes"; } },
+      { k: "when", q: "When are you looking to buy?", ch: ["This week", "In the next 2 weeks", "Within a month"] }
+    ];
+    // Repairable write-off cars only. Asked as a normal question part-way through, never as a warning (owner, 24 Nov 2026).
+    // Every answer moves them towards a decision: no "not sure", "just looking" or "talk to Jitty first" options (owner, 25 Nov 2026).
+    if (hist) s.push({ k: "hist", q: "About this car's history", box: true, ch: ["I'm comfortable with that", "Happy to have a chat"] });
+    s.push({ k: "day", q: "Which day suits you to come in?", cal: true });
+    s.push({ k: "slot", q: "What time of day suits you?", ch: ["Morning", "Midday", "Afternoon"] });
+    // Contact details on one screen, in this order (owner 25 Nov 2026): full name, phone, email
+    s.push({ k: "contact", q: "Last one. Your details", contact: true });
+    s.push({ k: "end", end: true });
+    return s;
+  }
+  function tfVis(){ return tfSteps.filter(function(s){ return !s.when || s.when(); }); }
+  function tfMsg(){
+    var c = tfCar, a = tfA;
+    var lines = ["Hi Jitty, I'd like to book a test drive.", "",
+      "Car: " + c.title + (c.trans ? " " + c.trans : "") + (c.price ? ", " + c.priceText : ""),
+      "Name: " + a.name,
+      "Phone: " + a.phone,
+      "Email: " + a.email,
+      "Paying: " + a.pay,
+      "Trade-in: " + (a.trade === "Yes" ? "Yes" + (a.tradeCar ? ", " + a.tradeCar : "") : "No"),
+      "Looking to buy: " + a.when];
+    if (a.hist) lines.push("Repairable write-off history: " + (a.hist.indexOf("comfortable") >= 0 ? "comfortable with it" : "happy to have a chat"));
+    lines.push("Preferred time: " + a.day + ", " + a.slot.toLowerCase());
+    return "https://wa.me/61432520230?text=" + encodeURIComponent(lines.join("\n"));
+  }
+  function tfShow(i, back){
+    var v = tfVis(), last = v.length - 1;
+    tfI = Math.max(0, Math.min(i, last));
+    var s = v[tfI], a = tfA, h;
+    $("tfBar").style.width = Math.round(100 * tfI / last) + "%";
+    if (s.end){
+      var sum = [["Car", tfCar.title], ["Paying", a.pay], ["Trade-in", a.trade === "Yes" ? (a.tradeCar || "Yes") : "No"], ["Buying", a.when]];
+      if (a.hist) sum.push(["History", a.hist.indexOf("comfortable") >= 0 ? "Comfortable with it" : "Happy to have a chat"]);
+      sum.push(["Time", a.day + ", " + a.slot.toLowerCase()]);
+      sum.push(["Name", a.name], ["Phone", a.phone], ["Email", a.email]);
+      h = '<h2 class="tf__h" id="tfH">Thanks, ' + esc(a.name.split(" ")[0]) + '. One last step.</h2>' +
+        '<p class="tf__help">Press send in WhatsApp so Jitty gets it.</p>' +
+        '<ul class="tf__sum">' + sum.map(function(r){ return "<li><b>" + r[0] + ":</b> " + esc(r[1]) + "</li>"; }).join("") + "</ul>" +
+        '<div class="tf__act"><a class="tf-btn tf__wa" id="tfSend" href="' + esc(tfMsg()) + '" target="_blank" rel="noopener" data-car="' + esc(tfCar.id) + '">' + WA_ICON + "Send to Jitty on WhatsApp</a></div>" +
+        '<p class="tf__after" id="tfAfter" hidden>WhatsApp should have opened with your message. Press send there. <button type="button" class="tf__link" id="tfBack">Back to the car</button></p>';
+    } else {
+      h = '<h2 class="tf__h" id="tfH"><span class="tf__n">' + (tfI + 1) + ARROW + "</span>" + esc(s.q) + "</h2>";
+      if (s.help) h += '<p class="tf__help">' + esc(s.help) + "</p>";
+      if (s.box) h += '<div class="tf__box"><b>' + HIST_LINE + "</b><p>" + esc(histFact(tfCar)) + "</p><p>" + HIST_MORE + "</p></div>";
+      var ok = '<div class="tf__act"><button type="button" class="tf-btn" data-ok>OK</button><span class="tf-key">press <b>Enter &crarr;</b></span></div>';
+      if (s.ch){
+        h += '<div class="tf__ch" role="radiogroup" aria-labelledby="tfH">' + s.ch.map(function(t, j){
+          var on = a[s.k] === t;
+          return '<button type="button" class="tf__c' + (on ? " is-on" : "") + '" role="radio" aria-checked="' + on + '" data-v="' + esc(t) + '"><kbd>' + "ABCDEFGH".charAt(j) + "</kbd><span>" + esc(t) + "</span>" + TFTICK + "</button>";
+        }).join("") + "</div>";
+        if (a[s.k]) h += ok;
+      } else if (s.contact){
+        h += '<div class="tf__fs">' + TF_FIELDS.map(function(f, j){
+          return '<div><label for="' + f.id + '">' + f.l + '</label><input class="tf__in" id="' + f.id + '" type="' + f.t + '" inputmode="' + f.im + '" maxlength="' + f.max + '" autocomplete="' + f.ac + '" placeholder="' + f.ph + '" value="' + esc(a[f.k] || "") + '" enterkeyhint="' + (j < 2 ? "next" : "done") + '"></div>';
+        }).join("") + "</div>" + ok;
+      } else if (s.cal){
+        h += tfCal(a[s.k]);
+        if (a[s.k]) h += ok;
+      } else {
+        h += '<input class="tf__in" id="tfIn" type="text" maxlength="' + s.max + '" autocomplete="' + (s.ac || "off") + '" placeholder="' + esc(s.ph) + '" value="' + esc(a[s.k] || "") + '" aria-labelledby="tfH" enterkeyhint="next">' + ok;
+      }
+      h += '<p class="tf__err" id="tfErr" role="alert" hidden></p>';
+    }
+    $("tfStage").innerHTML = '<div class="tf__q' + (back ? " is-back" : "") + '">' + h + "</div>";
+    $("tfStage").scrollTop = 0;
+    $("tfUp").disabled = tfI === 0;
+    $("tfDown").disabled = !!s.end || !a[s.k];
+    if ($("tfIn")) $("tfIn").focus({ preventScroll: true });
+    if (!tfSeen[s.k]){   // funnel inside the form: which step was reached. Typed text never goes to GA.
+      tfSeen[s.k] = 1;
+      track("test_drive_step", { step: tfI + 1, question: s.k, item_id: tfCar.id, placement: SOLO ? "car_page" : "cars_page" });
+    }
+  }
+  function tfErr(t){ var e = $("tfErr"); if (e){ e.textContent = t; e.hidden = false; } }
+  function tfNext(){
+    var s = tfVis()[tfI];
+    if (!s || s.end || tfBusy) return;
+    if (s.contact){
+      var bad = tfContact();
+      if (bad){ tfErr(bad[1]); $(bad[0]).focus(); return; }
+    } else if (s.text){
+      var val = $("tfIn").value.replace(/\s+/g, " ").trim().slice(0, s.max);
+      if (!val){ tfErr(s.k === "name" ? "Please add your first name." : "Please fill this in."); return; }
+      tfA[s.k] = val;
+    } else if (!tfA[s.k]){ tfErr("Please choose an answer."); return; }
+    tfShow(tfVis().indexOf(s) + 1);   // the trade-in answer can add or remove the next question
+  }
+  function tfPick(b){
+    if (tfBusy) return;
+    var s = tfVis()[tfI];
+    tfA[s.k] = b.getAttribute("data-v");
+    [].forEach.call(b.parentNode.querySelectorAll("[data-v]"), function(x){ x.classList.toggle("is-on", x === b); x.setAttribute("aria-checked", String(x === b)); });
+    b.classList.add("is-blink");
+    tfBusy = true;
+    setTimeout(function(){ tfBusy = false; tfNext(); }, 420);
+  }
+  function openTf(from){
+    var c = current;
+    if (!c || tfOn) return;
+    tfCar = c; tfA = {}; tfSeen = {}; tfBusy = false;
+    tfSteps = tfBuild(!$("sPpsr").hidden);   // the history question only on cars with the repairable write-off line
+    $("tfBrand").textContent = c.title + (c.price ? " · " + c.priceText : "");
+    tfLock = !document.body.classList.contains("no-scroll");
+    document.body.classList.add("no-scroll");
+    $("tf").hidden = false;
+    tfOn = true;
+    history.pushState({ tf: 1 }, "", location.href);   // so the phone's back button closes the form, not the page
+    tfPushed = true;
+    tfShow(0);
+    if (!$("tfIn")) $("tfClose").focus({ preventScroll: true });
+    track("test_drive_open", { item_id: c.id, from: from || "", placement: SOLO ? "car_page" : "cars_page" });
+  }
+  function hideTf(){
+    if (!tfOn) return;
+    $("tf").hidden = true;
+    $("tfStage").innerHTML = "";
+    tfOn = false;
+    if (tfLock) document.body.classList.remove("no-scroll");
+  }
+  function closeTf(){ if (!tfOn) return; if (tfPushed){ tfPushed = false; history.back(); } else hideTf(); }   // popstate hides it
+  $("sTd").addEventListener("click", function(){ openTf("listing"); });
+  $("welGo").addEventListener("click", function(){ openTf("welcome"); });
+  $("welDet").addEventListener("click", function(){ $("soloSlot").scrollIntoView({ behavior: "smooth", block: "start" }); });
+  $("welPh").addEventListener("click", function(e){ var b = e.target.closest("button[data-i]"); if (b) openLb(+b.getAttribute("data-i")); });
+  $("tfClose").addEventListener("click", closeTf);
+  $("tfUp").addEventListener("click", function(){ if (tfI > 0 && !tfBusy) tfShow(tfI - 1, true); });
+  $("tfDown").addEventListener("click", tfNext);
+  $("tfStage").addEventListener("click", function(e){
+    var b = e.target.closest(".tf__c, .tf__d");
+    if (b && !b.disabled){ tfPick(b); return; }
+    if (e.target.closest("[data-ok]")){ tfNext(); return; }
+    if (e.target.closest("#tfBack")){ closeTf(); return; }
+    if (e.target.closest("#tfSend")){
+      // The link opens WhatsApp itself; the page-wide click handler records whatsapp_click for it.
+      var a = tfA;
+      track("generate_lead", { lead_type: "test_drive", item_id: tfCar.id, item_name: tfCar.title, payment: a.pay, trade_in: a.trade, timeframe: a.when,
+        history: a.hist ? (a.hist.indexOf("comfortable") >= 0 ? "comfortable" : "chat") : "none", placement: SOLO ? "car_page" : "cars_page" });
+      $("tfBar").style.width = "100%";
+      setTimeout(function(){ if ($("tfAfter")) $("tfAfter").hidden = false; }, 400);
+    }
+  });
+  $("tfStage").addEventListener("input", function(){ var e = $("tfErr"); if (e) e.hidden = true; });
+  function tfKey(e){
+    if (e.key === "Escape"){ closeTf(); return; }
+    var s = tfVis()[tfI], tag = (e.target.tagName || "").toLowerCase();
+    if (!s || s.end) return;
+    if (e.key === "Enter"){
+      if (tag === "button" || tag === "a") return;   // Enter on a focused button clicks it
+      if (s.contact && tag === "input"){   // Enter moves down the three fields, then submits
+        var ids = TF_FIELDS.map(function(f){ return f.id; }), j = ids.indexOf(e.target.id);
+        if (j >= 0 && j < ids.length - 1 && !$(ids[j + 1]).value){ e.preventDefault(); $(ids[j + 1]).focus(); return; }
+      }
+      e.preventDefault(); tfNext(); return;
+    }
+    if (s.ch && tag !== "input" && !e.metaKey && !e.ctrlKey && !e.altKey && e.key.length === 1){
+      var j = "ABCDEFGH".indexOf(e.key.toUpperCase()), btns = $("tfStage").querySelectorAll(".tf__c");
+      if (j >= 0 && btns[j]) tfPick(btns[j]);
+    }
+  }
+
+  // The welcome screen at the top of a car's own page: title, price, a short outline and four photos
+  function outline(c){
+    var out = c.trust.slice(0, 4);
+    if (out.length < 3){
+      var d = document.createElement("div"), rows = {};
+      d.innerHTML = c.desc;   // our own markup from used-cars.html
+      d.textContent.replace(/\s+/g, " ").split(/(?:[.!?])\s+/).forEach(function(t){
+        var m = t.match(/^(Tech|Safety|Engine|Inside):\s+(.+)$/);
+        if (m) rows[m[1]] = m[2].split(/,\s*/)[0].replace(/\.$/, "");
+      });
+      ["Tech", "Safety", "Engine", "Inside"].forEach(function(k){
+        var t = rows[k];
+        if (!t || out.length >= 4) return;
+        if (k === "Engine") t += " engine";
+        t = t.charAt(0).toUpperCase() + t.slice(1);
+        if (!out.some(function(o){ return o.toLowerCase().indexOf(t.toLowerCase()) >= 0 || t.toLowerCase().indexOf(o.toLowerCase()) >= 0; })) out.push(t);
+      });
+    }
+    return out;
+  }
+  function fillWel(c){
+    var n = c.photos.length;
+    $("welPh").innerHTML = c.photos.slice(0, 4).map(function(p, i){
+      return '<button type="button" data-i="' + i + '" aria-label="See photo ' + (i + 1) + ' full screen"><img src="' + esc(p.src) + '" alt="' + esc(p.alt) + '"' + (i < 2 ? ' fetchpriority="high"' : "") + ' draggable="false">' +
+        (i === 3 && n > 4 ? "<span>+" + (n - 4) + " photos</span>" : "") + "</button>";
+    }).join("");
+    $("welEye").textContent = c.specs.join(" · ");
+    $("welH").textContent = c.title;
+    $("welPrice").innerHTML = esc(c.priceText) + (c.note ? "<small>" + esc(c.note) + "</small>" : "");
+    var d = document.createElement("div");
+    d.innerHTML = c.desc;
+    $("welLead").textContent = (d.textContent.replace(/\s+/g, " ").trim().match(/^.*?[.!?](?=\s|$)/) || [""])[0];
+    $("welList").innerHTML = outline(c).map(function(t){ return "<li>" + TICK + esc(t) + "</li>"; }).join("");
+    $("welDet").textContent = "See all " + (n + (c.video ? 1 : 0)) + " photos and full details";
+  }
+
   $("sClose").addEventListener("click", requestClose);
   $("sheet").addEventListener("click", function(e){ if (e.target === this) requestClose(); });
   document.addEventListener("keydown", function(e){
@@ -869,13 +1278,17 @@
       else if (e.key === "ArrowLeft") lbGo(lbI - 1, true);
       return;
     }
+    if (tfOn){ tfKey(e); return; }
     if (!current) return;
+    // Car's own page: Enter starts the application, as the welcome screen says
+    if (SOLO && e.key === "Enter" && (e.target === document.body || e.target === document.documentElement)){ e.preventDefault(); openTf("enter"); return; }
     if (e.key === "Escape") requestClose();
     else if (e.key === "ArrowRight") step(1);
     else if (e.key === "ArrowLeft") step(-1);
   });
   window.addEventListener("popstate", function(){
     if (lbOn){ hideLb(); return; }
+    if (tfOn){ tfPushed = false; hideTf(); return; }
     if (SOLO) return;
     var m = location.pathname.match(/^\/cars\/([a-z0-9-]+)\/?$/);
     if (m) openCar(m[1], true); else { pushed = false; closeSheet(); }
@@ -931,7 +1344,7 @@
     })
     .catch(function(){
       document.documentElement.classList.add("is-ready");
-      if (SOLO) $("soloH").hidden = true;
+      if (SOLO){ $("soloH").hidden = true; $("wel").hidden = true; }
       $("grid").innerHTML = "";
       $("empty").hidden = false;
       $("empty").innerHTML = 'We couldn’t load the cars just now. See them on our <a href="/used-cars">quality cars page</a> or <a href="https://wa.me/61432520230">message us on WhatsApp</a>.';
