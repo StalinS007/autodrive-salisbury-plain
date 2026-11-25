@@ -484,7 +484,7 @@
           <p>6 Lolands Rd, Salisbury Plain SA 5109</p>
         </div>
       </div>
-      <p class="wel__fine">Takes 30 seconds. Jitty confirms your time on WhatsApp.</p>
+      <p class="wel__fine">Takes 30 seconds. We confirm your time with you.</p>
       <div class="wel__go"><button class="tf-btn" id="welGo" type="button">Apply for a test drive</button><span class="tf-key">press <b>Enter &crarr;</b></span></div>
       <button class="wel__det" id="welDet" type="button">See all photos and full details</button>
     </div>
@@ -1084,19 +1084,31 @@
     return s;
   }
   function tfVis(){ return tfSteps.filter(function(s){ return !s.when || s.when(); }); }
-  function tfMsg(){
+  // Test drive bookings are emailed the moment they submit (owner 25 Nov 2026: no WhatsApp hop). Same Google Apps
+  // Script as the Find My Car alerts (tools/car-finder-alert.gs, v5+). TOKEN must match the script.
+  var ALERT_URL = "https://script.google.com/macros/s/AKfycbyi59OWP3JmG8kkcP8NTnY43CtMJU1BXX1RMByJ3f_vbACxki3rBnOmqRBhyBZzihjvHA/exec";
+  var ALERT_TOKEN = "ad-find-2026";
+  var tfSent = false;
+  function tfRows(){
     var c = tfCar, a = tfA;
-    var lines = ["Hi Jitty, I'd like to book a test drive.", "",
-      "Car: " + c.title + (c.trans ? " " + c.trans : "") + (c.price ? ", " + c.priceText : ""),
-      "Name: " + a.name,
-      "Phone: " + a.phone,
-      "Email: " + a.email,
-      "Paying: " + a.pay,
-      "Trade-in: " + (a.trade === "Yes" ? "Yes" + (a.tradeCar ? ", " + a.tradeCar : "") : "No"),
-      "Looking to buy: " + a.when];
-    if (a.hist) lines.push("Repairable write-off history: " + (a.hist.indexOf("comfortable") >= 0 ? "comfortable with it" : "happy to have a chat"));
-    lines.push("Preferred time: " + a.day + ", " + a.slot.toLowerCase());
-    return "https://wa.me/61432520230?text=" + encodeURIComponent(lines.join("\n"));
+    var r = [["Car", c.title + (c.trans ? " " + c.trans : "") + (c.price ? ", " + c.priceText : "")], ["Paying", a.pay],
+             ["Trade-in", a.trade === "Yes" ? "Yes" + (a.tradeCar ? ", " + a.tradeCar : "") : "No"], ["Buying", a.when]];
+    if (a.hist) r.push(["Write-off history", a.hist.indexOf("comfortable") >= 0 ? "Comfortable with it" : "Happy to have a chat"]);
+    r.push(["Test drive", a.day + ", " + a.slot.toLowerCase()], ["Name", a.name], ["Phone", a.phone], ["Email", a.email]);
+    return r;
+  }
+  function tfSend(){
+    if (tfSent) return;
+    tfSent = true;
+    var c = tfCar, a = tfA;
+    try {
+      fetch(ALERT_URL, { method: "POST", mode: "no-cors", keepalive: true, headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ token: ALERT_TOKEN, kind: "test_drive", name: a.name, phone: a.phone, email: a.email,
+          what: c.title + (c.price ? ", " + c.priceText : ""), when: a.day + ", " + a.slot.toLowerCase(), rows: tfRows(),
+          page: location.origin + "/cars/" + c.id }) });
+    } catch (e) {}
+    track("generate_lead", { lead_type: "test_drive", item_id: c.id, item_name: c.title, payment: a.pay, trade_in: a.trade, timeframe: a.when,
+      history: a.hist ? (a.hist.indexOf("comfortable") >= 0 ? "comfortable" : "chat") : "none", placement: SOLO ? "car_page" : "cars_page" });
   }
   function tfShow(i, back){
     var v = tfVis(), last = v.length - 1;
@@ -1104,15 +1116,12 @@
     var s = v[tfI], a = tfA, h;
     $("tfBar").style.width = Math.round(100 * tfI / last) + "%";
     if (s.end){
-      var sum = [["Car", tfCar.title], ["Paying", a.pay], ["Trade-in", a.trade === "Yes" ? (a.tradeCar || "Yes") : "No"], ["Buying", a.when]];
-      if (a.hist) sum.push(["History", a.hist.indexOf("comfortable") >= 0 ? "Comfortable with it" : "Happy to have a chat"]);
-      sum.push(["Time", a.day + ", " + a.slot.toLowerCase()]);
-      sum.push(["Name", a.name], ["Phone", a.phone], ["Email", a.email]);
-      h = '<h2 class="tf__h" id="tfH">Thanks, ' + esc(a.name.split(" ")[0]) + '. One last step.</h2>' +
-        '<p class="tf__help">Press send in WhatsApp so Jitty gets it.</p>' +
-        '<ul class="tf__sum">' + sum.map(function(r){ return "<li><b>" + r[0] + ":</b> " + esc(r[1]) + "</li>"; }).join("") + "</ul>" +
-        '<div class="tf__act"><a class="tf-btn tf__wa" id="tfSend" href="' + esc(tfMsg()) + '" target="_blank" rel="noopener" data-car="' + esc(tfCar.id) + '">' + WA_ICON + "Send to Jitty on WhatsApp</a></div>" +
-        '<p class="tf__after" id="tfAfter" hidden>WhatsApp should have opened with your message. Press send there. <button type="button" class="tf__link" id="tfBack">Back to the car</button></p>';
+      tfSend();
+      $("tfBar").style.width = "100%";
+      h = '<h2 class="tf__h" id="tfH">Done, ' + esc(a.name.split(" ")[0]) + '. Your test drive request is in.</h2>' +
+        '<p class="tf__help">We\'ll confirm your time shortly.</p>' +
+        '<ul class="tf__sum">' + tfRows().map(function(r){ return "<li><b>" + r[0] + ":</b> " + esc(r[1]) + "</li>"; }).join("") + "</ul>" +
+        '<div class="tf__act"><button type="button" class="tf-btn" id="tfBack">Back to the car</button></div>';
     } else {
       h = '<h2 class="tf__h" id="tfH"><span class="tf__n">' + (tfI + 1) + ARROW + "</span>" + esc(s.q) + "</h2>";
       if (s.help) h += '<p class="tf__help">' + esc(s.help) + "</p>";
@@ -1138,7 +1147,7 @@
     }
     $("tfStage").innerHTML = '<div class="tf__q' + (back ? " is-back" : "") + '">' + h + "</div>";
     $("tfStage").scrollTop = 0;
-    $("tfUp").disabled = tfI === 0;
+    $("tfUp").disabled = tfI === 0 || !!s.end;
     $("tfDown").disabled = !!s.end || !a[s.k];
     if ($("tfIn")) $("tfIn").focus({ preventScroll: true });
     if (!tfSeen[s.k]){   // funnel inside the form: which step was reached. Typed text never goes to GA.
@@ -1172,7 +1181,7 @@
   function openTf(from){
     var c = current;
     if (!c || tfOn) return;
-    tfCar = c; tfA = {}; tfSeen = {}; tfBusy = false;
+    tfCar = c; tfA = {}; tfSeen = {}; tfBusy = false; tfSent = false;
     tfSteps = tfBuild(!$("sPpsr").hidden);   // the history question only on cars with the repairable write-off line
     $("tfBrand").textContent = c.title + (c.price ? " · " + c.priceText : "");
     tfLock = !document.body.classList.contains("no-scroll");
@@ -1205,14 +1214,6 @@
     if (b && !b.disabled){ tfPick(b); return; }
     if (e.target.closest("[data-ok]")){ tfNext(); return; }
     if (e.target.closest("#tfBack")){ closeTf(); return; }
-    if (e.target.closest("#tfSend")){
-      // The link opens WhatsApp itself; the page-wide click handler records whatsapp_click for it.
-      var a = tfA;
-      track("generate_lead", { lead_type: "test_drive", item_id: tfCar.id, item_name: tfCar.title, payment: a.pay, trade_in: a.trade, timeframe: a.when,
-        history: a.hist ? (a.hist.indexOf("comfortable") >= 0 ? "comfortable" : "chat") : "none", placement: SOLO ? "car_page" : "cars_page" });
-      $("tfBar").style.width = "100%";
-      setTimeout(function(){ if ($("tfAfter")) $("tfAfter").hidden = false; }, 400);
-    }
   });
   $("tfStage").addEventListener("input", function(){ var e = $("tfErr"); if (e) e.hidden = true; });
   function tfKey(e){
