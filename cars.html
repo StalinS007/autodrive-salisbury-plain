@@ -1038,7 +1038,7 @@
       "Paying: " + a.pay,
       "Trade-in: " + (a.trade === "Yes" ? "Yes" + (a.tradeCar ? ", " + a.tradeCar : "") : "No"),
       "Looking to buy: " + a.when];
-    if (a.hist) lines.push("Repairable write-off history: " + (a.hist.indexOf("comfortable") >= 0 ? "comfortable with it" : "would like to discuss first"));
+    if (a.hist) lines.push("Repairable write-off history: " + "comfortable with it");
     lines.push("Preferred time: " + a.day + ", " + a.slot.toLowerCase());
     return "https://wa.me/61432520230?text=" + encodeURIComponent(lines.join("\n"));
   }
@@ -1049,7 +1049,7 @@
     $("tfBar").style.width = Math.round(100 * tfI / last) + "%";
     if (s.end){
       var sum = [["Car", tfCar.title], ["Paying", a.pay], ["Trade-in", a.trade === "Yes" ? (a.tradeCar || "Yes") : "No"], ["Buying", a.when]];
-      if (a.hist) sum.push(["History", a.hist.indexOf("comfortable") >= 0 ? "Comfortable with it" : "Jitty to explain"]);
+      if (a.hist) sum.push(["History", "Comfortable with it"]);
       sum.push(["Time", a.day + ", " + a.slot.toLowerCase()]);
       h = '<h2 class="tf__h" id="tfH">Thanks, ' + esc(a.name) + '. One last step.</h2>' +
         '<p class="tf__help">Press send in WhatsApp so Jitty gets it.</p>' +
@@ -1142,7 +1142,7 @@
       // The link opens WhatsApp itself; the page-wide click handler records whatsapp_click for it.
       var a = tfA;
       track("generate_lead", { lead_type: "test_drive", item_id: tfCar.id, item_name: tfCar.title, payment: a.pay, trade_in: a.trade, timeframe: a.when,
-        history: a.hist ? (a.hist.indexOf("comfortable") >= 0 ? "comfortable" : "explain") : "none", placement: SOLO ? "car_page" : "cars_page" });
+        history: a.hist ? "comfortable" : "none", placement: SOLO ? "car_page" : "cars_page" });
       $("tfBar").style.width = "100%";
       setTimeout(function(){ if ($("tfAfter")) $("tfAfter").hidden = false; }, 400);
     }

@@ -535,7 +535,7 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
     `#test-drive` still works).
   - GA4: `test_drive_open` (item_id, from welcome|listing|enter|link, placement), `test_drive_step` (step, question
     key, item_id; the in-form funnel), `generate_lead` (lead_type test_drive, item_id, item_name, payment, trade_in,
-    timeframe, history comfortable|explain|none, placement) and the usual `whatsapp_click`; typed text (name,
+    timeframe, history comfortable|none, placement) and the usual `whatsapp_click`; typed text (name,
     trade-in car) never goes to GA. No call options, as everywhere on /cars.
   **Check with Jitty before main:** the questions themselves, and that he will ring anyone worried about a write-off
   history (the history box promises a call). **Waiting on:** owner's
