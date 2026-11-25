@@ -552,6 +552,23 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   showed as `cars_page / (not set)`).
 - Not in the main nav and not linked from other pages; it's the link for Jitty's Instagram. Indexable, canonical `/cars`.
 
+## 7h. Book a service landing page — `book-service.html` (`/book-service`, PREVIEW ONLY since 2026-11-25)
+- For the Google Ads service campaign (owner 2026-11-25: target **Japanese cars**, "less of a headache"; three tiers;
+  same-day to next-day turnaround; a few questions, then straight to WhatsApp). noindex, not in the nav.
+- Same Typeform format as the /cars test drive form, self-contained (own CSS/JS + GA tag, no ?v= bump). Welcome:
+  real workshop photo (`workshop-hoist.jpg`, Jitty under a Toyota), "Toyota · Mazda · Honda · Nissan · Subaru ·
+  Mitsubishi", h1 "Japanese car servicing in Salisbury Plain", "Most cars are done the same day or the next day",
+  the three tier boxes (Basic $149 / Standard $229 "Most popular" / Logbook $329, the owner-set prices from §7: change
+  them in all places), the Jitty card (14+ years, mechanic and owner, address), red **Book my service**.
+- Questions (every answer a decision): service tier (with a one-line "what's in it"); make (Toyota, Mazda, Honda,
+  Nissan, Subaru, Mitsubishi, Suzuki, Another make → "Which make is it?"); model and year (text); km band (4 bands);
+  drop-off day (calendar, today until 11am, up to 14 days, no Sundays); Morning / Midday / Afternoon; full name +
+  phone + email on one screen. End: summary + green Send to Jitty on WhatsApp ("Hi Jitty, I'd like to book a
+  service." + Service, Car, Km, Name, Phone, Email, Drop-off). `/book-service#book` opens the questions directly.
+- GA4: `service_book_open`, `service_book_step` (step, question), `generate_lead` (lead_type service, service_tier,
+  make, km_band, placement book_service) + `whatsapp_click`. Typed text never goes to GA.
+- **Waiting on:** owner's look at the preview and go-ahead for main.
+
 ## 7f. Car-finding programme application — `find-my-car.html` (added 2026-10-16, LIVE on main 2026-10-16; free-text 'who you are' question LIVE 2026-11-02)
 
 Standalone page (own inline styles + GA tag; does NOT load `styles.css`/`main.js`, so no `?v=`
