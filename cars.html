@@ -1021,7 +1021,7 @@
       { k: "when", q: "When are you looking to buy?", ch: ["This week", "In the next 2 weeks", "Within a month", "Just looking for now"] }
     ];
     // Repairable write-off cars only. Asked as a normal question part-way through, never as a warning (owner, 24 Nov 2026).
-    if (hist) s.push({ k: "hist", q: "About this car's history", box: true, ch: ["I'm comfortable with that", "I'd like Jitty to explain it"] });
+    if (hist) s.push({ k: "hist", q: "About this car's history", box: true, ch: ["I'm comfortable with that", "I'd like to discuss first"] });
     s.push({ k: "day", q: "Which day suits you to come in?", ch: tfDays() });
     s.push({ k: "slot", q: "What time of day suits you?", ch: ["Morning", "Midday", "Afternoon"] });
     s.push({ k: "name", q: "Last one. What is your first name?", text: true, ph: "Type your name here", max: 60, ac: "given-name" });
@@ -1037,7 +1037,7 @@
       "Paying: " + a.pay,
       "Trade-in: " + (a.trade === "Yes" ? "Yes" + (a.tradeCar ? ", " + a.tradeCar : "") : "No"),
       "Looking to buy: " + a.when];
-    if (a.hist) lines.push("Repairable write-off history: " + (a.hist.indexOf("comfortable") >= 0 ? "comfortable with it" : "would like it explained"));
+    if (a.hist) lines.push("Repairable write-off history: " + (a.hist.indexOf("comfortable") >= 0 ? "comfortable with it" : "would like to discuss first"));
     lines.push("Preferred time: " + a.day + ", " + a.slot.toLowerCase());
     return "https://wa.me/61432520230?text=" + encodeURIComponent(lines.join("\n"));
   }
