@@ -286,9 +286,8 @@
       send();
       $("tfBar").style.width = "100%";
       h = '<h2 class="tf__h" id="tfH">Done, ' + esc(A.name.split(" ")[0]) + '. Your booking is in.</h2>' +
-        '<p class="tf__help">We\'ll confirm your drop-off time shortly.</p>' +
-        '<ul class="tf__sum">' + rows().map(function(r){ return "<li><b>" + r[0] + ":</b> " + esc(r[1]) + "</li>"; }).join("") + "</ul>" +
-        '<div class="tf__act"><button type="button" class="tf-btn" id="tfBack">Back to the page</button></div>';
+        '<p class="tf__help">We\'ll be in touch shortly.</p>' +
+        '<ul class="tf__sum">' + rows().map(function(r){ return "<li><b>" + r[0] + ":</b> " + esc(r[1]) + "</li>"; }).join("") + "</ul>";
     } else {
       h = '<h2 class="tf__h" id="tfH"><span class="tf__n">' + (I + 1) + ARROW + "</span>" + esc(s.q) + "</h2>";
       var ok = '<div class="tf__act"><button type="button" class="tf-btn" data-ok>OK</button><span class="tf-key">press <b>Enter &crarr;</b></span></div>';
