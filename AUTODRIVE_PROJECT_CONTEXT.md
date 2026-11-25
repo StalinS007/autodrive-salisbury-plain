@@ -524,7 +524,9 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
     explainer lines under the questions (owner 2026-11-25: "get rid of things like this"). **Every answer is a
     commitment** (owner 2026-11-25): no "Not sure yet", "Just looking" or "talk to Jitty first" style options. Order:
     pay (Cash / Finance); trade-in (No / Yes, then "What is your trade-in?" text only if Yes); when buying (This week / In the next 2 weeks / Within a month);
-    **write-off cars only** (whenever `#sPpsr` shows) "About this car's history": Jitty's exact line in bold plus
+    **write-off cars only** (whenever `#sPpsr` shows) "About this car's history": Jitty's exact line in bold, then the
+    fact (owner 2026-11-25) "Write-off cars often get overlooked, but many only had minor damage. This one was repaired
+    from minor damage and is as good as new[, with only N km]." (km part only under 70,000 km), then
     "We'll give you a call to explain the process and discuss options if you are worried." (owner wording
     2026-11-25, replaced the "repaired by a mechanic with over 14 years" sentence), one answer only, "I'm
     comfortable with that"; day (next six open days, no Sundays); Morning /
@@ -537,7 +539,8 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
     key, item_id; the in-form funnel), `generate_lead` (lead_type test_drive, item_id, item_name, payment, trade_in,
     timeframe, history comfortable|none, placement) and the usual `whatsapp_click`; typed text (name,
     trade-in car) never goes to GA. No call options, as everywhere on /cars.
-  **Check with Jitty before main:** the questions themselves, and that he will ring anyone worried about a write-off
+  **Check with Jitty before main:** the questions themselves; that EVERY listed write-off car (13 of them) really had only minor damage, since
+  the box says so; and that he will ring anyone worried about a write-off
   history (the history box promises a call). **Waiting on:** owner's
   go-ahead for main.
 - Bottom panel "Can't see the one you want?" links to a plain `find-my-car` (no UTM tags: tagged internal links restart the visit and lose the real source) and WhatsApp.

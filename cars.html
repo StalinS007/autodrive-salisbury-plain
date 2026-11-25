@@ -343,6 +343,7 @@
   .tf__box{margin:0 0 22px; padding:14px 16px; border-left:3px solid var(--red); background:#1c1c1f; border-radius:4px;}
   .tf__box b{display:block; font-size:17px; line-height:1.4; margin-bottom:6px;}
   .tf__box p{margin:0; color:#d4d4d8; font-size:15.5px; line-height:1.45;}
+  .tf__box p + p{margin-top:8px; color:#a1a1aa;}
   .tf__ch{display:grid; gap:9px; width:100%; max-width:460px;}
   .tf__c{display:flex; align-items:center; gap:12px; width:100%; text-align:left; background:rgba(255,255,255,.06); color:#fff; border:1px solid rgba(255,255,255,.24); border-radius:6px; padding:10px 12px; font:inherit; font-size:18px; line-height:1.3; cursor:pointer; transition:background .15s, border-color .15s;}
   .tf__c:hover{background:rgba(255,255,255,.12);}
@@ -1005,6 +1006,12 @@
   var TFTICK = '<svg class="tf__tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6L9 17l-5-5"/></svg>';
   var HIST_LINE = "This vehicle has been recorded as a repairable write-off and professionally repaired.";   // Jitty's exact line
   var HIST_MORE = "We'll give you a call to explain the process and discuss options if you are worried.";
+  // The fact the buyer needs (owner, 25 Nov 2026). "only N km" is added only when the car really is low km (under 70,000).
+  function histFact(c){
+    var n = parseInt(String(c.km || "").replace(/[^\d]/g, ""), 10);
+    return "Write-off cars often get overlooked, but many only had minor damage. This one was repaired from minor damage and is as good as new" +
+      (n && n < 70000 ? ", with only " + c.km : "") + ".";
+  }
   var tfOn = false, tfLock = false, tfPushed = false, tfBusy = false, tfCar = null, tfI = 0, tfA = {}, tfSteps = [], tfSeen = {};
   function tfDays(){
     // The next six open days (closed Sundays), starting tomorrow
@@ -1059,7 +1066,7 @@
     } else {
       h = '<h2 class="tf__h" id="tfH"><span class="tf__n">' + (tfI + 1) + ARROW + "</span>" + esc(s.q) + "</h2>";
       if (s.help) h += '<p class="tf__help">' + esc(s.help) + "</p>";
-      if (s.box) h += '<div class="tf__box"><b>' + HIST_LINE + "</b><p>" + HIST_MORE + "</p></div>";
+      if (s.box) h += '<div class="tf__box"><b>' + HIST_LINE + "</b><p>" + esc(histFact(tfCar)) + "</p><p>" + HIST_MORE + "</p></div>";
       var ok = '<div class="tf__act"><button type="button" class="tf-btn" data-ok>OK</button><span class="tf-key">press <b>Enter &crarr;</b></span></div>';
       if (s.ch){
         h += '<div class="tf__ch" role="radiogroup" aria-labelledby="tfH">' + s.ch.map(function(t, j){
