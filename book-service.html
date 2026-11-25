@@ -11,7 +11,7 @@
 <meta property="og:url" content="https://autodrivesalisburyplain.com.au/book-service" />
 <meta property="og:title" content="Japanese Car Servicing | AutoDrive Salisbury Plain" />
 <meta property="og:description" content="Basic from $149, Standard from $229, Logbook Servicing from $329. Most cars done same day or next day." />
-<meta property="og:image" content="https://autodrivesalisburyplain.com.au/images/workshop-hoist.jpg" />
+<meta property="og:image" content="https://autodrivesalisburyplain.com.au/images/jitty-headshot.jpg" />
 <link rel="icon" type="image/png" href="/images/logo-autodrive.png" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -45,19 +45,10 @@
 
   /* Welcome screen */
   .wel__in{max-width:1180px; margin:0 auto; display:grid; gap:16px; padding:14px 16px 26px;}
-  .wel__ph{border-radius:8px; overflow:hidden; background:#26262a; aspect-ratio:16/9;}
-  .wel__ph img{width:100%; height:100%; object-fit:cover;}
   .wel__eye{margin:0 0 10px; color:#a1a1aa; font-size:12.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;}
   .wel h1{margin:0 0 8px; font-size:clamp(27px,3.8vw,42px); font-weight:800; line-height:1.1; letter-spacing:-.015em;}
   .wel__lead{margin:0 0 16px; font-size:17px; line-height:1.45; color:#e4e4e7;}
   .wel__lead b{color:#fff;}
-  .tiers{display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin:0 0 16px; max-width:520px;}
-  .tier{position:relative; padding:10px 10px 9px; border:1px solid #34343a; border-radius:8px; background:#1c1c20;}
-  .tier b{display:block; font-size:14px; font-weight:700; color:#e4e4e7;}
-  .tier span{display:block; font-size:12px; color:#a1a1aa;}
-  .tier strong{display:block; font-size:21px; font-weight:800; line-height:1.15;}
-  .tier--pop{border-color:var(--red);}
-  .tier--pop i{position:absolute; top:-9px; left:9px; background:var(--red); color:#fff; font-style:normal; font-size:10px; font-weight:800; letter-spacing:.05em; text-transform:uppercase; padding:1px 6px; border-radius:3px;}
   .wel__by{display:flex; align-items:center; gap:14px; margin:0 0 18px; padding:12px 14px; border:1px solid #34343a; border-radius:10px; background:#1c1c20; max-width:520px;}
   .wel__by img{width:60px; height:60px; border-radius:50%; object-fit:cover; flex:none; border:2px solid var(--red);}
   .wel__by p{margin:0; font-size:13.5px; line-height:1.4; color:#a1a1aa;}
@@ -76,14 +67,10 @@
     .wel__lead{font-size:16px; margin-bottom:12px;}
     .wel__by{padding:9px 12px; gap:12px; margin-bottom:14px;}
     .wel__by img{width:50px; height:50px;}
-    .wel__ph{aspect-ratio:2/1;}
-    .tiers{margin-bottom:14px;}
   }
-  @media (min-width:900px){
-    .wel__in{grid-template-columns:1fr 1fr; align-items:center; gap:56px; padding:44px 24px 52px; min-height:calc(100vh - 64px);}
-    .wel__txt{order:-1;}
-    .wel__ph{aspect-ratio:4/5;}
-  }
+  .wel__in{max-width:760px; min-height:calc(100vh - 64px - 90px); align-content:center; padding:40px 20px 44px;}
+  .wel h1{font-size:clamp(30px,5vw,52px);}
+  .wel__lead{font-size:19px;}
   .foot{border-top:1px solid #222226; padding:18px 0 28px; font-size:13.5px; color:#8d8d94;}
   .foot p{margin:0 0 4px;}
 
@@ -173,16 +160,10 @@
 
 <main class="wel" id="wel">
   <div class="wel__in">
-    <div class="wel__ph"><img src="/images/workshop-hoist.jpg?v=1" alt="Jitty servicing a Toyota on the hoist at AutoDrive Salisbury Plain" width="1600" height="899"></div>
     <div class="wel__txt">
       <p class="wel__eye">Toyota · Mazda · Honda · Nissan · Subaru · Mitsubishi</p>
-      <h1>Japanese car servicing in Salisbury Plain</h1>
-      <p class="wel__lead">Most cars are done <b>the same day or the next day</b>.</p>
-      <div class="tiers">
-        <div class="tier"><b>Basic</b><span>from</span><strong>$149</strong></div>
-        <div class="tier tier--pop"><i>Most popular</i><b>Standard</b><span>from</span><strong>$229</strong></div>
-        <div class="tier"><b>Logbook</b><span>from</span><strong>$329</strong></div>
-      </div>
+      <h1>Are you looking to service your Japanese car, at showroom quality?</h1>
+      <p class="wel__lead">Most cars are done <b>the same day or the next day</b>. Three service levels, from $149.</p>
       <div class="wel__by">
         <img src="/images/jitty-headshot.jpg" alt="Jitty, owner of AutoDrive" width="60" height="60">
         <div>

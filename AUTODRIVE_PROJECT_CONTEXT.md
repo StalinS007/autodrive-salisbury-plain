@@ -555,11 +555,12 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
 ## 7h. Book a service landing page — `book-service.html` (`/book-service`, PREVIEW ONLY since 2026-11-25)
 - For the Google Ads service campaign (owner 2026-11-25: target **Japanese cars**, "less of a headache"; three tiers;
   same-day to next-day turnaround; a few questions, then straight to WhatsApp). noindex, not in the nav.
-- Same Typeform format as the /cars test drive form, self-contained (own CSS/JS + GA tag, no ?v= bump). Welcome:
-  real workshop photo (`workshop-hoist.jpg`, Jitty under a Toyota), "Toyota · Mazda · Honda · Nissan · Subaru ·
-  Mitsubishi", h1 "Japanese car servicing in Salisbury Plain", "Most cars are done the same day or the next day",
-  the three tier boxes (Basic $149 / Standard $229 "Most popular" / Logbook $329, the owner-set prices from §7: change
-  them in all places), the Jitty card (14+ years, mechanic and owner, address), red **Book my service**.
+- Same Typeform format as the /cars test drive form, self-contained (own CSS/JS + GA tag, no ?v= bump). Welcome
+  (owner 2026-11-25: simple question style, **NO AI pictures**, so no photo at all): "Toyota · Mazda · Honda · Nissan ·
+  Subaru · Mitsubishi", h1 **"Are you looking to service your Japanese car, at showroom quality?"**, "Most cars are
+  done the same day or the next day. Three service levels, from $149.", the Jitty card (real headshot, 14+ years,
+  mechanic and owner, address), red **Book my service**. Tier prices (Basic $149 / Standard $229 / Logbook $329, the
+  owner-set prices from §7: change them in all places) show in question 1.
 - Questions (every answer a decision): service tier (with a one-line "what's in it"); make (Toyota, Mazda, Honda,
   Nissan, Subaru, Mitsubishi, Suzuki, Another make → "Which make is it?"); model and year (text); km band (4 bands);
   drop-off day (calendar, today until 11am, up to 14 days, no Sundays); Morning / Midday / Afternoon; full name +
