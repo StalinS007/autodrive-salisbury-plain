@@ -77,7 +77,7 @@ repo root (a launch config `autodrive-static` on port 5050 exists in `.claude/la
   - *Note:* the former Valley View used-car showroom (779–781 North East Road SA 5093) was
     **removed everywhere** on 2026-07-18 — the site now shows only the one address. "Showroom"
     still appears as a label (e.g. "Call the Showroom") but no longer as a separate location.
-- **Hours:** Mon–Fri 8:30am–5:30pm · Sat 8:30am–4:00pm · Sun closed
+- **Hours:** Mon–Fri 9:30am–5:30pm · Sat 9:30am–3:30pm · Sun closed. **Opens 9:30 am every open day, everywhere (Jitty via owner, 2026-11-25).** Never show 8:30 or 9:00 as an opening time. LIVE 2026-11-25 (owner: "change it everywhere"), changed that day: the six `services/*` footers, the `/cars` footer, Jitty's business card on each car page ("Monday to Friday: 9:30 am to 5:30 pm" + "Saturday: 9:30 am to 3:30 pm") and the dealer terms panel on both car pages ("Monday to Friday 9:30 am to 5:30 pm, Saturday 9:30 am to 3:30 pm, closed Sunday."). **The Google Business Profile hours are the one source of truth (owner, 2026-11-25): every place on the site shows exactly these hours, closing times included.** Main page footers, the contact card and the schema already said 9:30 (since July).
 - **Socials:** Instagram `@autodrive_salisburyplain` · Facebook page id `61560815001969`
 - **Service areas:** Adelaide CBD, Mawson Lakes, Salisbury, Elizabeth, Munno Para,
   Playford, Angle Vale, Riverlea, Virginia, Blakeview, Gawler.
@@ -454,7 +454,7 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   section inside the listing, under the description of every car (pop-up and own page): why buy from AutoDrive
   ("over 14 years"), pricing and condition, warranty and registration, finance and trade-ins, important information,
   then the business card (address, WhatsApp 0432 520 230 as a wa.me link, "Licensed Motor Vehicle Dealer, MVD 343921",
-  "Monday to Saturday: 9:00 am to 5:30 pm", inspections by appointment). His wording, minus emojis, dashes and the
+  "Monday to Friday: 9:30 am to 5:30 pm", "Saturday: 9:30 am to 3:30 pm", inspections by appointment). His wording, minus emojis, dashes and the
   sign-off. The phone number is a WhatsApp link, not a call link (no call options on /cars).
 - **Repairable write-off line (Jitty 2026-11-10, his WhatsApp listing of that morning).** Any car whose used-cars
   description has the bold "PPSR listed" sentence gets, on Cars for Sale, his exact line standing alone in a
@@ -744,16 +744,16 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
     (inline script on the page, GA4 event `stock_note_open` {note: ppsr|terms}). PPSR text is ours; the terms panel is a
     cut of Jitty's dealer terms (WhatsApp 2026-11-08 23:45): prices generally firm, rego/stamp duty/transfer extra unless
     the listing says otherwise, pre-owned condition, 3-month/5,000 km statutory warranty under 15 yrs and 200,000 km,
-    extended 1/3/5 yr, finance via broker, trade-ins no swaps, hours 9 to 5 Mon to Fri. Never on the homepage swiper or
+    extended 1/3/5 yr, finance via broker, trade-ins no swaps, hours as §2 (Google hours). Never on the homepage swiper or
     the car cards. Keep the copy on both pages identical. On cars.html each PPSR car's detail
     sheet lifts the bold "This car is PPSR listed..." sentence out of the description and shows a quiet grey note
     underneath instead (see "Repairable write-off line" in §7g for the current wording); used-cars.html keeps its own
     bold wording with "PPSR listed" in a red `.hl` span (LIVE 2026-11-09). In the two links only the words "PPSR listed"
     and "enquire" are red (in quotes); they are also underlined with a slow 2.6 s pulse: LIVE on cars.html since 2026-11-10 and on
     used-cars.html since 2026-11-11 (owner approved, styles v78). **Open with Jitty:** the "3 months free rego" tick
-    contradicts his "rego extra" line. **Hours now appear four ways:** this panel says 9 to 5 Mon to Fri, Jitty's
-    9 Nov block on each car says Mon to Sat 9:00 to 5:30, the footers and §2 say Mon to Fri 8:30 to 5:30 + Sat 8:30 to
-    4:00, and Google opens 9:30. Get one answer from Jitty and make them all match.
+    contradicts his "rego extra" line. **Hours are settled (owner, 2026-11-25): follow the Google Business
+    Profile, Mon to Fri 9:30 to 5:30, Sat 9:30 to 3:30, Sun closed (see §2).** This panel and Jitty's 9 Nov block on
+    each car now say exactly that; "weekends by appointment" was dropped.
   - **Dealer licence:** `.stock-licence` line under the deck — "Licensed motor vehicle dealer —
     MVD 343921". SA requires the licence number on vehicle advertising; keep it on any page that
     advertises cars.
