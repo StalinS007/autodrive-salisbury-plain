@@ -542,7 +542,7 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
     timeframe, history comfortable|chat|none, placement) and the usual `whatsapp_click`; typed text (name, phone,
     email, trade-in car) never goes to GA. No call options, as everywhere on /cars.
   **Confirmed by Jitty (owner, 2026-11-25):** all 13 write-off cars on /cars had only minor damage, so the history box
-  is true for each. Any NEW write-off car added later needs the same check before it goes up (the box text is shared).
+  is true for each. Rule (owner 2026-11-25): a car is a PPSR / write-off car ONLY if Jitty's own listing says so; if he never mentioned it, treat it as non-PPSR (no write-off line, no history question). Jitty's PPSR cars are minor-damage repairs, which is what the shared box says.
 - Bottom panel "Can't see the one you want?" links to a plain `find-my-car` (no UTM tags: tagged internal links restart the visit and lose the real source) and WhatsApp.
 - Self-contained: inline CSS with the locked tokens, own GA4 tag; does NOT load main.js (so the booking/date modal never
   intercepts Enquire). Events: `whatsapp_click` (link_url, car, placement=cars_page, or car_page on a
