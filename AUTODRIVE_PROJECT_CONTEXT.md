@@ -535,8 +535,8 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
     (owner 2026-11-25; checked: two-word name, 8 to 12 digit phone, email shape; all three go in the email). **Submit EMAILS the booking (owner 2026-11-25, no WhatsApp hop)**: the moment the
     details pass, the page POSTs to the alert script (v5, kind `test_drive`, see §7f) which emails autodrive5109@gmail.com
     AND stalinsajie@gmail.com, subject "TEST DRIVE: <name> | <car, price> | <day, time>", every answer, call + wa.me
-    links, Reply goes to the customer. End screen: "Done, <first>. Your test drive request is in." + "We'll be in touch
-    shortly." + summary, no button (owner 2026-11-25; the X closes it). Never promises a slot. (no-cors POST: delivery is not confirmed to the page.)
+    links, Reply goes to the customer. End screen: "Thank you for your interest, <first>." + "We'll be in touch shortly, so keep
+    a lookout." + summary, no button (owner 2026-11-25; the X closes it). Never promises a slot. (no-cors POST: delivery is not confirmed to the page.)
   - The grid pop-up and the full listing keep a red **Apply for a test drive** (`#sTd`, opens the questions
     directly) beside the white **Enquire** (`#sEnq`). Direct link to the questions: `/cars/<slug>#apply` (old
     `#test-drive` still works).
@@ -569,7 +569,7 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   Nissan, Subaru, Mitsubishi, Suzuki, Another make → "Which make is it?"); model and year (text); km band (4 bands);
   drop-off day (calendar, today until 11am, up to 14 days, no Sundays); Morning / Midday / Afternoon; full name +
   phone + email on one screen. Submit EMAILS the booking (alert script v5, kind `service`) to autodrive5109@gmail.com + stalinsajie@gmail.com,
-  subject "SERVICE BOOKING: <name> | <tier, car> | <day, time>". End: "Done, <first>. Your booking is in." + "We'll be in touch shortly." + summary, no button. `/book-service#book` opens the questions directly.
+  subject "SERVICE BOOKING: <name> | <tier, car> | <day, time>". End: "Done, <first>. Your booking is in." + "We'll be in touch shortly, so keep a lookout." + summary, no button. `/book-service#book` opens the questions directly.
 - GA4: `service_book_open`, `service_book_step` (step, question), `generate_lead` (lead_type service, service_tier,
   make, km_band, placement book_service), fired on submit. Typed text never goes to GA.
 - **Parked (owner 2026-11-25, "do it later"): send bookings straight to AutoDrive's WhatsApp on Enter** (no WhatsApp hop

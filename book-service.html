@@ -286,7 +286,7 @@
       send();
       $("tfBar").style.width = "100%";
       h = '<h2 class="tf__h" id="tfH">Done, ' + esc(A.name.split(" ")[0]) + '. Your booking is in.</h2>' +
-        '<p class="tf__help">We\'ll be in touch shortly.</p>' +
+        '<p class="tf__help">We\'ll be in touch shortly, so keep a lookout.</p>' +
         '<ul class="tf__sum">' + rows().map(function(r){ return "<li><b>" + r[0] + ":</b> " + esc(r[1]) + "</li>"; }).join("") + "</ul>";
     } else {
       h = '<h2 class="tf__h" id="tfH"><span class="tf__n">' + (I + 1) + ARROW + "</span>" + esc(s.q) + "</h2>";
