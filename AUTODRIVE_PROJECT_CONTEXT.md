@@ -521,12 +521,13 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   - **Questions** (`#tf`, full-screen dark overlay): one per screen, slide-up transition, thin red progress line,
     numbered "1 →", lettered answers (A, B, C; letter keys work), a single choice moves on by itself, text answers
     have OK / press Enter, up and down arrows bottom right, close X, phone back button closes it. No helper or
-    explainer lines under the questions (owner 2026-11-25: "get rid of things like this"). Order: pay (Cash /
-    Finance / Not sure yet); trade-in (No / Yes, then "What is your trade-in?" text only if Yes); when buying;
+    explainer lines under the questions (owner 2026-11-25: "get rid of things like this"). **Every answer is a
+    commitment** (owner 2026-11-25): no "Not sure yet", "Just looking" or "talk to Jitty first" style options. Order:
+    pay (Cash / Finance); trade-in (No / Yes, then "What is your trade-in?" text only if Yes); when buying (This week / In the next 2 weeks / Within a month);
     **write-off cars only** (whenever `#sPpsr` shows) "About this car's history": Jitty's exact line in bold plus
     "We'll give you a call to explain the process and discuss options if you are worried." (owner wording
-    2026-11-25, replaced the "repaired by a mechanic with over 14 years" sentence), answered "I'm comfortable with
-    that" or "I'd like to discuss first" (both go through); day (next six open days, no Sundays); Morning /
+    2026-11-25, replaced the "repaired by a mechanic with over 14 years" sentence), one answer only, "I'm
+    comfortable with that"; day (next six open days, no Sundays); Morning /
     Midday / Afternoon; first name. End screen: "Thanks, <name>. One last step.", a summary, and a green **Send to
     Jitty on WhatsApp** link with the message written out (no link or code in it, §7c rule). Never promises a slot.
   - The grid pop-up and the full listing keep a red **Apply for a test drive** (`#sTd`, opens the questions
@@ -536,8 +537,8 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
     key, item_id; the in-form funnel), `generate_lead` (lead_type test_drive, item_id, item_name, payment, trade_in,
     timeframe, history comfortable|explain|none, placement) and the usual `whatsapp_click`; typed text (name,
     trade-in car) never goes to GA. No call options, as everywhere on /cars.
-  **Check with Jitty before main:** the questions themselves, and that he is happy to ring people who pick "I'd like
-  to discuss first" (the history box promises a call). **Waiting on:** owner's
+  **Check with Jitty before main:** the questions themselves, and that he will ring anyone worried about a write-off
+  history (the history box promises a call). **Waiting on:** owner's
   go-ahead for main.
 - Bottom panel "Can't see the one you want?" links to a plain `find-my-car` (no UTM tags: tagged internal links restart the visit and lose the real source) and WhatsApp.
 - Self-contained: inline CSS with the locked tokens, own GA4 tag; does NOT load main.js (so the booking/date modal never

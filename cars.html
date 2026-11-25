@@ -1015,13 +1015,14 @@
   }
   function tfBuild(hist){
     var s = [
-      { k: "pay", q: "How will you pay for the car?", ch: ["Cash", "Finance", "Not sure yet"] },
+      { k: "pay", q: "How will you pay for the car?", ch: ["Cash", "Finance"] },
       { k: "trade", q: "Do you have a car to trade in?", ch: ["No", "Yes"] },
       { k: "tradeCar", q: "What is your trade-in?", text: true, ph: "e.g. 2012 Toyota Camry", max: 80, when: function(){ return tfA.trade === "Yes"; } },
-      { k: "when", q: "When are you looking to buy?", ch: ["This week", "In the next 2 weeks", "Within a month", "Just looking for now"] }
+      { k: "when", q: "When are you looking to buy?", ch: ["This week", "In the next 2 weeks", "Within a month"] }
     ];
     // Repairable write-off cars only. Asked as a normal question part-way through, never as a warning (owner, 24 Nov 2026).
-    if (hist) s.push({ k: "hist", q: "About this car's history", box: true, ch: ["I'm comfortable with that", "I'd like to discuss first"] });
+    // Every answer moves them towards a decision: no "not sure", "just looking" or "talk to Jitty first" options (owner, 25 Nov 2026).
+    if (hist) s.push({ k: "hist", q: "About this car's history", box: true, ch: ["I'm comfortable with that"] });
     s.push({ k: "day", q: "Which day suits you to come in?", ch: tfDays() });
     s.push({ k: "slot", q: "What time of day suits you?", ch: ["Morning", "Midday", "Afternoon"] });
     s.push({ k: "name", q: "Last one. What is your first name?", text: true, ph: "Type your name here", max: 60, ac: "given-name" });
