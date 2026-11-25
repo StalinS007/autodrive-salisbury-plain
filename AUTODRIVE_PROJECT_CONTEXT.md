@@ -531,15 +531,16 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
     2026-11-25, replaced the "repaired by a mechanic with over 14 years" sentence), answered "I'm comfortable
     with that" or "Happy to have a chat" (owner 2026-11-25); day as a small calendar (owner 2026-11-25: Monday of this week to three weeks out, tomorrow to +21 days
     pickable, Sundays and past days greyed, "Today" marked); Morning /
-    Midday / Afternoon; first name. End screen: "Thanks, <name>. One last step.", a summary, and a green **Send to
+    Midday / Afternoon; then one "Last one. Your details" screen with Full name, Phone number, Email in that order
+    (owner 2026-11-25; checked: two-word name, 8 to 12 digit phone, email shape; all three go in the WhatsApp message). End screen: "Thanks, <name>. One last step.", a summary, and a green **Send to
     Jitty on WhatsApp** link with the message written out (no link or code in it, §7c rule). Never promises a slot.
   - The grid pop-up and the full listing keep a red **Apply for a test drive** (`#sTd`, opens the questions
     directly) beside the white **Enquire** (`#sEnq`). Direct link to the questions: `/cars/<slug>#apply` (old
     `#test-drive` still works).
   - GA4: `test_drive_open` (item_id, from welcome|listing|enter|link, placement), `test_drive_step` (step, question
     key, item_id; the in-form funnel), `generate_lead` (lead_type test_drive, item_id, item_name, payment, trade_in,
-    timeframe, history comfortable|chat|none, placement) and the usual `whatsapp_click`; typed text (name,
-    trade-in car) never goes to GA. No call options, as everywhere on /cars.
+    timeframe, history comfortable|chat|none, placement) and the usual `whatsapp_click`; typed text (name, phone,
+    email, trade-in car) never goes to GA. No call options, as everywhere on /cars.
   **Check with Jitty before main:** the questions themselves; that EVERY listed write-off car (13 of them) really had only minor damage, since
   the box says so; and that he will ring anyone worried about a write-off
   history (the history box promises a call). **Waiting on:** owner's

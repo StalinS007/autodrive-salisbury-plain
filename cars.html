@@ -371,6 +371,9 @@
   .tf__in{display:block; width:100%; background:transparent; border:0; border-bottom:2px solid rgba(255,255,255,.3); border-radius:0; color:#fff; font:inherit; font-size:clamp(21px,2.6vw,28px); padding:6px 0 8px; outline:0;}
   .tf__in:focus{border-bottom-color:#fff;}
   .tf__in::placeholder{color:#5f5f66;}
+  .tf__fs{width:100%; max-width:520px; display:grid; gap:18px; margin-bottom:6px;}
+  .tf__fs label{display:block; margin:0 0 2px; font-size:14px; font-weight:700; color:#a1a1aa;}
+  .tf__fs .tf__in{font-size:clamp(19px,2.2vw,24px);}
   .tf__act{display:flex; align-items:center; flex-wrap:wrap; gap:8px 14px; margin-top:24px;}
   .tf__err{display:inline-block; margin:16px 0 0; background:#3a1214; color:#fca5a5; font-size:14.5px; font-weight:600; padding:6px 10px; border-radius:4px;}
   .tf__sum{list-style:none; padding:0; margin:0 0 6px; display:grid; gap:6px; font-size:15.5px; color:#d4d4d8;}
@@ -1048,6 +1051,21 @@
     }
     return h + "</div></div>";
   }
+  var TF_FIELDS = [
+    { k: "name", id: "tfIn", l: "Full name", t: "text", im: "text", ac: "name", ph: "First and last name", max: 70 },
+    { k: "phone", id: "tfPhone", l: "Phone number", t: "tel", im: "tel", ac: "tel", ph: "04XX XXX XXX", max: 20 },
+    { k: "email", id: "tfEmail", l: "Email", t: "email", im: "email", ac: "email", ph: "name@example.com", max: 90 }
+  ];
+  function tfContact(){   // reads, checks and stores the three fields; returns an error or ""
+    var v = {};
+    TF_FIELDS.forEach(function(f){ v[f.k] = $(f.id).value.replace(/\s+/g, " ").trim().slice(0, f.max); });
+    var digits = v.phone.replace(/[^\d]/g, "");
+    if (v.name.split(" ").filter(Boolean).length < 2) return [ "tfIn", "Please add your first and last name." ];
+    if (digits.length < 8 || digits.length > 12) return [ "tfPhone", "Please add a phone number we can reach you on." ];
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.email)) return [ "tfEmail", "Please check your email address." ];
+    tfA.name = v.name; tfA.phone = v.phone; tfA.email = v.email; tfA.contact = "1";
+    return "";
+  }
   function tfBuild(hist){
     var s = [
       { k: "pay", q: "How will you pay for the car?", ch: ["Cash", "Finance"] },
@@ -1060,7 +1078,8 @@
     if (hist) s.push({ k: "hist", q: "About this car's history", box: true, ch: ["I'm comfortable with that", "Happy to have a chat"] });
     s.push({ k: "day", q: "Which day suits you to come in?", cal: true });
     s.push({ k: "slot", q: "What time of day suits you?", ch: ["Morning", "Midday", "Afternoon"] });
-    s.push({ k: "name", q: "Last one. What is your first name?", text: true, ph: "Type your name here", max: 60, ac: "given-name" });
+    // Contact details on one screen, in this order (owner 25 Nov 2026): full name, phone, email
+    s.push({ k: "contact", q: "Last one. Your details", contact: true });
     s.push({ k: "end", end: true });
     return s;
   }
@@ -1070,6 +1089,8 @@
     var lines = ["Hi Jitty, I'd like to book a test drive.", "",
       "Car: " + c.title + (c.trans ? " " + c.trans : "") + (c.price ? ", " + c.priceText : ""),
       "Name: " + a.name,
+      "Phone: " + a.phone,
+      "Email: " + a.email,
       "Paying: " + a.pay,
       "Trade-in: " + (a.trade === "Yes" ? "Yes" + (a.tradeCar ? ", " + a.tradeCar : "") : "No"),
       "Looking to buy: " + a.when];
@@ -1086,7 +1107,8 @@
       var sum = [["Car", tfCar.title], ["Paying", a.pay], ["Trade-in", a.trade === "Yes" ? (a.tradeCar || "Yes") : "No"], ["Buying", a.when]];
       if (a.hist) sum.push(["History", a.hist.indexOf("comfortable") >= 0 ? "Comfortable with it" : "Happy to have a chat"]);
       sum.push(["Time", a.day + ", " + a.slot.toLowerCase()]);
-      h = '<h2 class="tf__h" id="tfH">Thanks, ' + esc(a.name) + '. One last step.</h2>' +
+      sum.push(["Name", a.name], ["Phone", a.phone], ["Email", a.email]);
+      h = '<h2 class="tf__h" id="tfH">Thanks, ' + esc(a.name.split(" ")[0]) + '. One last step.</h2>' +
         '<p class="tf__help">Press send in WhatsApp so Jitty gets it.</p>' +
         '<ul class="tf__sum">' + sum.map(function(r){ return "<li><b>" + r[0] + ":</b> " + esc(r[1]) + "</li>"; }).join("") + "</ul>" +
         '<div class="tf__act"><a class="tf-btn tf__wa" id="tfSend" href="' + esc(tfMsg()) + '" target="_blank" rel="noopener" data-car="' + esc(tfCar.id) + '">' + WA_ICON + "Send to Jitty on WhatsApp</a></div>" +
@@ -1102,6 +1124,10 @@
           return '<button type="button" class="tf__c' + (on ? " is-on" : "") + '" role="radio" aria-checked="' + on + '" data-v="' + esc(t) + '"><kbd>' + "ABCDEFGH".charAt(j) + "</kbd><span>" + esc(t) + "</span>" + TFTICK + "</button>";
         }).join("") + "</div>";
         if (a[s.k]) h += ok;
+      } else if (s.contact){
+        h += '<div class="tf__fs">' + TF_FIELDS.map(function(f, j){
+          return '<div><label for="' + f.id + '">' + f.l + '</label><input class="tf__in" id="' + f.id + '" type="' + f.t + '" inputmode="' + f.im + '" maxlength="' + f.max + '" autocomplete="' + f.ac + '" placeholder="' + f.ph + '" value="' + esc(a[f.k] || "") + '" enterkeyhint="' + (j < 2 ? "next" : "done") + '"></div>';
+        }).join("") + "</div>" + ok;
       } else if (s.cal){
         h += tfCal(a[s.k]);
         if (a[s.k]) h += ok;
@@ -1124,7 +1150,10 @@
   function tfNext(){
     var s = tfVis()[tfI];
     if (!s || s.end || tfBusy) return;
-    if (s.text){
+    if (s.contact){
+      var bad = tfContact();
+      if (bad){ tfErr(bad[1]); $(bad[0]).focus(); return; }
+    } else if (s.text){
       var val = $("tfIn").value.replace(/\s+/g, " ").trim().slice(0, s.max);
       if (!val){ tfErr(s.k === "name" ? "Please add your first name." : "Please fill this in."); return; }
       tfA[s.k] = val;
@@ -1192,6 +1221,10 @@
     if (!s || s.end) return;
     if (e.key === "Enter"){
       if (tag === "button" || tag === "a") return;   // Enter on a focused button clicks it
+      if (s.contact && tag === "input"){   // Enter moves down the three fields, then submits
+        var ids = TF_FIELDS.map(function(f){ return f.id; }), j = ids.indexOf(e.target.id);
+        if (j >= 0 && j < ids.length - 1 && !$(ids[j + 1]).value){ e.preventDefault(); $(ids[j + 1]).focus(); return; }
+      }
       e.preventDefault(); tfNext(); return;
     }
     if (s.ch && tag !== "input" && !e.metaKey && !e.ctrlKey && !e.altKey && e.key.length === 1){
