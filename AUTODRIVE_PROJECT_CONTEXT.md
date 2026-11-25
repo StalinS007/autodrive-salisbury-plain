@@ -520,7 +520,8 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
     four photos in a 2x2 grid, "+N photos" on the fourth, each opens the full-screen viewer.
   - **Questions** (`#tf`, full-screen dark overlay): one per screen, slide-up transition, thin red progress line,
     numbered "1 →", lettered answers (A, B, C; letter keys work), a single choice moves on by itself, text answers
-    have OK / press Enter, up and down arrows bottom right, close X, phone back button closes it. Order: pay (Cash /
+    have OK / press Enter, up and down arrows bottom right, close X, phone back button closes it. No helper or
+    explainer lines under the questions (owner 2026-11-25: "get rid of things like this"). Order: pay (Cash /
     Finance / Not sure yet); trade-in (No / Yes, then "What is your trade-in?" text only if Yes); when buying;
     **write-off cars only** (whenever `#sPpsr` shows) "About this car's history": Jitty's exact line in bold plus
     "It was repaired by a mechanic with over 14 years of experience and has passed the required government

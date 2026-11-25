@@ -1015,14 +1015,14 @@
   }
   function tfBuild(hist){
     var s = [
-      { k: "pay", q: "How will you pay for the car?", help: "Pick the closest one. It helps Jitty have everything ready.", ch: ["Cash", "Finance", "Not sure yet"] },
+      { k: "pay", q: "How will you pay for the car?", ch: ["Cash", "Finance", "Not sure yet"] },
       { k: "trade", q: "Do you have a car to trade in?", ch: ["No", "Yes"] },
-      { k: "tradeCar", q: "What is your trade-in?", help: "Year, make and model is enough.", text: true, ph: "e.g. 2012 Toyota Camry", max: 80, when: function(){ return tfA.trade === "Yes"; } },
+      { k: "tradeCar", q: "What is your trade-in?", text: true, ph: "e.g. 2012 Toyota Camry", max: 80, when: function(){ return tfA.trade === "Yes"; } },
       { k: "when", q: "When are you looking to buy?", ch: ["This week", "In the next 2 weeks", "Within a month", "Just looking for now"] }
     ];
     // Repairable write-off cars only. Asked as a normal question part-way through, never as a warning (owner, 24 Nov 2026).
     if (hist) s.push({ k: "hist", q: "About this car's history", box: true, ch: ["I'm comfortable with that", "I'd like Jitty to explain it"] });
-    s.push({ k: "day", q: "Which day suits you to come in?", help: "Test drives are by appointment at our workshop in Salisbury Plain.", ch: tfDays() });
+    s.push({ k: "day", q: "Which day suits you to come in?", ch: tfDays() });
     s.push({ k: "slot", q: "What time of day suits you?", ch: ["Morning", "Midday", "Afternoon"] });
     s.push({ k: "name", q: "Last one. What is your first name?", text: true, ph: "Type your name here", max: 60, ac: "given-name" });
     s.push({ k: "end", end: true });
@@ -1051,7 +1051,7 @@
       if (a.hist) sum.push(["History", a.hist.indexOf("comfortable") >= 0 ? "Comfortable with it" : "Jitty to explain"]);
       sum.push(["Time", a.day + ", " + a.slot.toLowerCase()]);
       h = '<h2 class="tf__h" id="tfH">Thanks, ' + esc(a.name) + '. One last step.</h2>' +
-        '<p class="tf__help">Tap the button below. WhatsApp opens with your answers already written. Press send there so Jitty gets it, and he will confirm your time.</p>' +
+        '<p class="tf__help">Press send in WhatsApp so Jitty gets it.</p>' +
         '<ul class="tf__sum">' + sum.map(function(r){ return "<li><b>" + r[0] + ":</b> " + esc(r[1]) + "</li>"; }).join("") + "</ul>" +
         '<div class="tf__act"><a class="tf-btn tf__wa" id="tfSend" href="' + esc(tfMsg()) + '" target="_blank" rel="noopener" data-car="' + esc(tfCar.id) + '">' + WA_ICON + "Send to Jitty on WhatsApp</a></div>" +
         '<p class="tf__after" id="tfAfter" hidden>WhatsApp should have opened with your message. Press send there. <button type="button" class="tf__link" id="tfBack">Back to the car</button></p>';
