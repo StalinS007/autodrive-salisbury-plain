@@ -353,6 +353,19 @@
   .tf__c.is-on{border-color:var(--red); background:rgba(192,20,24,.24);}
   .tf__c.is-on kbd{background:var(--red); border-color:var(--red);}
   .tf__c.is-on .tf__tick{opacity:1;}
+  .tf__cal{width:100%; max-width:460px;}
+  .tf__cal-m{margin:0 0 10px; font-size:13px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#a1a1aa;}
+  .tf__cal-g{display:grid; grid-template-columns:repeat(7, 1fr); gap:6px;}
+  .tf__cal-g > span{text-align:center; font-size:12px; font-weight:700; color:#a1a1aa; padding-bottom:2px;}
+  .tf__d{display:flex; flex-direction:column; align-items:center; justify-content:center; aspect-ratio:1/1; padding:0; background:rgba(255,255,255,.06); color:#fff; border:1px solid rgba(255,255,255,.24); border-radius:6px; font:inherit; font-size:17px; font-weight:600; line-height:1.1; cursor:pointer; transition:background .15s, border-color .15s;}
+  .tf__d small{font-size:9.5px; font-weight:700; letter-spacing:.04em; text-transform:uppercase; color:#a1a1aa;}
+  .tf__d:hover:not(:disabled){background:rgba(255,255,255,.14);}
+  .tf__d:focus-visible{outline:2px solid #fff; outline-offset:2px;}
+  .tf__d:disabled{background:none; border-color:transparent; color:#4b4b52; cursor:default;}
+  .tf__d:disabled small{color:#4b4b52;}
+  .tf__d.is-on{background:var(--red); border-color:var(--red);}
+  .tf__d.is-on small{color:#fff;}
+  .tf__d.is-blink{animation:tfBlink .32s steps(2) 1;}
   .tf__c.is-blink{animation:tfBlink .32s steps(2) 1;}
   @keyframes tfBlink{50%{background:rgba(255,255,255,.02); border-color:rgba(255,255,255,.24);}}
   .tf__in{display:block; width:100%; background:transparent; border:0; border-bottom:2px solid rgba(255,255,255,.3); border-radius:0; color:#fff; font:inherit; font-size:clamp(21px,2.6vw,28px); padding:6px 0 8px; outline:0;}
@@ -1013,12 +1026,27 @@
       (n && n < 70000 ? ", with only " + c.km : "") + ".";
   }
   var tfOn = false, tfLock = false, tfPushed = false, tfBusy = false, tfCar = null, tfI = 0, tfA = {}, tfSteps = [], tfSeen = {};
-  function tfDays(){
-    // The next six open days (closed Sundays), starting tomorrow
-    var out = [], d = new Date(), dn = ["Mon","Tue","Wed","Thu","Fri","Sat"], mn = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-    dn.unshift("Sun");
-    while (out.length < 6){ d.setDate(d.getDate() + 1); if (d.getDay() !== 0) out.push(dn[d.getDay()] + " " + d.getDate() + " " + mn[d.getMonth()]); }
-    return out;
+  // Calendar for the day question (owner 25 Nov 2026): this week to three weeks out, from tomorrow, closed Sundays
+  var DN = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"], MN = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
+      MFULL = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+  function tfCal(sel){
+    var t = new Date(); t.setHours(0, 0, 0, 0);
+    var first = new Date(t), last = new Date(t);
+    first.setDate(t.getDate() - ((t.getDay() + 6) % 7));    // Monday of this week
+    last.setDate(t.getDate() + 21);
+    last.setDate(last.getDate() + (7 - last.getDay()) % 7);  // through that week's Sunday
+    var m1 = first.getMonth(), m2 = last.getMonth();
+    var head = MFULL[m1] + (m1 !== m2 ? " / " + MFULL[m2] : "") + " " + last.getFullYear();
+    var h = '<div class="tf__cal"><p class="tf__cal-m">' + head + '</p><div class="tf__cal-g" role="radiogroup" aria-labelledby="tfH">' +
+      ["Mon","Tue","Wed","Thu","Fri","Sat","Sun"].map(function(d){ return "<span>" + d + "</span>"; }).join("");
+    for (var d = new Date(first); d <= last; d.setDate(d.getDate() + 1)){
+      var diff = Math.round((d - t) / 864e5), open = diff >= 1 && diff <= 21 && d.getDay() !== 0;
+      var v = DN[d.getDay()] + " " + d.getDate() + " " + MN[d.getMonth()], on = open && sel === v;
+      var lab = diff === 0 ? "Today" : (d.getDate() === 1 ? MN[d.getMonth()] : "");
+      h += '<button type="button" class="tf__d' + (on ? " is-on" : "") + '"' + (open ? ' data-v="' + v + '" role="radio" aria-checked="' + on + '" aria-label="' + v + '"' : " disabled") + ">" +
+        d.getDate() + (lab ? "<small>" + lab + "</small>" : "") + "</button>";
+    }
+    return h + "</div></div>";
   }
   function tfBuild(hist){
     var s = [
@@ -1030,7 +1058,7 @@
     // Repairable write-off cars only. Asked as a normal question part-way through, never as a warning (owner, 24 Nov 2026).
     // Every answer moves them towards a decision: no "not sure", "just looking" or "talk to Jitty first" options (owner, 25 Nov 2026).
     if (hist) s.push({ k: "hist", q: "About this car's history", box: true, ch: ["I'm comfortable with that", "Happy to have a chat"] });
-    s.push({ k: "day", q: "Which day suits you to come in?", ch: tfDays() });
+    s.push({ k: "day", q: "Which day suits you to come in?", cal: true });
     s.push({ k: "slot", q: "What time of day suits you?", ch: ["Morning", "Midday", "Afternoon"] });
     s.push({ k: "name", q: "Last one. What is your first name?", text: true, ph: "Type your name here", max: 60, ac: "given-name" });
     s.push({ k: "end", end: true });
@@ -1074,6 +1102,9 @@
           return '<button type="button" class="tf__c' + (on ? " is-on" : "") + '" role="radio" aria-checked="' + on + '" data-v="' + esc(t) + '"><kbd>' + "ABCDEFGH".charAt(j) + "</kbd><span>" + esc(t) + "</span>" + TFTICK + "</button>";
         }).join("") + "</div>";
         if (a[s.k]) h += ok;
+      } else if (s.cal){
+        h += tfCal(a[s.k]);
+        if (a[s.k]) h += ok;
       } else {
         h += '<input class="tf__in" id="tfIn" type="text" maxlength="' + s.max + '" autocomplete="' + (s.ac || "off") + '" placeholder="' + esc(s.ph) + '" value="' + esc(a[s.k] || "") + '" aria-labelledby="tfH" enterkeyhint="next">' + ok;
       }
@@ -1104,7 +1135,7 @@
     if (tfBusy) return;
     var s = tfVis()[tfI];
     tfA[s.k] = b.getAttribute("data-v");
-    [].forEach.call(b.parentNode.children, function(x){ x.classList.toggle("is-on", x === b); x.setAttribute("aria-checked", String(x === b)); });
+    [].forEach.call(b.parentNode.querySelectorAll("[data-v]"), function(x){ x.classList.toggle("is-on", x === b); x.setAttribute("aria-checked", String(x === b)); });
     b.classList.add("is-blink");
     tfBusy = true;
     setTimeout(function(){ tfBusy = false; tfNext(); }, 420);
@@ -1141,8 +1172,8 @@
   $("tfUp").addEventListener("click", function(){ if (tfI > 0 && !tfBusy) tfShow(tfI - 1, true); });
   $("tfDown").addEventListener("click", tfNext);
   $("tfStage").addEventListener("click", function(e){
-    var b = e.target.closest(".tf__c");
-    if (b){ tfPick(b); return; }
+    var b = e.target.closest(".tf__c, .tf__d");
+    if (b && !b.disabled){ tfPick(b); return; }
     if (e.target.closest("[data-ok]")){ tfNext(); return; }
     if (e.target.closest("#tfBack")){ closeTf(); return; }
     if (e.target.closest("#tfSend")){

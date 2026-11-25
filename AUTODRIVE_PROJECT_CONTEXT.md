@@ -529,7 +529,8 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
     from minor damage and is as good as new[, with only N km]." (km part only under 70,000 km), then
     "We'll give you a call to explain the process and discuss options if you are worried." (owner wording
     2026-11-25, replaced the "repaired by a mechanic with over 14 years" sentence), answered "I'm comfortable
-    with that" or "Happy to have a chat" (owner 2026-11-25); day (next six open days, no Sundays); Morning /
+    with that" or "Happy to have a chat" (owner 2026-11-25); day as a small calendar (owner 2026-11-25: Monday of this week to three weeks out, tomorrow to +21 days
+    pickable, Sundays and past days greyed, "Today" marked); Morning /
     Midday / Afternoon; first name. End screen: "Thanks, <name>. One last step.", a summary, and a green **Send to
     Jitty on WhatsApp** link with the message written out (no link or code in it, §7c rule). Never promises a slot.
   - The grid pop-up and the full listing keep a red **Apply for a test drive** (`#sTd`, opens the questions
