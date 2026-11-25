@@ -570,6 +570,12 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
 - GA4: `service_book_open`, `service_book_step` (step, question), `generate_lead` (lead_type service, service_tier,
   make, km_band, placement book_service) + `whatsapp_click`. Typed text never goes to GA.
 - **Waiting on:** owner's look at the preview and go-ahead for main.
+- **Parked (owner 2026-11-25, "do it later"): send bookings straight to AutoDrive's WhatsApp on Enter** (no WhatsApp hop
+  for the customer) via the WhatsApp Cloud API from a Cloudflare function. Blocked: Stalin has only PARTIAL access to
+  the AutoDrive Meta business portfolio (id 344224402104841, no WhatsApp accounts yet); the owner of the portfolio must
+  give him Full control (Settings > People). Then choose the sender: a second number just for bookings (recommended)
+  or 0432 520 230 shared via a partner. Owner does terms, the SMS code, the card and pasting the token into Cloudflare.
+  Same change would apply to the /cars test drive form. Keep the wa.me button as the fallback.
 
 ## 7f. Car-finding programme application — `find-my-car.html` (added 2026-10-16, LIVE on main 2026-10-16; free-text 'who you are' question LIVE 2026-11-02)
 
