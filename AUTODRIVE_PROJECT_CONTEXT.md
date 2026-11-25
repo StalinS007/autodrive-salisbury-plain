@@ -524,8 +524,8 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
     explainer lines under the questions (owner 2026-11-25: "get rid of things like this"). Order: pay (Cash /
     Finance / Not sure yet); trade-in (No / Yes, then "What is your trade-in?" text only if Yes); when buying;
     **write-off cars only** (whenever `#sPpsr` shows) "About this car's history": Jitty's exact line in bold plus
-    "It was repaired by a mechanic with over 14 years of experience and has passed the required government
-    inspection. That history is why it is priced lower than a car without one.", answered "I'm comfortable with
+    "We'll give you a call to explain the process and discuss options if you are worried." (owner wording
+    2026-11-25, replaced the "repaired by a mechanic with over 14 years" sentence), answered "I'm comfortable with
     that" or "I'd like Jitty to explain it" (both go through); day (next six open days, no Sundays); Morning /
     Midday / Afternoon; first name. End screen: "Thanks, <name>. One last step.", a summary, and a green **Send to
     Jitty on WhatsApp** link with the message written out (no link or code in it, §7c rule). Never promises a slot.
@@ -536,8 +536,8 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
     key, item_id; the in-form funnel), `generate_lead` (lead_type test_drive, item_id, item_name, payment, trade_in,
     timeframe, history comfortable|explain|none, placement) and the usual `whatsapp_click`; typed text (name,
     trade-in car) never goes to GA. No call options, as everywhere on /cars.
-  **Check with Jitty before main:** the "repaired by a mechanic with over 14 years" sentence says who repaired the
-  car, so it must be true for every listed write-off car; and the questions themselves. **Waiting on:** owner's
+  **Check with Jitty before main:** the questions themselves, and that he is happy to ring people who pick "I'd like
+  Jitty to explain it" (the history box promises a call). **Waiting on:** owner's
   go-ahead for main.
 - Bottom panel "Can't see the one you want?" links to a plain `find-my-car` (no UTM tags: tagged internal links restart the visit and lose the real source) and WhatsApp.
 - Self-contained: inline CSS with the locked tokens, own GA4 tag; does NOT load main.js (so the booking/date modal never
