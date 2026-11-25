@@ -501,7 +501,7 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   description (so "rio" does not match "interior"); nicknames vw/merc/benz/subie/auto are expanded. Shows "N cars for
   ..." and a "No cars match ..." state with Show all cars. GA4 `search` event (search_term, results, placement),
   one per settled term. Hidden on a car's own page.
-- **Apply for a test drive (PREVIEW ONLY since 2026-11-24, not on main). Typeform format since 2026-11-25.** Owner's
+- **Apply for a test drive (LIVE on main 2026-11-25, owner approved; Typeform format).** Owner's
   brief: the buyers to win are people after a good car at good value who will consider some kilometres and a PPSR
   history. **Do not lead with PPSR** (ads never mention it; the welcome screen shows photos, price, outline and the
   button), but it is never hidden: the write-off line stays on the page under "Please read before enquiring" and is
@@ -541,10 +541,8 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
     key, item_id; the in-form funnel), `generate_lead` (lead_type test_drive, item_id, item_name, payment, trade_in,
     timeframe, history comfortable|chat|none, placement) and the usual `whatsapp_click`; typed text (name, phone,
     email, trade-in car) never goes to GA. No call options, as everywhere on /cars.
-  **Check with Jitty before main:** the questions themselves; that EVERY listed write-off car (13 of them) really had only minor damage, since
-  the box says so; and that he will ring anyone worried about a write-off
-  history (the history box promises a call). **Waiting on:** owner's
-  go-ahead for main.
+  **Confirmed by Jitty (owner, 2026-11-25):** all 13 write-off cars on /cars had only minor damage, so the history box
+  is true for each. Any NEW write-off car added later needs the same check before it goes up (the box text is shared).
 - Bottom panel "Can't see the one you want?" links to a plain `find-my-car` (no UTM tags: tagged internal links restart the visit and lose the real source) and WhatsApp.
 - Self-contained: inline CSS with the locked tokens, own GA4 tag; does NOT load main.js (so the booking/date modal never
   intercepts Enquire). Events: `whatsapp_click` (link_url, car, placement=cars_page, or car_page on a
