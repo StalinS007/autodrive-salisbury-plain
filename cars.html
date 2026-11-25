@@ -1118,10 +1118,9 @@
     if (s.end){
       tfSend();
       $("tfBar").style.width = "100%";
-      h = '<h2 class="tf__h" id="tfH">Done, ' + esc(a.name.split(" ")[0]) + '. Your test drive request is in.</h2>' +
-        '<p class="tf__help">We\'ll confirm your time shortly.</p>' +
-        '<ul class="tf__sum">' + tfRows().map(function(r){ return "<li><b>" + r[0] + ":</b> " + esc(r[1]) + "</li>"; }).join("") + "</ul>" +
-        '<div class="tf__act"><button type="button" class="tf-btn" id="tfBack">Back to the car</button></div>';
+      h = '<h2 class="tf__h" id="tfH">Thank you for your interest, ' + esc(a.name.split(" ")[0]) + '.</h2>' +
+        '<p class="tf__help">We\'ll be in touch shortly, so keep a lookout.</p>' +
+        '<ul class="tf__sum">' + tfRows().map(function(r){ return "<li><b>" + r[0] + ":</b> " + esc(r[1]) + "</li>"; }).join("") + "</ul>";
     } else {
       h = '<h2 class="tf__h" id="tfH"><span class="tf__n">' + (tfI + 1) + ARROW + "</span>" + esc(s.q) + "</h2>";
       if (s.help) h += '<p class="tf__help">' + esc(s.help) + "</p>";
