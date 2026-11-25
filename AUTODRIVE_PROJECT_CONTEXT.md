@@ -555,7 +555,7 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   showed as `cars_page / (not set)`).
 - Not in the main nav and not linked from other pages; it's the link for Jitty's Instagram. Indexable, canonical `/cars`.
 
-## 7h. Book a service landing page — `book-service.html` (`/book-service`, PREVIEW ONLY since 2026-11-25)
+## 7h. Book a service landing page — `book-service.html` (`/book-service`, LIVE on main 2026-11-25, owner approved)
 - For the Google Ads service campaign (owner 2026-11-25: target **Japanese cars**, "less of a headache"; three tiers;
   same-day to next-day turnaround; a few questions, then straight to WhatsApp). noindex, not in the nav.
 - Same Typeform format as the /cars test drive form, self-contained (own CSS/JS + GA tag, no ?v= bump). Welcome
@@ -572,7 +572,6 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   subject "SERVICE BOOKING: <name> | <tier, car> | <day, time>". End: "Done, <first>. Your booking is in." + summary. `/book-service#book` opens the questions directly.
 - GA4: `service_book_open`, `service_book_step` (step, question), `generate_lead` (lead_type service, service_tier,
   make, km_band, placement book_service), fired on submit. Typed text never goes to GA.
-- **Waiting on:** owner's look at the preview and go-ahead for main.
 - **Parked (owner 2026-11-25, "do it later"): send bookings straight to AutoDrive's WhatsApp on Enter** (no WhatsApp hop
   for the customer) via the WhatsApp Cloud API from a Cloudflare function. Blocked: Stalin has only PARTIAL access to
   the AutoDrive Meta business portfolio (id 344224402104841, no WhatsApp accounts yet); the owner of the portfolio must
