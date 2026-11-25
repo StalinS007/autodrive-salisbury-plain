@@ -515,7 +515,7 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
     card (owner asked 2026-11-25: round `images/jitty-headshot.jpg`, "Jitty · 14+ years experience", "Licensed dealer,
     MVD 343921", "6 Lolands Rd, Salisbury Plain SA 5109"; phones show two ticks and drop the "Takes 30 seconds" line so
     the button stays on the first screen), "Takes
-    30 seconds. Jitty confirms your time on WhatsApp.", red **Apply for a test drive** (Enter also starts it), and
+    30 seconds. We confirm your time with you.", red **Apply for a test drive** (Enter also starts it), and
     "See all N photos and full details" (scrolls to the full listing below). Right side (top on phones): the first
     four photos in a 2x2 grid, "+N photos" on the fourth, each opens the full-screen viewer.
   - **Questions** (`#tf`, full-screen dark overlay): one per screen, slide-up transition, thin red progress line,
@@ -532,8 +532,11 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
     with that" or "Happy to have a chat" (owner 2026-11-25); day as a small calendar (owner 2026-11-25: Monday of this week to three weeks out, tomorrow to +21 days
     pickable, Sundays and past days greyed, "Today" marked); Morning /
     Midday / Afternoon; then one "Last one. Your details" screen with Full name, Phone number, Email in that order
-    (owner 2026-11-25; checked: two-word name, 8 to 12 digit phone, email shape; all three go in the WhatsApp message). End screen: "Thanks, <name>. One last step.", a summary, and a green **Send to
-    Jitty on WhatsApp** link with the message written out (no link or code in it, §7c rule). Never promises a slot.
+    (owner 2026-11-25; checked: two-word name, 8 to 12 digit phone, email shape; all three go in the email). **Submit EMAILS the booking (owner 2026-11-25, no WhatsApp hop)**: the moment the
+    details pass, the page POSTs to the alert script (v5, kind `test_drive`, see §7f) which emails autodrive5109@gmail.com
+    AND stalinsajie@gmail.com, subject "TEST DRIVE: <name> | <car, price> | <day, time>", every answer, call + wa.me
+    links, Reply goes to the customer. End screen: "Done, <first>. Your test drive request is in." + "We'll confirm your
+    time shortly." + summary + Back to the car. Never promises a slot. (no-cors POST: delivery is not confirmed to the page.)
   - The grid pop-up and the full listing keep a red **Apply for a test drive** (`#sTd`, opens the questions
     directly) beside the white **Enquire** (`#sEnq`). Direct link to the questions: `/cars/<slug>#apply` (old
     `#test-drive` still works).
@@ -565,10 +568,10 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
 - Questions (every answer a decision): service tier (with a one-line "what's in it"); make (Toyota, Mazda, Honda,
   Nissan, Subaru, Mitsubishi, Suzuki, Another make → "Which make is it?"); model and year (text); km band (4 bands);
   drop-off day (calendar, today until 11am, up to 14 days, no Sundays); Morning / Midday / Afternoon; full name +
-  phone + email on one screen. End: summary + green Send to Jitty on WhatsApp ("Hi Jitty, I'd like to book a
-  service." + Service, Car, Km, Name, Phone, Email, Drop-off). `/book-service#book` opens the questions directly.
+  phone + email on one screen. Submit EMAILS the booking (alert script v5, kind `service`) to autodrive5109@gmail.com + stalinsajie@gmail.com,
+  subject "SERVICE BOOKING: <name> | <tier, car> | <day, time>". End: "Done, <first>. Your booking is in." + summary. `/book-service#book` opens the questions directly.
 - GA4: `service_book_open`, `service_book_step` (step, question), `generate_lead` (lead_type service, service_tier,
-  make, km_band, placement book_service) + `whatsapp_click`. Typed text never goes to GA.
+  make, km_band, placement book_service), fired on submit. Typed text never goes to GA.
 - **Waiting on:** owner's look at the preview and go-ahead for main.
 - **Parked (owner 2026-11-25, "do it later"): send bookings straight to AutoDrive's WhatsApp on Enter** (no WhatsApp hop
   for the customer) via the WhatsApp Cloud API from a Cloudflare function. Blocked: Stalin has only PARTIAL access to
@@ -655,8 +658,9 @@ Offer details and decisions live in `STRATEGY_CONTEXT.md` (strategy branch).
   are entered (outcome `contact`, subject "NEW LEAD"), again on reaching the booking step (`qualified`), and a third
   time when the embedded Calendly fires `calendly.event_scheduled` (outcome `booked`, subject "BOOKED"; added
   2026-11-07, LIVE 2026-11-07; the email has no call time, that is in Calendly's own email to
-  autodrive5109@gmail.com). The script is deployed as **Version 4 (2026-11-16, same /exec URL; adds the guide email to the lead + email field;
-  test lead emails both arrived)**. To change the script again: paste, Save, Manage deployments → pencil → New version. The page POSTs every answer (text/plain, no-cors) to `ALERT_URL`, a Google Apps Script
+  autodrive5109@gmail.com). The script is deployed as **Version 5 (2026-11-25, same /exec URL; adds `booking()` for kind service / test_drive,
+  emailed to BOOKING_TO = autodrive5109 + stalinsajie; test SERVICE BOOKING and TEST DRIVE emails both arrived)**. The live
+  copy has a shorter header comment than the repo file; the code is the same. To change the script again: paste, Save, Manage deployments → pencil → New version. The page POSTs every answer (text/plain, no-cors) to `ALERT_URL`, a Google Apps Script
   web app (`tools/car-finder-alert.gs`, project "AutoDrive car finder alert" in **stalinsajie@gmail.com**'s
   Apps Script, Execute as Me / Anyone; deployed + tested 2026-11-03, URL set in `ALERT_URL`). It emails stalinsajie@gmail.com: subject
   "Find My Car: <name> | QUALIFIED/not qualified | <budget> | <location>", body with all answers + a wa.me
