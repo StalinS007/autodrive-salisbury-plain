@@ -2,7 +2,7 @@
 
 **This is the one file to read first.** It replaces the older handoff notes and is kept
 current. Any Claude Code session (on Mac, phone, or the web app) should start here before
-touching the site. Last verified against the live code: **2026-11-25**.
+touching the site. Last verified against the live code: **2026-11-27**.
 
 > The other markdown files in this repo are historical and superseded:
 > - `Summary Website.md` — **OUTDATED**, describes an old black/industrial design that no
@@ -560,8 +560,8 @@ Instagram bio and Marketplace-style sharing. URL: `/cars`.
   same-day to next-day turnaround; a few questions, then straight to WhatsApp). noindex, not in the nav.
 - Same Typeform format as the /cars test drive form, self-contained (own CSS/JS + GA tag, no ?v= bump). Welcome
   (owner 2026-11-25: simple question style, **NO AI pictures**, so no photo at all): "Toyota · Mazda · Honda · Nissan ·
-  Subaru · Mitsubishi", h1 **"Showroom-level quality service for Japanese cars, with 14+ years of experience"** (owner: straight to the
-  point for Google; "Are you looking to..." pain-point openers are for Meta ads), "Most cars are
+  Subaru · Mitsubishi", h1 **"Quality service for Japanese cars"** ("Japanese cars" in red; owner 2026-11-27, was "Showroom-level quality service for Japanese cars, with 14+ years of experience"; welcome screen centred and compact on phones) (owner: straight to the
+  point for Google; "Are you looking to..." pain-point openers are for Meta ads), "Most cars
   done the same day or the next day. Three service levels, from $149.", the Jitty card (real headshot, 14+ years,
   mechanic and owner, address), red **Book my service**. Tier prices (Basic $149 / Standard $229 / Logbook $329, the
   owner-set prices from §7: change them in all places) show in question 1.

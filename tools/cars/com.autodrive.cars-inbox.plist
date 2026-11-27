@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <!-- Runs tools/cars/process-inbox.sh whenever the iCloud _inbox changes, and every 10 minutes
+       anyway (to pick up folders that were still syncing on the first pass).
+       Install:  cp tools/cars/com.autodrive.cars-inbox.plist ~/Library/LaunchAgents/
+                 launchctl bootstrap gui/$(id -u) ~/Library/LaunchAgents/com.autodrive.cars-inbox.plist
+       Remove:   launchctl bootout gui/$(id -u)/com.autodrive.cars-inbox
+       Edit the two paths below if the repo or iCloud folder lives somewhere else. -->
+  <key>Label</key><string>com.autodrive.cars-inbox</string>
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/bash</string>
+    <string>-lc</string>
+    <string>"$HOME/autodrive-salisbury-plain/tools/cars/process-inbox.sh"</string>
+  </array>
+  <key>WatchPaths</key>
+  <array>
+    <string>/Users/REPLACE_WITH_YOUR_USERNAME/Library/Mobile Documents/com~apple~CloudDocs/AutoDrive/Cars/_inbox</string>
+  </array>
+  <key>StartInterval</key><integer>600</integer>
+  <key>ThrottleInterval</key><integer>60</integer>
+  <key>RunAtLoad</key><false/>
+  <key>StandardOutPath</key><string>/tmp/autodrive-cars-inbox.out</string>
+  <key>StandardErrorPath</key><string>/tmp/autodrive-cars-inbox.err</string>
+  <key>EnvironmentVariables</key>
+  <dict>
+    <key>PATH</key><string>/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin</string>
+  </dict>
+</dict>
+</plist>

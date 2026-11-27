@@ -3,13 +3,13 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Showroom-Level Service for Japanese Cars | AutoDrive Salisbury Plain</title>
+<title>Quality Service for Japanese Cars | AutoDrive Salisbury Plain</title>
 <meta name="description" content="Book a service for your Toyota, Mazda, Honda, Nissan, Subaru or Mitsubishi at AutoDrive Salisbury Plain. Basic from $149, Standard from $229, Logbook Servicing from $329. Most cars done same day or next day." />
 <meta name="robots" content="noindex" />
 <link rel="canonical" href="https://autodrivesalisburyplain.com.au/book-service" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://autodrivesalisburyplain.com.au/book-service" />
-<meta property="og:title" content="Showroom-level quality service for Japanese cars | AutoDrive" />
+<meta property="og:title" content="Quality service for Japanese cars | AutoDrive" />
 <meta property="og:description" content="Basic from $149, Standard from $229, Logbook Servicing from $329. Most cars done same day or next day." />
 <meta property="og:image" content="https://autodrivesalisburyplain.com.au/images/jitty-headshot.jpg" />
 <link rel="icon" type="image/png" href="/images/logo-autodrive.png" />
@@ -43,34 +43,31 @@
   .top__site{color:#cfcfd4; font-size:14px; font-weight:600; text-decoration:none; padding:8px 10px;}
   .top__site:hover{color:#fff;}
 
-  /* Welcome screen */
-  .wel__in{max-width:1180px; margin:0 auto; display:grid; gap:16px; padding:14px 16px 26px;}
-  .wel__eye{margin:0 0 10px; color:#a1a1aa; font-size:12.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;}
-  .wel h1{margin:0 0 8px; font-size:clamp(27px,3.8vw,42px); font-weight:800; line-height:1.1; letter-spacing:-.015em;}
-  .wel__lead{margin:0 0 16px; font-size:17px; line-height:1.45; color:#e4e4e7;}
+  /* Welcome screen: centred, compact on phones */
+  .wel__in{max-width:620px; margin:0 auto; min-height:calc(100vh - 64px - 90px); display:grid; gap:0; align-content:center; justify-items:center; text-align:center; padding:28px 18px 32px;}
+  .wel__eye{margin:0 0 10px; color:#a1a1aa; font-size:11.5px; font-weight:700; letter-spacing:.09em; text-transform:uppercase;}
+  .wel h1{margin:0 0 10px; font-size:clamp(26px,4.2vw,40px); font-weight:800; line-height:1.12; letter-spacing:-.015em; text-wrap:balance;}
+  .wel h1 span{color:var(--red);}
+  .wel__lead{margin:0 0 16px; font-size:16px; line-height:1.45; color:#e4e4e7; text-wrap:balance;}
   .wel__lead b{color:#fff;}
-  .wel__by{display:flex; align-items:center; gap:14px; margin:0 0 18px; padding:12px 14px; border:1px solid #34343a; border-radius:10px; background:#1c1c20; max-width:520px;}
-  .wel__by img{width:60px; height:60px; border-radius:50%; object-fit:cover; flex:none; border:2px solid var(--red);}
-  .wel__by p{margin:0; font-size:13.5px; line-height:1.4; color:#a1a1aa;}
-  .wel__by .wel__byN{font-size:16px; font-weight:800; color:#fff;}
-  .wel__by .wel__byN span{font-weight:600; color:#d4d4d8; font-size:14.5px;}
-  .wel__go{display:flex; align-items:center; flex-wrap:wrap; gap:8px 14px;}
-  .tf-btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; background:var(--red); color:#fff; border:0; border-radius:6px; font:inherit; font-weight:700; font-size:18px; line-height:1.2; padding:13px 24px; cursor:pointer; text-decoration:none;}
+  .wel__by{display:flex; align-items:center; gap:12px; margin:0 0 18px; padding:9px 14px 9px 10px; border:1px solid #34343a; border-radius:10px; background:#1c1c20; text-align:left;}
+  .wel__by img{width:46px; height:46px; border-radius:50%; object-fit:cover; flex:none; border:2px solid var(--red);}
+  .wel__by p{margin:0; font-size:12.5px; line-height:1.4; color:#a1a1aa;}
+  .wel__by .wel__byN{font-size:14.5px; font-weight:800; color:#fff;}
+  .wel__by .wel__byN span{font-weight:600; color:#d4d4d8; font-size:13px;}
+  .wel__go{display:flex; flex-direction:column; align-items:center; gap:8px; width:100%;}
+  .tf-btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; background:var(--red); color:#fff; border:0; border-radius:6px; font:inherit; font-weight:700; font-size:16px; line-height:1.2; padding:12px 26px; cursor:pointer; text-decoration:none;}
   .tf-btn:hover{background:var(--red-dk);}
   .tf-btn:focus-visible{outline:2px solid #fff; outline-offset:3px;}
   .tf-btn svg{width:18px; height:18px; flex:none;}
-  .tf-key{font-size:13px; color:#a1a1aa;}
+  .wel .tf-btn{width:100%; max-width:320px;}
+  .tf-key{font-size:12.5px; color:#a1a1aa;}
   .tf-key b{font-weight:700; color:#d4d4d8;}
   @media (hover:none){ .tf-key{display:none;} }
-  @media (max-width:899px){
-    .wel .tf-btn{width:100%;}
-    .wel__lead{font-size:16px; margin-bottom:12px;}
-    .wel__by{padding:9px 12px; gap:12px; margin-bottom:14px;}
-    .wel__by img{width:50px; height:50px;}
+  @media (min-width:900px){
+    .wel__lead{font-size:17px;}
+    .wel__by img{width:52px; height:52px;}
   }
-  .wel__in{max-width:760px; min-height:calc(100vh - 64px - 90px); align-content:center; padding:40px 20px 44px;}
-  .wel h1{font-size:clamp(30px,5vw,52px);}
-  .wel__lead{font-size:19px;}
   .foot{border-top:1px solid #222226; padding:18px 0 28px; font-size:13.5px; color:#8d8d94;}
   .foot p{margin:0 0 4px;}
 
@@ -162,8 +159,8 @@
   <div class="wel__in">
     <div class="wel__txt">
       <p class="wel__eye">Toyota · Mazda · Honda · Nissan · Subaru · Mitsubishi</p>
-      <h1>Showroom-level quality service for Japanese cars, with 14+ years of experience</h1>
-      <p class="wel__lead">Most cars are done <b>the same day or the next day</b>. Three service levels, from $149.</p>
+      <h1>Quality service for <span>Japanese cars</span></h1>
+      <p class="wel__lead">Most cars done <b>the same day or the next day</b>.<br>Three service levels, from $149.</p>
       <div class="wel__by">
         <img src="/images/jitty-headshot.jpg" alt="Jitty, owner of AutoDrive" width="60" height="60">
         <div>
